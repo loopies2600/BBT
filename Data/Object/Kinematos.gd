@@ -6,6 +6,8 @@ signal died
 export (float) var dustSpawnRate = 0.025
 export (float) var dustMinVel = 500.0
 
+var doGravity := true
+
 var velocity := Vector2()
 var upDirection := Vector2.UP
 
