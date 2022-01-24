@@ -7,11 +7,14 @@
 extents = Vector2( 16, 48 )
 
 [node name="GravitySwitcher" type="Area2D"]
+z_index = 1
 collision_layer = 13
 collision_mask = 13
 script = ExtResource( 2 )
 
 [node name="SpinningStars" parent="." instance=ExtResource( 1 )]
+visible = false
 
 [node name="Detector" type="CollisionShape2D" parent="."]
+z_as_relative = false
 shape = SubResource( 1 )
