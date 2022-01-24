@@ -74,6 +74,7 @@ func kill():
 	emit_signal("died")
 	
 	plop()
+	cam.shake(3, 3)
 	visible = false
 	collisionBox.set_deferred("disabled", true)
 	canInput = false
