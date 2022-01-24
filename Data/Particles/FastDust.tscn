@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/Particles/Dust.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Particles/DustBig.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Particles/DustMedium.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), null ],
+"loop": true,
+"name": "Idle",
+"speed": 10.0
+} ]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends AnimatedSprite
+
+var velocity := Vector2()
+var gravity := 2.0
+
+func _ready():
+	play()
+	
+	var _unused = connect(\"animation_finished\", self, \"_animEnd\")
+	
+func _animEnd():
+	queue_free()
+
+func _physics_process(delta):
+	velocity.y += gravity
+	
+	position += velocity * delta
+"
+
+[node name="FastDust" type="AnimatedSprite"]
+frames = SubResource( 1 )
+animation = "Idle"
+script = SubResource( 2 )

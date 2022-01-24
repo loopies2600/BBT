@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+export (float) var padding = 0.125
+export (int) var maxSpawns = 8
+export (int) var randPos = 48
+
+var curSpawns := 0
+var dir := 1
+
+func _ready():
+	_spawn()
+	
+func _spawn():
+	var aName := \"Up\" if dir == 1 else \"Down\"
+	
+	curSpawns += 1
+	
+	if curSpawns == maxSpawns: queue_free()
+	
+	var newArrow = load(\"res://Data/Particles/Arrow%s.tscn\" % aName).instance()
+	
+	newArrow.global_position = global_position + Vector2(rand_range(-randPos, randPos), 0).rotated(rand_range(0, TAU))
+	get_tree().get_root().add_child(newArrow)
+	
+	yield(get_tree().create_timer(padding), \"timeout\")
+	_spawn()
+"
+
+[sub_resource type="Animation" id=2]
+resource_name = "Pop"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.52549, 0.52549, 0.572549 ), Color( 1, 0.305882, 0, 0.32549 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0.305882, 0, 1 ) ]
+}
+
+[node name="ArrowSpawner" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="TintRed" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="TintRed"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.305882, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="AnimationPlayer" parent="TintRed"]
+autoplay = "Pop"
+playback_speed = 2.0
+anims/Pop = SubResource( 2 )
+anims/RESET = SubResource( 3 )

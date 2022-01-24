@@ -1,0 +1,198 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Data/Object/Holdable.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=2]
+[ext_resource path="res://Sprites/TestCanvas.png" type="Texture" id=3]
+[ext_resource path="res://Data/Level/Level.gd" type="Script" id=4]
+[ext_resource path="res://Data/Object/Spike.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Data/Backgrounds/TestBG.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Data/Object/GravitySwitcher.tscn" type="PackedScene" id=7]
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 8.0
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="TileSet" id=6]
+0/name = "TestCanvas.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 96, 48, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 7 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "TestCanvas.png 1"
+1/texture = ExtResource( 3 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 112, 0, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 11 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+
+[node name="Test" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Holdable6" type="KinematicBody2D" parent="."]
+position = Vector2( 440, 168 )
+collision_layer = 8
+collision_mask = 10
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Holdable6"]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 112, 48, 16, 16 )
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Holdable6"]
+shape = SubResource( 10 )
+
+[node name="Attempts" type="Label" parent="."]
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 2 )
+text = "ATTEMPT 1"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TestTiles" type="TileMap" parent="."]
+tile_set = SubResource( 6 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 2
+collision_mask = 2
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 0, 0, 44, 0, 0, 45, 0, 0, 46, 0, 0, 47, 0, 0, 48, 0, 0, 49, 0, 0, 50, 0, 0, 51, 0, 0, 52, 0, 0, 53, 0, 0, 54, 0, 0, 55, 0, 0, 56, 0, 0, 57, 0, 0, 58, 0, 0, 59, 0, 0, 60, 0, 0, 61, 0, 0, 62, 0, 0, 63, 0, 0, 65536, 0, 0, 65599, 0, 0, 131072, 0, 0, 131135, 0, 0, 196608, 0, 0, 196671, 0, 0, 262144, 0, 0, 262207, 0, 0, 327680, 0, 0, 327743, 0, 0, 393216, 0, 0, 393279, 0, 0, 458752, 0, 0, 458815, 0, 0, 524288, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524351, 0, 0, 589824, 0, 0, 589855, 0, 0, 589856, 1, 0, 589857, 0, 0, 589858, 1, 0, 589859, 0, 0, 589860, 1, 0, 589861, 1, 0, 589862, 0, 0, 589887, 0, 0, 655360, 0, 0, 655391, 0, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0, 655395, 0, 0, 655396, 0, 0, 655397, 0, 0, 655398, 0, 0, 655423, 0, 0, 720896, 0, 0, 720927, 0, 0, 720928, 1, 0, 720929, 0, 0, 720930, 1, 0, 720931, 0, 0, 720932, 1, 0, 720933, 1, 0, 720934, 0, 0, 720936, 1, 0, 720947, 1, 0, 720959, 0, 0, 786432, 0, 0, 786463, 0, 0, 786464, 0, 0, 786465, 0, 0, 786466, 0, 0, 786467, 0, 0, 786468, 0, 0, 786469, 0, 0, 786470, 0, 0, 786472, 1, 0, 786473, 1, 0, 786474, 1, 0, 786475, 1, 0, 786476, 1, 0, 786477, 1, 0, 786478, 1, 0, 786479, 1, 0, 786480, 1, 0, 786481, 1, 0, 786482, 1, 0, 786483, 1, 0, 786495, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 851979, 0, 0, 851980, 0, 0, 851981, 0, 0, 851982, 0, 0, 851983, 0, 0, 851984, 0, 0, 851985, 0, 0, 851986, 0, 0, 851987, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0, 851991, 0, 0, 851992, 0, 0, 851993, 0, 0, 851994, 0, 0, 851995, 0, 0, 851996, 0, 0, 851997, 0, 0, 851998, 0, 0, 851999, 0, 0, 852000, 0, 0, 852001, 0, 0, 852002, 0, 0, 852003, 0, 0, 852004, 0, 0, 852005, 0, 0, 852006, 0, 0, 852007, 0, 0, 852008, 0, 0, 852009, 0, 0, 852010, 0, 0, 852011, 0, 0, 852012, 0, 0, 852013, 0, 0, 852014, 0, 0, 852015, 0, 0, 852016, 0, 0, 852017, 0, 0, 852018, 0, 0, 852019, 0, 0, 852020, 0, 0, 852021, 0, 0, 852022, 0, 0, 852023, 0, 0, 852024, 0, 0, 852025, 0, 0, 852026, 0, 0, 852027, 0, 0, 852028, 0, 0, 852029, 0, 0, 852030, 0, 0, 852031, 0, 0 )
+
+[node name="TestBG" parent="." instance=ExtResource( 6 )]
+
+[node name="GravitySwitcher" parent="." instance=ExtResource( 7 )]
+position = Vector2( 472, 96 )
+
+[node name="GravitySwitcher2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 752, 96 )
+
+[node name="Spike" parent="." instance=ExtResource( 5 )]
+position = Vector2( 512, 32 )
+rotation = -3.14159
+
+[node name="Spike10" parent="." instance=ExtResource( 5 )]
+position = Vector2( 656, 176 )
+
+[node name="Spike11" parent="." instance=ExtResource( 5 )]
+position = Vector2( 672, 176 )
+
+[node name="Spike12" parent="." instance=ExtResource( 5 )]
+position = Vector2( 688, 176 )
+
+[node name="Spike13" parent="." instance=ExtResource( 5 )]
+position = Vector2( 704, 176 )
+
+[node name="Spike14" parent="." instance=ExtResource( 5 )]
+position = Vector2( 720, 176 )
+
+[node name="Spike15" parent="." instance=ExtResource( 5 )]
+position = Vector2( 736, 176 )
+
+[node name="Spike16" parent="." instance=ExtResource( 5 )]
+position = Vector2( 752, 176 )
+
+[node name="Spike17" parent="." instance=ExtResource( 5 )]
+position = Vector2( 768, 176 )
+
+[node name="Spike18" parent="." instance=ExtResource( 5 )]
+position = Vector2( 784, 176 )
+
+[node name="Spike19" parent="." instance=ExtResource( 5 )]
+position = Vector2( 800, 176 )
+
+[node name="Spike2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 528, 32 )
+rotation = -3.14159
+
+[node name="Spike3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 544, 32 )
+rotation = -3.14159
+
+[node name="Spike4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 560, 32 )
+rotation = -3.14159
+
+[node name="Spike5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 576, 32 )
+rotation = -3.14159
+
+[node name="Spike6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 592, 32 )
+rotation = -3.14159
+
+[node name="Spike7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 608, 32 )
+rotation = -3.14159
+
+[node name="Spike8" parent="." instance=ExtResource( 5 )]
+position = Vector2( 624, 32 )
+rotation = -3.14159
+
+[node name="Spike9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 640, 32 )
+rotation = -3.14159
+
+[node name="Spike20" parent="." instance=ExtResource( 5 )]
+position = Vector2( 656, 32 )
+rotation = -3.14159
+
+[node name="Spike23" parent="." instance=ExtResource( 5 )]
+position = Vector2( 800, 32 )
+rotation = -3.14159
+
+[node name="Spike24" parent="." instance=ExtResource( 5 )]
+position = Vector2( 816, 32 )
+rotation = -3.14159
+
+[node name="Spike25" parent="." instance=ExtResource( 5 )]
+position = Vector2( 832, 32 )
+rotation = -3.14159
+
+[node name="SpawnPoint" type="Position2D" parent="."]
+position = Vector2( 77, 56 )
+__meta__ = {
+"_gizmo_extents_": 32.0
+}
