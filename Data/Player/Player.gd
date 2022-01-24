@@ -30,6 +30,9 @@ var dir := 1
 var weight := 1.0
 
 func _physics_process(delta):
+	if doGravity:
+		velocity.y += gravity * -upDirection.y * (fallMult if sign(velocity.y) == 1 else 1)
+		
 	closeObj = tools.findNearObjects()
 	
 	velocity = move_and_slide(velocity, upDirection)
@@ -38,8 +41,6 @@ func _physics_process(delta):
 		holding.global_position = lerp(holding.global_position, objOffset.global_position, 16 * delta)
 		
 	gfx.scale.x = lerp(gfx.scale.x, dir, 16 * delta)
-	
-	print("is_on_floor() = %s" % is_on_floor())
 	
 func takeObject():
 	if !closeObj: return

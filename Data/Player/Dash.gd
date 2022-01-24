@@ -1,7 +1,10 @@
 extends State
 
 func enter(_msg := {}):
-	owner.anim.play("Dash")
+	if owner.is_on_floor():
+		owner.anim.play("Jump")
+	else:
+		owner.anim.play("Dash")
 	
 	owner._doDust = true
 	
@@ -22,7 +25,5 @@ func enter(_msg := {}):
 		owner.throwObject(Vector2(owner.tossForce.x, 0).rotated(angle) - Vector2(0, owner.tossForce.y))
 		
 func physics_update(_delta):
-	owner.velocity.y += owner.gravity * -owner.upDirection.y * (owner.fallMult if sign(owner.velocity.y) == 1 else 1)
-	
 	if owner.is_on_floor():
 		emit_signal("finished", "idle")

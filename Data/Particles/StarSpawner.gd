@@ -19,6 +19,7 @@ func _starLoop():
 	
 	get_tree().get_root().call_deferred("add_child", star)
 	star.global_position = global_position
+	star.modulate = get_parent().get_parent().modulate
 	
 	yield(get_tree().create_timer(spawnRate), "timeout")
 	_starLoop()

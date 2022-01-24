@@ -19,6 +19,8 @@ func _bodyEnter(body):
 	destroy(body)
 	
 func _process(delta):
+	modulate = Color.tomato if mode == 0 else Color.cornflower
+	
 	if !Engine.editor_hint: return
 	
 	_time += delta

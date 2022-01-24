@@ -9,8 +9,6 @@ func physics_update(delta):
 	if sign(owner.velocity.y) == -sign(owner.upDirection.y):
 		owner.anim.play("Fall")
 		
-	owner.velocity.y += owner.gravity * -owner.upDirection.y * (owner.fallMult if sign(owner.velocity.y) == 1 else 1)
-	
 	if owner.canInput:
 		if owner.tools.getInputDirection():
 			owner.dir = owner.tools.getInputDirection()
