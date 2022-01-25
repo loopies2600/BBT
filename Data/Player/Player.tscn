@@ -388,4 +388,6 @@ limit_right = 8192
 limit_bottom = 224
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
 script = ExtResource( 9 )

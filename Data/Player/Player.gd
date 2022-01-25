@@ -11,7 +11,7 @@ export (float) var jumpHeight = 512
 export (float) var fallMult = 1.25
 export (Vector2) var tossForce = Vector2(825, 368)
 export (int) var objDetectionRadius = 32
-export (float) var resetDelay = 1.0
+export (float) var resetDelay = 0.5
 
 onready var anim := $Graphics/Anim
 onready var cam := $Camera
@@ -35,7 +35,7 @@ func _physics_process(delta):
 		
 	closeObj = tools.findNearObjects()
 	
-	velocity = move_and_slide(velocity, upDirection)
+	velocity.y = move_and_slide(velocity, upDirection, true).y
 	
 	if is_instance_valid(holding): 
 		holding.global_position = lerp(holding.global_position, objOffset.global_position, 16 * delta)
@@ -70,6 +70,7 @@ func kill():
 		
 	emit_signal("died")
 	
+	doGravity = false
 	plop()
 	cam.shake(3, 3)
 	visible = false
