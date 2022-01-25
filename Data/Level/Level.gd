@@ -11,7 +11,7 @@ func _ready():
 	player = load("res://Data/Player/Player.tscn").instance()
 	
 	player.global_position = spawn.global_position
-	player.connect("died", self, "_onPlayerDeath")
+	var _unused = player.connect("died", self, "_onPlayerDeath")
 	
 	add_child(player)
 	

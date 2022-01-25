@@ -1,11 +1,9 @@
 extends State
 
-func physics_update(delta):
-	if owner.velocity.x == 0:
-		emit_signal("finished", "idle")
-	else:
-		owner.anim.play("Walk")
-		
+func enter(_msg := {}):
+	owner.anim.play("Walk")
+	
+func physics_update(_delta):
 	owner.velocity.x = clamp(owner.velocity.x + owner.accel * owner.tools.getInputDirection(), -owner.maxSpd, owner.maxSpd) / owner.weight
 	
 	if owner.canInput:

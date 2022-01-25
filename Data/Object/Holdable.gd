@@ -8,6 +8,7 @@ export (float) var weight = 1.5
 
 func _ready():
 	add_to_group("Holdable")
+	add_to_group("Pushable")
 	
 func _physics_process(delta):
 	if doGravity:

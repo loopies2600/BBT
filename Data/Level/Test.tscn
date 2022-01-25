@@ -10,8 +10,8 @@
 [ext_resource path="res://Data/Object/SpawnPoint.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Data/Object/ExitDoor.tscn" type="PackedScene" id=9]
 
-[sub_resource type="CircleShape2D" id=10]
-radius = 7.5
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 7.5, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -123,7 +123,7 @@ region_enabled = true
 region_rect = Rect2( 112, 48, 16, 16 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Holdable6"]
-shape = SubResource( 10 )
+shape = SubResource( 12 )
 
 [node name="Attempts" type="Label" parent="."]
 margin_top = 24.0

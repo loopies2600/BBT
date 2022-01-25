@@ -5,7 +5,7 @@ func enter(msg := {}):
 		owner.velocity.y = owner.jumpHeight * owner.upDirection.y
 		owner.anim.play("Jump")
 	
-func physics_update(delta):
+func physics_update(_delta):
 	if sign(owner.velocity.y) == -sign(owner.upDirection.y):
 		owner.anim.play("Fall")
 		

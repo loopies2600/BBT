@@ -15,7 +15,7 @@ func enter(_msg := {}):
 	
 	var angle := Vector2(right - left, down - up).angle()
 	
-	if angle == 0: angle = 0 if owner.dir == 1 else PI
+	if angle == 0.0: angle = 0.0 if owner.dir == 1 else PI
 	
 	owner.velocity = Vector2((owner.maxSpd * 2) / owner.weight, 0).rotated(angle)
 	

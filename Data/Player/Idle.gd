@@ -10,7 +10,7 @@ func enter(_msg := {}):
 		
 	owner.anim.play("Idle" + suffix)
 	
-func physics_update(delta):
+func physics_update(_delta):
 	owner.velocity *= owner.damping
 	
 	if owner.canInput:

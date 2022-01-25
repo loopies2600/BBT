@@ -45,6 +45,8 @@ func _physics_process(delta):
 		
 	gfx.scale.x = lerp(gfx.scale.x, dir, 16 * delta)
 	
+	push()
+	
 func takeObject():
 	if !closeObj: return
 	
@@ -78,4 +80,18 @@ func kill():
 	
 	yield(get_tree().create_timer(resetDelay), "timeout")
 	
-	get_tree().reload_current_scene()
+	var _err = get_tree().reload_current_scene()
+	
+func push(vel := maxSpd * dir):
+	var pushable
+	
+	for b in get_slide_count():
+		var body = get_slide_collision(b).collider
+		var normal = get_slide_collision(b).normal
+		
+		if body:
+			if body.is_in_group("Pushable") && normal != upDirection:
+				pushable = body
+		
+	if pushable:
+		pushable.velocity.x += vel
