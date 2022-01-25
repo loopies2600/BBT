@@ -37,8 +37,11 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, upDirection)
 	
-	if holding: 
+	if is_instance_valid(holding): 
 		holding.global_position = lerp(holding.global_position, objOffset.global_position, 16 * delta)
+	else:
+		holding = null
+		weight = 1.0
 		
 	gfx.scale.x = lerp(gfx.scale.x, dir, 16 * delta)
 	
@@ -53,8 +56,6 @@ func takeObject():
 func throwObject(force := Vector2()):
 	holding.velocity = force
 	
-	weight = 1.0
-	
 	holding.doGravity = true
 	holding = null
 	
@@ -62,6 +63,9 @@ func _dustTrigger():
 	pass
 	
 func kill():
+	if is_instance_valid(holding):
+		throwObject()
+		
 	emit_signal("died")
 	
 	plop()

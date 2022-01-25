@@ -138,6 +138,7 @@ __meta__ = {
 }
 
 [node name="TestTiles" type="TileMap" parent="."]
+z_index = -1
 tile_set = SubResource( 6 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
@@ -148,11 +149,9 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 [node name="TestBG" parent="." instance=ExtResource( 6 )]
 
 [node name="GravitySwitcher" parent="." instance=ExtResource( 7 )]
-modulate = Color( 1, 0.39, 0.28, 1 )
 position = Vector2( 472, 96 )
 
 [node name="GravitySwitcher2" parent="." instance=ExtResource( 7 )]
-modulate = Color( 1, 0.39, 0.28, 1 )
 position = Vector2( 752, 96 )
 
 [node name="GravitySwitcher3" parent="." instance=ExtResource( 7 )]
