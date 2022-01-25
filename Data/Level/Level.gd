@@ -1,19 +1,38 @@
 extends Node2D
 
-onready var spawn := $LevelLayout/SpawnPoint
-onready var attempts := $HUD/Attempts
+export (String) var levelPath = "res://Data/Level/AreaZero/Zero.tscn"
+
+onready var aLabel := $HUD/Attempts
+
+var level = load(levelPath)
+onready var _lvlInstance = level.instance()
 
 var player : Player
+var attempt := 1
 
 func _ready():
-	attempts.text = "ATTEMPT %s" % Global.attempts
+	add_child(_lvlInstance)
+	_spawnPlayer()
+	
+func _spawnPlayer():
+	var spawn = _lvlInstance.get_node("SpawnPoint")
 	
 	player = load("res://Data/Player/Player.tscn").instance()
 	
+	player.levelManager = self
 	player.global_position = spawn.global_position
-	var _unused = player.connect("died", self, "_onPlayerDeath")
 	
 	add_child(player)
 	
-func _onPlayerDeath():
-	Global.attempts += 1
+	player.cam.limit_right = _lvlInstance.camBoundaries.x
+	player.cam.limit_bottom = _lvlInstance.camBoundaries.y
+	
+func restart():
+	attempt += 1
+	aLabel.text = "ATTEMPT %s" % attempt
+	
+	_lvlInstance.call_deferred("queue_free")
+	_lvlInstance = level.instance()
+	call_deferred("add_child", _lvlInstance)
+	
+	_spawnPlayer()

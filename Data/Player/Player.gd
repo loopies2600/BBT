@@ -29,6 +29,8 @@ var canGetStuff := false
 var dir := 1
 var weight := 1.0
 
+var levelManager
+
 func _physics_process(delta):
 	if doGravity:
 		velocity.y += gravity * -upDirection.y * (fallMult if sign(velocity.y) == 1 else 1)
@@ -81,7 +83,7 @@ func kill():
 	
 	yield(get_tree().create_timer(resetDelay), "timeout")
 	
-	var _err = get_tree().reload_current_scene()
+	levelManager.restart()
 	
 func push(vel := maxSpd * dir):
 	var pushable
