@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var spawn := $SpawnPoint
+onready var spawn := $LevelLayout/SpawnPoint
 onready var attempts := $Attempts
 
 var player : Player

@@ -1,12 +1,12 @@
 extends Kinematos
 class_name Player
 
-export (float) var accel = 96
+export (float) var accel = 100
 export (float, 0, 1) var bounciness = 0.5
 export (float) var gravity = 25
 export (float) var maxSpd = 116
 export (float, 0, 1) var airDamping = 0.98
-export (float, 0, 1) var damping = 0.86
+export (float, 0, 1) var damping = 0.5
 export (float) var jumpHeight = 512
 export (float) var fallMult = 1.25
 export (Vector2) var tossForce = Vector2(825, 368)
