@@ -52,7 +52,9 @@ func _copyCell(idx := 0):
 		var posY = _layoutPosCopy[idx][1]
 		
 		set_cell(posX, posY, _tileIDCopy[idx])
-		Global.plop(Vector2(posX, posY) * 16, [0, 90, 180, 270])
+		
+		if posX < 20 && posY < 14:
+			Global.plop(Vector2(posX, posY) * 16 + Vector2(8, 8))
 		
 		if idx < _layoutPosCopy.size() - 1:
 			idx += 1

@@ -9,7 +9,11 @@ func _ready():
 		yield(get_parent(), "tile_anim_finished")
 		yield(get_tree().create_timer(0.25), "timeout")
 		
-		Global.plop(global_position + Vector2(8, 8), [0, 90, 180, 270])
+		var screenPos := get_global_transform_with_canvas().get_origin()
+		
+		if screenPos.x < 320 && screenPos.y < 224:
+			Global.plop(global_position + Vector2(8, 8).rotated(rotation))
+			
 		visible = true
 	
 func _bodyEnter(body):
