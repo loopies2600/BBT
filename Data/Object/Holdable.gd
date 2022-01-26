@@ -3,7 +3,6 @@ extends Kinematos
 export (float, 0, 1) var airDamping = 0.98
 export (float, 0, 1) var bounciness = 0.48
 export (float, 0, 1) var damping = 0.86
-export (float) var gravity = 32
 export (float) var weight = 1.5
 
 func _ready():

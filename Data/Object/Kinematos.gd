@@ -5,6 +5,7 @@ signal died
 
 export (float) var dustSpawnRate = 0.025
 export (float) var dustMinVel = 500.0
+export (float) var gravity = 25.0
 
 var doGravity := true
 

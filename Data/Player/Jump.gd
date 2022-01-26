@@ -8,6 +8,9 @@ func enter(msg := {}):
 		if msg.has("jumpHeight"):
 			jumping = true
 			owner.velocity.y = msg["jumpHeight"] * owner.upDirection.y
+		
+	if msg.has("antiCancel"):
+		cancelled = true
 	
 func physics_update(_delta):
 	if sign(owner.velocity.y) == -sign(owner.upDirection.y):

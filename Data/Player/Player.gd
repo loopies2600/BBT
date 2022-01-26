@@ -3,7 +3,6 @@ class_name Player
 
 export (float) var accel = 100
 export (float, 0, 1) var bounciness = 0.5
-export (float) var gravity = 25
 export (float) var maxSpd = 116
 export (float, 0, 1) var airDamping = 0.98
 export (float, 0, 1) var damping = 0.5
@@ -35,8 +34,12 @@ var weight := 1.0
 var levelManager
 
 func _ready():
+	collisionBox.set_deferred("disabled", true)
+	
 	doGravity = false
 	canInput = false
+	
+	global_position.y += jumpHeight / 2
 	
 func _physics_process(delta):
 	if doGravity:
@@ -90,7 +93,15 @@ func kill():
 	
 	velocity = Vector2()
 	
-	yield(get_tree().create_timer(resetDelay), "timeout")
+	yield(get_tree().create_timer(resetDelay / 2), "timeout")
+	
+	var tween = Tween.new()
+	add_child(tween)
+	
+	tween.interpolate_property(self, "global_position", global_position, spawnPos, resetDelay / 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	
+	yield(tween, "tween_completed")
 	
 	levelManager.restart()
 	
@@ -110,4 +121,13 @@ func push(vel := maxSpd * dir):
 	
 func _tileAnimEnd():
 	doGravity = true
+	
+	var dist := abs(spawnPos.y - global_position.y)
+	var jumpCalc = dist * (gravity / 7)
+	
+	fsm._change_state("air", {"jumpHeight" : jumpCalc, "antiCancel" : true})
+	
+	yield(get_tree().create_timer(0.5), "timeout")
+	
 	canInput = true
+	collisionBox.set_deferred("disabled", false)
