@@ -19,6 +19,7 @@ onready var gfx := $Graphics
 onready var tools := $Tools
 onready var objOffset := $Graphics/HeldObjectOffset
 onready var collisionBox := $CollisionBox
+onready var fsm := $StateMachine
 
 var closeObj
 var holding
@@ -33,6 +34,10 @@ var weight := 1.0
 
 var levelManager
 
+func _ready():
+	doGravity = false
+	canInput = false
+	
 func _physics_process(delta):
 	if doGravity:
 		velocity.y += gravity * -upDirection.y * (fallMult if sign(velocity.y) == 1 else 1)
@@ -77,7 +82,7 @@ func kill():
 	emit_signal("died")
 	
 	doGravity = false
-	plop()
+	Global.plop(global_position)
 	cam.shake(3, 3)
 	visible = false
 	collisionBox.set_deferred("disabled", true)
@@ -102,3 +107,7 @@ func push(vel := maxSpd * dir):
 		
 	if pushable:
 		pushable.velocity.x += vel
+	
+func _tileAnimEnd():
+	doGravity = true
+	canInput = true

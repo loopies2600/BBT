@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Data/Object/Holdable.gd" type="Script" id=1]
 [ext_resource path="res://Data/Object/GravitySwitcher.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Data/Level/Tiles.gd" type="Script" id=5]
+[ext_resource path="res://Data/Level/Level.gd" type="Script" id=5]
 [ext_resource path="res://Data/Object/Spike.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Sprites/TestCanvas.png" type="Texture" id=8]
 [ext_resource path="res://Data/Tilesets/AreaZero.tres" type="TileSet" id=9]

@@ -5,9 +5,9 @@ var cancelled := false
 
 func enter(msg := {}):
 	if !owner.god:
-		if msg.has("isJump"):
+		if msg.has("jumpHeight"):
 			jumping = true
-			owner.velocity.y = owner.jumpHeight * owner.upDirection.y
+			owner.velocity.y = msg["jumpHeight"] * owner.upDirection.y
 	
 func physics_update(_delta):
 	if sign(owner.velocity.y) == -sign(owner.upDirection.y):
