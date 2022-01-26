@@ -23,6 +23,8 @@ onready var collisionBox := $CollisionBox
 var closeObj
 var holding
 
+var god := false
+
 var grounded := false
 var canInput := true
 var canGetStuff := false
@@ -67,6 +69,8 @@ func _dustTrigger():
 	pass
 	
 func kill():
+	if god: return
+	
 	if is_instance_valid(holding):
 		throwObject()
 		

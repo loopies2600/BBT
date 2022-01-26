@@ -28,19 +28,25 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Data/Util/StateMachine/StateMachine.gd"
+}, {
+"base": "Node",
+"class": "TexTool",
+"language": "GDScript",
+"path": "res://Data/Util/TexTool.gd"
 } ]
 _global_script_class_icons={
 "Kinematos": "",
 "Player": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"TexTool": ""
 }
 
 [application]
 
-config/name="Benett Boy's Trouble"
+config/name="Bennett Boy's Trouble"
 config/description="DEV BUILD"
-run/main_scene="res://Data/Level/PlayScene.tscn"
+run/main_scene="res://Data/Scenes/PlayScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
