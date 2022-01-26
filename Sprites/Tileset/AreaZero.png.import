@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TestCanvas.png-ee9ee24d7f6043b0ccf06e328ab1544a.stex"
+path="res://.import/AreaZero.png-5ac11ec5f25da603446d630a7195f5c0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/TestCanvas.png"
-dest_files=[ "res://.import/TestCanvas.png-ee9ee24d7f6043b0ccf06e328ab1544a.stex" ]
+source_file="res://Sprites/Tileset/AreaZero.png"
+dest_files=[ "res://.import/AreaZero.png-5ac11ec5f25da603446d630a7195f5c0.stex" ]
 
 [params]
 

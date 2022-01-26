@@ -93,12 +93,14 @@ func kill():
 	
 	velocity = Vector2()
 	
-	yield(get_tree().create_timer(resetDelay / 2), "timeout")
+	yield(get_tree().create_timer(resetDelay), "timeout")
+	
+	var time := spawnPos.distance_to(global_position) / (Engine.get_frames_per_second() * 8)
 	
 	var tween = Tween.new()
 	add_child(tween)
 	
-	tween.interpolate_property(self, "global_position", global_position, spawnPos, resetDelay / 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self, "global_position", global_position, spawnPos, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	
 	yield(tween, "tween_completed")

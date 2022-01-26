@@ -3,7 +3,7 @@ extends TileMap
 signal tile_anim_finished
 
 const SHADOW := preload("res://Sprites/Tileset/Shadow.png")
-const SHADOW_CASTERS := [0, 1, 5, 6, 7, 8]
+const SHADOW_CASTERS := [0, 1, 5, 6, 7, 8, 9, 10, 11]
 
 export (Vector2) var camBoundaries = Vector2(320, 224)
 export (Vector2) var shadowOffset = Vector2.ZERO
@@ -17,11 +17,18 @@ var _tileIDCopy := []
 var firstRun := true
 
 func _ready():
+	_flipOneWayCollisionShapes()
+	
 	if firstRun: 
 		_copyLayout()
 		return
 	
 	emit_signal("tile_anim_finished")
+	
+func _flipOneWayCollisionShapes():
+	tile_set.tile_set_shape_transform(9, 0, Transform2D(deg2rad(90), Vector2(16, 0)))
+	tile_set.tile_set_shape_transform(10, 0, Transform2D(deg2rad(270), Vector2(0, 16)))
+	tile_set.tile_set_shape_transform(11, 0, Transform2D(deg2rad(180), Vector2(16, 16)))
 	
 func _copyLayout():
 	_layoutPosCopy = get_used_cells()
