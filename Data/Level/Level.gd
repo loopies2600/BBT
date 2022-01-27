@@ -3,7 +3,7 @@ extends TileMap
 signal tile_anim_finished
 
 const SHADOW := preload("res://Sprites/Tileset/Shadow.png")
-const SHADOW_CASTERS := [0, 1, 5, 6, 7, 8, 9, 10, 11]
+const SHADOW_EXCLUDED := [2, 3, 4]
 
 export (Vector2) var camBoundaries = Vector2(320, 224)
 export (Vector2) var shadowOffset = Vector2.ZERO
@@ -79,5 +79,7 @@ func _draw():
 	for c in get_used_cells():
 		var pos = c * 16
 		
-		if get_cellv(c) in SHADOW_CASTERS:
+		if get_cellv(c) in SHADOW_EXCLUDED: 
+			pass
+		else:
 			draw_texture(SHADOW, pos + shadowOffset)
