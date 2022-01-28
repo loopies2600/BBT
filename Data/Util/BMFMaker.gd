@@ -1,6 +1,7 @@
-extends Node
+extends Label
 
-export (int) var charSize = 8
+export (Vector2) var charSize = Vector2(8, 8)
+export (int) var charSpacing = 8
 export (Texture) var texture
 export (PoolStringArray) var columns
 export (String) var path = "res://Sprites/Font/Main.tres"
@@ -11,20 +12,16 @@ func _ready():
 	generate()
 	
 func generate():
+	bm.add_texture(texture)
+	
 	var column := 0
 	var row := 0
 	
-	var bitmapSize := Vector2(int(texture.get_size().x / charSize), int(texture.get_size().y / charSize))
-	
-	bm.add_texture(texture)
-	
 	for i in range(columns.size()):
 		for c in range(columns[i].length()):
-			var charPos := Vector2(charSize * row, charSize * column)
-			print(charPos)
+			var charPos := Vector2(charSize.x * row, charSize.y * column)
 			var unicode = ord(columns[i][c])
-			
-			bm.add_char(unicode, 0, Rect2(charPos, Vector2(charSize, charSize)))
+			bm.add_char(unicode, 0, Rect2(charPos, Vector2(charSize.x, charSize.y)), Vector2(), charSpacing)
 			
 			row += 1
 			
