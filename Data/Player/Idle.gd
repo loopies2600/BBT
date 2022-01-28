@@ -5,9 +5,6 @@ func enter(_msg := {}):
 	
 	var suffix := "FromJump" if get_parent().previous_state == "air" else ""
 	
-	if owner.velocity.y > 600.0:
-		owner.spawnFeetDust()
-		
 	owner.anim.play("Idle" + suffix)
 	
 func physics_update(_delta):

@@ -95,16 +95,6 @@ func kill():
 	
 	yield(get_tree().create_timer(resetDelay), "timeout")
 	
-	var time := spawnPos.distance_to(global_position) / (Engine.get_frames_per_second() * 8)
-	
-	var tween = Tween.new()
-	add_child(tween)
-	
-	tween.interpolate_property(self, "global_position", global_position, spawnPos, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
-	
-	yield(tween, "tween_completed")
-	
 	levelManager.restart()
 	
 func push(vel := maxSpd * dir):

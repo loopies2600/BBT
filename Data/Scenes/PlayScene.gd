@@ -28,6 +28,9 @@ func _spawnPlayer():
 	player.cam.limit_bottom = _lvlInstance.camBoundaries.y
 	
 func restart():
+	player.queue_free()
+	player = null
+	
 	attempt += 1
 	aLabel.text = "ATTEMPT %s" % attempt
 	
