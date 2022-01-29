@@ -5,4 +5,5 @@ func _ready():
 				   "crouch" : $Crouch,
 				   "move" : $Move,
 				   "air" : $Air,
-				   "attack" : $Attack }
+				   "attack" : $Attack,
+				   "dead" : $Dead }

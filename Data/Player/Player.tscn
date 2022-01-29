@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Data/Player/InputManager.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/Player.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Data/Player/Dash.gd" type="Script" id=8]
 [ext_resource path="res://Data/Player/Camera.gd" type="Script" id=9]
 [ext_resource path="res://Data/Player/Crouch.gd" type="Script" id=10]
+[ext_resource path="res://Data/Player/Dead.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=12]
 resource_name = "Crouch"
@@ -674,6 +675,9 @@ script = ExtResource( 7 )
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true

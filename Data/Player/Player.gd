@@ -10,7 +10,7 @@ export (float) var jumpHeight = 512
 export (float) var fallMult = 1.25
 export (Vector2) var tossForce = Vector2(825, 368)
 export (int) var objDetectionRadius = 32
-export (float) var resetDelay = 0.5
+export (float) var resetDelay = 1.0
 
 onready var anim := $Graphics/Anim
 onready var cam := $Camera
@@ -80,23 +80,7 @@ func _dustTrigger():
 func kill():
 	if god: return
 	
-	if is_instance_valid(holding):
-		throwObject()
-		
-	emit_signal("died")
-	
-	doGravity = false
-	Global.plop(global_position)
-	cam.shake(3, 3)
-	visible = false
-	collisionBox.set_deferred("disabled", true)
-	canInput = false
-	
-	velocity = Vector2()
-	
-	yield(get_tree().create_timer(resetDelay), "timeout")
-	
-	levelManager.restart()
+	fsm._change_state("dead")
 	
 func push(vel := maxSpd * dir):
 	var pushable
