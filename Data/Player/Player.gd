@@ -30,6 +30,7 @@ var canInput := true
 var canGetStuff := false
 var dir := 1
 var weight := 1.0
+var slideDownSlopes := false
 
 var levelManager
 
@@ -47,7 +48,7 @@ func _physics_process(delta):
 		
 	closeObj = tools.findNearObjects()
 	
-	velocity.y = move_and_slide(velocity, upDirection, true).y
+	velocity.y = move_and_slide(velocity, upDirection, !slideDownSlopes).y
 	
 	if is_instance_valid(holding): 
 		holding.global_position = lerp(holding.global_position, objOffset.global_position, 16 * delta)

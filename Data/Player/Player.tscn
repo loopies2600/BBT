@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Data/Player/InputManager.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/Player.gd" type="Script" id=2]
@@ -9,6 +9,60 @@
 [ext_resource path="res://Data/Player/Jump.gd" type="Script" id=7]
 [ext_resource path="res://Data/Player/Dash.gd" type="Script" id=8]
 [ext_resource path="res://Data/Player/Camera.gd" type="Script" id=9]
+[ext_resource path="res://Data/Player/Crouch.gd" type="Script" id=10]
+
+[sub_resource type="Animation" id=12]
+resource_name = "Crouch"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeldObjectOffset:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 7.7, 8, 10.1, 10.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 64, 32, 32 ), Rect2( 32, 64, 32, 32 ), Rect2( 0, 64, 32, 32 ), Rect2( 32, 64, 32, 32 ), Rect2( 0, 64, 32, 32 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "Dash"
@@ -193,6 +247,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Rect2( 96, 0, 32, 32 ), Rect2( 0, 0, 32, 32 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath("Anim")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Idle", -1, 1.0, false ],
+"method": "play"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Jump"
@@ -359,6 +427,7 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Anim" type="AnimationPlayer" parent="Graphics"]
 playback_speed = 4.0
+anims/Crouch = SubResource( 12 )
 anims/Dash = SubResource( 9 )
 anims/Fall = SubResource( 10 )
 anims/Idle = SubResource( 3 )
@@ -384,13 +453,16 @@ START_STATE = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 
+[node name="Crouch" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
-[node name="Dash" type="Node" parent="StateMachine"]
+[node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
 
 [node name="Camera" type="Camera2D" parent="."]

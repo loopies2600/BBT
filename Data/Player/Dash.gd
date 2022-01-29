@@ -1,6 +1,6 @@
 extends State
 
-func enter(_msg := {}):
+func enter(msg := {}):
 	if owner.is_on_floor():
 		owner.anim.play("Jump")
 	else:
@@ -17,7 +17,8 @@ func enter(_msg := {}):
 	
 	if angle == 0.0: angle = 0.0 if owner.dir == 1 else PI
 	
-	owner.velocity = Vector2((owner.maxSpd * 2) / owner.weight, 0).rotated(angle)
+	if !msg.has("noBoost"):
+		owner.velocity = Vector2((owner.maxSpd * 2) / owner.weight, 0).rotated(angle)
 	
 	if !owner.holding:
 		owner.takeObject()
