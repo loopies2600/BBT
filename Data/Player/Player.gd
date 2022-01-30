@@ -10,7 +10,7 @@ export (float) var jumpHeight = 512
 export (float) var fallMult = 1.25
 export (Vector2) var tossForce = Vector2(825, 368)
 export (int) var objDetectionRadius = 32
-export (float) var resetDelay = 1.0
+export (float) var resetDelay = 1.5
 
 onready var anim := $Graphics/Anim
 onready var cam := $Camera

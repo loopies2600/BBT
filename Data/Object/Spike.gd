@@ -11,7 +11,7 @@ func _ready():
 		
 		var screenPos := get_global_transform_with_canvas().get_origin()
 		
-		if screenPos.x < 320 && screenPos.y < 224:
+		if screenPos.x < 320 && screenPos.x > 0 && screenPos.y < 224 && screenPos.y > 0:
 			Global.plop(global_position + Vector2(8, 8).rotated(rotation))
 			
 		visible = true

@@ -15,13 +15,17 @@ func _ready():
 	_starLoop()
 	
 func _starLoop():
-	var star = load("res://Data/Particles/Star.tscn").instance()
+	var screenPos := get_global_transform_with_canvas().get_origin()
 	
-	get_tree().get_root().call_deferred("add_child", star)
-	star.global_position = global_position
-	star.modulate = get_parent().get_parent().modulate
-	
+	if screenPos.x < 320 && screenPos.x > 0 && screenPos.y < 224 && screenPos.y > 0:
+		var star = load("res://Data/Particles/Star.tscn").instance()
+		
+		get_tree().get_root().call_deferred("add_child", star)
+		star.global_position = global_position
+		star.modulate = get_parent().get_parent().modulate
+		
 	yield(get_tree().create_timer(spawnRate), "timeout")
+	
 	_starLoop()
 	 
 func _physics_process(delta):
