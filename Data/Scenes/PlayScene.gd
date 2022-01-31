@@ -11,6 +11,7 @@ var attempt := 1
 
 func _ready():
 	add_child(_lvlInstance)
+	$SelectedObject.level = _lvlInstance
 	_spawnPlayer()
 	
 func _spawnPlayer():
@@ -38,5 +39,6 @@ func restart():
 	_lvlInstance = level.instance()
 	_lvlInstance.firstRun = false
 	call_deferred("add_child", _lvlInstance)
+	$SelectedObject.level = _lvlInstance
 	
 	_spawnPlayer()

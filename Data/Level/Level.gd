@@ -83,7 +83,8 @@ func _copyCell(idx := 0, mapOffset := Vector2()):
 		_copyCell(idx, mapOffset)
 	else:
 		emit_signal("tile_anim_finished")
-		
+	
+func _process(_delta):
 	update()
 	
 func _draw():
