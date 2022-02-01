@@ -5,9 +5,13 @@ const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 onready var cursor := $SelectedObject
 onready var level := $LevelLayout
 onready var tilesTab := $EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
+onready var itemLabel := $MenuBar/ItemLabel
 
 func _ready():
 	_spawnTileItems()
+	
+func _process(_delta):
+	itemLabel.text = level.tile_set.tile_get_name(cursor.tileID)
 	
 func _spawnTileItems():
 	for tile in level.tile_set.get_tiles_ids():
