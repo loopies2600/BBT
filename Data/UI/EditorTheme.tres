@@ -1,0 +1,136 @@
+[gd_resource type="Theme" load_steps=11 format=2]
+
+[ext_resource path="res://Sprites/Font/Editor.tres" type="BitmapFont" id=1]
+[ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.419608, 0.643137, 0.843137, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.380392, 0.854902, 1, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.231373, 0.439216, 0.643137, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.541176, 0.654902, 0.584314, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.952941, 0.952941, 0.878431, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.870588, 0.807843, 0.654902, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.941176, 0.768627, 0.564706, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.870588, 0.807843, 0.654902, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+expand_margin_bottom = 1.0
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[resource]
+default_font = ExtResource( 1 )
+Fonts/fonts/normal = ExtResource( 1 )
+HScrollBar/styles/grabber = SubResource( 5 )
+HScrollBar/styles/grabber_highlight = SubResource( 6 )
+HScrollBar/styles/grabber_pressed = SubResource( 7 )
+HScrollBar/styles/scroll = SubResource( 8 )
+Panel/styles/panel = SubResource( 1 )
+TabContainer/colors/font_color_bg = Color( 0.427451, 0.427451, 0.427451, 1 )
+TabContainer/colors/font_color_fg = Color( 0, 0, 0, 1 )
+TabContainer/styles/panel = SubResource( 2 )
+TabContainer/styles/tab_bg = SubResource( 4 )
+TabContainer/styles/tab_fg = SubResource( 3 )
+Tabs/fonts/font = ExtResource( 2 )

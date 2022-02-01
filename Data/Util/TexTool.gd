@@ -28,6 +28,9 @@ static func manipulate(tex, task := "", value = 0.0):
 						color = color.blend(value)
 				"alpha":
 					color.a *= value
+				"replaceAlpha":
+					if color.a == 0:
+						color = value
 					
 			img.set_pixel(pX, pY, color)
 					

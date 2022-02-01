@@ -13,11 +13,14 @@ var _undoCache := []
 var _redoCache := []
 
 func _process(_delta):
-	update()
+	texture = level.tile_set.tile_get_texture(tileID)
+	region_rect = level.tile_set.tile_get_region(tileID)
 	
-	global_position = (get_global_mouse_position() / 16).round() * 16
+	canPlace = get_global_mouse_position().y < 172
 	
 	if canPlace:
+		global_position = ((get_global_mouse_position() - Vector2(8, 8)) / 16).round() * 16
+		
 		var cellPos := (global_position / 16).round()
 		var cacheData := Vector3(cellPos.x, cellPos.y, tileID)
 		

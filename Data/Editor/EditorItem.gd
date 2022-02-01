@@ -2,7 +2,7 @@ extends TextureRect
 
 export (PackedScene) var itemScene
 
-onready var cursor := get_node("root/EditorScene/SelectedObject")
+var cursor : Sprite
 
 var isTile := true
 var tileID := 0

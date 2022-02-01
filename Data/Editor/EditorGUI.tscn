@@ -1,8 +1,49 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.862745, 0.713726, 0.658824, 1 )
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 6.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.870588, 0.807843, 0.654902, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+anti_aliasing = false
+anti_aliasing_size = 0.01
 
 [node name="EditorGUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 4.0
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -10,6 +51,9 @@ __meta__ = {
 [node name="TabContainer" type="TabContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_mode = 2
+custom_styles/panel = SubResource( 1 )
+tab_align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -18,8 +62,9 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
-margin_right = -276.0
+margin_top = 22.0
+margin_right = -4.0
+margin_bottom = -2.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Tiles"]
 anchor_right = 1.0
