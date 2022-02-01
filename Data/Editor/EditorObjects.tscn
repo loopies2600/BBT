@@ -31,7 +31,7 @@ corner_radius_top_right = 8
 anti_aliasing = false
 anti_aliasing_size = 0.01
 
-[node name="EditorGUI" type="Control"]
+[node name="EditorObjects" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -69,6 +69,7 @@ margin_bottom = -2.0
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Tiles"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_clip_content = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,6 +77,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Tiles/ScrollContainer"]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Tiles/ScrollContainer/VBoxContainer"]
+custom_constants/separation = 4
 
 [node name="Objects" type="Tabs" parent="TabContainer"]
 visible = false
@@ -116,3 +118,23 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Entities/ScrollContainer"]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Entities/ScrollContainer/VBoxContainer"]
+
+[node name="Markers" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Markers"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Markers/ScrollContainer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Markers/ScrollContainer/VBoxContainer"]

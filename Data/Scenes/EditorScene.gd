@@ -4,7 +4,7 @@ const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
 onready var cursor := $SelectedObject
 onready var level := $LevelLayout
-onready var tilesTab := $EditorGUI/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
+onready var tilesTab := $EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 
 func _ready():
 	_spawnTileItems()

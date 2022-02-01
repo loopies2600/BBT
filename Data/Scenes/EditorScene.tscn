@@ -4,7 +4,7 @@
 [ext_resource path="res://Sprites/Editor/SelectedTile.png" type="Texture" id=2]
 [ext_resource path="res://Data/Tilesets/AreaZero.tres" type="TileSet" id=3]
 [ext_resource path="res://Data/Shader/General.shader" type="Shader" id=4]
-[ext_resource path="res://Data/Editor/EditorGUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Data/Editor/EditorObjects.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Scenes/EditorScene.gd" type="Script" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -38,7 +38,7 @@ texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -16, -16 )
 
-[node name="EditorGUI" parent="." instance=ExtResource( 5 )]
+[node name="EditorObjects" parent="." instance=ExtResource( 5 )]
 anchor_bottom = 0.0
 margin_top = 172.0
 margin_right = 320.0
