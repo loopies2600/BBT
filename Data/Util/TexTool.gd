@@ -37,6 +37,6 @@ static func manipulate(tex, task := "", value = 0.0):
 	img.unlock()
 	
 	var imgTex = ImageTexture.new()
-	imgTex.create_from_image(img)
+	imgTex.create_from_image(img, 0)
 	
 	return imgTex

@@ -4,14 +4,17 @@ const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
 onready var cursor := $SelectedObject
 onready var level := $LevelLayout
-onready var tilesTab := $EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
-onready var itemLabel := $MenuBar/ItemLabel
+onready var tilesTab := $GUILayer/EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
+onready var itemLabel := $GUILayer/MenuBar/ItemLabel
 
 func _ready():
 	_spawnTileItems()
 	
 func _process(_delta):
-	itemLabel.text = level.tile_set.tile_get_name(cursor.tileID)
+	if cursor.isTile:
+		itemLabel.text = level.tile_set.tile_get_name(cursor.tileID)
+	else:
+		itemLabel.text = cursor.itemName
 	
 func _spawnTileItems():
 	for tile in level.tile_set.get_tiles_ids():
@@ -20,9 +23,9 @@ func _spawnTileItems():
 		var tex = level.tile_set.tile_get_texture(tile)
 		var region = level.tile_set.tile_get_region(tile)
 		
+		newItem.selected = tile == 0
 		newItem.texture = _tileTexGen(tex, region)
 		newItem.tileID = tile
-		newItem.cursor = cursor
 		
 		tilesTab.add_child(newItem)
 	

@@ -6,6 +6,7 @@ onready var level := get_parent().get_node("LevelLayout")
 
 var isTile := true
 var tileID := 0
+var itemName := ""
 
 var canPlace := true
 
@@ -13,11 +14,6 @@ var _undoCache := []
 var _redoCache := []
 
 func _process(_delta):
-	texture = level.tile_set.tile_get_texture(tileID)
-	region_rect = level.tile_set.tile_get_region(tileID)
-	
-	canPlace = get_global_mouse_position().y < 172 && get_global_mouse_position().y > 20
-	
 	if canPlace:
 		global_position = ((get_global_mouse_position() - Vector2(8, 8)) / 16).round() * 16
 		
