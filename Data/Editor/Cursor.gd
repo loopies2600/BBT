@@ -16,7 +16,7 @@ func _process(_delta):
 		var cellPos := (global_position / 16).round()
 		var cacheData := Vector3(cellPos.x, cellPos.y, target.tileID)
 		
-		if Input.is_action_just_pressed("mouse_main"):
+		if Input.is_action_pressed("mouse_main"):
 			if target.isTile:
 				if get_parent().get_node("LevelLayout").get_cellv(cellPos) != target.tileID:
 					_undoCache.append(cacheData)
@@ -36,7 +36,7 @@ func _process(_delta):
 				
 				instance.global_position = cellPos * 16
 			
-		if Input.is_action_just_pressed("mouse_secondary"):
+		if Input.is_action_pressed("mouse_secondary"):
 			if target.isTile:
 				if get_parent().get_node("LevelLayout").get_cellv(cellPos) != -1:
 					_redoCache.append(Vector3(cacheData.x, cacheData.y, get_parent().get_node("LevelLayout").get_cellv(cellPos)))
