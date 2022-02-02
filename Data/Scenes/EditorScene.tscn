@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Data/Editor/SelectedObject.gd" type="Script" id=1]
+[ext_resource path="res://Data/Editor/Cursor.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Editor/SelectedTile.png" type="Texture" id=2]
 [ext_resource path="res://Data/Tilesets/AreaZero.tres" type="TileSet" id=3]
 [ext_resource path="res://Data/Shader/General.shader" type="Shader" id=4]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Data/Scenes/EditorScene.gd" type="Script" id=6]
 [ext_resource path="res://Data/Editor/MenuBar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Data/Editor/Camera.gd" type="Script" id=8]
+[ext_resource path="res://Data/Level/Level.gd" type="Script" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -21,13 +22,18 @@ shader_param/glowing_intensity = 1.0
 shader_param/precision = 0.1
 shader_param/opacity = 0.5
 
-[node name="EditorScene" type="Node2D"]
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("GUILayer/GUIViewport")
+
+[node name="EditorScene" type="Node2D" groups=["Editor"]]
 script = ExtResource( 6 )
 
 [node name="LevelLayout" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
+script = ExtResource( 9 )
+firstRun = false
 
 [node name="SelectedObject" type="Sprite" parent="." groups=["Cursor"]]
 material = SubResource( 1 )
@@ -42,12 +48,22 @@ offset = Vector2( -16, -16 )
 [node name="GUILayer" type="CanvasLayer" parent="."]
 layer = 8
 
-[node name="EditorObjects" parent="GUILayer" instance=ExtResource( 5 )]
+[node name="GUIRenderer" type="Sprite" parent="GUILayer"]
+texture = SubResource( 2 )
+centered = false
+
+[node name="GUIViewport" type="Viewport" parent="GUILayer"]
+size = Vector2( 320, 224 )
+transparent_bg = true
+handle_input_locally = false
+render_target_v_flip = true
+
+[node name="EditorObjects" parent="GUILayer/GUIViewport" instance=ExtResource( 5 )]
 anchor_bottom = 0.0
 margin_top = 172.0
 margin_bottom = 224.0
 
-[node name="MenuBar" parent="GUILayer" instance=ExtResource( 7 )]
+[node name="MenuBar" parent="GUILayer/GUIViewport" instance=ExtResource( 7 )]
 margin_bottom = -208.0
 
 [node name="Camera" type="Camera2D" parent="."]

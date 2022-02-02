@@ -1,17 +1,23 @@
 extends Node2D
 
-export (PackedScene) var level = preload("res://Data/Level/AreaZero/Zero.tscn")
-
 onready var aLabel := $HUD/Attempts
 
-onready var _lvlInstance = level.instance()
+var level
+var _lvlInstance
 
 var player : Player
 var attempt := 1
 
-func _ready():
+func setup():
+	OS.set_window_title("Bennett Boy's Trouble")
+	
+	Global.editing = false
+	
+	_lvlInstance = level.instance()
+	
+	_lvlInstance.firstRun = true
 	add_child(_lvlInstance)
-	$SelectedObject.level = _lvlInstance
+	
 	_spawnPlayer()
 	
 func _spawnPlayer():
@@ -39,6 +45,17 @@ func restart():
 	_lvlInstance = level.instance()
 	_lvlInstance.firstRun = false
 	call_deferred("add_child", _lvlInstance)
-	$SelectedObject.level = _lvlInstance
 	
 	_spawnPlayer()
+	
+func _input(event):
+	if event.is_action_pressed("switch_state"):
+		_edit()
+		
+func _edit():
+	var mapPack = PackedScene.new()
+	var err = mapPack.pack(_lvlInstance)
+	
+	if err == OK:
+		Global.edit(mapPack)
+		

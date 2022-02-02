@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Player/BB.png" type="Texture" id=3]
 [ext_resource path="res://Data/Editor/EditorItem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Data/Editor/TabContainer.gd" type="Script" id=5]
+[ext_resource path="res://Data/Object/SpawnPoint.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 0.0
@@ -70,7 +71,6 @@ __meta__ = {
 }
 
 [node name="Tiles" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -146,6 +146,7 @@ script = ExtResource( 2 )
 script = ExtResource( 2 )
 
 [node name="Markers" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -177,3 +178,5 @@ script = ExtResource( 2 )
 texture = SubResource( 3 )
 isTile = false
 itemName = "Bennett Spawn"
+itemScene = ExtResource( 6 )
+singleInstance = true

@@ -7,7 +7,7 @@ var y := 0.0
 var _time := 0.0
 
 func _process(delta):
-	if !Engine.editor_hint: return
+	if !Global.editing: return
 	
 	_time += delta
 	
@@ -16,5 +16,5 @@ func _process(delta):
 	update()
 	
 func _draw():
-	if Engine.editor_hint:
-		draw_texture(SPICON, -SPICON.get_size() / 2 + Vector2(0, y))
+	if Global.editing:
+		draw_texture(SPICON, Vector2(-16, y))

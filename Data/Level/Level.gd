@@ -7,14 +7,12 @@ const SHADOW_EXCLUDED := [2, 3, 4]
 
 export (Vector2) var camBoundaries = Vector2(320, 224)
 export (Vector2) var shadowOffset = Vector2.ZERO
-
+export (bool) var firstRun = true
 export (float) var copySpeed := 0.05
 export (int) var copyPerIteration := 20
 
 var _layoutPosCopy := []
 var _tileIDCopy := []
-
-var firstRun := true
 
 func _ready():
 	_flipOneWayCollisionShapes()
@@ -23,7 +21,7 @@ func _ready():
 		_copyLayout()
 		
 		return
-	
+		
 	emit_signal("tile_anim_finished")
 	
 func _flipOneWayCollisionShapes():
