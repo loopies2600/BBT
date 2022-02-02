@@ -1,62 +1,99 @@
 extends Sprite
 
-var canPlace := true
+enum Modes {PLACE, ROTATE}
+var mode = Modes.PLACE
 
-var _undoCache := []
-var _redoCache := []
+var canPlace := true
 
 var target
 
 func _process(_delta):
+	mode = _getMode()
+	
+	global_position = ((get_global_mouse_position() - Vector2(8, 8)) / 16).round() * 16
+		
+	var level : TileMap = get_parent().get_node("LevelLayout")
+	var cellPos := (global_position / 16).round()
+		
+	if canPlace:
+		match mode:
+			Modes.PLACE:
+				_placeLogic(level, cellPos)
+			Modes.ROTATE:
+				_rotateLogic(level, cellPos)
+	
+func _getMode():
+	var activeButtonIdx := 0
+	
+	for c in range(get_parent().utilButtons.get_child_count()):
+		var b = get_parent().utilButtons.get_child(c)
+		
+		if b.is_in_group("Refresh"):
+			if b.pressed:
+				activeButtonIdx = c
+		
+	return activeButtonIdx
+	
+func _placeLogic(level : TileMap, cellPos := Vector2()):
 	if target: texture = target.texture
 	
 	if canPlace:
-		global_position = ((get_global_mouse_position() - Vector2(8, 8)) / 16).round() * 16
-		
-		var cellPos := (global_position / 16).round()
-		var cacheData := Vector3(cellPos.x, cellPos.y, target.tileID)
-		
 		if Input.is_action_pressed("mouse_main"):
 			if target.isTile:
-				if get_parent().get_node("LevelLayout").get_cellv(cellPos) != target.tileID:
-					_undoCache.append(cacheData)
-					get_parent().get_node("LevelLayout").set_cellv(cellPos, target.tileID)
+				var occupied := level.get_cellv(cellPos) != -1 || _getNodeOnThisPos(cellPos) != null
+				if occupied: return
+				
+				if level.get_cellv(cellPos) != target.tileID:
+					level.set_cellv(cellPos, target.tileID)
 			else:
+				var occupied := level.get_cellv(cellPos) != -1 || _getNodeOnThisPos(cellPos) != null
+				if occupied: return
+				
 				var instance = target.itemScene.instance()
 				
-				if target.singleInstance:
-					var exists = get_parent().get_node("LevelLayout").get_node(instance.name)
-					if exists: exists.queue_free()
-					yield(get_tree(), "idle_frame")
-					
+				yield(_singleInstanceCheck(level, instance), "completed")
+				
 				instance.add_to_group("Instances")
 				
-				get_parent().get_node("LevelLayout").add_child(instance)
-				instance.owner = get_parent().get_node("LevelLayout")
+				level.add_child(instance)
+				instance.owner = level
 				
 				instance.global_position = cellPos * 16
 			
 		if Input.is_action_pressed("mouse_secondary"):
-			if target.isTile:
-				if get_parent().get_node("LevelLayout").get_cellv(cellPos) != -1:
-					_redoCache.append(Vector3(cacheData.x, cacheData.y, get_parent().get_node("LevelLayout").get_cellv(cellPos)))
-					get_parent().get_node("LevelLayout").set_cellv(cellPos, -1)
+			var isTile := level.get_cellv(cellPos) != -1
+			
+			if isTile:
+				level.set_cellv(cellPos, -1)
 			else:
-				for c in get_tree().get_nodes_in_group("Instances"):
-					if (c.global_position / 16).round() == cellPos:
-						c.queue_free()
+				var n = _getNodeOnThisPos(cellPos)
+				
+				if n: n.queue_free()
+	
+func _rotateLogic(level : TileMap, cellPos := Vector2()):
+	texture = null
+	
+	if canPlace:
+		var dir = int(Input.is_action_just_pressed("mouse_main")) - int(Input.is_action_just_pressed("mouse_secondary"))
 		
-func _input(event):
-	if event.is_action_pressed("undo"):
-		if _undoCache:
-			var data = _undoCache.pop_back()
-			_redoCache.append(data)
-			
-			get_parent().get_node("LevelLayout").set_cell(data.x, data.y, -1)
+		var isTile := level.get_cellv(cellPos) != -1
 		
-	if event.is_action_pressed("redo"):
-		if _redoCache:
-			var data = _redoCache.pop_back()
-			_undoCache.append(data)
+		if !isTile:
+			var n = _getNodeOnThisPos(cellPos)
 			
-			get_parent().get_node("LevelLayout").set_cell(data.x, data.y, data.z)
+			if n: n.rotation_degrees += (90 * dir)
+	
+func _singleInstanceCheck(level : Node2D, inst):
+	if target.singleInstance:
+		var exists = level.get_node(inst.name)
+		if exists: exists.queue_free()
+		yield(get_tree(), "idle_frame")
+	
+func _getNodeOnThisPos(cellPos := Vector2()) -> Node2D:
+	var node
+	
+	for c in get_tree().get_nodes_in_group("Instances"):
+		if (c.global_position / 16).round() == cellPos:
+			node = c
+	
+	return node

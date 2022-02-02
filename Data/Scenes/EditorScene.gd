@@ -1,5 +1,6 @@
 extends Node2D
 
+const FONT := preload("res://Sprites/Font/Main.tres")
 const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
 onready var cursor := $SelectedObject
@@ -7,6 +8,11 @@ onready var level := $LevelLayout
 onready var tilesTab := $GUILayer/GUIViewport/EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 onready var itemLabel := $GUILayer/GUIViewport/MenuBar/ItemLabel
 onready var viewport := $GUILayer/GUIViewport
+onready var utilButtons := $GUILayer/GUIViewport/MenuBar/UtilButtons
+onready var cam := $Camera
+
+var showGrid := false
+var showCells := false
 
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")
@@ -15,7 +21,30 @@ func _ready():
 	
 	_spawnTileItems()
 	
+func _draw():
+	var size : Vector2 = get_viewport_rect().size * cam.zoom
+	var pos : Vector2 = cam.global_position
+	var separation := 16
+	
+	if showGrid:
+		var color := Color.darkgray
+		
+		for i in range(int((pos.x - size.x) / separation) - 1, int((size.x + pos.x) / separation) + 1):
+			draw_line(Vector2(i * separation, pos.y + size.y + 128), Vector2(i * separation, pos.y - size.y - 128), color, 1)
+			
+		for i in range(int((pos.y - size.y) / separation) - 1, int((size.y + pos.y) / separation) + 1):
+			draw_line(Vector2(pos.x + size.x + 128, i * separation), Vector2(pos.x - size.x - 128, i * separation), color, 1)
+		
+	if showCells:
+		for i in range(int((pos.x - size.x) / separation) - 1, int((size.x + pos.x) / separation) + 1):
+			draw_string(FONT, Vector2(i * 16, pos.y + size.y - 192), str(i), Color.darkgray)
+			
+		for i in range(int((pos.y - size.y) / separation) - 1, int((size.y + pos.y) / separation) + 1):
+			draw_string(FONT, Vector2(pos.x + size.x - 304, i * 16), str(i), Color.darkgray)
+		
 func _process(_delta):
+	update()
+	
 	if level:
 		if cursor.target.isTile:
 			itemLabel.text = level.tile_set.tile_get_name(cursor.target.tileID)

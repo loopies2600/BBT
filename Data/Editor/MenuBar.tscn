@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Editor/Button.png" type="Texture" id=3]
+[ext_resource path="res://Data/Editor/MenuBar/UtilButton.gd" type="Script" id=4]
+[ext_resource path="res://Data/Editor/MenuBar/ManipulatorButton.gd" type="Script" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 0.0
@@ -27,6 +30,38 @@ corner_radius_bottom_left = 4
 expand_margin_bottom = 4.0
 anti_aliasing = false
 anti_aliasing_size = 0.01
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 16, 16, 16 )
 
 [node name="MenuBar" type="Control"]
 anchor_right = 1.0
@@ -58,3 +93,69 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UtilButtons" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+focus_mode = 1
+custom_constants/separation = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pencil" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
+margin_right = 16.0
+margin_bottom = 220.0
+focus_mode = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+pressed = true
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 4 )
+stretch_mode = 2
+script = ExtResource( 4 )
+
+[node name="Rotator" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 220.0
+focus_mode = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = SubResource( 6 )
+texture_pressed = SubResource( 7 )
+stretch_mode = 2
+script = ExtResource( 4 )
+
+[node name="Grid" type="TextureButton" parent="UtilButtons"]
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 220.0
+focus_mode = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+stretch_mode = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "showGrid"
+
+[node name="CellNumbers" type="TextureButton" parent="UtilButtons"]
+margin_left = 60.0
+margin_right = 76.0
+margin_bottom = 220.0
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = SubResource( 10 )
+texture_pressed = SubResource( 11 )
+stretch_mode = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "showCells"

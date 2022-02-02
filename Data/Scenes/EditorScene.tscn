@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Data/Editor/Cursor.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Editor/SelectedTile.png" type="Texture" id=2]
@@ -21,6 +21,21 @@ shader_param/brightness = 1.0
 shader_param/glowing_intensity = 1.0
 shader_param/precision = 0.1
 shader_param/opacity = 0.5
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/toScreen = false
+shader_param/canGlow = false
+shader_param/invertColors = false
+shader_param/glowing_color = Color( 1, 1, 1, 1 )
+shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
+shader_param/brightness = 1.0
+shader_param/glowing_intensity = 1.0
+shader_param/precision = 0.1
+shader_param/opacity = 0.5
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("GUILayer/GUIViewport")
 
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("GUILayer/GUIViewport")
@@ -47,6 +62,14 @@ offset = Vector2( -16, -16 )
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 layer = 8
+
+[node name="GUIShadow" type="Sprite" parent="GUILayer"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 3 )
+position = Vector2( 0, 6 )
+scale = Vector2( 1.025, 1 )
+texture = SubResource( 4 )
+centered = false
 
 [node name="GUIRenderer" type="Sprite" parent="GUILayer"]
 texture = SubResource( 2 )
