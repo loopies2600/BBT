@@ -1,14 +1,12 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Data/Editor/Cursor.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Editor/SelectedTile.png" type="Texture" id=2]
-[ext_resource path="res://Data/Tilesets/AreaZero.tres" type="TileSet" id=3]
 [ext_resource path="res://Data/Shader/General.shader" type="Shader" id=4]
 [ext_resource path="res://Data/Editor/EditorObjects.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Scenes/EditorScene.gd" type="Script" id=6]
 [ext_resource path="res://Data/Editor/MenuBar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Data/Editor/Camera.gd" type="Script" id=8]
-[ext_resource path="res://Data/Level/Level.gd" type="Script" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -42,13 +40,6 @@ viewport_path = NodePath("GUILayer/GUIViewport")
 
 [node name="EditorScene" type="Node2D" groups=["Editor"]]
 script = ExtResource( 6 )
-
-[node name="LevelLayout" type="TileMap" parent="."]
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 16, 16 )
-format = 1
-script = ExtResource( 9 )
-firstRun = false
 
 [node name="SelectedObject" type="Sprite" parent="." groups=["Cursor"]]
 material = SubResource( 1 )

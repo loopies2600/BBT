@@ -12,15 +12,14 @@ func _process(_delta):
 	
 	global_position = ((get_global_mouse_position() - Vector2(8, 8)) / 16).round() * 16
 		
-	var level : TileMap = get_parent().get_node("LevelLayout")
 	var cellPos := (global_position / 16).round()
 		
 	if canPlace:
 		match mode:
 			Modes.PLACE:
-				_placeLogic(level, cellPos)
+				_placeLogic(Global.level, cellPos)
 			Modes.ROTATE:
-				_rotateLogic(level, cellPos)
+				_rotateLogic(Global.level, cellPos)
 	
 func _getMode():
 	var activeButtonIdx := 0
@@ -55,6 +54,9 @@ func _placeLogic(level : TileMap, cellPos := Vector2()):
 				
 				instance.add_to_group("Instances")
 				
+				for p in target.customParams:
+					instance.set(p, target.customParams[p])
+					
 				level.add_child(instance)
 				instance.owner = level
 				
@@ -81,13 +83,18 @@ func _rotateLogic(level : TileMap, cellPos := Vector2()):
 		if !isTile:
 			var n = _getNodeOnThisPos(cellPos)
 			
-			if n: n.rotation_degrees += (90 * dir)
+			if n:
+				if n.get("_editorRotate"):
+					n.get("_editorRotate").rotation_degrees += (90 * dir)
+				else:
+					n.rotation_degrees += (90 * dir)
 	
 func _singleInstanceCheck(level : Node2D, inst):
 	if target.singleInstance:
 		var exists = level.get_node(inst.name)
 		if exists: exists.queue_free()
-		yield(get_tree(), "idle_frame")
+	
+	yield(get_tree(), "idle_frame")
 	
 func _getNodeOnThisPos(cellPos := Vector2()) -> Node2D:
 	var node

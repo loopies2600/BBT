@@ -4,6 +4,7 @@ export (bool) var isTile = true
 export (String) var itemName
 export (PackedScene) var itemScene
 export (bool) var singleInstance = false
+export (Dictionary) var customParams
 
 onready var border := $Border
 onready var editor = get_tree().get_nodes_in_group("Editor")[0]

@@ -2,6 +2,11 @@ extends Node
 
 var editing := false
 
+onready var level := preload("res://Data/Level/Level.tscn").instance()
+
+func _ready():
+	add_child(level)
+	
 func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
 	for i in range(rotations.size()):
 		var dust = load("res://Data/Particles/FastDust.tscn").instance()
@@ -11,24 +16,11 @@ func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
 		dust.gravity = 4
 		dust.velocity = Vector2(0, -75).rotated(deg2rad(rotations[i]))
 	
-func playLevel(level : PackedScene):
+func playLevel():
 	get_tree().change_scene("res://Data/Scenes/PlayScene.tscn")
-	yield(get_tree(), "idle_frame")
 	
-	get_tree().get_current_scene().level = level
+	yield(get_tree(), "idle_frame")
 	get_tree().get_current_scene().setup()
 	
-func edit(level : PackedScene):
+func edit():
 	get_tree().change_scene("res://Data/Scenes/EditorScene.tscn")
-	yield(get_tree(), "idle_frame")
-	
-	var newLvl = level.instance()
-	newLvl.firstRun = false
-	
-	get_tree().get_current_scene().get_node("LevelLayout").queue_free()
-	yield(get_tree(), "idle_frame")
-	get_tree().get_current_scene().add_child(newLvl)
-	get_tree().get_current_scene().level = newLvl
-	
-	for c in newLvl.get_children():
-		c.add_to_group("Instances")

@@ -2,7 +2,8 @@ extends Node2D
 
 onready var aLabel := $HUD/Attempts
 
-var level
+onready var level := Global.level
+
 var _lvlInstance
 
 var player : Player
@@ -13,15 +14,13 @@ func setup():
 	
 	Global.editing = false
 	
-	_lvlInstance = level.instance()
-	
-	_lvlInstance.firstRun = true
-	add_child(_lvlInstance)
+	level.firstRun = true
+	level.doAnim()
 	
 	_spawnPlayer()
 	
 func _spawnPlayer():
-	var spawn = _lvlInstance.get_node("SpawnPoint")
+	var spawn = level.get_node("SpawnPoint")
 	
 	player = load("res://Data/Player/Player.tscn").instance()
 	
@@ -30,9 +29,9 @@ func _spawnPlayer():
 	
 	add_child(player)
 	
-	_lvlInstance.connect("tile_anim_finished", player, "_tileAnimEnd")
-	player.cam.limit_right = _lvlInstance.camBoundaries.x
-	player.cam.limit_bottom = _lvlInstance.camBoundaries.y
+	level.connect("tile_anim_finished", player, "_tileAnimEnd")
+	player.cam.limit_right = level.camBoundaries.x
+	player.cam.limit_bottom = level.camBoundaries.y
 	
 func restart():
 	player.queue_free()
@@ -41,11 +40,7 @@ func restart():
 	attempt += 1
 	aLabel.text = "ATTEMPT %s" % attempt
 	
-	_lvlInstance.call_deferred("queue_free")
-	_lvlInstance = level.instance()
-	_lvlInstance.firstRun = false
-	call_deferred("add_child", _lvlInstance)
-	
+	level.doAnim()
 	_spawnPlayer()
 	
 func _input(event):
@@ -53,9 +48,5 @@ func _input(event):
 		_edit()
 		
 func _edit():
-	var mapPack = PackedScene.new()
-	var err = mapPack.pack(_lvlInstance)
+	Global.edit()
 	
-	if err == OK:
-		Global.edit(mapPack)
-		

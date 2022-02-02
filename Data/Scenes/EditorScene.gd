@@ -4,12 +4,13 @@ const FONT := preload("res://Sprites/Font/Main.tres")
 const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
 onready var cursor := $SelectedObject
-onready var level := $LevelLayout
 onready var tilesTab := $GUILayer/GUIViewport/EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 onready var itemLabel := $GUILayer/GUIViewport/MenuBar/ItemLabel
 onready var viewport := $GUILayer/GUIViewport
 onready var utilButtons := $GUILayer/GUIViewport/MenuBar/UtilButtons
 onready var cam := $Camera
+
+onready var level := Global.level
 
 var showGrid := false
 var showCells := false
@@ -86,11 +87,7 @@ func _playTest():
 		_message("No player spawn point") 
 		return
 		
-	var mapPack = PackedScene.new()
-	var err = mapPack.pack(level)
-	
-	if err == OK:
-		Global.playLevel(mapPack)
+	Global.playLevel()
 	
 func _message(text := "ERROR"):
 	if viewport.get_node("Message"): return

@@ -12,8 +12,8 @@ collision_mask = 13
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 8, 8 )
 texture = ExtResource( 1 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 96, 0, 16, 16 )
 

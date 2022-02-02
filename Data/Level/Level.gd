@@ -14,7 +14,7 @@ export (int) var copyPerIteration := 20
 var _layoutPosCopy := []
 var _tileIDCopy := []
 
-func _ready():
+func doAnim():
 	_flipOneWayCollisionShapes()
 	
 	if firstRun: 
