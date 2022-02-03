@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Data/Object/SpawnPoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Data/Object/Spike.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sprites/Editor/Objects.png" type="Texture" id=8]
+[ext_resource path="res://Data/Object/GravitySwitcher.tscn" type="PackedScene" id=9]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 0.0
@@ -41,6 +42,14 @@ anti_aliasing_size = 0.01
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 8 )
 region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 8 )
+region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
@@ -121,11 +130,13 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Objects/ScrollContainer"]
-margin_right = 16.0
+margin_right = 56.0
 margin_bottom = 16.0
 script = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Objects/ScrollContainer/VBoxContainer"]
+margin_right = 16.0
+margin_bottom = 16.0
 script = ExtResource( 2 )
 
 [node name="Spike" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
@@ -133,7 +144,20 @@ texture = SubResource( 4 )
 isTile = false
 itemName = "Spike"
 itemScene = ExtResource( 7 )
+
+[node name="GravitatorUp" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 5 )
+isTile = false
+itemName = "Gravitator Up"
+itemScene = ExtResource( 9 )
+
+[node name="GravitatorDown" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 6 )
+isTile = false
+itemName = "Gravitator Down"
+itemScene = ExtResource( 9 )
 customParams = {
+"mode": 1
 }
 
 [node name="Entities" type="Tabs" parent="TabContainer"]

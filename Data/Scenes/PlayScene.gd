@@ -14,8 +14,7 @@ func setup():
 	
 	Global.editing = false
 	
-	level.firstRun = true
-	level.doAnim()
+	level.resetObjectState()
 	
 	_spawnPlayer()
 	
@@ -29,9 +28,11 @@ func _spawnPlayer():
 	
 	add_child(player)
 	
-	level.connect("tile_anim_finished", player, "_tileAnimEnd")
-	player.cam.limit_right = level.camBoundaries.x
-	player.cam.limit_bottom = level.camBoundaries.y
+	player.cam.limit_left = level.camBoundariesX.x
+	player.cam.limit_right = level.camBoundariesX.y
+	
+	player.cam.limit_top = level.camBoundariesY.x
+	player.cam.limit_bottom = level.camBoundariesY.y
 	
 func restart():
 	player.queue_free()
@@ -40,7 +41,8 @@ func restart():
 	attempt += 1
 	aLabel.text = "ATTEMPT %s" % attempt
 	
-	level.doAnim()
+	level.resetObjectState()
+	
 	_spawnPlayer()
 	
 func _input(event):

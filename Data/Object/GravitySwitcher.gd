@@ -10,18 +10,27 @@ export (Modes) var mode = Modes.UP
 var y := 0.0
 var _time := 0.0
 
+var disabled := false
+
 func _ready():
 	get_child(0).visible = !Engine.editor_hint
 	
 	var _unused = connect("body_entered", self, "_bodyEnter")
 	
 func _bodyEnter(body):
-	destroy(body)
+	if !disabled:
+		if body is Kinematos:
+			if !Global.editing:
+				_changeGravityNDisable(body)
 	
 func _process(delta):
+	visible = !disabled
+	
+	update()
+	
 	modulate = Color.tomato if mode == 0 else Color.cornflower
 	
-	if !Engine.editor_hint: return
+	if !Global.editing: return
 	
 	_time += delta
 	
@@ -30,13 +39,11 @@ func _process(delta):
 	else:
 		y = -abs(sin(_time * 2)) * 4
 	
-	update()
-		
 func _draw():
-	if Engine.editor_hint:
+	if Global.editing:
 		draw_texture(AICONS[mode], -AICONS[mode].get_size() / 2 + Vector2(0, y))
 	
-func destroy(whoEntered):
+func _changeGravityNDisable(whoEntered):
 	var newDir := 1 if mode == Modes.UP else -1
 	
 	if whoEntered.upDirection.y == newDir: return
@@ -49,4 +56,7 @@ func destroy(whoEntered):
 	
 	whoEntered.upDirection.y = newDir
 	
-	queue_free()
+	disabled = true
+	
+func resetState():
+	disabled = false

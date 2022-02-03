@@ -10,15 +10,17 @@ onready var viewport := $GUILayer/GUIViewport
 onready var utilButtons := $GUILayer/GUIViewport/MenuBar/UtilButtons
 onready var cam := $Camera
 
-onready var level := Global.level
+onready var level : TileMap = Global.level
 
 var showGrid := false
 var showCells := false
+var showCellBox := false
 
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")
 	
 	Global.editing = true
+	level.resetObjectState()
 	
 	_spawnTileItems()
 	
@@ -43,6 +45,13 @@ func _draw():
 		for i in range(int((pos.y - size.y) / separation) - 1, int((size.y + pos.y) / separation) + 1):
 			draw_string(FONT, Vector2(pos.x + size.x - 304, i * 16), str(i), Color.darkgray)
 		
+	if showCellBox:
+		for c in level.get_used_cells():
+			draw_rect(Rect2(Vector2(c.x, c.y) * 16, Vector2(16, 16)), Color(0.66, 0.66, 0.66, 0.5), true)
+			
+		for n in level.get_children():
+			draw_rect(Rect2(n.global_position, Vector2(16, 16)), Color(0.66, 0.66, 0.66, 0.5), true)
+			
 func _process(_delta):
 	update()
 	

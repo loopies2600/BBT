@@ -42,6 +42,10 @@ func _ready():
 	
 	global_position.y += jumpHeight / 2
 	
+	yield(get_tree().create_timer(resetDelay / 2), "timeout")
+	
+	_hopIn()
+	
 func _physics_process(delta):
 	if doGravity:
 		velocity.y += gravity * -upDirection.y * (fallMult if sign(velocity.y) == 1 else 1)
@@ -96,7 +100,7 @@ func push(vel := maxSpd * dir):
 	if pushable:
 		pushable.velocity.x += vel
 	
-func _tileAnimEnd():
+func _hopIn():
 	doGravity = true
 	
 	var dist := abs(spawnPos.y - global_position.y)

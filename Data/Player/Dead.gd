@@ -38,6 +38,6 @@ func enter(msg := {}):
 	owner.velocity = velocity
 	
 	# esperar y reiniciar
-	yield(get_tree().create_timer(owner.resetDelay), "timeout")
+	yield(get_tree().create_timer(owner.resetDelay / 2), "timeout")
 	
 	owner.levelManager.restart()
