@@ -2,16 +2,17 @@ extends Node2D
 
 onready var aLabel := $HUD/Attempts
 
-onready var level := Global.level
-
 var _lvlInstance
 
 var player : Player
 var attempt := 1
 
+var level
+
 func setup():
 	OS.set_window_title("Bennett Boy's Trouble")
 	
+	level = Global.level
 	Global.editing = false
 	
 	level.resetObjectState()

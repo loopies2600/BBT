@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Data/Object/Spike.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sprites/Editor/Objects.png" type="Texture" id=8]
 [ext_resource path="res://Data/Object/GravitySwitcher.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sprites/Tileset/AreaZero.png" type="Texture" id=10]
+[ext_resource path="res://Data/Object/Holdable/Static/WoodenBox.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 0.0
@@ -50,6 +52,10 @@ region = Rect2( 0, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 8 )
 region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 10 )
+region = Rect2( 112, 48, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
@@ -130,7 +136,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Objects/ScrollContainer"]
-margin_right = 56.0
+margin_right = 76.0
 margin_bottom = 16.0
 script = ExtResource( 2 )
 
@@ -159,6 +165,12 @@ itemScene = ExtResource( 9 )
 customParams = {
 "mode": 1
 }
+
+[node name="WoodenBox" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 7 )
+isTile = false
+itemName = "Wooden Box"
+itemScene = ExtResource( 11 )
 
 [node name="Entities" type="Tabs" parent="TabContainer"]
 visible = false

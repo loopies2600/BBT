@@ -37,6 +37,8 @@ var levelManager
 onready var levelBottom : int = cam.limit_bottom + 32
 
 func _ready():
+	spawnPos = global_position
+	
 	collisionBox.set_deferred("disabled", true)
 	
 	doGravity = false

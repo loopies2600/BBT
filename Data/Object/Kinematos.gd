@@ -11,8 +11,7 @@ var doGravity := true
 
 var velocity := Vector2()
 var upDirection := Vector2.UP
-
-onready var spawnPos := global_position
+var spawnPos := Vector2()
 
 var _doDust := false
 

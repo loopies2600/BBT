@@ -5,11 +5,18 @@ export (float, 0, 1) var bounciness = 0.48
 export (float, 0, 1) var damping = 0.86
 export (float) var weight = 1.5
 
+func resetState():
+	global_position = spawnPos
+	
 func _ready():
 	add_to_group("Holdable")
 	add_to_group("Pushable")
 	
+	spawnPos = global_position
+	
 func _physics_process(delta):
+	if Global.editing: return
+	
 	if doGravity:
 		velocity.y += gravity * -upDirection.y
 	

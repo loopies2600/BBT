@@ -1,5 +1,8 @@
 extends Node
 
+const PLAYER = preload("res://Data/Scenes/PlayScene.tscn")
+const EDITOR = preload("res://Data/Scenes/EditorScene.tscn")
+
 var editing := false
 
 onready var level := preload("res://Data/Level/Level.tscn").instance()
@@ -17,10 +20,10 @@ func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
 		dust.velocity = Vector2(0, -75).rotated(deg2rad(rotations[i]))
 	
 func playLevel():
-	get_tree().change_scene("res://Data/Scenes/PlayScene.tscn")
+	get_tree().change_scene_to(PLAYER)
 	
 	yield(get_tree(), "idle_frame")
 	get_tree().get_current_scene().setup()
 	
 func edit():
-	get_tree().change_scene("res://Data/Scenes/EditorScene.tscn")
+	get_tree().change_scene_to(EDITOR)

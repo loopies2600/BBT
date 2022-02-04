@@ -10,11 +10,11 @@ var target
 func _process(_delta):
 	mode = _getMode()
 	
-	global_position = ((get_global_mouse_position() - Vector2(8, 8)) / 16).round() * 16
-		
 	var cellPos := (global_position / 16).round()
 		
 	if canPlace:
+		global_position = ((get_global_mouse_position() - Vector2(8, 8)) / 16).round() * 16
+		
 		match mode:
 			Modes.PLACE:
 				_placeLogic(Global.level, cellPos)
@@ -39,19 +39,17 @@ func _placeLogic(level : TileMap, cellPos := Vector2()):
 	if canPlace:
 		if Input.is_action_pressed("mouse_main"):
 			if target.isTile:
-				var occupied := level.get_cellv(cellPos) != -1 || _getNodeOnThisPos(cellPos) != null
-				if occupied: return
-				
 				if level.get_cellv(cellPos) != target.tileID:
 					level.set_cellv(cellPos, target.tileID)
 			else:
-				var occupied := level.get_cellv(cellPos) != -1 || _getNodeOnThisPos(cellPos) != null
+				var occupied := _getNodeOnThisPos(cellPos) != null
 				if occupied: return
 				
 				var instance = target.itemScene.instance()
 				
 				yield(_singleInstanceCheck(level, instance), "completed")
 				
+				instance.global_position = cellPos * 16
 				instance.add_to_group("Instances")
 				
 				for p in target.customParams:
@@ -59,8 +57,6 @@ func _placeLogic(level : TileMap, cellPos := Vector2()):
 					
 				level.add_child(instance)
 				instance.owner = level
-				
-				instance.global_position = cellPos * 16
 			
 		if Input.is_action_pressed("mouse_secondary"):
 			var isTile := level.get_cellv(cellPos) != -1
