@@ -1,14 +1,11 @@
 tool
 extends Area2D
 
-const AICONS := [preload("res://Sprites/Particles/ArrowUp2.png"), preload("res://Sprites/Particles/ArrowDown1.png")]
-
 enum Modes {UP, DOWN}
 
 export (Modes) var mode = Modes.UP
 
-var y := 0.0
-var _time := 0.0
+onready var detector := $Detector
 
 var disabled := false
 
@@ -30,19 +27,10 @@ func _process(delta):
 	
 	modulate = Color.tomato if mode == 0 else Color.cornflower
 	
-	if !Global.editing: return
-	
-	_time += delta
-	
-	if !mode:
-		y = abs(sin(_time * 2)) * 4
-	else:
-		y = -abs(sin(_time * 2)) * 4
-	
 func _draw():
 	if Global.editing:
-		draw_texture(AICONS[mode], -AICONS[mode].get_size() / 2 + Vector2(0, y))
-	
+		draw_rect(Rect2(-detector.shape.extents, detector.shape.extents * 2), Color.white / 2)
+		
 func _changeGravityNDisable(whoEntered):
 	var newDir := 1 if mode == Modes.UP else -1
 	

@@ -7,7 +7,7 @@ func enter(msg := {}):
 	if !owner.god:
 		if msg.has("jumpHeight"):
 			jumping = true
-			owner.velocity.y = msg["jumpHeight"] * owner.upDirection.y
+			owner.velocity = Vector2(msg["jumpHeight"], 0).rotated(owner.upDirection.angle())
 		
 	if msg.has("antiCancel"):
 		cancelled = true

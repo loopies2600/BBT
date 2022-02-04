@@ -6,7 +6,7 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), null ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 10.0

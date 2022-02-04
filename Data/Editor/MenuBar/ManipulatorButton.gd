@@ -3,6 +3,8 @@ extends TextureButton
 export (String) var property
 
 func _ready():
+	get_tree().get_nodes_in_group("Editor")[0].set(property, pressed)
+	
 	var _unused = connect("mouse_entered", self, "_mouseIn")
 	_unused = connect("mouse_exited", self, "_mouseOut")
 	

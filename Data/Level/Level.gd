@@ -26,25 +26,27 @@ func _flipOneWayCollisionShapes():
 func _process(_delta):
 	update()
 	
-	if Global.editing:
-		var cellsX := []
-		var cellsY := []
+func generateCameraBoundaries():
+	var cellsX := []
+	var cellsY := []
+	
+	for c in get_used_cells():
+		cellsX.append(c.x)
+		cellsY.append(c.y)
 		
-		for c in get_used_cells():
-			cellsX.append(c.x)
-			cellsY.append(c.y)
-			
-		cellsX.sort()
-		cellsY.sort()
+	cellsX.sort()
+	cellsY.sort()
+	
+	if cellsX:
+		var preferredX = cellsX[0] if cellsX[0] < 0 else 0
+		var preferredY = cellsX[cellsX.size() - 1] if cellsX[cellsX.size() - 1] > 20 else 20
 		
-		if cellsX:
-			var preferred = cellsX[0] if cellsX[0] <= 0 else 0
-			
-			camBoundariesX = Vector2(preferred, cellsX[cellsX.size() - 1]) * 16
-		if cellsY:
-			var preferred = cellsY[0] if cellsY[0] <= 0 else 0
-			
-			camBoundariesY = Vector2(preferred, cellsY[cellsY.size() - 1]) * 16
+		camBoundariesX = Vector2(preferredX, preferredY) * 16
+	if cellsY:
+		var preferredX = cellsY[0] if cellsY[0] < 0 else 0
+		var preferredY = cellsY[cellsY.size() - 1] if cellsY[cellsY.size() - 1] > 14 else 14
+		
+		camBoundariesY = Vector2(preferredX, preferredY) * 16
 		
 func _draw():
 	for c in get_used_cells():

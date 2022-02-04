@@ -96,6 +96,7 @@ func _playTest():
 		_message("No player spawn point") 
 		return
 		
+	level.generateCameraBoundaries()
 	Global.playLevel()
 	
 func _message(text := "ERROR"):

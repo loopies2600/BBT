@@ -1,5 +1,7 @@
 extends Sprite
 
+const STAR = preload("res://Data/Particles/Star.tscn")
+
 export (float) var distance = 48
 export (int) var speed = -3
 export (Vector2) var orbitDimension = Vector2(0.5, 1)
@@ -19,7 +21,7 @@ func _starLoop():
 		var screenPos := get_global_transform_with_canvas().get_origin()
 		
 		if screenPos.x < 320 && screenPos.x > 0 && screenPos.y < 224 && screenPos.y > 0:
-			var star = load("res://Data/Particles/Star.tscn").instance()
+			var star = STAR.instance()
 			
 			get_tree().get_root().call_deferred("add_child", star)
 			star.global_position = global_position

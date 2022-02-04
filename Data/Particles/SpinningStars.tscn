@@ -13,13 +13,3 @@ initialAngle = 180
 [node name="Spawner1" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
-
-[node name="Spawner2" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-script = ExtResource( 1 )
-initialAngle = 90
-
-[node name="Spawner3" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-script = ExtResource( 1 )
-initialAngle = 270

@@ -12,12 +12,16 @@ func enter(msg := {}):
 		owner.throwObject()
 	
 	# spawnea el casco y aplica velocidad
-	var newHat = HARD_HAT.instance()
-	get_tree().get_root().add_child(newHat)
-	
-	newHat.global_position = owner.global_position
-	newHat.velocity = Vector2(rand_range(-velocity.x, velocity.x), velocity.y * 1.25)
-	newHat.upDirection = owner.upDirection
+	if !msg.has("noAnim"):
+		var newHat = HARD_HAT.instance()
+		get_tree().get_root().add_child(newHat)
+		
+		newHat.global_position = owner.global_position
+		newHat.velocity = Vector2(rand_range(-velocity.x, velocity.x), velocity.y * 1.25)
+		newHat.upDirection = owner.upDirection
+	else:
+		velocity = Vector2.ZERO
+		
 	
 	# señal muerte y animar
 	owner.emit_signal("died")
@@ -38,6 +42,6 @@ func enter(msg := {}):
 	owner.velocity = velocity
 	
 	# esperar y reiniciar
-	yield(get_tree().create_timer(owner.resetDelay / 2), "timeout")
+	yield(get_tree().create_timer(owner.resetDelay * 0.75), "timeout")
 	
 	owner.levelManager.restart()

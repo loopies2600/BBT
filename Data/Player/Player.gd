@@ -34,13 +34,15 @@ var slideDownSlopes := false
 
 var levelManager
 
+onready var levelBottom : int = cam.limit_bottom + 32
+
 func _ready():
 	collisionBox.set_deferred("disabled", true)
 	
 	doGravity = false
 	canInput = false
 	
-	global_position.y += jumpHeight / 2
+	global_position.y = levelBottom
 	
 	yield(get_tree().create_timer(resetDelay / 2), "timeout")
 	
@@ -48,7 +50,7 @@ func _ready():
 	
 func _physics_process(delta):
 	if doGravity:
-		velocity.y += gravity * -upDirection.y * (fallMult if sign(velocity.y) == 1 else 1)
+		velocity += Vector2(gravity * (fallMult if sign(velocity.y) == 1 else 1), 0).rotated(-upDirection.angle())
 		
 	closeObj = tools.findNearObjects()
 	
@@ -63,6 +65,9 @@ func _physics_process(delta):
 	gfx.scale.x = lerp(gfx.scale.x, dir, 16 * delta)
 	
 	push()
+	
+	if global_position.y > levelBottom && !collisionBox.disabled:
+		kill({"noAnim" : true})
 	
 func takeObject():
 	if !closeObj: return
@@ -81,10 +86,10 @@ func throwObject(force := Vector2()):
 func _dustTrigger():
 	pass
 	
-func kill():
+func kill(msg := {}):
 	if god: return
 	
-	fsm._change_state("dead")
+	fsm._change_state("dead", msg)
 	
 func push(vel := maxSpd * dir):
 	var pushable
@@ -103,7 +108,7 @@ func push(vel := maxSpd * dir):
 func _hopIn():
 	doGravity = true
 	
-	var dist := abs(spawnPos.y - global_position.y)
+	var dist := abs(spawnPos.y - (global_position.y * 1.2))
 	var jumpCalc = dist * (gravity / 7)
 	
 	fsm._change_state("air", {"jumpHeight" : jumpCalc, "antiCancel" : true})
