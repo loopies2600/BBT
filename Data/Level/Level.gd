@@ -27,26 +27,23 @@ func _process(_delta):
 	update()
 	
 func generateCameraBoundaries():
-	var cellsX := []
-	var cellsY := []
+	var rect := get_used_rect()
 	
-	for c in get_used_cells():
-		cellsX.append(c.x)
-		cellsY.append(c.y)
-		
-	cellsX.sort()
-	cellsY.sort()
+	var firstCellX = rect.position.x
+	var lastCellX = rect.size.x + firstCellX
 	
-	if cellsX:
-		var preferredX = cellsX[0] if cellsX[0] < 0 else 0
-		var preferredY = cellsX[cellsX.size() - 1] if cellsX[cellsX.size() - 1] > 20 else 20
-		
-		camBoundariesX = Vector2(preferredX, preferredY) * 16
-	if cellsY:
-		var preferredX = cellsY[0] if cellsY[0] < 0 else 0
-		var preferredY = cellsY[cellsY.size() - 1] if cellsY[cellsY.size() - 1] > 14 else 14
-		
-		camBoundariesY = Vector2(preferredX, preferredY) * 16
+	var firstCellY = rect.position.y
+	var lastCellY = rect.size.y + firstCellY
+	
+	var preferredX = firstCellX if firstCellX < 0 else 0
+	var preferredY = lastCellX if lastCellX > 20 else 20
+	
+	camBoundariesX = Vector2(preferredX, preferredY) * 16
+	
+	preferredX = firstCellY if firstCellY < 0 else 0
+	preferredY = lastCellY if lastCellY > 14 else 14
+	
+	camBoundariesY = Vector2(preferredX, preferredY) * 16
 		
 func _draw():
 	for c in get_used_cells():

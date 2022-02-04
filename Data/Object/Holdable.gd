@@ -6,7 +6,9 @@ export (float, 0, 1) var damping = 0.86
 export (float) var weight = 1.5
 
 func resetState():
+	upDirection = Vector2.UP
 	global_position = spawnPos
+	velocity = Vector2()
 	
 func _ready():
 	add_to_group("Holdable")
@@ -15,7 +17,9 @@ func _ready():
 	spawnPos = global_position
 	
 func _physics_process(delta):
-	if Global.editing: return
+	if Global.editing: 
+		velocity = Vector2()
+		return
 	
 	if doGravity:
 		velocity.y += gravity * -upDirection.y

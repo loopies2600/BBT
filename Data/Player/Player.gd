@@ -34,17 +34,23 @@ var slideDownSlopes := false
 
 var levelManager
 
-onready var levelBottom : int = cam.limit_bottom + 32
+var bottom := 224
 
 func _ready():
-	spawnPos = global_position
+	visible = false
 	
+	spawnPos = global_position
 	collisionBox.set_deferred("disabled", true)
 	
 	doGravity = false
 	canInput = false
 	
-	global_position.y = levelBottom
+	yield(get_tree(), "idle_frame")
+	
+	bottom = cam.limit_bottom + 32
+	global_position.y = bottom
+	
+	visible = true
 	
 	yield(get_tree().create_timer(resetDelay / 2), "timeout")
 	
@@ -68,7 +74,7 @@ func _physics_process(delta):
 	
 	push()
 	
-	if global_position.y > levelBottom && !collisionBox.disabled:
+	if global_position.y > bottom && !collisionBox.disabled:
 		kill({"noAnim" : true})
 	
 func takeObject():
@@ -110,7 +116,7 @@ func push(vel := maxSpd * dir):
 func _hopIn():
 	doGravity = true
 	
-	var dist := abs(spawnPos.y - (global_position.y * 1.2))
+	var dist := abs(spawnPos.y - global_position.y - 48)
 	var jumpCalc = dist * (gravity / 7)
 	
 	fsm._change_state("air", {"jumpHeight" : jumpCalc, "antiCancel" : true})
