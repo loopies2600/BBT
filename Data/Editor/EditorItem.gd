@@ -18,6 +18,9 @@ func _ready():
 	cursor = get_tree().get_nodes_in_group("Cursor")[0]
 	
 	var _unused = connect("gui_input", self, "_itemClick")
+	_unused = connect("mouse_entered", self, "_mouseIn")
+	_unused = connect("mouse_exited", self, "_mouseOut")
+	
 	
 	if selected: cursor.target = self
 	
@@ -36,3 +39,11 @@ func _itemClick(event):
 			selected = true
 			
 			cursor.target = self
+			
+func _mouseIn():
+	Global.cursor.pointer = 1
+	get_tree().get_nodes_in_group("Cursor")[0].canPlace = false
+	
+func _mouseOut():
+	Global.cursor.pointer = 0
+	get_tree().get_nodes_in_group("Cursor")[0].canPlace = true

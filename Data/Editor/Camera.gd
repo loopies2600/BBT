@@ -7,7 +7,9 @@ export (float) var zoomSpeed = 0.1
 var panning := false
 
 func _process(_delta):
-	panning = Input.is_action_pressed("mouse_tertiary")
+	if get_parent().cursor.canPlace:
+		panning = Input.is_action_pressed("mouse_tertiary")
+		Global.cursor.pointer = 3 * int(panning)
 	
 func _input(event):
 	if panning:

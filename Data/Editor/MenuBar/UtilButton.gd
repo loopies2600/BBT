@@ -6,9 +6,11 @@ func _ready():
 	_unused = connect("pressed", self, "_press")
 	
 func _mouseIn():
+	Global.cursor.pointer = 1
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = false
 	
 func _mouseOut():
+	Global.cursor.pointer = 0
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = true
 	
 func _press():
