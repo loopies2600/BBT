@@ -19,6 +19,7 @@ onready var tools := $Tools
 onready var objOffset := $Graphics/HeldObjectOffset
 onready var collisionBox := $CollisionBox
 onready var fsm := $StateMachine
+onready var light := $Light
 
 var closeObj
 var holding
@@ -57,6 +58,8 @@ func _ready():
 	_hopIn()
 	
 func _physics_process(delta):
+	light.visible = Global.level.darkMode
+	
 	if doGravity:
 		velocity += Vector2(gravity * (fallMult if sign(velocity.y) == 1 else 1), 0).rotated(-upDirection.angle())
 		

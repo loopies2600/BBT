@@ -10,6 +10,8 @@ export (Vector2) var shadowOffset = Vector2.ZERO
 var camBoundariesX := Vector2(0, 320)
 var camBoundariesY := Vector2(0, 224)
 
+var darkMode := false
+
 func resetObjectState():
 	for c in get_children():
 		if c.has_method("resetState"):
@@ -25,6 +27,8 @@ func _flipOneWayCollisionShapes():
 	
 func _process(_delta):
 	update()
+	
+	material.light_mode = 2 * int(darkMode)
 	
 func generateCameraBoundaries():
 	var rect := get_used_rect()
