@@ -27,30 +27,31 @@ func _ready():
 func _draw():
 	var size : Vector2 = get_viewport_rect().size * cam.zoom
 	var pos : Vector2 = cam.global_position
-	var separation := 16
+	var separation := level.cell_size * level.scale
+	var limit := Vector2(320, 224) * level.scale
 	
 	if showGrid:
 		var color := Color.darkgray
 		
-		for i in range(int((pos.x - size.x) / separation) - 1, int((size.x + pos.x) / separation) + 1):
-			draw_line(Vector2(i * separation, pos.y + size.y + 128), Vector2(i * separation, pos.y - size.y - 128), color, 1)
+		for i in range(int((pos.x - size.x) / separation.x) - 1, int((size.x + pos.x) / separation.x) + 1):
+			draw_line(Vector2(i * separation.x, pos.y + size.y + limit.x), Vector2(i * separation.x, pos.y - size.y - limit.x), color, 1)
 			
-		for i in range(int((pos.y - size.y) / separation) - 1, int((size.y + pos.y) / separation) + 1):
-			draw_line(Vector2(pos.x + size.x + 128, i * separation), Vector2(pos.x - size.x - 128, i * separation), color, 1)
+		for i in range(int((pos.y - size.y) / separation.y) - 1, int((size.y + pos.y) / separation.y) + 1):
+			draw_line(Vector2(pos.x + size.x + limit.y, i * separation.y), Vector2(pos.x - size.x - limit.y, i * separation.y), color, 1)
 		
 	if showCells:
-		for i in range(int((pos.x - size.x) / separation) - 1, int((size.x + pos.x) / separation) + 1):
-			draw_string(FONT, Vector2(i * 16, pos.y + size.y - 192), str(i), Color.darkgray)
+		for i in range(int((pos.x - size.x) / separation.x) - 1, int((size.x + pos.x) / separation.x) + 1):
+			draw_string(FONT, Vector2(i * separation.x, pos.y + size.y - 192), str(i), Color.darkgray)
 			
-		for i in range(int((pos.y - size.y) / separation) - 1, int((size.y + pos.y) / separation) + 1):
-			draw_string(FONT, Vector2(pos.x + size.x - 304, i * 16), str(i), Color.darkgray)
+		for i in range(int((pos.y - size.y) / separation.x) - 1, int((size.y + pos.y) / separation.x) + 1):
+			draw_string(FONT, Vector2(pos.x + size.x - 304, i * separation.y), str(i), Color.darkgray)
 		
 	if showCellBox:
 		for c in level.get_used_cells():
-			draw_rect(Rect2(Vector2(c.x, c.y) * 16, Vector2(16, 16)), Color(0.66, 0.66, 0.66, 0.5), true)
+			draw_rect(Rect2(Vector2(c.x, c.y) * level.cell_size * level.scale, level.cell_size * level.scale), Color(0.66, 0.66, 0.66, 0.5), true)
 			
 		for n in level.get_children():
-			draw_rect(Rect2(n.global_position, Vector2(16, 16)), Color(0.66, 0.66, 0.66, 0.5), true)
+			draw_rect(Rect2(n.global_position * level.scale, level.cell_size * level.scale), Color(0.66, 0.66, 0.66, 0.5), true)
 			
 func _process(_delta):
 	update()

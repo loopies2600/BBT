@@ -10,10 +10,10 @@ var target
 func _process(_delta):
 	mode = _getMode()
 	
-	var cellPos := (global_position / 16).round()
+	var cellPos : Vector2 = ((global_position / Global.level.cell_size).round() / Global.level.scale).round()
 		
 	if canPlace:
-		global_position = ((get_global_mouse_position() - Vector2(8, 8)) / 16).round() * 16
+		global_position = (((get_global_mouse_position() - Vector2(8, 8)) / Global.level.cell_size).round() * Global.level.cell_size).round()
 		
 		match mode:
 			Modes.PLACE:
@@ -42,14 +42,14 @@ func _placeLogic(level : TileMap, cellPos := Vector2()):
 				if level.get_cellv(cellPos) != target.tileID:
 					level.set_cellv(cellPos, target.tileID)
 			else:
-				var occupied := _getNodeOnThisPos(cellPos) != null
+				var occupied := _getNodeOnThisPos(level, cellPos) != null
 				if occupied: return
 				
 				var instance = target.itemScene.instance()
 				
 				yield(_singleInstanceCheck(level, instance), "completed")
 				
-				instance.global_position = cellPos * 16
+				instance.global_position = (cellPos * level.cell_size).round()
 				instance.add_to_group("Instances")
 				
 				for p in target.customParams:
@@ -64,7 +64,7 @@ func _placeLogic(level : TileMap, cellPos := Vector2()):
 			if isTile:
 				level.set_cellv(cellPos, -1)
 			else:
-				var n = _getNodeOnThisPos(cellPos)
+				var n = _getNodeOnThisPos(level, cellPos)
 				
 				if n: n.queue_free()
 	
@@ -77,7 +77,7 @@ func _rotateLogic(level : TileMap, cellPos := Vector2()):
 		var isTile := level.get_cellv(cellPos) != -1
 		
 		if !isTile:
-			var n = _getNodeOnThisPos(cellPos)
+			var n = _getNodeOnThisPos(level, cellPos)
 			
 			if n:
 				if n.get("_editorRotate"):
@@ -92,11 +92,11 @@ func _singleInstanceCheck(level : Node2D, inst):
 	
 	yield(get_tree(), "idle_frame")
 	
-func _getNodeOnThisPos(cellPos := Vector2()) -> Node2D:
+func _getNodeOnThisPos(level : TileMap, cellPos := Vector2()) -> Node2D:
 	var node
 	
 	for c in get_tree().get_nodes_in_group("Instances"):
-		if (c.global_position / 16).round() == cellPos:
+		if (c.global_position / level.cell_size / level.scale).round() == cellPos:
 			node = c
 	
 	return node
