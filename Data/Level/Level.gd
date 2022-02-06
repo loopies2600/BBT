@@ -2,11 +2,6 @@ extends TileMap
 
 signal tile_anim_finished
 
-const SHADOW := preload("res://Sprites/Tileset/Shadow.png")
-const SHADOW_EXCLUDED := [2, 3, 4]
-
-export (Vector2) var shadowOffset = Vector2.ZERO
-
 var camBoundariesX := Vector2(0, 320)
 var camBoundariesY := Vector2(0, 224)
 
@@ -26,8 +21,6 @@ func _flipOneWayCollisionShapes():
 	tile_set.tile_set_shape_transform(11, 0, Transform2D(deg2rad(180), Vector2(16, 16)))
 	
 func _process(_delta):
-	update()
-	
 	material.light_mode = 2 * int(darkMode)
 	
 func generateCameraBoundaries():
@@ -48,12 +41,3 @@ func generateCameraBoundaries():
 	preferredY = lastCellY if lastCellY > 14 else 14
 	
 	camBoundariesY = Vector2(preferredX, preferredY) * 16
-		
-func _draw():
-	for c in get_used_cells():
-		var pos = c * 16
-		
-		if get_cellv(c) in SHADOW_EXCLUDED: 
-			pass
-		else:
-			draw_texture(SHADOW, pos + shadowOffset)

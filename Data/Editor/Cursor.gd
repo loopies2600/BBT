@@ -1,10 +1,13 @@
 extends Sprite
 
-enum Modes {PLACE, ROTATE}
+const TILE_CONFIG := preload("res://Data/Editor/Item/TileConfig.tscn")
+
+enum Modes {PLACE, CONFIG}
 var mode = Modes.PLACE
 
 var canPlace := true
 
+var configurator
 var target
 
 func _process(_delta):
@@ -18,8 +21,8 @@ func _process(_delta):
 		match mode:
 			Modes.PLACE:
 				_placeLogic(Global.level, cellPos)
-			Modes.ROTATE:
-				_rotateLogic(Global.level, cellPos)
+			Modes.CONFIG:
+				_configLogic(Global.level, cellPos)
 	
 func _getMode():
 	var activeButtonIdx := 0
@@ -68,7 +71,7 @@ func _placeLogic(level : TileMap, cellPos := Vector2()):
 				
 				if n: n.queue_free()
 	
-func _rotateLogic(level : TileMap, cellPos := Vector2()):
+func _configLogic(level : TileMap, cellPos := Vector2()):
 	texture = null
 	
 	if canPlace:
@@ -84,6 +87,17 @@ func _rotateLogic(level : TileMap, cellPos := Vector2()):
 					n.get("_editorRotate").rotation_degrees += (90 * dir)
 				else:
 					n.rotation_degrees += (90 * dir)
+		else:
+			if Input.is_action_just_pressed("mouse_main"):
+				_spawnTileConfigurator(cellPos)
+		
+func _spawnTileConfigurator(targetTile : Vector2):
+	if configurator: return
+	
+	configurator = TILE_CONFIG.instance()
+	configurator.targetTile = targetTile
+	
+	get_parent().viewport.add_child(configurator)
 	
 func _singleInstanceCheck(level : Node2D, inst):
 	if target.singleInstance:

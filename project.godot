@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Resource",
-"class": "ItemLabels",
-"language": "GDScript",
-"path": "res://Data/Editor/ItemLabels/ItemLabels.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Kinematos",
 "language": "GDScript",
@@ -40,7 +35,6 @@ _global_script_classes=[ {
 "path": "res://Data/Util/TexTool.gd"
 } ]
 _global_script_class_icons={
-"ItemLabels": "",
 "Kinematos": "",
 "Player": "",
 "State": "",

@@ -6,7 +6,7 @@ const EDITOR = preload("res://Data/Scenes/EditorScene.tscn")
 var editing := false
 
 onready var cursor := $MouseCursorLayer/MouseCursorRenderer
-onready var level := preload("res://Data/Level/Level.tscn").instance()
+onready var level : TileMap = preload("res://Data/Level/Level.tscn").instance()
 
 func _ready():
 	add_child(level)
