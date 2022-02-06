@@ -52,7 +52,10 @@ func _draw():
 			
 		for n in level.get_children():
 			draw_rect(Rect2(n.global_position * level.scale, level.cell_size * level.scale), Color(0.66, 0.66, 0.66, 0.5), true)
-			
+		
+	if cursor.configurator:
+		draw_rect(Rect2(cursor.configurator.targetTile * level.cell_size * level.scale, level.cell_size * level.scale), Color.tomato, false, 2)
+		
 func _process(_delta):
 	update()
 	

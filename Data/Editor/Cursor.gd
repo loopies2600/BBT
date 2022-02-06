@@ -18,11 +18,11 @@ func _process(_delta):
 	if canPlace:
 		global_position = (((get_global_mouse_position() - Vector2(8, 8)) / Global.level.cell_size).round() * Global.level.cell_size).round()
 		
-		match mode:
-			Modes.PLACE:
-				_placeLogic(Global.level, cellPos)
-			Modes.CONFIG:
-				_configLogic(Global.level, cellPos)
+	match mode:
+		Modes.PLACE:
+			_placeLogic(Global.level, cellPos)
+		Modes.CONFIG:
+			_configLogic(Global.level, cellPos)
 	
 func _getMode():
 	var activeButtonIdx := 0
@@ -37,6 +37,10 @@ func _getMode():
 	return activeButtonIdx
 	
 func _placeLogic(level : TileMap, cellPos := Vector2()):
+	if configurator:
+		configurator.queue_free()
+		configurator = null
+		
 	if target: texture = target.texture
 	
 	if canPlace:
@@ -92,7 +96,12 @@ func _configLogic(level : TileMap, cellPos := Vector2()):
 				_spawnTileConfigurator(cellPos)
 		
 func _spawnTileConfigurator(targetTile : Vector2):
-	if configurator: return
+	if configurator: 
+		if configurator.targetTile == targetTile:
+			return
+			
+		configurator.queue_free()
+		configurator = null 
 	
 	configurator = TILE_CONFIG.instance()
 	configurator.targetTile = targetTile
