@@ -27,7 +27,7 @@ func _spawnPlayer():
 	player.levelManager = self
 	player.global_position = spawn.global_position
 	
-	add_child(player)
+	level.add_child(player)
 	
 	player.cam.limit_left = level.camBoundariesX.x
 	player.cam.limit_right = level.camBoundariesX.y
@@ -51,5 +51,8 @@ func _input(event):
 		_edit()
 		
 func _edit():
+	if player:
+		player.queue_free()
+		player = null
+		
 	Global.edit()
-	

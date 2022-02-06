@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Data/Util/Global.gd" type="Script" id=1]
 [ext_resource path="res://Data/Util/MouseCursor.gd" type="Script" id=2]
-[ext_resource path="res://Data/Util/TileShadowRenderer.gd" type="Script" id=3]
+[ext_resource path="res://Data/Tilesets/AreaZero.tres" type="TileSet" id=3]
 [ext_resource path="res://Data/Shader/General.shader" type="Shader" id=4]
+[ext_resource path="res://Data/Util/LevelShadow.gd" type="Script" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -20,10 +21,17 @@ shader_param/opacity = 0.5
 [node name="Global" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="TileShadowRenderer" type="Node2D" parent="."]
+[node name="LevelShadow" type="TileMap" parent="."]
 modulate = Color( 0, 0, 0, 1 )
 material = SubResource( 1 )
-script = ExtResource( 3 )
+position = Vector2( 8, 8 )
+z_index = -1
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+script = ExtResource( 5 )
 
 [node name="MouseCursorLayer" type="CanvasLayer" parent="."]
 layer = 128
