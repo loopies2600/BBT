@@ -33,11 +33,6 @@ func _starLoop():
 	 
 func _physics_process(delta):
 	if !get_parent().get_parent().disabled:
-		if rad2deg(angle) > 250 || rad2deg(angle) < 90:
-			z_index = -1
-		else:
-			z_index = 5
-			
 		angle += speed * delta
 		angle = fmod(angle, TAU)
 		

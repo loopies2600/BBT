@@ -7,6 +7,7 @@
 [node name="SpinningStars" type="Node2D"]
 
 [node name="Spawner0" type="Sprite" parent="."]
+z_index = 2
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 initialAngle = 180
@@ -20,7 +21,38 @@ range_z_min = -2
 range_z_max = -1
 script = ExtResource( 3 )
 
+[node name="Spawner2" type="Sprite" parent="."]
+z_index = 2
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+initialAngle = 270
+
+[node name="SpriteMask" type="Light2D" parent="Spawner2"]
+offset = Vector2( 8, 0 )
+color = Color( 0, 0, 0, 1 )
+energy = 16.0
+mode = 2
+range_z_min = -2
+range_z_max = -1
+script = ExtResource( 3 )
+
+[node name="Spawner3" type="Sprite" parent="."]
+z_index = 2
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+initialAngle = 90
+
+[node name="SpriteMask" type="Light2D" parent="Spawner3"]
+offset = Vector2( 8, 0 )
+color = Color( 0, 0, 0, 1 )
+energy = 16.0
+mode = 2
+range_z_min = -2
+range_z_max = -1
+script = ExtResource( 3 )
+
 [node name="Spawner1" type="Sprite" parent="."]
+z_index = 2
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 

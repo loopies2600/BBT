@@ -19,7 +19,7 @@ onready var positions := [start.global_position - Vector2(0, 16), middle, end.gl
 onready var spawnPos := global_position
 
 var bodyParts := []
-var maxPosRecords := 256
+var maxPosRecords := 1024
 var olderPositions := []
 
 var time := 0.0
@@ -109,7 +109,7 @@ func _physics_process(delta):
 		if time > 1.0:
 			self.jumping = false
 	else:
-		global_position.y += (128.0 * speed) * delta
+		global_position = lerp(global_position, positions[2] + Vector2(0, 32), 8 * delta)
 	
 func _lookAtPlayer():
 	var lookAngle := 0.0

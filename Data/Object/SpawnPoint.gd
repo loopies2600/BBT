@@ -1,4 +1,3 @@
-tool
 extends Position2D
 
 const SPICON := preload("res://Sprites/Object/Editor/SpawnPoint.png")

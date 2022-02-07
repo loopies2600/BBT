@@ -1,4 +1,3 @@
-tool
 extends Area2D
 
 enum Modes {UP, DOWN}
@@ -47,4 +46,7 @@ func _changeGravityNDisable(whoEntered):
 	disabled = true
 	
 func resetState():
+	for star in $SpinningStars.get_children():
+		star.angle = star.initialAngle
+		
 	disabled = false
