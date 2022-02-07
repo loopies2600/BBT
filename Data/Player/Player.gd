@@ -38,9 +38,17 @@ var levelManager
 var bottom := 224
 
 func _ready():
+	spawnPos = global_position
+	
+	letsStart()
+	
+func letsStart():
+	global_position.x = spawnPos.x
+	
+	velocity = Vector2.ZERO
+	_doDust = false
 	visible = false
 	
-	spawnPos = global_position
 	collisionBox.set_deferred("disabled", true)
 	
 	doGravity = false

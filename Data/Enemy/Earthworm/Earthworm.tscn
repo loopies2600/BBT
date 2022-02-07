@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=1]
+[ext_resource path="res://Data/Enemy/Earthworm/Earthworm.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Position2D
+
+func _ready():
+	set_as_toplevel(true)
+	global_position = ((get_parent().global_position / Global.level.cell_size) * 16).round()
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Position2D
+
+func _ready():
+	set_as_toplevel(true)
+	global_position = (((get_parent().global_position / Global.level.cell_size) + Vector2(8, 0)) * 16).round()
+"
+
+[node name="Earthworm" type="Area2D" groups=["MultiState"]]
+z_index = -1
+collision_layer = 16
+collision_mask = 16
+script = ExtResource( 2 )
+
+[node name="Head" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 16, 16, 16, 16 )
+
+[node name="Top" type="Sprite" parent="Head"]
+position = Vector2( 0, -15 )
+texture = ExtResource( 1 )
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 0, 16, 16, 16 )
+
+[node name="Eyes" type="Node2D" parent="Head"]
+
+[node name="Right" type="Sprite" parent="Head/Eyes"]
+position = Vector2( 8, -2 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 16, 8, 16 )
+
+[node name="Pupil" type="Sprite" parent="Head/Eyes/Right"]
+position = Vector2( 2, 11 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 41, 27, 3, 3 )
+
+[node name="Left" type="Sprite" parent="Head/Eyes"]
+position = Vector2( 1, -2 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 16, 8, 16 )
+
+[node name="Pupil" type="Sprite" parent="Head/Eyes/Left"]
+position = Vector2( 2, 11 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 41, 27, 3, 3 )
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2( 8, 8 )
+shape = SubResource( 1 )
+
+[node name="Start" type="Position2D" parent="."]
+script = SubResource( 2 )
+
+[node name="End" type="Position2D" parent="."]
+script = SubResource( 3 )
+
+[node name="JumpTimer" type="Timer" parent="."]
+one_shot = true

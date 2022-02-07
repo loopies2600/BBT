@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Data/Object/GravitySwitcher.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Sprites/Tileset/AreaZero.png" type="Texture" id=10]
 [ext_resource path="res://Data/Object/Holdable/Static/WoodenBox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=12]
+[ext_resource path="res://Data/Enemy/Earthworm/Earthworm.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 0.0
@@ -56,6 +58,10 @@ region = Rect2( 16, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 10 )
 region = Rect2( 112, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 12 )
+region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
@@ -196,6 +202,14 @@ script = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Entities/ScrollContainer/VBoxContainer"]
 script = ExtResource( 2 )
+
+[node name="Earthworm" parent="TabContainer/Entities/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 8 )
+isTile = false
+itemName = "Earthworm"
+itemScene = ExtResource( 13 )
+customParams = {
+}
 
 [node name="Markers" type="Tabs" parent="TabContainer"]
 visible = false

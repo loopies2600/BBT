@@ -12,6 +12,11 @@ func resetObjectState():
 		if c.has_method("resetState"):
 			c.resetState()
 	
+func initializeObjects():
+	for c in get_children():
+		if c.has_method("initialize"):
+			c.initialize()
+	
 func _ready():
 	_flipOneWayCollisionShapes()
 	

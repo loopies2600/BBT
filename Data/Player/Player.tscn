@@ -12,7 +12,7 @@
 [ext_resource path="res://Data/Player/Crouch.gd" type="Script" id=10]
 [ext_resource path="res://Data/Player/Dead.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/Particles/Light.png" type="Texture" id=12]
-[ext_resource path="res://Data/Player/SpriteMask.gd" type="Script" id=13]
+[ext_resource path="res://Data/Util/SpriteMask.gd" type="Script" id=13]
 
 [sub_resource type="CanvasItemMaterial" id=14]
 light_mode = 1
@@ -628,8 +628,8 @@ extents = Vector2( 7.5, 13.5 )
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 4
-collision_layer = 9
-collision_mask = 3
+collision_layer = 25
+collision_mask = 19
 collision/safe_margin = 0.1
 script = ExtResource( 2 )
 dustMinVel = 600.0

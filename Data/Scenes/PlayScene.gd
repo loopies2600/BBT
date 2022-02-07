@@ -16,6 +16,7 @@ func setup():
 	Global.editing = false
 	
 	level.resetObjectState()
+	level.initializeObjects()
 	
 	_spawnPlayer()
 	
@@ -36,15 +37,13 @@ func _spawnPlayer():
 	player.cam.limit_bottom = level.camBoundariesY.y
 	
 func restart():
-	player.queue_free()
-	player = null
-	
 	attempt += 1
 	aLabel.text = "ATTEMPT %s" % attempt
 	
 	level.resetObjectState()
+	level.initializeObjects()
 	
-	_spawnPlayer()
+	player.letsStart()
 	
 func _input(event):
 	if event.is_action_pressed("switch_state"):
