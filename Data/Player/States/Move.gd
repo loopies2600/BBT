@@ -1,6 +1,11 @@
 extends State
 
 func enter(_msg := {}):
+	if owner.tools.getInputDirection() != owner.dir:
+		owner.anim.play("Turn")
+		yield(owner.anim, "animation_finished")
+		owner.anim.play("Walk")
+		
 	owner.anim.play("Walk")
 	
 func physics_update(_delta):

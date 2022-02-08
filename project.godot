@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Kinematos",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Data/Player/Player.gd"
+"path": "res://Data/Player/States/Player.gd"
 }, {
 "base": "Light2D",
 "class": "SpriteMask",

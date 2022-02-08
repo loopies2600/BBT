@@ -3,15 +3,13 @@ class_name Player
 
 export (float) var accel = 100
 export (float, 0, 1) var bounciness = 0.5
-export (float) var maxSpd = 116
 export (float, 0, 1) var airDamping = 0.98
 export (float, 0, 1) var damping = 0.5
 export (float) var jumpHeight = 512
-export (float) var fallMult = 1.25
 export (Vector2) var tossForce = Vector2(825, 368)
 export (int) var objDetectionRadius = 32
 export (float) var resetDelay = 1.5
-export (int) var slideStrength = 128
+export (int) var slideStrength = 196
 export (float) var slideDuration = 0.35
 
 onready var anim := $Graphics/Anim
@@ -24,6 +22,8 @@ onready var fsm := $StateMachine
 onready var light := $Light
 onready var ceilDetector := $CeilDetector
 
+onready var slideDust := $Graphics/SlideDust
+
 var closeObj
 var holding
 
@@ -32,9 +32,7 @@ var god := false
 var grounded := false
 var canInput := true
 var canGetStuff := false
-var dir := 1
 var weight := 1.0
-var slideDownSlopes := false
 
 var levelManager
 
@@ -70,38 +68,25 @@ func letsStart():
 	
 	_hopIn()
 	
-func _physics_process(delta):
-	_getVelocityBoost()
+func _process(delta):
+	_bottomKillCheck()
+	_checkNHold(delta)
 	
-	light.visible = Global.level.darkMode
+	gfx.scale.x = dir
 	
-	if doGravity:
-		velocity += Vector2(gravity * (fallMult if sign(velocity.y) == 1 else 1), 0).rotated(-upDirection.angle())
-		
+func _bottomKillCheck():
+	if global_position.y > bottom && !collisionBox.disabled:
+		kill({"noAnim" : true})
+	
+func _checkNHold(delta : float):
 	closeObj = tools.findNearObjects()
-	
-	velocity.y = move_and_slide(velocity, upDirection, !slideDownSlopes).y
 	
 	if is_instance_valid(holding): 
 		holding.global_position = lerp(holding.global_position, objOffset.global_position, 16 * delta)
 	else:
 		holding = null
 		weight = 1.0
-		
-	gfx.scale.x = lerp(gfx.scale.x, dir, 16 * delta)
 	
-	push()
-	
-	if global_position.y > bottom && !collisionBox.disabled:
-		kill({"noAnim" : true})
-	
-func _getVelocityBoost():
-	for c in get_slide_count():
-		var collision = get_slide_collision(c)
-		
-		if collision.collider.get("velBoost"):
-			velocity += collision.collider.velBoost
-			
 func takeObject():
 	if !closeObj: return
 	
@@ -123,20 +108,6 @@ func kill(msg := {}):
 	if god: return
 	
 	fsm._change_state("dead", msg)
-	
-func push(vel := maxSpd * dir):
-	var pushable
-	
-	for b in get_slide_count():
-		var body = get_slide_collision(b).collider
-		var normal = get_slide_collision(b).normal
-		
-		if body:
-			if body.is_in_group("Pushable") && normal != upDirection:
-				pushable = body
-		
-	if pushable:
-		pushable.velocity.x += vel
 	
 func _hopIn():
 	doGravity = true

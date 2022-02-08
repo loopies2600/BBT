@@ -1,19 +1,23 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=35 format=2]
 
-[ext_resource path="res://Data/Player/InputManager.gd" type="Script" id=1]
-[ext_resource path="res://Data/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Data/Player/Tools.gd" type="Script" id=1]
+[ext_resource path="res://Data/Player/States/Player.gd" type="Script" id=2]
 [ext_resource path="res://Data/Player/StateMachine.gd" type="Script" id=3]
-[ext_resource path="res://Data/Player/Idle.gd" type="Script" id=4]
+[ext_resource path="res://Data/Player/States/Idle.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/Player/BB.png" type="Texture" id=5]
-[ext_resource path="res://Data/Player/Move.gd" type="Script" id=6]
-[ext_resource path="res://Data/Player/Jump.gd" type="Script" id=7]
-[ext_resource path="res://Data/Player/Dash.gd" type="Script" id=8]
+[ext_resource path="res://Data/Player/States/Move.gd" type="Script" id=6]
+[ext_resource path="res://Data/Player/States/Air.gd" type="Script" id=7]
+[ext_resource path="res://Data/Player/States/Dash.gd" type="Script" id=8]
 [ext_resource path="res://Data/Player/Camera.gd" type="Script" id=9]
-[ext_resource path="res://Data/Player/Crouch.gd" type="Script" id=10]
-[ext_resource path="res://Data/Player/Dead.gd" type="Script" id=11]
+[ext_resource path="res://Data/Player/States/Crouch.gd" type="Script" id=10]
+[ext_resource path="res://Data/Player/States/Dead.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/Particles/Light.png" type="Texture" id=12]
 [ext_resource path="res://Data/Util/SpriteMask.gd" type="Script" id=13]
-[ext_resource path="res://Data/Player/Slide.gd" type="Script" id=14]
+[ext_resource path="res://Data/Player/States/Slide.gd" type="Script" id=14]
+[ext_resource path="res://Data/Player/Light.gd" type="Script" id=15]
+[ext_resource path="res://Sprites/Particles/BB/SlideDust3.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Particles/BB/SlideDust1.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Particles/BB/SlideDust2.png" type="Texture" id=18]
 
 [sub_resource type="CanvasItemMaterial" id=14]
 light_mode = 1
@@ -724,6 +728,94 @@ tracks/3/keys = {
 "values": [ Vector2( 17.5, 7.5 ) ]
 }
 
+[sub_resource type="Animation" id=18]
+resource_name = "Turn"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeldObjectOffset:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 7.7, 8, 10.1, 10.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 128, 32, 32 ), Rect2( 32, 0, 32, 32 ), Rect2( 0, 0, 32, 32 ), Rect2( 32, 0, 32, 32 ), Rect2( 0, 0, 32, 32 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../CollisionBox:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../CollisionBox:shape:extents")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7.5, 15 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../CeilDetector:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
 [sub_resource type="Animation" id=5]
 resource_name = "Walk"
 loop = true
@@ -800,6 +892,14 @@ tracks/5/keys = {
 "values": [ Vector2( 7.5, 15 ) ]
 }
 
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 16 ), null ],
+"loop": false,
+"name": "Flash",
+"speed": 30.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 7.5, 13.5 )
 
@@ -849,6 +949,7 @@ anims/IdleFromSlide = SubResource( 17 )
 anims/Jump = SubResource( 6 )
 anims/RESET = SubResource( 4 )
 anims/Slide = SubResource( 16 )
+anims/Turn = SubResource( 18 )
 anims/Walk = SubResource( 5 )
 
 [node name="HeldObjectOffset" type="Position2D" parent="Graphics"]
@@ -856,6 +957,13 @@ position = Vector2( 0, -30 )
 __meta__ = {
 "_gizmo_extents_": 16.0
 }
+
+[node name="SlideDust" type="AnimatedSprite" parent="Graphics"]
+position = Vector2( -60, -18 )
+frames = SubResource( 19 )
+animation = "Flash"
+frame = 3
+centered = false
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1 )
@@ -901,3 +1009,4 @@ script = ExtResource( 9 )
 
 [node name="Light" type="Light2D" parent="."]
 texture = ExtResource( 12 )
+script = ExtResource( 15 )

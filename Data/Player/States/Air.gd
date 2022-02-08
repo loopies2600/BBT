@@ -7,17 +7,27 @@ func enter(msg := {}):
 	if !owner.god:
 		if msg.has("jumpHeight"):
 			jumping = true
-			owner.velocity = Vector2(msg["jumpHeight"], 0).rotated(owner.upDirection.angle())
+			owner.velocity += Vector2(msg["jumpHeight"], 0).rotated(owner.upDirection.angle())
 		
 	if msg.has("antiCancel"):
 		cancelled = true
 	
+	if get_parent().previous_state == "slide":
+		owner._doDust = true
+		
 func physics_update(_delta):
 	if sign(owner.velocity.y) == -sign(owner.upDirection.y):
-		owner.anim.play("Fall")
+		if get_parent().previous_state != "slide":
+			owner.anim.play("Fall")
 	else:
 		if jumping:
-			owner.anim.play("Jump")
+			var anim := "Jump"
+			
+			match get_parent().previous_state:
+				"slide":
+					anim = "Dash"
+		
+			owner.anim.play(anim)
 			
 	if owner.canInput:
 		if owner.tools.getInputDirection():
