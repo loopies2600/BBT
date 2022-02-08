@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var aLabel := $HUD/Attempts
+onready var cam := $Camera
 
 var _lvlInstance
 
@@ -28,13 +29,12 @@ func _spawnPlayer():
 	player.levelManager = self
 	player.global_position = spawn.global_position
 	
+	cam.limit_left = level.camBoundariesX.x
+	cam.limit_right = level.camBoundariesX.y
+	cam.limit_top = level.camBoundariesY.x
+	cam.limit_bottom = level.camBoundariesY.y
+	
 	level.add_child(player)
-	
-	player.cam.limit_left = level.camBoundariesX.x
-	player.cam.limit_right = level.camBoundariesX.y
-	
-	player.cam.limit_top = level.camBoundariesY.x
-	player.cam.limit_bottom = level.camBoundariesY.y
 	
 func restart():
 	attempt += 1

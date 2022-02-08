@@ -21,9 +21,6 @@ func _physics_process(delta):
 		velocity = Vector2()
 		return
 	
-	if doGravity:
-		velocity.y += gravity * -upDirection.y
-	
 	velocity = move_and_slide(velocity, upDirection)
 	
 	_checkSlides()

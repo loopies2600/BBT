@@ -3,7 +3,7 @@ extends State
 const HARD_HAT = preload("res://Data/Player/Objects/HardHat.tscn")
 
 func enter(msg := {}):
-	var velocity := Vector2(owner.maxSpd * owner.dir * 0.75, owner.jumpHeight * owner.upDirection.y * 1.25)
+	var velocity := Vector2(owner.maxSpd * owner.dir * 0.75, owner.jumpVel * owner.upDirection.y * 1.25)
 	
 	if msg.has("velocity"):
 		velocity = msg.velocity
@@ -30,10 +30,8 @@ func enter(msg := {}):
 	
 	# desactivar colisiones y sacudir camara
 	Global.plop(owner.global_position)
-	owner.cam.shake(3, 3)
-	
-	owner.cam.set_as_toplevel(true)
-	owner.cam.global_position = owner.global_position
+	owner.levelManager.cam.shake(3, 3)
+	owner.levelManager.cam.target = null
 	
 	owner.collisionBox.set_deferred("disabled", true)
 	owner.canInput = false

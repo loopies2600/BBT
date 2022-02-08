@@ -5,7 +5,6 @@ export (float) var accel = 100
 export (float, 0, 1) var bounciness = 0.5
 export (float, 0, 1) var airDamping = 0.98
 export (float, 0, 1) var damping = 0.5
-export (float) var jumpHeight = 512
 export (Vector2) var tossForce = Vector2(825, 368)
 export (int) var objDetectionRadius = 32
 export (float) var resetDelay = 1.5
@@ -13,7 +12,6 @@ export (int) var slideStrength = 196
 export (float) var slideDuration = 0.35
 
 onready var anim := $Graphics/Anim
-onready var cam := $Camera
 onready var gfx := $Graphics
 onready var tools := $Tools
 onready var objOffset := $Graphics/HeldObjectOffset
@@ -36,34 +34,33 @@ var weight := 1.0
 
 var levelManager
 
-var bottom := 224
+onready var bottom : int = levelManager.cam.limit_bottom + 32
 
 func _ready():
-	spawnPos = global_position
-	
 	letsStart()
 	
 func letsStart():
-	cam.set_as_toplevel(false)
-	cam.position = Vector2(0, 0)
+	# la camara será nuestra
+	levelManager.cam.target = self
 	
-	global_position.x = spawnPos.x
-	
-	velocity = Vector2.ZERO
+	# las nubecitas se ven raras, procuro desactivarlas
 	_doDust = false
 	
+	# movemos a benito hacia lo más abajo del nivel
+	global_position = Vector2(spawnPos.x, bottom)
+	
+	# no podemos dejar que se le aplique ninguna fuerza
+	velocity = Vector2.ZERO
+	
+	# por ahora desactivemos la gravedad y los controles
+	canInput = false
+	doGravity = false
+	
+	# para evitar que choque con algo mientras salta
+	# desactivemos su colisión
 	collisionBox.set_deferred("disabled", true)
 	
-	doGravity = false
-	canInput = false
-	
-	yield(get_tree(), "idle_frame")
-	
-	bottom = cam.limit_bottom + 32
-	global_position.y = bottom
-	
-	visible = true
-	
+	# esperemos un rato
 	yield(get_tree().create_timer(resetDelay / 2), "timeout")
 	
 	_hopIn()
@@ -75,7 +72,7 @@ func _process(delta):
 	gfx.scale.x = dir
 	
 func _bottomKillCheck():
-	if global_position.y > bottom && !collisionBox.disabled:
+	if get_global_transform_with_canvas().origin.y > 240 && !collisionBox.disabled:
 		kill({"noAnim" : true})
 	
 func _checkNHold(delta : float):
@@ -112,12 +109,19 @@ func kill(msg := {}):
 func _hopIn():
 	doGravity = true
 	
-	var dist := abs(spawnPos.y - global_position.y - 48)
-	var jumpCalc = dist * (gravity / 7)
+	var distance : int = bottom - abs(spawnPos.y)
 	
-	fsm._change_state("air", {"jumpHeight" : jumpCalc, "antiCancel" : true})
+	# necesitamos que TODO se adhiera a esto, por favor
+	recalcJumpValues(distance)
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	fsm._change_state("air", {"jumpHeight" : jumpVel, "antiCancel" : true})
 	
+	# esperemos hasta que llegue a la punta
+	yield(get_tree().create_timer(jumpDuration), "timeout")
+	
+	levelManager.cam.target = self
 	canInput = true
 	collisionBox.set_deferred("disabled", false)
+	
+	# volvamos a nuestro valor normal de salto
+	recalcJumpValues()
