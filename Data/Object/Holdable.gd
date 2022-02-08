@@ -24,16 +24,23 @@ func _physics_process(delta):
 	if doGravity:
 		velocity.y += gravity * -upDirection.y
 	
-	var collision := move_and_collide(velocity * delta)
+	velocity = move_and_slide(velocity, upDirection)
 	
-	velocity.x *= damping if is_on_floor() else airDamping
+	_checkSlides()
 	
-	if collision:
-		if doGravity:
-			set_collision_mask_bit(3, true)
+func _checkSlides():
+	for c in get_slide_count():
+		var collision := get_slide_collision(c)
+	
+		if collision:
+			if collision.collider.get("velBoost"):
+				velocity = collision.collider.velBoost
+				
+			if doGravity:
+				set_collision_mask_bit(3, true)
+				
+			var normal := collision.normal
 			
-		var normal := collision.normal
+			velocity = velocity.bounce(normal)
+			velocity *= bounciness
 		
-		velocity = velocity.bounce(normal)
-		velocity *= bounciness
-	

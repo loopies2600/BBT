@@ -11,7 +11,7 @@ export (float) var fallMult = 1.25
 export (Vector2) var tossForce = Vector2(825, 368)
 export (int) var objDetectionRadius = 32
 export (float) var resetDelay = 1.5
-export (int) var slideDistance = 64
+export (int) var slideStrength = 128
 export (float) var slideDuration = 0.35
 
 onready var anim := $Graphics/Anim
@@ -71,6 +71,8 @@ func letsStart():
 	_hopIn()
 	
 func _physics_process(delta):
+	_getVelocityBoost()
+	
 	light.visible = Global.level.darkMode
 	
 	if doGravity:
@@ -93,6 +95,13 @@ func _physics_process(delta):
 	if global_position.y > bottom && !collisionBox.disabled:
 		kill({"noAnim" : true})
 	
+func _getVelocityBoost():
+	for c in get_slide_count():
+		var collision = get_slide_collision(c)
+		
+		if collision.collider.get("velBoost"):
+			velocity += collision.collider.velBoost
+			
 func takeObject():
 	if !closeObj: return
 	
