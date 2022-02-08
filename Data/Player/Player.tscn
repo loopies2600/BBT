@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Data/Player/InputManager.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/Player.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Data/Player/Dead.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/Particles/Light.png" type="Texture" id=12]
 [ext_resource path="res://Data/Util/SpriteMask.gd" type="Script" id=13]
+[ext_resource path="res://Data/Player/Slide.gd" type="Script" id=14]
 
 [sub_resource type="CanvasItemMaterial" id=14]
 light_mode = 1
@@ -83,7 +84,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 2.5 ) ]
+"values": [ Vector2( 0, 8.5 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("../CollisionBox:shape:extents")
@@ -95,7 +96,19 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 7.5, 13.5 ) ]
+"values": [ Vector2( 7.5, 7.5 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../CeilDetector:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ) ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -319,6 +332,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( 7.5, 15 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("../CeilDetector:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "IdleFromJump"
@@ -369,6 +394,95 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Rect2( 96, 0, 32, 32 ), Rect2( 0, 0, 32, 32 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Anim")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Idle", -1, 1.0, false ],
+"method": "play"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../CollisionBox:shape:extents")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7.5, 15 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../CollisionBox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "IdleFromSlide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeldObjectOffset:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -24 ), Vector2( 0, -30 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:region_rect")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 64, 32, 32 ), Rect2( 96, 0, 32, 32 ), Rect2( 0, 0, 32, 32 ) ]
 }
 tracks/4/type = "method"
 tracks/4/path = NodePath("Anim")
@@ -546,6 +660,69 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( 7.5, 13.5 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("../CeilDetector:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Slide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 16, 104, 48, 24 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../CollisionBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 8.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../CollisionBox:shape:extents")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 17.5, 7.5 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Walk"
@@ -634,6 +811,11 @@ collision/safe_margin = 0.1
 script = ExtResource( 2 )
 dustMinVel = 600.0
 
+[node name="CeilDetector" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, -16 )
+collision_mask = 63
+
 [node name="Tools" type="Node" parent="."]
 script = ExtResource( 1 )
 
@@ -663,8 +845,10 @@ anims/Death = SubResource( 13 )
 anims/Fall = SubResource( 10 )
 anims/Idle = SubResource( 3 )
 anims/IdleFromJump = SubResource( 7 )
+anims/IdleFromSlide = SubResource( 17 )
 anims/Jump = SubResource( 6 )
 anims/RESET = SubResource( 4 )
+anims/Slide = SubResource( 16 )
 anims/Walk = SubResource( 5 )
 
 [node name="HeldObjectOffset" type="Position2D" parent="Graphics"]
@@ -698,6 +882,9 @@ script = ExtResource( 8 )
 
 [node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource( 11 )
+
+[node name="Slide" type="Node" parent="StateMachine"]
+script = ExtResource( 14 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true

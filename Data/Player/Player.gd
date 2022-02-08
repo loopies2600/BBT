@@ -11,6 +11,8 @@ export (float) var fallMult = 1.25
 export (Vector2) var tossForce = Vector2(825, 368)
 export (int) var objDetectionRadius = 32
 export (float) var resetDelay = 1.5
+export (int) var slideDistance = 64
+export (float) var slideDuration = 0.35
 
 onready var anim := $Graphics/Anim
 onready var cam := $Camera
@@ -20,6 +22,7 @@ onready var objOffset := $Graphics/HeldObjectOffset
 onready var collisionBox := $CollisionBox
 onready var fsm := $StateMachine
 onready var light := $Light
+onready var ceilDetector := $CeilDetector
 
 var closeObj
 var holding
@@ -43,11 +46,13 @@ func _ready():
 	letsStart()
 	
 func letsStart():
+	cam.set_as_toplevel(false)
+	cam.position = Vector2(0, 0)
+	
 	global_position.x = spawnPos.x
 	
 	velocity = Vector2.ZERO
 	_doDust = false
-	visible = false
 	
 	collisionBox.set_deferred("disabled", true)
 	

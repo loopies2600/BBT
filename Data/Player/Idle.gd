@@ -4,8 +4,14 @@ func enter(_msg := {}):
 	owner.slideDownSlopes = false
 	owner._doDust = false
 	
-	var suffix := "FromJump" if get_parent().previous_state == "air" else ""
+	var suffix := ""
 	
+	match get_parent().previous_state:
+		"air":
+			suffix = "FromJump"
+		"slide":
+			suffix = "FromSlide"
+		
 	owner.anim.play("Idle" + suffix)
 	
 func physics_update(_delta):
@@ -18,11 +24,12 @@ func physics_update(_delta):
 		if !owner.is_on_floor():
 			emit_signal("finished", "air")
 			
-		if Input.is_action_just_pressed("jump"):
-			emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
-			
-		if Input.is_action_just_pressed("attack"):
-			emit_signal("finished", "attack")
+		if !owner.ceilDetector.is_colliding():
+			if Input.is_action_just_pressed("jump"):
+				emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
+				
+			if Input.is_action_just_pressed("attack"):
+				emit_signal("finished", "attack")
 			
 		if Input.is_action_pressed("look_down"):
 			emit_signal("finished", "crouch")
