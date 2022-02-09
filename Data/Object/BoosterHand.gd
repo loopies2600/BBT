@@ -4,9 +4,14 @@ export (int) var distance = 128
 
 onready var anim := $Animator
 
+onready var _editorRotate := $Graphics
+
 func _ready():
 	var _unused = connect("body_entered", self, "_bodyEnter")
 	_unused = connect("body_exited", self, "_bodyExit")
+	
+func _process(_delta):
+	$RayCollider.rotation_degrees = 180 + _editorRotate.rotation_degrees
 	
 func _bodyEnter(body):
 	if body is TileMap: return
@@ -17,4 +22,5 @@ func _bodyEnter(body):
 
 func _applyBoost(target):
 	if target is Player:
-		target.fsm._change_state("air", {"jumpHeight" : distance, "antiCancel" : true})
+		var velocity = Vector2(distance, 0).rotated(TAU - PI / 2 + _editorRotate.rotation)
+		target.fsm._change_state("air", {"jumpHeight" : -velocity.y, "antiCancel" : true})

@@ -6,7 +6,8 @@ var cancelled := false
 func enter(msg := {}):
 	if !owner.god:
 		if msg.has("jumpHeight"):
-			owner.recalcJumpValues(msg["jumpHeight"])
+			if int(msg["jumpHeight"]) != 0:
+				owner.recalcJumpValues(msg["jumpHeight"])
 			
 			jumping = true
 			
