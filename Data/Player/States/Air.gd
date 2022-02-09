@@ -6,9 +6,17 @@ var cancelled := false
 func enter(msg := {}):
 	if !owner.god:
 		if msg.has("jumpHeight"):
+			owner.recalcJumpValues(msg["jumpHeight"])
+			
 			jumping = true
-			owner.velocity += Vector2(msg["jumpHeight"], 0).rotated(owner.upDirection.angle())
-		
+			
+			if msg.has("antiCancel"):
+				owner.velocity.y = 0.0
+				
+			owner.velocity += Vector2(owner.jumpVel, 0).rotated(owner.upDirection.angle())
+		else:
+			owner.recalcJumpValues(owner.jumpHeight)
+			
 	if msg.has("antiCancel"):
 		cancelled = true
 	

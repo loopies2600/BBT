@@ -7,9 +7,9 @@ export (float) var maxSpd = 116
 export (float) var dustSpawnRate = 0.025
 export (float) var dustMinVel = 500.0
 
-export (float) var jumpHeight = 16 * 6.5
-export (float) var jumpDuration = 0.4
-export (float) var fallDuration = 0.3
+export (float) var jumpHeight = 64
+export (float) var jumpDuration = 0.25
+export (float) var fallDuration = 0.22550
 
 var dir := 1
 

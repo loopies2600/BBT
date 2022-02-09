@@ -110,9 +110,9 @@ func _hopIn():
 	doGravity = true
 	
 	# necesitamos que TODO se adhiera a esto, por favor
-	recalcJumpValues(Vector2(spawnPos.x, bottom).distance_to(spawnPos))
+	var distance : int = Vector2(spawnPos.x, bottom).distance_to(spawnPos)
 	
-	fsm._change_state("air", {"jumpHeight" : jumpVel, "antiCancel" : true})
+	fsm._change_state("air", {"jumpHeight" : distance, "antiCancel" : true})
 	
 	# esperemos hasta que llegue a la punta
 	yield(get_tree().create_timer(jumpDuration), "timeout")
@@ -120,6 +120,3 @@ func _hopIn():
 	levelManager.cam.target = self
 	canInput = true
 	collisionBox.set_deferred("disabled", false)
-	
-	# volvamos a nuestro valor normal de salto
-	recalcJumpValues()

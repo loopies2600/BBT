@@ -26,7 +26,7 @@ func physics_update(_delta):
 			
 		if !owner.ceilDetector.is_colliding():
 			if Input.is_action_just_pressed("jump"):
-				emit_signal("finished", "air", {"jumpHeight" : owner.jumpVel})
+				emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
 				
 			if Input.is_action_just_pressed("attack"):
 				emit_signal("finished", "attack")

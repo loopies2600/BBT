@@ -3,7 +3,7 @@ extends State
 const HARD_HAT = preload("res://Data/Player/Objects/HardHat.tscn")
 
 func enter(msg := {}):
-	var velocity := Vector2(owner.maxSpd * owner.dir * 0.75, owner.jumpVel * owner.upDirection.y * 1.25)
+	var velocity := Vector2(owner.maxSpd * owner.dir * 0.75, owner.jumpHeight * owner.upDirection.y * 1.25)
 	
 	if msg.has("velocity"):
 		velocity = msg.velocity

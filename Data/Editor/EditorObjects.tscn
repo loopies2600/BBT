@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://Data/Enemy/Earthworm/Earthworm.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Sprites/Object/ConveyorBelt.png" type="Texture" id=14]
 [ext_resource path="res://Data/Object/ConveyorBelt.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Data/Object/BoosterHand.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Sprites/Object/BoosterHand.png" type="Texture" id=17]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 0.0
@@ -70,6 +72,11 @@ region = Rect2( 0, 0, 16, 16 )
 flags = 2
 atlas = ExtResource( 14 )
 region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 2
+atlas = ExtResource( 17 )
+region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 12 )
@@ -206,6 +213,12 @@ itemScene = ExtResource( 15 )
 customParams = {
 "dir": 1
 }
+
+[node name="BoosterHand" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 11 )
+isTile = false
+itemName = "Booster Hand"
+itemScene = ExtResource( 16 )
 
 [node name="Entities" type="Tabs" parent="TabContainer"]
 visible = false
