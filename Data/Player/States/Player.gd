@@ -109,10 +109,8 @@ func kill(msg := {}):
 func _hopIn():
 	doGravity = true
 	
-	var distance : int = bottom - abs(spawnPos.y)
-	
 	# necesitamos que TODO se adhiera a esto, por favor
-	recalcJumpValues(distance)
+	recalcJumpValues(Vector2(spawnPos.x, bottom).distance_to(spawnPos))
 	
 	fsm._change_state("air", {"jumpHeight" : jumpVel, "antiCancel" : true})
 	

@@ -1,7 +1,9 @@
 extends Node
 
-const PLAYER = preload("res://Data/Scenes/PlayScene.tscn")
-const EDITOR = preload("res://Data/Scenes/EditorScene.tscn")
+const PLAYER := preload("res://Data/Scenes/PlayScene.tscn")
+const EDITOR := preload("res://Data/Scenes/EditorScene.tscn")
+
+const NG := preload("res://Data/Util/Newgrounds.tscn")
 
 var editing := false
 
@@ -28,3 +30,11 @@ func playLevel():
 	
 func edit():
 	get_tree().change_scene_to(EDITOR)
+	
+func _input(event):
+	if event is InputEventKey && event.is_pressed() && !event.is_echo():
+		if event.scancode == KEY_F9:
+			if get_tree().get_current_scene().name == "EditorScene":
+				get_tree().change_scene("res://Data/Scenes/NewgroundsChecker.tscn")
+			else:
+				get_tree().change_scene("res://Data/Scenes/EditorScene.tscn")

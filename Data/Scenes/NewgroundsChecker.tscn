@@ -1,7 +1,41 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Sprites/BG/NewgroundsCheck.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Label
+
+func _ready():
+	var ng = Global.NG.instance()
+	add_child(ng)
+	
+	ng.Gateway.getDatetime()
+	
+	var result = yield(ng, \"ng_request_complete\")
+	
+	if ng.is_ok(result):
+		text = \"date time = %s\" % result.response.datetime
+	
+	text = text.to_upper()
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Label
+
+func _ready():
+	var ng = Global.NG.instance()
+	add_child(ng)
+	
+	ng.App.checkSession()
+	
+	var result = yield(ng, \"ng_request_complete\")
+	
+	if ng.is_ok(result):
+		text = \"user = %s\" % result.response.session.user.name
+	
+	text = text.to_upper()
+"
 
 [node name="NewgroundsChecker" type="Node2D"]
 
@@ -9,7 +43,7 @@
 texture = ExtResource( 1 )
 centered = false
 
-[node name="Attempts" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = 112.0
@@ -20,6 +54,38 @@ custom_fonts/font = ExtResource( 2 )
 text = "NEWGROUNDS API TEST"
 align = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DateTime" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 304.0
+margin_bottom = 88.0
+custom_fonts/font = ExtResource( 2 )
+text = "ERROR"
+valign = 1
+autowrap = true
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UserName" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 16.0
+margin_top = 96.0
+margin_right = 304.0
+margin_bottom = 136.0
+custom_fonts/font = ExtResource( 2 )
+text = "ERROR"
+valign = 1
+autowrap = true
+script = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
