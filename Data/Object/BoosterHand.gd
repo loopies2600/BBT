@@ -23,4 +23,9 @@ func _bodyEnter(body):
 func _applyBoost(target):
 	if target is Player:
 		var velocity = Vector2(distance, 0).rotated(TAU - PI / 2 + _editorRotate.rotation)
-		target.fsm._change_state("air", {"jumpHeight" : -velocity.y, "antiCancel" : true})
+		
+		if round(velocity.x):
+			target.velocity = Vector2(velocity.x * 4, 0)
+		else:
+			target.velocity.x = 0.0
+			target.fsm._change_state("air", {"jumpHeight" : -velocity.y, "antiCancel" : true})

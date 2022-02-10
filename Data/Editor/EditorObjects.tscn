@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Data/Object/GravitySwitcher.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Sprites/Tileset/AreaZero.png" type="Texture" id=10]
 [ext_resource path="res://Data/Object/Holdable/Static/WoodenBox.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=12]
 [ext_resource path="res://Data/Enemy/Earthworm/Earthworm.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Sprites/Object/ConveyorBelt.png" type="Texture" id=14]
 [ext_resource path="res://Data/Object/ConveyorBelt.tscn" type="PackedScene" id=15]
@@ -76,10 +75,9 @@ region = Rect2( 0, 16, 16, 16 )
 [sub_resource type="AtlasTexture" id=11]
 flags = 2
 atlas = ExtResource( 17 )
-region = Rect2( 16, 0, 16, 16 )
+region = Rect2( 0, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 12 )
 region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
@@ -161,7 +159,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Objects/ScrollContainer"]
-margin_right = 116.0
+margin_right = 136.0
 margin_bottom = 16.0
 script = ExtResource( 2 )
 
@@ -202,8 +200,6 @@ texture = SubResource( 9 )
 isTile = false
 itemName = "Conveyor Belt"
 itemScene = ExtResource( 15 )
-customParams = {
-}
 
 [node name="ConveyorBeltLeft" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 texture = SubResource( 10 )
@@ -252,8 +248,6 @@ texture = SubResource( 8 )
 isTile = false
 itemName = "Earthworm"
 itemScene = ExtResource( 13 )
-customParams = {
-}
 
 [node name="Markers" type="Tabs" parent="TabContainer"]
 visible = false
