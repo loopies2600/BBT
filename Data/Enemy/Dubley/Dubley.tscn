@@ -1,0 +1,430 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/Enemy/Dubley.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 15.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Head/Eyes:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Rect2( 49, 7, 14, 9 ), Rect2( 17, 0, 14, 9 ), Rect2( 49, 7, 14, 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/Head/Eyes/LeftPupil:visible")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/Head/Eyes/RightPupil:visible")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Graphics/Head/Eyelids:position")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3, 3.3, 8.5, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, -1 ), Vector2( 1, -1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, -1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Graphics/Head/Eyes/LeftPupil:position")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3, 3.3, 8.5, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 2 ), Vector2( 3, 2 ), Vector2( 3, 3 ), Vector2( 3, 3 ), Vector2( 3, 2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Graphics/Head/Eyes/RightPupil:position")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3, 3.3, 8.5, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 2 ), Vector2( 8, 2 ), Vector2( 8, 3 ), Vector2( 8, 3 ), Vector2( 8, 2 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Graphics/Head:position")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 7, 7.2, 7.5, 7.7, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 6 ), Vector2( 3, 6 ), Vector2( 2, 7 ), Vector2( 3, 8 ), Vector2( 3, 7 ), Vector2( 3, 6 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Graphics/HardHat:position")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 7.2, 7.5, 7.7, 8, 8.2, 8.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ), Vector2( 0, 0 ), Vector2( -1, 2 ), Vector2( 0, 3 ), Vector2( 1, 1 ), Vector2( 1, -2 ), Vector2( 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Head/Eyes:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 49, 7, 14, 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/Head/Eyes/LeftPupil:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/Head/Eyes/RightPupil:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Graphics/Head/Eyelids:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, -1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Graphics/Head/Eyes/LeftPupil:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3, 2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Graphics/Head/Eyes/RightPupil:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 8, 2 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Graphics/Head:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3, 6 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Graphics/HardHat:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RHand:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 14, 24 ), Vector2( 12, 23 ), Vector2( 14, 24 ), Vector2( 15, 23 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RArm:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 12, 16 ), Vector2( 12, 15 ), Vector2( 12, 16 ), Vector2( 12, 15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LHand:position")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 24 ), Vector2( 2, 23 ), Vector2( 0, 24 ), Vector2( -1, 23 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("LArm:position")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, 18 ), Vector2( 5, 17 ), Vector2( 4, 18 ), Vector2( 4, 17 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("RHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 14, 24 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RArm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 12, 16 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 24 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("LArm:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 4, 18 ) ]
+}
+
+[node name="Dubley" type="KinematicBody2D"]
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="LLeg" type="Sprite" parent="Graphics"]
+position = Vector2( 7, 27 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 32, 4, 5 )
+
+[node name="RLeg" type="Sprite" parent="Graphics"]
+position = Vector2( 10, 27 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 32, 4, 5 )
+
+[node name="LHand" type="Sprite" parent="Graphics"]
+position = Vector2( 0, 24 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 16, 7, 7 )
+
+[node name="LArm" type="Sprite" parent="Graphics"]
+position = Vector2( 4, 18 )
+texture = ExtResource( 1 )
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 41, 25, 7, 7 )
+
+[node name="Body" type="Sprite" parent="Graphics"]
+position = Vector2( 4, 16 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 50, 32, 13, 13 )
+
+[node name="LFeet" type="Sprite" parent="Graphics"]
+position = Vector2( 3, 32 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 44, 8, 4 )
+
+[node name="RFeet" type="Sprite" parent="Graphics"]
+position = Vector2( 10, 32 )
+texture = ExtResource( 1 )
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 32, 44, 8, 4 )
+
+[node name="RHand" type="Sprite" parent="Graphics"]
+position = Vector2( 14, 24 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 41, 16, 7, 7 )
+
+[node name="RArm" type="Sprite" parent="Graphics"]
+position = Vector2( 12, 16 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 42, 32, 6, 9 )
+
+[node name="Head" type="Sprite" parent="Graphics"]
+position = Vector2( 3, 6 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 48, 16, 16, 11 )
+
+[node name="Eyes" type="Sprite" parent="Graphics/Head"]
+position = Vector2( 1, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 49, 7, 14, 9 )
+
+[node name="LeftPupil" type="Sprite" parent="Graphics/Head/Eyes"]
+position = Vector2( 3, 2 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 46, 44, 2, 4 )
+
+[node name="RightPupil" type="Sprite" parent="Graphics/Head/Eyes"]
+position = Vector2( 8, 2 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 46, 44, 2, 4 )
+
+[node name="Eyelids" type="Sprite" parent="Graphics/Head"]
+position = Vector2( 1, -1 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 49, 0, 14, 4 )
+
+[node name="HardHat" type="Sprite" parent="Graphics"]
+position = Vector2( 1, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 30, 7, 18, 9 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+playback_speed = 2.0
+anims/Idle = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="SubAnimator" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Graphics")
+autoplay = "Idle"
+anims/Idle = SubResource( 3 )
+anims/RESET = SubResource( 4 )
