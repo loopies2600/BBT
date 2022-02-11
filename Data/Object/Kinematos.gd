@@ -70,7 +70,7 @@ func _dustLoop():
 	if _doDust:
 		var dust = load("res://Data/Particles/FastDust.tscn").instance()
 	
-		get_tree().get_root().add_child(dust)
+		get_tree().get_root().get_node("Main").currentScene.add_child(dust)
 		dust.global_position = global_position
 	
 	yield(get_tree().create_timer(dustSpawnRate), "timeout")
@@ -93,5 +93,5 @@ func push(vel : int):
 func kill():
 	emit_signal("died")
 	
-	Global.plop(global_position)
+	get_tree().get_roo().get_node("Main").plop(global_position)
 	queue_free()

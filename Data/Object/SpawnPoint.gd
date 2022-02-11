@@ -8,12 +8,12 @@ var _time := 0.0
 func _process(delta):
 	update()
 	
-	if !Global.editing: return
+	if !get_tree().get_root().get_node("Main").editing: return
 	
 	_time += delta
 	
 	y = sin(_time * 2) * 4
 	
 func _draw():
-	if Global.editing:
+	if get_tree().get_root().get_node("Main").editing:
 		draw_texture(SPICON, Vector2(-16, y))

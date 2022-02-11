@@ -144,7 +144,6 @@ margin_bottom = 220.0
 focus_mode = 1
 toggle_mode = true
 shortcut_in_tooltip = false
-pressed = true
 texture_normal = SubResource( 8 )
 texture_pressed = SubResource( 9 )
 stretch_mode = 2

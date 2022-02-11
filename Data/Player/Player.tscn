@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Data/Player/Tools.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/States/Player.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Data/Player/States/Crouch.gd" type="Script" id=10]
 [ext_resource path="res://Data/Player/States/Dead.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/Particles/Light.png" type="Texture" id=12]
-[ext_resource path="res://Data/Util/SpriteMask.gd" type="Script" id=13]
 [ext_resource path="res://Data/Player/States/Slide.gd" type="Script" id=14]
 [ext_resource path="res://Data/Player/Light.gd" type="Script" id=15]
 [ext_resource path="res://Sprites/Particles/BB/SlideDust3.png" type="Texture" id=16]
@@ -20,10 +19,6 @@
 
 [sub_resource type="CanvasItemMaterial" id=14]
 light_mode = 1
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="Animation" id=12]
 resource_name = "Crouch"
@@ -925,16 +920,6 @@ material = SubResource( 14 )
 texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
-
-[node name="SpriteMask" type="Light2D" parent="Graphics"]
-texture = SubResource( 15 )
-offset = Vector2( 8, 0 )
-color = Color( 0, 0, 0, 1 )
-energy = 16.0
-mode = 2
-range_z_min = -2
-range_z_max = -1
-script = ExtResource( 13 )
 
 [node name="Anim" type="AnimationPlayer" parent="Graphics"]
 playback_speed = 4.0

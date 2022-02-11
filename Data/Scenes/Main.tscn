@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Data/Util/MouseCursor.gd" type="Script" id=1]
+[ext_resource path="res://Data/Shader/General.shader" type="Shader" id=2]
+[ext_resource path="res://Data/Backgrounds/TestBG.tscn" type="PackedScene" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+const PLAYER := preload(\"res://Data/Scenes/PlayScene.tscn\")
+const EDITOR := preload(\"res://Data/Scenes/EditorScene.tscn\")
+const NGIOSTATUS := preload(\"res://Data/Scenes/NewgroundsChecker.tscn\")
+
+const NG := preload(\"res://Data/Util/Newgrounds.tscn\")
+
+var editing := false
+
+onready var cursor := $GameViewport/MouseCursorLayer/MouseCursorRenderer
+onready var level : TileMap = preload(\"res://Data/Level/Level.tscn\").instance()
+onready var vp := $GameViewport
+
+var currentScene
+
+func _ready():
+	vp.add_child(level)
+	changeScene(EDITOR)
+	
+func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
+	for i in range(rotations.size()):
+		var dust = load(\"res://Data/Particles/FastDust.tscn\").instance()
+	
+		get_tree().get_root().add_child(dust)
+		dust.global_position = pos
+		dust.gravity = 4
+		dust.velocity = Vector2(0, -75).rotated(deg2rad(rotations[i]))
+	
+func changeScene(packedScene):
+	var newScene = packedScene.instance()
+	
+	if currentScene:
+		currentScene.call_deferred(\"queue_free\")
+		currentScene = null
+		
+	currentScene = newScene
+	vp.call_deferred(\"add_child\", newScene)
+	
+func playLevel():
+	changeScene(PLAYER)
+	
+	yield(get_tree(), \"idle_frame\")
+	currentScene.setup()
+	
+func edit():
+	changeScene(EDITOR)
+	
+func _input(event):
+	vp.input(event)
+	
+	if event is InputEventKey && event.is_pressed() && !event.is_echo():
+		if event.scancode == KEY_F9:
+			if currentScene.name == \"EditorScene\":
+				changeScene(NGIOSTATUS)
+			else:
+				changeScene(EDITOR)
+"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/toScreen = false
+shader_param/canGlow = false
+shader_param/invertColors = false
+shader_param/glowing_color = Color( 1, 1, 1, 1 )
+shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
+shader_param/brightness = 1.0
+shader_param/glowing_intensity = 1.0
+shader_param/precision = 0.1
+shader_param/opacity = 0.5
+shader_param/ditherScale = 2.0
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("GameViewport")
+
+[sub_resource type="ViewportTexture" id=2]
+flags = 2
+viewport_path = NodePath("GameViewport")
+
+[node name="Main" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="GameViewport" type="Viewport" parent="."]
+size = Vector2( 320, 224 )
+transparent_bg = true
+render_target_v_flip = true
+render_target_update_mode = 3
+shadow_atlas_quad_0 = 0
+shadow_atlas_quad_1 = 0
+shadow_atlas_quad_2 = 0
+shadow_atlas_quad_3 = 0
+
+[node name="MouseCursorLayer" type="CanvasLayer" parent="GameViewport"]
+layer = 128
+
+[node name="MouseCursorRenderer" type="Node2D" parent="GameViewport/MouseCursorLayer"]
+script = ExtResource( 1 )
+
+[node name="GameShadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 4 )
+position = Vector2( 8, 8 )
+texture = SubResource( 3 )
+centered = false
+region_rect = Rect2( -8, -8, 328, 232 )
+
+[node name="GameRenderer" type="Sprite" parent="."]
+texture = SubResource( 2 )
+centered = false
+
+[node name="TestBG" parent="." instance=ExtResource( 3 )]

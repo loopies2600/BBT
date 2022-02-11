@@ -11,7 +11,7 @@ script/source = "extends Position2D
 
 func _ready():
 	set_as_toplevel(true)
-	global_position = ((get_parent().global_position / Global.level.cell_size) * 16).round()
+	global_position = ((get_parent().global_position / get_tree().get_root().get_node(\"Main\").level.cell_size) * 16).round()
 "
 
 [sub_resource type="GDScript" id=3]
@@ -19,7 +19,7 @@ script/source = "extends Position2D
 
 func _ready():
 	set_as_toplevel(true)
-	global_position = (((get_parent().global_position / Global.level.cell_size) + Vector2(8, 0)) * 16).round()
+	global_position = (((get_parent().global_position / get_tree().get_root().get_node(\"Main\").level.cell_size) + Vector2(8, 0)) * 16).round()
 "
 
 [node name="Earthworm" type="Area2D" groups=["MultiState"]]

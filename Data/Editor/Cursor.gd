@@ -14,15 +14,15 @@ var alreadyPressed := false
 
 var cellPos := Vector2()
 
-onready var level : TileMap = Global.level
+onready var level : TileMap = get_tree().get_root().get_node("Main").level
 
 func _process(_delta):
 	mode = _getMode()
 	
-	cellPos = ((global_position / Global.level.cell_size).round() / Global.level.scale).round()
+	cellPos = ((global_position / level.cell_size).round() / level.scale).round()
 	
 	if canPlace:
-		global_position = (((get_global_mouse_position() - Vector2(8, 8)) / Global.level.cell_size).round() * Global.level.cell_size).round()
+		global_position = ((( ((get_global_mouse_position() - Vector2(8, 8)) / 2 - get_canvas_transform().origin / 2) ) / level.cell_size).round() * level.cell_size).round()
 	
 func _getMode():
 	var activeButtonIdx := 0
@@ -102,16 +102,13 @@ func _input(event):
 		
 func _spawnTileConfigurator(targetTile : Vector2):
 	if configurator: 
-		if configurator.targetTile == targetTile:
-			return
-			
 		configurator.queue_free()
 		configurator = null 
 	
 	configurator = TILE_CONFIG.instance()
 	configurator.targetTile = targetTile
 	
-	get_parent().viewport.add_child(configurator)
+	get_parent().guiLayer.add_child(configurator)
 	
 func _singleInstanceCheck(inst):
 	var exists := false

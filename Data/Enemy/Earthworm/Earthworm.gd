@@ -96,7 +96,7 @@ func partsUpdate(delta : float):
 		bodyParts[i].global_position = bodyParts[i].global_position.linear_interpolate(olderPositions[olderPositions.size() - distance], 20 * delta)
 	
 func _physics_process(delta):
-	if Global.editing: return
+	if get_tree().get_root().get_node("Main").editing: return
 	
 	partsUpdate(delta)
 	_lookAtPlayer()
@@ -114,8 +114,8 @@ func _physics_process(delta):
 func _lookAtPlayer():
 	var lookAngle := 0.0
 	
-	if is_instance_valid(Global.level.get_node("Player")):
-		lookAngle = (Global.level.get_node("Player").global_position - global_position).angle()
+	if is_instance_valid(get_tree().get_root().get_node("Main").level.get_node("Player")):
+		lookAngle = (get_tree().get_root().get_node("Main").level.get_node("Player").global_position - global_position).angle()
 		
 	for p in pupils:
 		p.offset = Vector2(1, 0).rotated(lookAngle).round()

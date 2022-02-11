@@ -24,7 +24,7 @@ func _ready():
 func _process(delta):
 	update()
 	
-	if !Global.editing: return
+	if !get_tree().get_root().get_node(\"Main\").editing: return
 	
 	_time += delta
 	
@@ -34,7 +34,7 @@ func _process(delta):
 		y = -abs(sin(_time * 2)) * 4
 	
 func _draw():
-	if Global.editing:
+	if get_tree().get_root().get_node(\"Main\").editing:
 		draw_texture(AICONS[get_parent().mode], -AICONS[get_parent().mode].get_size() / 2 + Vector2(0, y))
 "
 

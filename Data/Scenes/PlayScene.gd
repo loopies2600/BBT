@@ -13,8 +13,8 @@ var level
 func setup():
 	OS.set_window_title("Bennett Boy's Trouble")
 	
-	level = Global.level
-	Global.editing = false
+	level = get_tree().get_root().get_node("Main").level
+	get_tree().get_root().get_node("Main").editing = false
 	
 	level.resetObjectState()
 	level.initializeObjects()
@@ -54,4 +54,4 @@ func _edit():
 		player.queue_free()
 		player = null
 		
-	Global.edit()
+	get_tree().get_root().get_node("Main").edit()

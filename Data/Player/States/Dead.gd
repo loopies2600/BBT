@@ -29,7 +29,7 @@ func enter(msg := {}):
 	owner._doDust = true
 	
 	# desactivar colisiones y sacudir camara
-	Global.plop(owner.global_position)
+	get_tree().get_root().get_node("Main").plop(owner.global_position)
 	owner.levelManager.cam.shake(3, 3)
 	owner.levelManager.cam.target = null
 	

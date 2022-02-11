@@ -9,7 +9,7 @@ var panning := false
 func _process(_delta):
 	if get_parent().cursor.canPlace:
 		panning = Input.is_action_pressed("mouse_tertiary")
-		Global.cursor.pointer = 3 * int(panning)
+		get_tree().get_root().get_node("Main").cursor.pointer = 3 * int(panning)
 	
 func _input(event):
 	if panning:

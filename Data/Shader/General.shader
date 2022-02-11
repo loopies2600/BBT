@@ -9,6 +9,7 @@ uniform float brightness : hint_range(0, 8) = 1;
 uniform float glowing_intensity : hint_range(0, 1) = 1;
 uniform float precision : hint_range(0, 1) = 0.1;
 uniform float opacity : hint_range(0, 1) = 1.0;
+uniform float ditherScale = 1.0;
 
 void fragment(){
 	if (toScreen){
@@ -17,8 +18,8 @@ void fragment(){
 		COLOR = texture(TEXTURE, UV)
 	}
 	
-	int x = int(FRAGCOORD.x) % 4;
-	int y = int(FRAGCOORD.y) % 4;
+	int x = int(FRAGCOORD.x / ditherScale) % 4;
+	int y = int(FRAGCOORD.y / ditherScale) % 4;
 	
 	int index = x + y * 4;
 	float limit = 0.0;

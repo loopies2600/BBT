@@ -4,13 +4,13 @@ const FONT := preload("res://Sprites/Font/Main.tres")
 const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
 onready var cursor := $SelectedObject
-onready var tilesTab := $GUILayer/GUIViewport/EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
-onready var itemLabel := $GUILayer/GUIViewport/MenuBar/ItemLabel
-onready var viewport := $GUILayer/GUIViewport
-onready var utilButtons := $GUILayer/GUIViewport/MenuBar/UtilButtons
+onready var tilesTab := $GUILayer/EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
+onready var itemLabel := $GUILayer/MenuBar/ItemLabel
+onready var utilButtons := $GUILayer/MenuBar/UtilButtons
 onready var cam := $Camera
+onready var guiLayer := $GUILayer
 
-onready var level : TileMap = Global.level
+onready var level : TileMap = get_tree().get_root().get_node("Main").level
 
 var showGrid := false
 var showCells := false
@@ -19,7 +19,7 @@ var showCellBox := false
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")
 	
-	Global.editing = true
+	get_tree().get_root().get_node("Main").editing = true
 	level.resetObjectState()
 	
 	_spawnTileItems()
@@ -79,8 +79,6 @@ func _spawnTileItems():
 		tilesTab.add_child(newItem)
 	
 func _input(event):
-	viewport.input(event)
-	
 	if event.is_action_pressed("switch_state"):
 		_playTest()
 		
@@ -101,13 +99,13 @@ func _playTest():
 		return
 		
 	level.generateCameraBoundaries()
-	Global.playLevel()
+	get_tree().get_root().get_node("Main").playLevel()
 	
 func _message(text := "ERROR"):
-	if viewport.get_node("Message"): return
+	if guiLayer.get_node("Message"): return
 	
 	var newMsg = load("res://Data/Editor/Message.tscn").instance()
-	viewport.add_child(newMsg)
+	guiLayer.add_child(newMsg)
 	newMsg.desc.text = text
 	
 func _tileTexGen(tex : Texture, region : Rect2):
