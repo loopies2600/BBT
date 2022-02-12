@@ -1,14 +1,92 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Data/Scenes/PlayScene.gd" type="Script" id=2]
-[ext_resource path="res://Data/UI/HUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Data/Player/Camera.gd" type="Script" id=4]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+onready var aLabel := $HUD/Attempts
+onready var cam := $Camera
+
+var _lvlInstance
+
+var player : Player
+var attempt := 1
+
+var level
+
+func setup():
+	OS.set_window_title(\"Bennett Boy's Trouble\")
+	
+	level = get_tree().get_root().get_node(\"Main\").level
+	get_tree().get_root().get_node(\"Main\").editing = false
+	
+	level.resetObjectState()
+	level.initializeObjects()
+	
+	_spawnPlayer()
+	
+func _spawnPlayer():
+	var spawn = level.get_node(\"SpawnPoint\")
+	
+	player = load(\"res://Data/Player/Player.tscn\").instance()
+	
+	player.levelManager = self
+	player.global_position = spawn.global_position
+	
+	cam.limit_left = level.camBoundariesX.x
+	cam.limit_right = level.camBoundariesX.y
+	cam.limit_top = level.camBoundariesY.x
+	cam.limit_bottom = level.camBoundariesY.y
+	
+	level.add_child(player)
+	
+func restart():
+	attempt += 1
+	aLabel.text = \"ATTEMPT %s\" % attempt
+	
+	level.resetObjectState()
+	level.initializeObjects()
+	
+	player.letsStart()
+	
+func _input(event):
+	if event.is_action_pressed(\"switch_state\"):
+		_edit()
+		
+func _edit():
+	if player:
+		player.queue_free()
+		player = null
+		
+	get_tree().get_root().get_node(\"Main\").edit()
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Camera2D
+
+export (float, 0, 1) var damping = 0.9
+
+var intensity := Vector2()
+
+var target : Node2D
+
+func _process(_delta):
+	if target:
+		global_position = target.global_position
+		
+	intensity *= damping
+		if intensity.length() > 0.5:
+		offset = Vector2(rand_range(-intensity.x, intensity.x), rand_range(-intensity.y, intensity.y))
+	else:
+		offset = Vector2.ZERO
+	
+func shake(xOff := 0, yOff := 0):
+	intensity = Vector2(xOff, yOff)
+"
 
 [node name="PlayScene" type="Node2D"]
-script = ExtResource( 2 )
-
-[node name="HUD" parent="." instance=ExtResource( 3 )]
+script = SubResource( 1 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
-script = ExtResource( 4 )
+script = SubResource( 2 )
+damping = null

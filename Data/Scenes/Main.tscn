@@ -7,8 +7,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node
 
-const PLAYER := preload(\"res://Data/Scenes/PlayScene.tscn\")
-const EDITOR := preload(\"res://Data/Scenes/EditorScene.tscn\")
+const PLAYER := preload(\"res://Data/Scenes/PlayerScene.tscn\")
 const NGIOSTATUS := preload(\"res://Data/Scenes/NewgroundsChecker.tscn\")
 
 const NG := preload(\"res://Data/Util/Newgrounds.tscn\")
@@ -23,7 +22,7 @@ var currentScene
 
 func _ready():
 	vp.add_child(level)
-	changeScene(EDITOR)
+	changeScene(PLAYER)
 	
 func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
 	for i in range(rotations.size()):
@@ -44,15 +43,6 @@ func changeScene(packedScene):
 	currentScene = newScene
 	vp.call_deferred(\"add_child\", newScene)
 	
-func playLevel():
-	changeScene(PLAYER)
-	
-	yield(get_tree(), \"idle_frame\")
-	currentScene.setup()
-	
-func edit():
-	changeScene(EDITOR)
-	
 func _input(event):
 	vp.input(event)
 	
@@ -61,7 +51,7 @@ func _input(event):
 			if currentScene.name == \"EditorScene\":
 				changeScene(NGIOSTATUS)
 			else:
-				changeScene(EDITOR)
+				changeScene(PLAYER)
 "
 
 [sub_resource type="ShaderMaterial" id=4]

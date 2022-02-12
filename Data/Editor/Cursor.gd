@@ -17,6 +17,10 @@ var cellPos := Vector2()
 onready var level : TileMap = get_tree().get_root().get_node("Main").level
 
 func _process(_delta):
+	if !get_tree().get_root().get_node("Main").editing:
+		texture = null
+		return
+		
 	mode = _getMode()
 	
 	cellPos = ((global_position / level.cell_size).round() / level.scale).round()

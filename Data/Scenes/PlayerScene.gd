@@ -1,6 +1,5 @@
 extends Node2D
 
-const FONT := preload("res://Sprites/Font/Main.tres")
 const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
 onready var cursor := $SelectedObject
@@ -9,6 +8,7 @@ onready var itemLabel := $GUILayer/MenuBar/ItemLabel
 onready var utilButtons := $GUILayer/MenuBar/UtilButtons
 onready var cam := $Camera
 onready var guiLayer := $GUILayer
+onready var aLabel := $HUD/Attempts
 
 onready var level : TileMap = get_tree().get_root().get_node("Main").level
 
@@ -16,49 +16,18 @@ var showGrid := false
 var showCells := false
 var showCellBox := false
 
+var player : Player
+
+var attempt := 1
+
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")
 	
 	get_tree().get_root().get_node("Main").editing = true
-	level.resetObjectState()
 	
 	_spawnTileItems()
 	
-func _draw():
-	var size : Vector2 = get_viewport_rect().size * cam.zoom
-	var pos : Vector2 = cam.global_position
-	var separation := level.cell_size * level.scale
-	var limit := Vector2(320, 224) * level.scale
-	
-	if showGrid:
-		var color := Color.darkgray
-		
-		for i in range(int((pos.x - size.x) / separation.x) - 1, int((size.x + pos.x) / separation.x) + 1):
-			draw_line(Vector2(i * separation.x, pos.y + size.y + limit.x), Vector2(i * separation.x, pos.y - size.y - limit.x), color, 1)
-			
-		for i in range(int((pos.y - size.y) / separation.y) - 1, int((size.y + pos.y) / separation.y) + 1):
-			draw_line(Vector2(pos.x + size.x + limit.y, i * separation.y), Vector2(pos.x - size.x - limit.y, i * separation.y), color, 1)
-		
-	if showCells:
-		for i in range(int((pos.x - size.x) / separation.x) - 1, int((size.x + pos.x) / separation.x) + 1):
-			draw_string(FONT, Vector2(i * separation.x, pos.y + size.y - 192), str(i), Color.darkgray)
-			
-		for i in range(int((pos.y - size.y) / separation.x) - 1, int((size.y + pos.y) / separation.x) + 1):
-			draw_string(FONT, Vector2(pos.x + size.x - 304, i * separation.y), str(i), Color.darkgray)
-		
-	if showCellBox:
-		for c in level.get_used_cells():
-			draw_rect(Rect2(Vector2(c.x, c.y) * level.cell_size * level.scale, level.cell_size * level.scale), Color(0.66, 0.66, 0.66, 0.5), true)
-			
-		for n in level.get_children():
-			draw_rect(Rect2(n.global_position * level.scale, level.cell_size * level.scale), Color(0.66, 0.66, 0.66, 0.5), true)
-		
-	if cursor.configurator:
-		draw_rect(Rect2(cursor.configurator.targetTile * level.cell_size * level.scale, level.cell_size * level.scale), Color.tomato, false, 2)
-		
 func _process(_delta):
-	update()
-	
 	if level:
 		if cursor.target.isTile:
 			itemLabel.text = level.tile_set.tile_get_name(cursor.target.tileID)
@@ -80,27 +49,83 @@ func _spawnTileItems():
 	
 func _input(event):
 	if event.is_action_pressed("switch_state"):
-		_playTest()
+		_switchStates()
 		
-func _playTest():
+func _switchStates():
+	level.resetObjectState()
+	
+	if get_tree().get_root().get_node("Main").editing:
+		if !_levelIsValid(): return
+		
+		level.generateCameraBoundaries()
+		level.initializeObjects()
+		
+		_spawnPlayer()
+	else:
+		if player:
+			player.queue_free()
+			player = null
+			
+		_resetPlayValues()
+		
+	get_tree().get_root().get_node("Main").editing = !get_tree().get_root().get_node("Main").editing
+	cursor.canPlace = get_tree().get_root().get_node("Main").editing
+	
+func _resetPlayValues():
+	cam.target = null
+	
+	cam.limit_top = -10000000
+	cam.limit_left = -10000000
+	cam.limit_bottom = 10000000
+	cam.limit_right = 10000000
+	
+	cam.global_position = Vector2()
+	
+	attempt = 1
+	aLabel.text = "ATTEMPT %s" % attempt
+	
+func _spawnPlayer():
+	var spawn = level.get_node("SpawnPoint")
+	
+	player = load("res://Data/Player/Player.tscn").instance()
+	
+	player.levelManager = self
+	player.global_position = spawn.global_position
+	
+	cam.limit_left = level.camBoundariesX.x
+	cam.limit_right = level.camBoundariesX.y
+	cam.limit_top = level.camBoundariesY.x
+	cam.limit_bottom = level.camBoundariesY.y
+	
+	level.add_child(player)
+	
+func restart():
+	attempt += 1
+	aLabel.text = "ATTEMPT %s" % attempt
+	
+	level.resetObjectState()
+	level.initializeObjects()
+	
+	player.letsStart()
+	
+func _levelIsValid() -> bool:
 	var hasSpawnPoint := false
-	var hasTiles = level.get_used_cells().size() != 0
+	var hasTiles := level.get_used_cells().size() != 0
 	
 	for c in level.get_children():
 		if c.name == "SpawnPoint":
 			hasSpawnPoint = true
-		
+	
 	if !hasTiles:
 		_message("Level is empty")
-		return
+		return false
 	
 	if !hasSpawnPoint: 
 		_message("No player spawn point") 
-		return
+		return false
 		
-	level.generateCameraBoundaries()
-	get_tree().get_root().get_node("Main").playLevel()
-	
+	return true
+		
 func _message(text := "ERROR"):
 	if guiLayer.get_node("Message"): return
 	
