@@ -62,17 +62,18 @@ func _switchStates():
 		
 		_spawnPlayer()
 	else:
-		if player:
-			player.queue_free()
-			player = null
-			
 		_resetPlayValues()
 		
 	get_tree().get_root().get_node("Main").editing = !get_tree().get_root().get_node("Main").editing
 	cursor.canPlace = get_tree().get_root().get_node("Main").editing
 	
 func _resetPlayValues():
-	cam.target = null
+	if player:
+		player.remove_child(cam)
+		add_child(cam)
+		
+		player.queue_free()
+		player = null
 	
 	cam.limit_top = -10000000
 	cam.limit_left = -10000000
@@ -98,6 +99,9 @@ func _spawnPlayer():
 	cam.limit_bottom = level.camBoundariesY.y
 	
 	level.add_child(player)
+	
+	remove_child(cam)
+	player.add_child(cam)
 	
 func restart():
 	attempt += 1

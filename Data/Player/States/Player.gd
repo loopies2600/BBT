@@ -40,9 +40,6 @@ func _ready():
 	letsStart()
 	
 func letsStart():
-	# la camara será nuestra
-	levelManager.cam.target = self
-	
 	# las nubecitas se ven raras, procuro desactivarlas
 	_doDust = false
 	
@@ -117,6 +114,5 @@ func _hopIn():
 	# esperemos hasta que llegue a la punta
 	yield(get_tree().create_timer(jumpDuration), "timeout")
 	
-	levelManager.cam.target = self
 	canInput = true
 	collisionBox.set_deferred("disabled", false)

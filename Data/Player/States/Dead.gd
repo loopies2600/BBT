@@ -31,7 +31,6 @@ func enter(msg := {}):
 	# desactivar colisiones y sacudir camara
 	get_tree().get_root().get_node("Main").plop(owner.global_position)
 	owner.levelManager.cam.shake(3, 3)
-	owner.levelManager.cam.target = null
 	
 	owner.collisionBox.set_deferred("disabled", true)
 	owner.canInput = false

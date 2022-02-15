@@ -41,9 +41,7 @@ func _itemClick(event):
 			cursor.target = self
 			
 func _mouseIn():
-	get_tree().get_root().get_node("Main").cursor.pointer = 1
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = false
 	
 func _mouseOut():
-	get_tree().get_root().get_node("Main").cursor.pointer = 0
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = true

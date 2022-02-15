@@ -46,6 +46,8 @@ margin_bottom = -208.0
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
 script = ExtResource( 1 )
 
 [node name="HUD" parent="." instance=ExtResource( 8 )]

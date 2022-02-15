@@ -8,11 +8,9 @@ func _ready():
 	_unused = connect("tab_changed", self, "_tabChange")
 	
 func _mouseIn():
-	get_tree().get_root().get_node("Main").cursor.pointer = 1
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = false
 	
 func _mouseOut():
-	get_tree().get_root().get_node("Main").cursor.pointer = 0
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = true
 	
 func _tabChange(_tab):

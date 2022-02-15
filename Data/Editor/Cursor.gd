@@ -26,7 +26,7 @@ func _process(_delta):
 	cellPos = ((global_position / level.cell_size).round() / level.scale).round()
 	
 	if canPlace:
-		global_position = ((( ((get_global_mouse_position() - Vector2(8, 8)) / 2 - get_canvas_transform().origin / 2) ) / level.cell_size).round() * level.cell_size).round()
+		global_position = ((( ((get_global_mouse_position() - Vector2(8, 8)) / 2 - get_canvas_transform().origin / 2 - Vector2(98, 0)) ) / level.cell_size).round() * level.cell_size).round()
 	
 func _getMode():
 	var activeButtonIdx := 0

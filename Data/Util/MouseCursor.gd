@@ -10,7 +10,7 @@ func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 func _process(_delta):
-	global_position = get_global_mouse_position() / 2
+	global_position = get_global_mouse_position() + Vector2(98, 0)
 	
 	update()
 	

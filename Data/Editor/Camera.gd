@@ -8,16 +8,11 @@ export (float) var zoomSpeed = 0.1
 var panning := false
 var intensity := Vector2()
 
-var target : Node2D
-
 func _process(_delta):
-	if get_parent().cursor.canPlace:
-		panning = Input.is_action_pressed("mouse_tertiary")
-		get_tree().get_root().get_node("Main").cursor.pointer = 3 * int(panning)
-	
-	if target:
-		global_position = target.global_position
-		
+	if get_tree().get_root().get_node("Main").editing:
+		if get_parent().cursor.canPlace:
+			panning = Input.is_action_pressed("mouse_tertiary")
+			
 	intensity *= damping
 	
 	if intensity.length() > 0.5:

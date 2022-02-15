@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Data/Util/MouseCursor.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/UI/Border1.png" type="Texture" id=1]
 [ext_resource path="res://Data/Shader/General.shader" type="Shader" id=2]
 [ext_resource path="res://Data/Backgrounds/TestBG.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/UI/Border0.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/UI/HintPanel.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/UI/PanelTitles.png" type="Texture" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node
@@ -14,7 +17,7 @@ const NG := preload(\"res://Data/Util/Newgrounds.tscn\")
 
 var editing := false
 
-onready var cursor := $GameViewport/MouseCursorLayer/MouseCursorRenderer
+onready var cursor := $MouseCursorLayer/MouseCursorRenderer
 onready var level : TileMap = preload(\"res://Data/Level/Level.tscn\").instance()
 onready var vp := $GameViewport
 
@@ -44,8 +47,12 @@ func changeScene(packedScene):
 	vp.call_deferred(\"add_child\", newScene)
 	
 func _input(event):
+	# offset by border!
+	if event is InputEventMouseButton:
+		event.position.x -= 98
+		
 	vp.input(event)
-	
+		
 	if event is InputEventKey && event.is_pressed() && !event.is_echo():
 		if event.scancode == KEY_F9:
 			if currentScene.name == \"EditorScene\":
@@ -87,22 +94,46 @@ shadow_atlas_quad_1 = 0
 shadow_atlas_quad_2 = 0
 shadow_atlas_quad_3 = 0
 
-[node name="MouseCursorLayer" type="CanvasLayer" parent="GameViewport"]
-layer = 128
-
-[node name="MouseCursorRenderer" type="Node2D" parent="GameViewport/MouseCursorLayer"]
-script = ExtResource( 1 )
-
 [node name="GameShadow" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 1 )
 material = SubResource( 4 )
-position = Vector2( 8, 8 )
+position = Vector2( 106, 8 )
 texture = SubResource( 3 )
 centered = false
 region_rect = Rect2( -8, -8, 328, 232 )
 
 [node name="GameRenderer" type="Sprite" parent="."]
+position = Vector2( 98, 0 )
 texture = SubResource( 2 )
 centered = false
 
 [node name="TestBG" parent="." instance=ExtResource( 3 )]
+
+[node name="LeftBorder" type="TextureRect" parent="."]
+margin_right = 96.0
+margin_bottom = 224.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightBorder" type="TextureRect" parent="."]
+margin_left = 414.0
+margin_right = 510.0
+margin_bottom = 224.0
+texture = ExtResource( 1 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HintPanel" type="Sprite" parent="RightBorder"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Title" type="Sprite" parent="RightBorder/HintPanel"]
+position = Vector2( 48, 48 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 16, 19, 59, 51 )
