@@ -20,6 +20,7 @@ const NG := preload(\"res://Data/Util/Newgrounds.tscn\")
 
 var editing := false
 
+onready var background := $TestBG
 onready var cursor := $MouseCursorLayer/MouseCursorRenderer
 onready var level : TileMap = preload(\"res://Data/Level/Level.tscn\").instance()
 onready var vp := $GameViewport
@@ -35,7 +36,7 @@ func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
 	for i in range(rotations.size()):
 		var dust = load(\"res://Data/Particles/FastDust.tscn\").instance()
 	
-		get_tree().get_root().add_child(dust)
+		vp.add_child(dust)
 		dust.global_position = pos
 		dust.gravity = 4
 		dust.velocity = Vector2(0, -75).rotated(deg2rad(rotations[i]))
@@ -130,6 +131,10 @@ shadow_atlas_quad_1 = 0
 shadow_atlas_quad_2 = 0
 shadow_atlas_quad_3 = 0
 
+[node name="TestBG" parent="." instance=ExtResource( 3 )]
+offset = Vector2( 98, 0 )
+transform = Transform2D( 1, 0, 0, 1, 98, 0 )
+
 [node name="GameShadow" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 1 )
 material = SubResource( 4 )
@@ -142,8 +147,6 @@ region_rect = Rect2( -8, -8, 328, 232 )
 position = Vector2( 98, 0 )
 texture = SubResource( 2 )
 centered = false
-
-[node name="TestBG" parent="." instance=ExtResource( 3 )]
 
 [node name="LeftBorder" type="TextureRect" parent="."]
 margin_right = 96.0

@@ -23,7 +23,7 @@ func _spawn():
 	var newArrow = load(\"res://Data/Particles/Arrow%s.tscn\" % aName).instance()
 	
 	newArrow.global_position = global_position + Vector2(rand_range(-randPos, randPos), 0).rotated(rand_range(0, TAU))
-	get_tree().get_root().add_child(newArrow)
+	get_parent().add_child(newArrow)
 	
 	yield(get_tree().create_timer(padding), \"timeout\")
 	_spawn()

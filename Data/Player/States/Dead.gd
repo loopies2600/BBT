@@ -3,7 +3,7 @@ extends State
 const HARD_HAT = preload("res://Data/Player/Objects/HardHat.tscn")
 
 func enter(msg := {}):
-	var velocity := Vector2(owner.maxSpd * owner.dir * 0.75, owner.jumpHeight * owner.upDirection.y * 1.25)
+	var velocity := Vector2(owner.velocity.x, owner.jumpHeight * owner.upDirection.y * 6)
 	
 	if msg.has("velocity"):
 		velocity = msg.velocity
@@ -14,10 +14,10 @@ func enter(msg := {}):
 	# spawnea el casco y aplica velocidad
 	if !msg.has("noAnim"):
 		var newHat = HARD_HAT.instance()
-		get_tree().get_root().add_child(newHat)
+		owner.get_parent().add_child(newHat)
 		
 		newHat.global_position = owner.global_position
-		newHat.velocity = Vector2(rand_range(-velocity.x, velocity.x), velocity.y * 1.25)
+		newHat.velocity = velocity * 1.25
 		newHat.upDirection = owner.upDirection
 	else:
 		velocity = Vector2.ZERO

@@ -42,6 +42,8 @@ anti_aliasing_size = 0.01
 [node name="Message" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -224.0
+margin_bottom = -224.0
 rect_pivot_offset = Vector2( -192, -87 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -56,9 +58,9 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="CenterContainer"]
-margin_left = 137.0
+margin_left = 233.0
 margin_top = 101.0
-margin_right = 183.0
+margin_right = 279.0
 margin_bottom = 123.0
 rect_pivot_offset = Vector2( 50, 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )

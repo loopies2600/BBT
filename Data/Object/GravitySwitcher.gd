@@ -39,7 +39,7 @@ func _changeGravityNDisable(whoEntered):
 	
 	arrowSpawn.dir = newDir
 	arrowSpawn.global_position = whoEntered.global_position
-	get_tree().get_root().add_child(arrowSpawn)
+	get_parent().add_child(arrowSpawn)
 	
 	whoEntered.upDirection.y = newDir
 	

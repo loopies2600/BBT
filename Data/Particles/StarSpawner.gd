@@ -18,14 +18,11 @@ func _ready():
 	
 func _starLoop():
 	if !get_parent().get_parent().disabled:
-		var screenPos := get_global_transform_with_canvas().get_origin()
+		var star = STAR.instance()
 		
-		if screenPos.x < 320 && screenPos.x > 0 && screenPos.y < 224 && screenPos.y > 0:
-			var star = STAR.instance()
-			
-			get_tree().get_root().call_deferred("add_child", star)
-			star.global_position = global_position
-			star.modulate = get_parent().get_parent().modulate
+		get_tree().get_root().get_node("Main").vp.call_deferred("add_child", star)
+		star.global_position = global_position
+		star.modulate = get_parent().get_parent().modulate
 		
 	yield(get_tree().create_timer(spawnRate), "timeout")
 	

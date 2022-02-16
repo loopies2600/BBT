@@ -28,6 +28,9 @@ func _ready():
 	_spawnTileItems()
 	
 func _process(_delta):
+	# scroll BG
+	get_tree().get_root().get_node("Main").background.scroll_offset = get_canvas_transform().origin
+	
 	if level:
 		if cursor.target.isTile:
 			itemLabel.text = level.tile_set.tile_get_name(cursor.target.tileID)
