@@ -5,6 +5,11 @@ func _ready():
 	_unused = connect("mouse_exited", self, "_mouseOut")
 	_unused = connect("pressed", self, "_press")
 	
+func _process(_delta):
+	# nasty
+	if name == "ItemConfig":
+		get_tree().get_root().get_node("Main").hintPanel.mode = int(pressed)
+	
 func _mouseIn():
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = false
 	
