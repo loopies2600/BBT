@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Player/BB.png" type="Texture" id=3]
 [ext_resource path="res://Data/Editor/EditorItem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Data/Editor/TabContainer.gd" type="Script" id=5]
@@ -77,6 +78,7 @@ atlas = ExtResource( 17 )
 region = Rect2( 0, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]

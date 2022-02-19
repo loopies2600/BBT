@@ -12,4 +12,4 @@ func _process(delta):
 	title.region_rect = TITLES[mode]
 	desc.region_rect = DESCRIPTIONS[mode]
 	
-	position = lerp(position, Vector2(0, 0) if get_parent().get_parent().editing else Vector2(96, 0), 16 * delta)
+	position = lerp(position, Vector2(0, 0) if get_parent().get_parent().get_parent().editing else Vector2(96, 0), 16 * delta)

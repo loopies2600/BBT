@@ -63,11 +63,10 @@ settings/fps/force_fps=60
 
 window/size/width=418
 window/size/height=224
-window/size/resizable=false
 window/size/always_on_top=true
 window/size/test_width=836
 window/size/test_height=448
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [editor_plugins]

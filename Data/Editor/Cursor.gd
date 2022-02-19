@@ -26,21 +26,15 @@ func _process(_delta):
 		
 	mode = _getMode()
 	
-	var trueMousePos : Vector2 = get_global_mouse_position() / get_parent().cam.zoom
-	
-	canPlace = trueMousePos.y > 32 - get_canvas_transform().origin.y && trueMousePos.y < 340 - get_canvas_transform().origin.y
-	
 	if canPlace:
 		global_position = result
 		cellPos = ((global_position / level.cell_size).round() / level.scale).round()
 	
 func _frickinPositionFormula() -> Vector2:
 	var mousePos := get_global_mouse_position()
-	var cTransScaled := get_canvas_transform().origin / 2
 	var cursorOffset := Vector2(8, 8)
-	var zoom : Vector2 = get_parent().cam.zoom
 	
-	var result := (((mousePos / 2) - Vector2.ZERO * zoom) - cursorOffset) - cTransScaled * zoom
+	var result : Vector2 = (((mousePos - cursorOffset) / level.cell_size).round()  / level.scale).round() * level.cell_size
 	
 	return result
 	

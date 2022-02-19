@@ -23,7 +23,7 @@ func _process(delta):
 	if intensity.length() > 0.5:
 		offset = Vector2(rand_range(-intensity.x, intensity.x), rand_range(-intensity.y, intensity.y))
 	else:
-		offset = Vector2.ZERO
+		offset = Vector2(98, 0)
 		
 func _input(event):
 	if panning:

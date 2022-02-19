@@ -4,11 +4,12 @@
 
 [node name="TestBG" type="ParallaxBackground"]
 scroll_base_scale = Vector2( 1, 0 )
+scroll_ignore_camera_zoom = true
 
 [node name="0" type="ParallaxLayer" parent="."]
 modulate = Color( 0.305882, 0.282353, 0.356863, 1 )
 motion_scale = Vector2( 0.5, 1 )
-motion_mirroring = Vector2( 320, 0 )
+motion_mirroring = Vector2( 320, 224 )
 
 [node name="Brick" type="Sprite" parent="0"]
 texture = ExtResource( 1 )
@@ -432,7 +433,7 @@ region_rect = Rect2( 0, 96, 32, 16 )
 [node name="1" type="ParallaxLayer" parent="."]
 modulate = Color( 0.305882, 0.282353, 0.356863, 1 )
 motion_scale = Vector2( 0.75, 1 )
-motion_mirroring = Vector2( 320, 0 )
+motion_mirroring = Vector2( 320, 224 )
 
 [node name="Light" type="Sprite" parent="1"]
 position = Vector2( 0, 64 )
@@ -577,7 +578,7 @@ region_rect = Rect2( 0, 48, 16, 16 )
 [node name="2" type="ParallaxLayer" parent="."]
 modulate = Color( 0.305882, 0.282353, 0.356863, 1 )
 motion_scale = Vector2( 0.25, 1 )
-motion_mirroring = Vector2( 320, 0 )
+motion_mirroring = Vector2( 320, 224 )
 
 [node name="Block" type="Sprite" parent="2"]
 position = Vector2( 0, 48 )
@@ -862,7 +863,7 @@ region_rect = Rect2( 16, 48, 16, 16 )
 [node name="3" type="ParallaxLayer" parent="."]
 modulate = Color( 0.305882, 0.282353, 0.356863, 1 )
 motion_scale = Vector2( 0.1, 1 )
-motion_mirroring = Vector2( 320, 0 )
+motion_mirroring = Vector2( 320, 224 )
 
 [node name="BigBlock" type="Sprite" parent="3"]
 position = Vector2( 0, 96 )
@@ -937,7 +938,7 @@ region_rect = Rect2( 0, 64, 32, 32 )
 [node name="4" type="ParallaxLayer" parent="."]
 modulate = Color( 0.305882, 0.282353, 0.356863, 1 )
 motion_scale = Vector2( 0.05, 1 )
-motion_mirroring = Vector2( 320, 0 )
+motion_mirroring = Vector2( 320, 224 )
 
 [node name="FunkyTree" type="Sprite" parent="4"]
 position = Vector2( 0, 128 )
