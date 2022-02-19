@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Sprites/Editor/Button.png" type="Texture" id=2]
 [ext_resource path="res://Data/Editor/Item/Object/ObjectConfig.gd" type="Script" id=3]
+[ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 8.0
@@ -50,6 +51,7 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -61,6 +63,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -68,11 +71,13 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Controls"]
 margin_right = 128.0
 margin_bottom = 10.0
+script = ExtResource( 4 )
 
 [node name="TLabel" type="Label" parent="Panel/Controls/HBoxContainer"]
 margin_right = 62.0
 margin_bottom = 10.0
 text = "Transform"
+script = ExtResource( 4 )
 
 [node name="Transform" type="PanelContainer" parent="Panel/Controls"]
 show_behind_parent = true
@@ -80,12 +85,14 @@ margin_top = 14.0
 margin_right = 128.0
 margin_bottom = 98.0
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Transform"]
 margin_left = 8.0
 margin_top = 4.0
 margin_right = 120.0
 margin_bottom = 80.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -93,53 +100,63 @@ __meta__ = {
 [node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Transform/VBoxContainer"]
 margin_right = 112.0
 margin_bottom = 30.0
+script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer"]
 margin_right = 32.0
 margin_bottom = 30.0
+script = ExtResource( 4 )
 
 [node name="X" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer"]
 margin_right = 32.0
 margin_bottom = 10.0
 text = "X"
+script = ExtResource( 4 )
 
 [node name="XVal" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer"]
 margin_top = 14.0
 margin_right = 32.0
 margin_bottom = 30.0
 text = "0"
+script = ExtResource( 4 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer"]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 30.0
+script = ExtResource( 4 )
 
 [node name="Y" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer2"]
 margin_right = 32.0
 margin_bottom = 10.0
 text = "Y"
+script = ExtResource( 4 )
 
 [node name="YVal" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer2"]
 margin_top = 14.0
 margin_right = 32.0
 margin_bottom = 30.0
 text = "0"
+script = ExtResource( 4 )
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer"]
 margin_left = 72.0
 margin_right = 110.0
 margin_bottom = 30.0
+script = ExtResource( 4 )
 
 [node name="Rot" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer3"]
 margin_right = 38.0
 margin_bottom = 10.0
 text = "Angle"
+script = ExtResource( 4 )
 
 [node name="Angle" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer3"]
 margin_top = 14.0
 margin_right = 38.0
 margin_bottom = 30.0
 text = "0"
+script = ExtResource( 4 )
 
 [node name="Scl" type="Label" parent="Panel/Controls/Transform/VBoxContainer"]
 margin_top = 34.0
@@ -147,15 +164,18 @@ margin_right = 112.0
 margin_bottom = 42.0
 custom_styles/normal = SubResource( 4 )
 text = "Scale"
+script = ExtResource( 4 )
 
 [node name="HboxContainer3" type="HBoxContainer" parent="Panel/Controls/Transform/VBoxContainer"]
 margin_top = 46.0
 margin_right = 112.0
 margin_bottom = 76.0
+script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3"]
 margin_right = 68.0
 margin_bottom = 30.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -163,37 +183,44 @@ __meta__ = {
 [node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer"]
 margin_right = 68.0
 margin_bottom = 30.0
+script = ExtResource( 4 )
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer"]
 margin_right = 32.0
 margin_bottom = 30.0
+script = ExtResource( 4 )
 
 [node name="SX" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer3"]
 margin_right = 32.0
 margin_bottom = 10.0
 text = "X"
+script = ExtResource( 4 )
 
 [node name="XScl" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer3"]
 margin_top = 14.0
 margin_right = 32.0
 margin_bottom = 30.0
 text = "0"
+script = ExtResource( 4 )
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer"]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 30.0
+script = ExtResource( 4 )
 
 [node name="SY" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer4"]
 margin_right = 32.0
 margin_bottom = 10.0
 text = "Y"
+script = ExtResource( 4 )
 
 [node name="YScl" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer4"]
 margin_top = 14.0
 margin_right = 32.0
 margin_bottom = 30.0
 text = "0"
+script = ExtResource( 4 )
 
 [node name="ExitButton" type="TextureButton" parent="."]
 anchor_right = 1.0
@@ -202,6 +229,7 @@ margin_left = 122.0
 margin_top = 4.0
 texture_normal = SubResource( 2 )
 texture_pressed = SubResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
