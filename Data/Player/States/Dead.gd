@@ -22,7 +22,6 @@ func enter(msg := {}):
 	else:
 		velocity = Vector2.ZERO
 		
-	owner.levelManager.cam.target = null
 	# señal muerte y animar
 	owner.emit_signal("died")
 	owner.anim.play("Death")
@@ -30,7 +29,10 @@ func enter(msg := {}):
 	
 	# desactivar colisiones y sacudir camara
 	get_tree().get_root().get_node("Main").plop(owner.global_position)
-	owner.levelManager.cam.shake(3, 3)
+	
+	owner.cam.set_as_toplevel(true)
+	owner.cam.position = owner.position
+	owner.cam.shake(3, 3)
 	
 	owner.collisionBox.set_deferred("disabled", true)
 	owner.canInput = false

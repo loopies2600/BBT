@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Data/Player/Tools.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/States/Player.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Data/Player/States/Move.gd" type="Script" id=6]
 [ext_resource path="res://Data/Player/States/Air.gd" type="Script" id=7]
 [ext_resource path="res://Data/Player/States/Dash.gd" type="Script" id=8]
+[ext_resource path="res://Data/Player/Camera.gd" type="Script" id=9]
 [ext_resource path="res://Data/Player/States/Crouch.gd" type="Script" id=10]
 [ext_resource path="res://Data/Player/States/Dead.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/Particles/Light.png" type="Texture" id=12]
@@ -981,3 +982,16 @@ script = ExtResource( 14 )
 [node name="Light" type="Light2D" parent="."]
 texture = ExtResource( 12 )
 script = ExtResource( 15 )
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 160, 112 )
+current = true
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 20.0
+drag_margin_top = 0.4
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource( 9 )

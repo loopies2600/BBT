@@ -38,11 +38,7 @@ func _spawnTileItems():
 	for tile in level.tile_set.get_tiles_ids():
 		var newItem = ITEM.instance()
 		
-		var tex = level.tile_set.tile_get_texture(tile)
-		var region = level.tile_set.tile_get_region(tile)
-		
 		newItem.selected = tile == 0
-		newItem.texture = _tileTexGen(tex, region)
 		newItem.tileID = tile
 		
 		tilesTab.add_child(newItem)
@@ -52,6 +48,8 @@ func _input(event):
 		_switchStates()
 		
 func _switchStates():
+	cam.global_position = Vector2()
+	
 	level.resetObjectState()
 	
 	if get_tree().get_root().get_node("Main").editing:
@@ -66,6 +64,7 @@ func _switchStates():
 		_spawnPlayer()
 	else:
 		_resetPlayValues()
+		cam.current = true
 		
 	get_tree().get_root().get_node("Main").editing = !get_tree().get_root().get_node("Main").editing
 	cursor.canPlace = get_tree().get_root().get_node("Main").editing
@@ -74,11 +73,7 @@ func _resetPlayValues():
 	if player:
 		player.queue_free()
 		player = null
-	
-	cam.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
-	cam.target = null
-	cam.global_position = Vector2()
-	
+		
 	get_tree().get_root().get_node("Main").attempt = 1
 	get_tree().get_root().get_node("Main").hud.aLabel.text = "ATTEMPT %s" % get_tree().get_root().get_node("Main").attempt
 	
@@ -125,12 +120,3 @@ func _message(text := "ERROR"):
 	var newMsg = load("res://Data/Editor/Message.tscn").instance()
 	guiLayer.add_child(newMsg)
 	newMsg.desc.text = text
-	
-func _tileTexGen(tex : Texture, region : Rect2):
-	var atlasTex := AtlasTexture.new()
-	var bgTex = TexTool.manipulate(tex, "replaceAlpha", Color.burlywood.darkened(0.125))
-	
-	atlasTex.atlas = bgTex
-	atlasTex.region = region
-	
-	return atlasTex

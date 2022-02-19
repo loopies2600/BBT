@@ -15,12 +15,27 @@ var tileID := 0
 var selected := false
 
 func _ready():
+	if isTile:
+		texture = _tileTexGen()
+		
 	cursor = get_tree().get_nodes_in_group("Cursor")[0]
 	
 	var _unused = connect("gui_input", self, "_itemClick")
 	
 	if selected: cursor.target = self
 	
+func _tileTexGen():
+	var tex = editor.level.tile_set.tile_get_texture(tileID)
+	var region = editor.level.tile_set.tile_get_region(tileID)
+		
+	var atlasTex := AtlasTexture.new()
+	var bgTex = TexTool.manipulate(tex, "replaceAlpha", Color.burlywood.darkened(0.125))
+	
+	atlasTex.atlas = bgTex
+	atlasTex.region = region
+	
+	return atlasTex
+
 func _process(_delta):
 	border.visible = selected
 	
