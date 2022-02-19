@@ -27,22 +27,3 @@ func _flipOneWayCollisionShapes():
 	
 func _process(_delta):
 	material.light_mode = 2 * int(darkMode)
-	
-func generateCameraBoundaries():
-	var rect := get_used_rect()
-	
-	var firstCellX = rect.position.x
-	var lastCellX = rect.size.x + firstCellX
-	
-	var firstCellY = rect.position.y
-	var lastCellY = rect.size.y + firstCellY
-	
-	var preferredX = firstCellX if firstCellX < 0 else 0
-	var preferredY = lastCellX if lastCellX > 20 else 20
-	
-	camBoundariesX = Vector2(preferredX, preferredY) * 16
-	
-	preferredX = firstCellY if firstCellY < 0 else 0
-	preferredY = lastCellY if lastCellY > 14 else 14
-	
-	camBoundariesY = Vector2(preferredX, preferredY) * 16

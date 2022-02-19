@@ -1,5 +1,6 @@
 extends Sprite
 
+const OBJ_CONFIG := preload("res://Data/Editor/Item/Object/ObjectConfig.tscn")
 const TILE_CONFIG := preload("res://Data/Editor/Item/TileConfig.tscn")
 
 enum Modes {PLACE, CONFIG}
@@ -17,25 +18,29 @@ var cellPos := Vector2()
 onready var level : TileMap = get_tree().get_root().get_node("Main").level
 
 func _process(_delta):
+	var result : Vector2 = (_frickinPositionFormula() / level.cell_size).round() * level.cell_size
+	
 	if !get_tree().get_root().get_node("Main").editing:
 		texture = null
 		return
 		
 	mode = _getMode()
 	
-	cellPos = ((global_position / level.cell_size).round() / level.scale).round()
+	var trueMousePos : Vector2 = get_global_mouse_position() / get_parent().cam.zoom
+	
+	canPlace = trueMousePos.y > 32 - get_canvas_transform().origin.y && trueMousePos.y < 340 - get_canvas_transform().origin.y
 	
 	if canPlace:
-		global_position = (_frickinPositionFormula() / level.cell_size).round() * level.cell_size
+		global_position = result
+		cellPos = ((global_position / level.cell_size).round() / level.scale).round()
 	
 func _frickinPositionFormula() -> Vector2:
 	var mousePos := get_global_mouse_position()
 	var cTransScaled := get_canvas_transform().origin / 2
-	var borderOffset := Vector2(98, 0)
 	var cursorOffset := Vector2(8, 8)
 	var zoom : Vector2 = get_parent().cam.zoom
 	
-	var result := (((mousePos / 2) - borderOffset * zoom) - cursorOffset) - cTransScaled * zoom
+	var result := (((mousePos / 2) - Vector2.ZERO * zoom) - cursorOffset) - cTransScaled * zoom
 	
 	return result
 	
@@ -104,24 +109,29 @@ func _input(event):
 				var isTile := level.get_cellv(cellPos) != -1
 				
 				if !isTile:
-					var n = _getNodeOnThisPos()
+					if Input.is_action_just_pressed("mouse_main"):
+						var n = _getNodeOnThisPos()
+						if !n: return
+						
+						var cfg = OBJ_CONFIG
 					
-					if n:
-						if n.get("_editorRotate"):
-							n.get("_editorRotate").rotation_degrees += (90 * dir)
-						else:
-							n.rotation_degrees += (90 * dir)
+						if n.get("configurator"):
+							cfg = n.get("configurator")
+						
+						_spawnConfigurator(cfg, {"target" : n})
 				else:
 					if Input.is_action_just_pressed("mouse_main"):
-						_spawnTileConfigurator(cellPos)
+						_spawnConfigurator(TILE_CONFIG, {"targetTile": cellPos})
 		
-func _spawnTileConfigurator(targetTile : Vector2):
+func _spawnConfigurator(config, params := {}):
 	if configurator: 
 		configurator.queue_free()
 		configurator = null 
 	
-	configurator = TILE_CONFIG.instance()
-	configurator.targetTile = targetTile
+	configurator = config.instance()
+	
+	for p in params:
+		configurator.set(p, params[p])
 	
 	get_parent().guiLayer.add_child(configurator)
 	

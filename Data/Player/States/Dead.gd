@@ -22,7 +22,7 @@ func enter(msg := {}):
 	else:
 		velocity = Vector2.ZERO
 		
-	
+	owner.levelManager.cam.target = null
 	# señal muerte y animar
 	owner.emit_signal("died")
 	owner.anim.play("Death")

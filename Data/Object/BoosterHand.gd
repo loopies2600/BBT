@@ -1,6 +1,7 @@
 extends Area2D
 
-export (int) var distance = 128
+export (int) var distance = 700
+export (float) var inputLockTime := 0.2
 
 onready var anim := $Animator
 
@@ -22,10 +23,15 @@ func _bodyEnter(body):
 
 func _applyBoost(target):
 	if target is Player:
+		target.canInput = false
+		
 		var velocity = Vector2(distance, 0).rotated(TAU - PI / 2 + _editorRotate.rotation)
 		
-		if round(velocity.x):
-			target.velocity = Vector2(velocity.x * 4, 0)
-		else:
-			target.velocity.x = 0.0
-			target.fsm._change_state("air", {"jumpHeight" : -velocity.y, "antiCancel" : true})
+		target.fsm._change_state("air")
+		target.anim.play("Dash")
+		target._doDust = true
+		
+		target.velocity = velocity
+		
+		yield(get_tree().create_timer(inputLockTime), "timeout")
+		target.canInput = true

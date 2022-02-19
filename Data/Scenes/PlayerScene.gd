@@ -8,7 +8,6 @@ onready var itemLabel := $GUILayer/MenuBar/ItemLabel
 onready var utilButtons := $GUILayer/MenuBar/UtilButtons
 onready var cam := $Camera
 onready var guiLayer := $GUILayer
-onready var aLabel := $HUD/Attempts
 
 onready var level : TileMap = get_tree().get_root().get_node("Main").level
 
@@ -17,8 +16,6 @@ var showCells := false
 var showCellBox := false
 
 var player : Player
-
-var attempt := 1
 
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")
@@ -60,7 +57,10 @@ func _switchStates():
 	if get_tree().get_root().get_node("Main").editing:
 		if !_levelIsValid(): return
 		
-		level.generateCameraBoundaries()
+		if cursor.configurator:
+			cursor.configurator.queue_free()
+			cursor.configurator = null
+		
 		level.initializeObjects()
 		
 		_spawnPlayer()
@@ -72,21 +72,15 @@ func _switchStates():
 	
 func _resetPlayValues():
 	if player:
-		player.remove_child(cam)
-		add_child(cam)
-		
 		player.queue_free()
 		player = null
 	
-	cam.limit_top = -10000000
-	cam.limit_left = -10000000
-	cam.limit_bottom = 10000000
-	cam.limit_right = 10000000
-	
+	cam.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
+	cam.target = null
 	cam.global_position = Vector2()
 	
-	attempt = 1
-	aLabel.text = "ATTEMPT %s" % attempt
+	get_tree().get_root().get_node("Main").attempt = 1
+	get_tree().get_root().get_node("Main").hud.aLabel.text = "ATTEMPT %s" % get_tree().get_root().get_node("Main").attempt
 	
 func _spawnPlayer():
 	var spawn = level.get_node("SpawnPoint")
@@ -96,19 +90,11 @@ func _spawnPlayer():
 	player.levelManager = self
 	player.global_position = spawn.global_position
 	
-	cam.limit_left = level.camBoundariesX.x
-	cam.limit_right = level.camBoundariesX.y
-	cam.limit_top = level.camBoundariesY.x
-	cam.limit_bottom = level.camBoundariesY.y
-	
 	level.add_child(player)
 	
-	remove_child(cam)
-	player.add_child(cam)
-	
 func restart():
-	attempt += 1
-	aLabel.text = "ATTEMPT %s" % attempt
+	get_tree().get_root().get_node("Main").attempt += 1
+	get_tree().get_root().get_node("Main").hud.aLabel.text = "ATTEMPT %s" % get_tree().get_root().get_node("Main").attempt
 	
 	level.resetObjectState()
 	level.initializeObjects()

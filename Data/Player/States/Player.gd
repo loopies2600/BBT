@@ -34,12 +34,15 @@ var weight := 1.0
 
 var levelManager
 
-onready var bottom : int = levelManager.cam.limit_bottom + 32
+onready var bottom : int = get_global_transform_with_canvas().origin.y + spawnPos.y + 128
 
 func _ready():
 	letsStart()
 	
 func letsStart():
+	levelManager.cam.anchor_mode = Camera2D.ANCHOR_MODE_DRAG_CENTER
+	levelManager.cam.global_position = spawnPos
+	
 	# las nubecitas se ven raras, procuro desactivarlas
 	_doDust = false
 	
@@ -113,6 +116,9 @@ func _hopIn():
 	
 	# esperemos hasta que llegue a la punta
 	yield(get_tree().create_timer(jumpDuration), "timeout")
+	
+	
+	levelManager.cam.target = self
 	
 	canInput = true
 	collisionBox.set_deferred("disabled", false)

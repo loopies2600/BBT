@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
-[ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Player/BB.png" type="Texture" id=3]
 [ext_resource path="res://Data/Editor/EditorItem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Data/Editor/TabContainer.gd" type="Script" id=5]
@@ -88,7 +87,6 @@ region = Rect2( 0, 96, 16, 16 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -98,7 +96,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 4.0
 custom_styles/panel = SubResource( 2 )
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -121,23 +118,19 @@ margin_left = 4.0
 margin_top = 22.0
 margin_right = -4.0
 margin_bottom = -2.0
-script = ExtResource( 2 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Tiles"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = false
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Tiles/ScrollContainer"]
-script = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Tiles/ScrollContainer/VBoxContainer"]
 custom_constants/separation = 4
-script = ExtResource( 2 )
 
 [node name="Objects" type="Tabs" parent="TabContainer"]
 visible = false
@@ -147,13 +140,11 @@ margin_left = 4.0
 margin_top = 22.0
 margin_right = -4.0
 margin_bottom = -2.0
-script = ExtResource( 2 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Objects"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = false
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -161,12 +152,10 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Objects/ScrollContainer"]
 margin_right = 136.0
 margin_bottom = 16.0
-script = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Objects/ScrollContainer/VBoxContainer"]
 margin_right = 16.0
 margin_bottom = 16.0
-script = ExtResource( 2 )
 
 [node name="Spike" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 texture = SubResource( 4 )
@@ -224,13 +213,11 @@ margin_left = 4.0
 margin_top = 22.0
 margin_right = -4.0
 margin_bottom = -2.0
-script = ExtResource( 2 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Entities"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = false
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -238,10 +225,8 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Entities/ScrollContainer"]
 margin_right = 16.0
 margin_bottom = 16.0
-script = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Entities/ScrollContainer/VBoxContainer"]
-script = ExtResource( 2 )
 
 [node name="Earthworm" parent="TabContainer/Entities/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 texture = SubResource( 8 )
@@ -257,13 +242,11 @@ margin_left = 4.0
 margin_top = 22.0
 margin_right = -4.0
 margin_bottom = -2.0
-script = ExtResource( 2 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Markers"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = false
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -271,12 +254,10 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Markers/ScrollContainer"]
 margin_right = 16.0
 margin_bottom = 16.0
-script = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Markers/ScrollContainer/VBoxContainer"]
 margin_right = 16.0
 margin_bottom = 16.0
-script = ExtResource( 2 )
 
 [node name="BBSpawn" parent="TabContainer/Markers/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 texture = SubResource( 3 )
