@@ -1,0 +1,161 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/Enemy/Fernandez.png" type="Texture" id=1]
+[ext_resource path="res://Data/Enemy/Fernandez/Fernandez.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/LEye:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 4.4, 7.7, 7.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Rect2( 32, 17, 16, 17 ), Rect2( 32, 0, 16, 17 ), Rect2( 32, 17, 16, 17 ), Rect2( 32, 0, 16, 17 ), Rect2( 32, 17, 16, 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/REye:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4.1, 4.5, 7.6, 7.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Rect2( 32, 17, 16, 17 ), Rect2( 32, 0, 16, 17 ), Rect2( 32, 17, 16, 17 ), Rect2( 32, 0, 16, 17 ), Rect2( 32, 17, 16, 17 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/LEye/Pupil:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4, 4.4, 7.7, 7.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Graphics/REye/Pupil:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4.1, 4.5, 7.6, 7.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/LEye:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 32, 17, 16, 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/REye:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 32, 17, 16, 17 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/LEye/Pupil:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Graphics/REye/Pupil:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="Fernandez" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite" parent="Graphics"]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 48 )
+
+[node name="LEye" type="Sprite" parent="Graphics"]
+position = Vector2( 0, 20 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 17, 16, 17 )
+
+[node name="Pupil" type="Sprite" parent="Graphics/LEye"]
+position = Vector2( 3, 4 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 35, 36, 10, 10 )
+
+[node name="REye" type="Sprite" parent="Graphics"]
+position = Vector2( 16, 20 )
+texture = ExtResource( 1 )
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 32, 17, 16, 17 )
+
+[node name="Pupil" type="Sprite" parent="Graphics/REye"]
+position = Vector2( 3, 4 )
+texture = ExtResource( 1 )
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 35, 36, 10, 10 )
+
+[node name="ExplosionArea" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 32 )
+shape = SubResource( 1 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Idle = SubResource( 2 )
+anims/RESET = SubResource( 3 )

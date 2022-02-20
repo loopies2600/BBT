@@ -15,8 +15,9 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
+offset = Vector2( -1, -1 )
 region_enabled = true
-region_rect = Rect2( 16, 16, 16, 16 )
+region_rect = Rect2( 40, 26, 18, 18 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2( 8, 8 )
