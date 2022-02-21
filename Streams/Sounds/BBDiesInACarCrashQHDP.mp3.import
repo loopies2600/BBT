@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/BBDiesInACarCrashQHDP.mp3-4be0c3f9df7da0efdc15c89d70fa9465.mp3str"
+
+[deps]
+
+source_file="res://Streams/Sounds/BBDiesInACarCrashQHDP.mp3"
+dest_files=[ "res://.import/BBDiesInACarCrashQHDP.mp3-4be0c3f9df7da0efdc15c89d70fa9465.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

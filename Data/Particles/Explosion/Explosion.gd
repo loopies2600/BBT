@@ -7,17 +7,21 @@ export (int) var orbAmount = 8
 export (int) var starAmount = 8
 export (int) var radius = 64
 
+var cRadius : int = radius
+
 func _ready():
 	_spawnOrbs()
 	
 	for angle in [0, 90, 180, 270]:
 		_spawnStars(angle)
-		
+	
+	get_parent().purgeCircle(position / 16, radius / 16, -1)
+	
 func _draw():
-	draw_circle(Vector2(), radius, Color.white)
+	draw_circle(Vector2(), cRadius, Color.white)
 	
 func _process(_delta):
-	radius *= 0.8
+	cRadius *= 0.8
 	
 	update()
 	
@@ -45,3 +49,5 @@ func _spawnStars(initialAngle := 0):
 		add_child(newStar)
 		
 		ang += 360 / starAmount
+		
+	queue_free()

@@ -6,6 +6,7 @@ export (float, 0, 1) var damping = 0.86
 export (float) var weight = 1.5
 
 func resetState():
+	.resetState()
 	upDirection = Vector2.UP
 	global_position = spawnPos
 	velocity = Vector2()

@@ -27,6 +27,11 @@ onready var fallGravity : float = (2.0 * jumpHeight / (fallDuration * fallDurati
 
 onready var spawnPos := global_position
 
+func resetState():
+	visible = true
+	set_physics_process(true)
+	set_process(true)
+	
 func _ready():
 	_dustLoop()
 	
@@ -93,5 +98,9 @@ func push(vel : int):
 func kill():
 	emit_signal("died")
 	
-	get_tree().get_roo().get_node("Main").plop(global_position)
-	queue_free()
+	get_tree().get_root().get_node("Main").plop(global_position)
+	
+	visible = false
+	set_physics_process(false)
+	set_process(false)
+	

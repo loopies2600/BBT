@@ -6,7 +6,7 @@ onready var anim := $Animator
 onready var eyes := [$Graphics/LEye, $Graphics/REye]
 onready var pupils := [$Graphics/LEye/Pupil, $Graphics/REye/Pupil]
 
-var target : Player
+var target
 
 func _ready():
 	var _unused = connect("body_entered", self, "_bodyEnter")
@@ -33,10 +33,11 @@ func _lookAtPlayer():
 func _bodyEnter(body):
 	if !visible: return
 	
-	if body is Player:
+	if body is Kinematos:
 		target = body
-		
+	
 		anim.play("Explode")
+		$CarCrash.play()
 	
 func explode():
 	var newExplosion := EXPLOSION.instance()
@@ -45,11 +46,14 @@ func explode():
 	
 	get_parent().add_child(newExplosion)
 	
-	var vel := Vector2(512, 0).rotated((global_position - target.global_position).angle())
-	vel.y = -256
+	if target is Player:
+		var vel := Vector2(512, 0).rotated((global_position - target.global_position).angle())
+		vel.y = -256
 	
-	target.kill({"velocity" : vel, "shakePower" : Vector2(16, 16)})
-	
+		target.kill({"velocity" : vel, "shakePower" : Vector2(16, 16)})
+	elif target is Kinematos:
+		target.kill()
+		
 	visible = false
 	
 func resetState():
