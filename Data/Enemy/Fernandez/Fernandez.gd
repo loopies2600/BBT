@@ -1,9 +1,19 @@
-extends Node2D
+extends Area2D
 
+const EXPLOSION := preload("res://Data/Particles/Explosion/Explosion.tscn")
+
+onready var anim := $Animator
 onready var eyes := [$Graphics/LEye, $Graphics/REye]
 onready var pupils := [$Graphics/LEye/Pupil, $Graphics/REye/Pupil]
 
+var target : Player
+
+func _ready():
+	var _unused = connect("body_entered", self, "_bodyEnter")
+	
 func _process(_delta):
+	if !visible: return
+	
 	_lookAtPlayer()
 	
 func _lookAtPlayer():
@@ -19,3 +29,32 @@ func _lookAtPlayer():
 		
 	for e in eyes:
 		e.offset = Vector2(1, 0).rotated(lookAngle).round()
+
+func _bodyEnter(body):
+	if !visible: return
+	
+	if body is Player:
+		target = body
+		
+		anim.play("Explode")
+	
+func explode():
+	var newExplosion := EXPLOSION.instance()
+	
+	newExplosion.position = global_position + Vector2(16, 32)
+	
+	get_parent().add_child(newExplosion)
+	
+	var vel := Vector2(512, 0).rotated((global_position - target.global_position).angle())
+	vel.y = -256
+	
+	target.kill({"velocity" : vel, "shakePower" : Vector2(16, 16)})
+	
+	visible = false
+	
+func resetState():
+	target = null
+	
+	anim.play("Idle")
+	
+	visible = true

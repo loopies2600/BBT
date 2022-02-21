@@ -32,7 +32,13 @@ func enter(msg := {}):
 	
 	owner.cam.set_as_toplevel(true)
 	owner.cam.position = owner.position
-	owner.cam.shake(3, 3)
+	
+	var shakePower := Vector2(3, 3)
+	
+	if msg.has("shakePower"):
+		shakePower = msg.shakePower
+		
+	owner.cam.shake(shakePower.x, shakePower.y)
 	
 	owner.collisionBox.set_deferred("disabled", true)
 	owner.canInput = false
