@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/UI/Border1.png" type="Texture" id=1]
-[ext_resource path="res://Data/Backgrounds/TestBG.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Data/Backgrounds/ImageBG.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Data/UI/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/UI/HintPanel.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/UI/PanelTitles.png" type="Texture" id=6]
@@ -20,7 +20,7 @@ const NG := preload(\"res://Data/Util/Newgrounds.tscn\")
 var editing := false
 
 onready var hud := $BorderLayer/RightBorder/HUD
-onready var background := $TestBG
+onready var background := $ImageBG
 onready var level : TileMap = preload(\"res://Data/Level/Level.tscn\").instance()
 onready var hintPanel := $BorderLayer/RightBorder/HintPanel
 
@@ -95,8 +95,6 @@ tracks/0/keys = {
 [node name="Main" type="Node2D"]
 script = SubResource( 1 )
 
-[node name="TestBG" parent="." instance=ExtResource( 3 )]
-
 [node name="BorderLayer" type="CanvasLayer" parent="."]
 layer = 127
 
@@ -142,3 +140,5 @@ anims/RESET = SubResource( 6 )
 
 [node name="HUD" parent="BorderLayer/RightBorder" instance=ExtResource( 4 )]
 layer = 128
+
+[node name="ImageBG" parent="." instance=ExtResource( 2 )]
