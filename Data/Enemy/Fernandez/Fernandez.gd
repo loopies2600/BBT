@@ -5,6 +5,7 @@ const EXPLOSION := preload("res://Data/Particles/Explosion/Explosion.tscn")
 onready var anim := $Animator
 onready var eyes := [$Graphics/LEye, $Graphics/REye]
 onready var pupils := [$Graphics/LEye/Pupil, $Graphics/REye/Pupil]
+onready var area := $ExplosionArea
 
 var target
 

@@ -15,6 +15,6 @@ collision_mask = 63
 format = 1
 script = ExtResource( 2 )
 
-[node name="LevelEffects" type="Node2D" parent="."]
+[node name="LevelEffects" type="Node2D" parent="." groups=["NoRender"]]
 z_index = -4096
 script = ExtResource( 3 )

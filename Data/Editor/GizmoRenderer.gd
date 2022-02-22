@@ -32,7 +32,8 @@ func _draw():
 			draw_rect(Rect2(Vector2(c.x, c.y) * get_parent().level.cell_size * get_parent().level.scale, get_parent().level.cell_size * get_parent().level.scale), Color(0.66, 0.66, 0.66, 0.5), true)
 			
 		for n in get_parent().level.get_children():
-			draw_rect(Rect2(n.global_position * get_parent().level.scale, get_parent().level.cell_size * get_parent().level.scale), Color(0.66, 0.66, 0.66, 0.5), true)
+			if n.visible && !n.is_in_group("NoRender"):
+				draw_rect(Rect2(((n.global_position / get_parent().level.cell_size).round() * get_parent().level.cell_size) * get_parent().level.scale, get_parent().level.cell_size * get_parent().level.scale), Color(0.66, 0.66, 0.66, 0.5), true)
 		
 	if get_parent().cursor.configurator:
 		draw_rect(Rect2(get_parent().cursor.configurator.targetTile * get_parent().level.cell_size * get_parent().level.scale, get_parent().level.cell_size * get_parent().level.scale), Color.tomato, false, 2)
