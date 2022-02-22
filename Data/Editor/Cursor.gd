@@ -112,8 +112,8 @@ func _input(event):
 						
 						var cfg = OBJ_CONFIG
 					
-						if n.get("configurator"):
-							cfg = n.get("configurator")
+						if n.get("CONFIGURATOR"):
+							cfg = n.get("CONFIGURATOR")
 						
 						_spawnConfigurator(cfg, {"target" : n})
 				else:

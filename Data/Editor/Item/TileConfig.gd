@@ -46,5 +46,6 @@ func _process(_delta):
 
 func _onExitPress():
 	get_parent().get_parent().cursor.configurator = null
+	get_parent().get_parent().cursor.canPlace = true
 	
 	queue_free()
