@@ -60,9 +60,12 @@ func _switchStates():
 			cursor.configurator = null
 		
 		level.initializeObjects()
+		level.copyMap()
 		
 		_spawnPlayer()
 	else:
+		level.restoreMap()
+		
 		_resetPlayValues()
 		cam.current = true
 		
@@ -93,6 +96,7 @@ func restart():
 	
 	level.resetObjectState()
 	level.initializeObjects()
+	level.restoreMap()
 	
 	player.letsStart()
 	

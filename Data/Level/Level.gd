@@ -1,5 +1,7 @@
 extends TileMap
 
+const INDESTRUCTIBLE := [23, 24]
+
 signal tile_anim_finished
 
 var camBoundariesX := Vector2(0, 320)
@@ -15,20 +17,16 @@ var _flipYCopy := []
 var _transposeCopy := []
 
 func resetObjectState():
-	_restoreMap()
-	
 	for c in get_children():
 		if c.has_method("resetState"):
 			c.resetState()
 	
 func initializeObjects():
-	_copyMap()
-	
 	for c in get_children():
 		if c.has_method("initialize"):
 			c.initialize()
 	
-func _copyMap():
+func copyMap():
 	_cellPosCopy.clear()
 	_cellIDCopy.clear()
 	_flipXCopy.clear()
@@ -43,7 +41,10 @@ func _copyMap():
 		_flipYCopy.append(is_cell_y_flipped(c.x, c.y))
 		_transposeCopy.append(is_cell_transposed(c.x, c.y))
 	
-func _restoreMap():
+func restoreMap():
+	for c in get_used_cells():
+		set_cellv(c, -1)
+		
 	for c in range(_cellPosCopy.size()):
 		set_cellv(_cellPosCopy[c], _cellIDCopy[c], _flipXCopy[c], _flipYCopy[c], _transposeCopy[c])
 		
@@ -54,7 +55,10 @@ func purgeCircle(pos, radius, with := -1):
 	for y in range(-radius - 1, radius + 1):
 		for x in range(-radius - 1, radius + 1):
 			if (x * x) + (y * y) <= (radius * radius):
-				set_cellv(pos + Vector2(x, y), with)
+				if get_cellv(pos + Vector2(x, y)) in INDESTRUCTIBLE:
+					pass
+				else:
+					set_cellv(pos + Vector2(x, y), with)
 				
 func _flipOneWayCollisionShapes():
 	tile_set.tile_set_shape_transform(9, 0, Transform2D(deg2rad(90), Vector2(16, 0)))

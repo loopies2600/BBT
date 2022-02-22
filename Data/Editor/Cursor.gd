@@ -56,6 +56,9 @@ func _configuratorCheck():
 		configurator = null
 	
 func _input(event):
+	if !get_tree().get_root().get_node("Main").editing:
+		return
+		
 	match mode:
 		Modes.PLACE:
 			_configuratorCheck()
