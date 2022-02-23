@@ -8,7 +8,7 @@ onready var flipV := $Panel/Controls/Flip/VBoxContainer/HboxContainer/FlipY
 onready var transpose := $Panel/Controls/Flip/VBoxContainer/HboxContainer/Transpose
 
 onready var exit := $ExitButton
-onready var level : TileMap = get_tree().get_root().get_node("Main").level
+onready var level : TileMap = Main.level
 
 var targetTile := Vector2()
 

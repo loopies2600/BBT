@@ -15,12 +15,12 @@ var alreadyPressed := false
 
 var cellPos := Vector2()
 
-onready var level : TileMap = get_tree().get_root().get_node("Main").level
+onready var level : TileMap = Main.level
 
 func _process(_delta):
 	var result : Vector2 = (_frickinPositionFormula() / level.cell_size).round() * level.cell_size
 	
-	if !get_tree().get_root().get_node("Main").editing:
+	if !Main.editing:
 		texture = null
 		return
 		
@@ -56,7 +56,7 @@ func _configuratorCheck():
 		configurator = null
 	
 func _input(event):
-	if !get_tree().get_root().get_node("Main").editing:
+	if !Main.editing:
 		return
 		
 	match mode:

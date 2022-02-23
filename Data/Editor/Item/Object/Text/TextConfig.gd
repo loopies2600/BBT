@@ -1,6 +1,6 @@
 extends "res://Data/Editor/Item/Object/ObjectConfig.gd"
 
-onready var text := $Panel/Controls/TextVal
+onready var text := $P/Ctl/TextVal
 
 func _ready():
 	text.text = target.label.text

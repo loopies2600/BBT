@@ -9,7 +9,7 @@ onready var utilButtons := $GUILayer/MenuBar/UtilButtons
 onready var cam := $Camera
 onready var guiLayer := $GUILayer
 
-onready var level : TileMap = get_tree().get_root().get_node("Main").level
+onready var level : TileMap = Main.level
 
 var showGrid := false
 var showCells := false
@@ -20,13 +20,16 @@ var player : Player
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")
 	
-	get_tree().get_root().get_node("Main").editing = true
+	Main.editing = true
 	
 	_spawnTileItems()
 	
 func _process(_delta):
+	if Main.editing:
+		Main.entityLookTowards = get_global_mouse_position()
+	
 	# scroll BG
-	get_tree().get_root().get_node("Main").background.scroll_offset = get_canvas_transform().origin
+	Main.background.scroll_offset = get_canvas_transform().origin
 	
 	if level:
 		if cursor.target.isTile:
@@ -52,7 +55,7 @@ func _switchStates():
 	
 	level.resetObjectState()
 	
-	if get_tree().get_root().get_node("Main").editing:
+	if Main.editing:
 		if !_levelIsValid(): return
 		
 		if cursor.configurator:
@@ -69,16 +72,16 @@ func _switchStates():
 		_resetPlayValues()
 		cam.current = true
 		
-	get_tree().get_root().get_node("Main").editing = !get_tree().get_root().get_node("Main").editing
-	cursor.canPlace = get_tree().get_root().get_node("Main").editing
+	Main.editing = !Main.editing
+	cursor.canPlace = Main.editing
 	
 func _resetPlayValues():
 	if player:
 		player.queue_free()
 		player = null
 		
-	get_tree().get_root().get_node("Main").attempt = 1
-	get_tree().get_root().get_node("Main").hud.aLabel.text = "ATTEMPT %s" % get_tree().get_root().get_node("Main").attempt
+	Main.attempt = 1
+	Main.hud.aLabel.text = "ATTEMPT %s" % Main.attempt
 	
 func _spawnPlayer():
 	var spawn = level.get_node("SpawnPoint")
@@ -91,8 +94,8 @@ func _spawnPlayer():
 	level.add_child(player)
 	
 func restart():
-	get_tree().get_root().get_node("Main").attempt += 1
-	get_tree().get_root().get_node("Main").hud.aLabel.text = "ATTEMPT %s" % get_tree().get_root().get_node("Main").attempt
+	Main.attempt += 1
+	Main.hud.aLabel.text = "ATTEMPT %s" % Main.attempt
 	
 	level.resetObjectState()
 	level.initializeObjects()

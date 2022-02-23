@@ -6,11 +6,11 @@ var y := 0.0
 var _time := 0.0
 
 func _process(delta):
-	visible = get_tree().get_root().get_node("Main").editing
+	visible = Main.editing
 	
 	update()
 	
-	if !get_tree().get_root().get_node("Main").editing: return
+	if !Main.editing: return
 	
 	_time += delta
 	

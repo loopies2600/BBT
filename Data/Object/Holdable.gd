@@ -18,7 +18,7 @@ func _ready():
 	spawnPos = global_position
 	
 func _physics_process(delta):
-	if get_tree().get_root().get_node("Main").editing: 
+	if Main.editing: 
 		velocity = Vector2()
 		return
 	

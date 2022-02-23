@@ -28,6 +28,8 @@ var currentScene
 
 var attempt := 1
 
+var entityLookTowards := Vector2()
+
 func _ready():
 	add_child(level)
 	changeScene(PLAYER)

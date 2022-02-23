@@ -8,7 +8,7 @@ func _ready():
 func _process(_delta):
 	# nasty
 	if name == "ItemConfig":
-		get_tree().get_root().get_node("Main").hintPanel.mode = int(pressed)
+		Main.hintPanel.mode = int(pressed)
 	
 func _mouseIn():
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = false

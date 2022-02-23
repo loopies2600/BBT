@@ -8,13 +8,13 @@ script = ExtResource( 2 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.75, 0.75 )
-motion_mirroring = Vector2( 418, 224 )
+motion_mirroring = Vector2( 784, 768 )
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 418.0
-margin_bottom = 224.0
+margin_right = 784.0
+margin_bottom = 768.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 2

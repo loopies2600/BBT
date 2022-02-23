@@ -65,6 +65,8 @@ func letsStart():
 	_hopIn()
 	
 func _process(delta):
+	Main.entityLookTowards = global_position
+	
 	_bottomKillCheck()
 	_checkNHold(delta)
 	

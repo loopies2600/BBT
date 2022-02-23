@@ -99,7 +99,7 @@ func partsUpdate(delta : float):
 func _physics_process(delta):
 	_lookAtPlayer()
 	
-	if get_tree().get_root().get_node("Main").editing: return
+	if Main.editing: return
 	
 	partsUpdate(delta)
 	
@@ -116,11 +116,8 @@ func _physics_process(delta):
 func _lookAtPlayer():
 	var lookAngle := 0.0
 	
-	if get_tree().get_root().get_node("Main").level.get_node("Player"):
-		lookAngle = (get_tree().get_root().get_node("Main").level.get_node("Player").global_position - global_position).angle()
-	elif get_tree().get_root().get_node("Main").editing:
-		lookAngle = (get_global_mouse_position() - global_position).angle()
-		
+	lookAngle = (Main.entityLookTowards - global_position).angle()
+	
 	for p in pupils:
 		p.offset = Vector2(1, 0).rotated(lookAngle).round()
 		

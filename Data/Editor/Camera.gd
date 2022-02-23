@@ -7,7 +7,7 @@ export (float) var zoomSpeed = 0.1
 var panning := false
 
 func _process(delta):
-	if get_tree().get_root().get_node("Main").editing:
+	if Main.editing:
 		if get_parent().cursor.canPlace:
 			panning = Input.is_action_pressed("mouse_tertiary")
 			
@@ -16,7 +16,7 @@ func _input(event):
 		if event is InputEventMouseMotion:
 			global_position -= event.relative * zoom
 		
-	if get_tree().get_root().get_node("Main").editing:
+	if Main.editing:
 		if get_parent().cursor.canPlace:
 			if event is InputEventMouseButton:
 				if event.is_pressed():

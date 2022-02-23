@@ -16,7 +16,7 @@ func _ready():
 func _bodyEnter(body):
 	if !disabled:
 		if body is Kinematos:
-			if !get_tree().get_root().get_node("Main").editing:
+			if !Main.editing:
 				_changeGravityNDisable(body)
 	
 func _process(delta):
@@ -27,7 +27,7 @@ func _process(delta):
 	modulate = Color.tomato if mode == 0 else Color.cornflower
 	
 func _draw():
-	if get_tree().get_root().get_node("Main").editing:
+	if Main.editing:
 		draw_rect(Rect2(-detector.shape.extents, detector.shape.extents * 2), Color.white / 2)
 		
 func _changeGravityNDisable(whoEntered):

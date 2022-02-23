@@ -20,7 +20,7 @@ func _starLoop():
 	if !get_parent().get_parent().disabled:
 		var star = STAR.instance()
 		
-		get_tree().get_root().get_node("Main").level.call_deferred("add_child", star)
+		Main.level.call_deferred("add_child", star)
 		star.global_position = global_position
 		star.modulate = get_parent().get_parent().modulate
 		

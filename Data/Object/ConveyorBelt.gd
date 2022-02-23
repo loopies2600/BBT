@@ -20,7 +20,7 @@ func resetState():
 	
 func _process(_delta):
 	
-	if !get_tree().get_root().get_node("Main").editing:
+	if !Main.editing:
 		var actualDir := 1 if dir == Directions.RIGHT else -1
 	
 		sprite.region_rect.position.x -= (1 * animSpeed) * actualDir

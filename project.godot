@@ -52,8 +52,12 @@ _global_script_class_icons={
 
 config/name="Bennett Boy's Trouble"
 config/description="DEV BUILD"
-run/main_scene="res://Data/Scenes/Main.tscn"
+run/main_scene="res://GLoad.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Main="*res://Data/Scenes/Main.tscn"
 
 [debug]
 

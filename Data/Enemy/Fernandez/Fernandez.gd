@@ -26,10 +26,7 @@ func _process(_delta):
 func _lookAtPlayer():
 	var lookAngle := 0.0
 	
-	if get_tree().get_root().get_node("Main").level.get_node("Player"):
-		lookAngle = (get_tree().get_root().get_node("Main").level.get_node("Player").global_position - global_position).angle()
-	elif get_tree().get_root().get_node("Main").editing:
-		lookAngle = (get_global_mouse_position() - global_position).angle()
+	lookAngle = (Main.entityLookTowards - global_position).angle()
 		
 	for p in pupils:
 		p.offset = Vector2(3, 0).rotated(lookAngle).round()
@@ -45,18 +42,19 @@ func _bodyEnter(body):
 		target = body
 	else: return
 	
+	exploding = true
+	
 	yield(get_tree().create_timer(explosionDelay), "timeout")
 	
 	anim.play("Explode")
 	$CarCrash.play()
-	exploding = true
 	
 func _bodyExit(body):
 	if body is Kinematos:
 		target = null
 		
 func explode():
-	get_tree().get_root().get_node("Main").currentScene.player.cam.shake(16, 16)
+	Main.currentScene.player.cam.shake(16, 16)
 	
 	var newExplosion := EXPLOSION.instance()
 	
