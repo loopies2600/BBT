@@ -4,7 +4,6 @@ const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
 onready var cursor := $SelectedObject
 onready var tilesTab := $GUILayer/EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
-onready var itemLabel := $GUILayer/MenuBar/ItemLabel
 onready var utilButtons := $GUILayer/MenuBar/UtilButtons
 onready var cam := $Camera
 onready var guiLayer := $GUILayer
@@ -31,12 +30,6 @@ func _process(_delta):
 	# scroll BG
 	Main.background.scroll_offset = get_canvas_transform().origin
 	
-	if level:
-		if cursor.target.isTile:
-			itemLabel.text = level.tile_set.tile_get_name(cursor.target.tileID)
-		else:
-			itemLabel.text = cursor.target.itemName
-		
 func _spawnTileItems():
 	for tile in level.tile_set.get_tiles_ids():
 		var newItem = ITEM.instance()

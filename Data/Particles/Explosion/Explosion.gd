@@ -10,6 +10,7 @@ export (int) var radius = 64
 var cRadius : int = radius
 
 func _ready():
+	orbAmount = orbAmount * (radius / 16)
 	_spawnOrbs()
 	
 	for angle in [0, 90, 180, 270]:

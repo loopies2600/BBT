@@ -12,12 +12,4 @@ func _mouseOut():
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = true
 	
 func _press():
-	_refreshButtons()
-	
-	pressed = !pressed
-	
-func _refreshButtons():
-	for b in get_parent().get_children():
-		if b.is_in_group("Refresh"):
-			if b.pressed: b.pressed = false
-	
+	get_tree().get_nodes_in_group("Editor")[0]._switchStates()
