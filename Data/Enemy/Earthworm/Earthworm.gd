@@ -1,6 +1,7 @@
 extends Area2D
 
 const BODY_PART := preload("res://Data/Enemy/Earthworm/WormBodyPart.tscn")
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Earthworm/EarthwormConfig.tscn")
 
 export (int) var parts = 8
 export (int) var jumpHeight = -128
@@ -15,8 +16,6 @@ onready var end := $End
 onready var middle : Vector2 = lerp(start.global_position, end.global_position, 0.5) + Vector2(0, jumpHeight - 16)
 
 onready var positions := [start.global_position - Vector2(0, 16), middle, end.global_position - Vector2(0, 16)]
-
-onready var spawnPos := global_position
 
 var bodyParts := []
 var maxPosRecords := 1024
@@ -51,7 +50,9 @@ func resetState():
 	jumpTimer.stop()
 	time = 0.0
 	
-	global_position = spawnPos
+	global_position = start.global_position
+	positions = [start.global_position - Vector2(0, 16), middle, end.global_position - Vector2(0, 16)]
+	
 	_resetOlderPositions()
 	
 func initialize():

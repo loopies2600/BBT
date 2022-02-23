@@ -6,8 +6,12 @@
 script/source = "extends Node2D
 
 const CONFIGURATOR := preload(\"res://Data/Editor/Item/Object/Text/TextConfig.tscn\")
+const RANDOMQUOTES := [\"HOLA\", \"INSERTE TEXTO\", \"SAMPLE TEXT\", \"YOUR TEXT GOES HERE\", \"MATATE\", \"NO SE QUE ESCRIBIR\", \"AMONG GUNS\", \"BENNETT BOY MY BELOVED\", \"EDITOR TEXT\", \"LABEL\", \"TOP LEFT ANCHORED\", \"HI MA'AM\", \"HOLA ABUELITA\", \"LOOPIES 2022\", \"NEWGROUNDS EXCLUSIVE\", \"BIRDS AIN'T REAL\"]
 
 onready var label := $Label
+
+func _ready():
+	label.text = RANDOMQUOTES[randi() % RANDOMQUOTES.size()]
 "
 
 [node name="Text" type="Node2D"]
@@ -17,7 +21,7 @@ script = SubResource( 1 )
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
-text = "I LOVE NFT!"
+text = "MATATE"
 __meta__ = {
 "_edit_use_anchors_": false
 }

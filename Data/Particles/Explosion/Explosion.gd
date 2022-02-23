@@ -31,8 +31,8 @@ func _spawnOrbs():
 		
 		var newOrb := ORB.instance()
 		
-		newOrb.position.x = rand_range(32, -32)
-		newOrb.position.y = rand_range(32, -32)
+		newOrb.position.x = rand_range(radius / 2, -radius / 2)
+		newOrb.position.y = rand_range(radius / 2, -radius / 2)
 		
 		add_child(newOrb)
 		

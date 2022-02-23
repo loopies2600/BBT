@@ -48,7 +48,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="P" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -56,7 +56,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Controls" type="VBoxContainer" parent="Panel"]
+[node name="Ctl" type="VBoxContainer" parent="P"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -68,18 +68,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Controls"]
+[node name="TC" type="HBoxContainer" parent="P/Ctl"]
 margin_right = 128.0
 margin_bottom = 10.0
 script = ExtResource( 4 )
 
-[node name="TLabel" type="Label" parent="Panel/Controls/HBoxContainer"]
+[node name="TL" type="Label" parent="P/Ctl/TC"]
 margin_right = 62.0
 margin_bottom = 10.0
 text = "Transform"
 script = ExtResource( 4 )
 
-[node name="Transform" type="PanelContainer" parent="Panel/Controls"]
+[node name="T" type="PanelContainer" parent="P/Ctl"]
 show_behind_parent = true
 margin_top = 14.0
 margin_right = 128.0
@@ -87,7 +87,7 @@ margin_bottom = 98.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Transform"]
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T"]
 margin_left = 8.0
 margin_top = 4.0
 margin_right = 120.0
@@ -97,68 +97,68 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Transform/VBoxContainer"]
+[node name="Hbc" type="HBoxContainer" parent="P/Ctl/T/Vbc"]
 margin_right = 112.0
 margin_bottom = 30.0
 script = ExtResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer"]
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc"]
 margin_right = 32.0
 margin_bottom = 30.0
 script = ExtResource( 4 )
 
-[node name="X" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer"]
+[node name="X" type="Label" parent="P/Ctl/T/Vbc/Hbc/Vbc"]
 margin_right = 32.0
 margin_bottom = 10.0
 text = "X"
 script = ExtResource( 4 )
 
-[node name="XVal" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer"]
+[node name="SXPos" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc/Vbc"]
 margin_top = 14.0
 margin_right = 32.0
 margin_bottom = 30.0
 text = "0"
 script = ExtResource( 4 )
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer"]
+[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc"]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 30.0
 script = ExtResource( 4 )
 
-[node name="Y" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer2"]
+[node name="Y" type="Label" parent="P/Ctl/T/Vbc/Hbc/Vbc2"]
 margin_right = 32.0
 margin_bottom = 10.0
 text = "Y"
 script = ExtResource( 4 )
 
-[node name="YVal" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer2"]
+[node name="SYPos" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc/Vbc2"]
 margin_top = 14.0
 margin_right = 32.0
 margin_bottom = 30.0
 text = "0"
 script = ExtResource( 4 )
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer"]
+[node name="Vbc3" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc"]
 margin_left = 72.0
 margin_right = 110.0
 margin_bottom = 30.0
 script = ExtResource( 4 )
 
-[node name="Rot" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer3"]
+[node name="Angle" type="Label" parent="P/Ctl/T/Vbc/Hbc/Vbc3"]
 margin_right = 38.0
 margin_bottom = 10.0
 text = "Angle"
 script = ExtResource( 4 )
 
-[node name="Angle" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer3"]
+[node name="A" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc/Vbc3"]
 margin_top = 14.0
 margin_right = 38.0
 margin_bottom = 30.0
 text = "0"
 script = ExtResource( 4 )
 
-[node name="Scl" type="Label" parent="Panel/Controls/Transform/VBoxContainer"]
+[node name="Scl" type="Label" parent="P/Ctl/T/Vbc"]
 margin_top = 34.0
 margin_right = 112.0
 margin_bottom = 42.0
@@ -166,13 +166,13 @@ custom_styles/normal = SubResource( 4 )
 text = "Scale"
 script = ExtResource( 4 )
 
-[node name="HboxContainer3" type="HBoxContainer" parent="Panel/Controls/Transform/VBoxContainer"]
+[node name="Hbc2" type="HBoxContainer" parent="P/Ctl/T/Vbc"]
 margin_top = 46.0
 margin_right = 112.0
 margin_bottom = 76.0
 script = ExtResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3"]
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc2"]
 margin_right = 68.0
 margin_bottom = 30.0
 script = ExtResource( 4 )
@@ -180,49 +180,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer"]
+[node name="Hbc" type="HBoxContainer" parent="P/Ctl/T/Vbc/Hbc2/Vbc"]
 margin_right = 68.0
 margin_bottom = 30.0
 script = ExtResource( 4 )
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer"]
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc"]
 margin_right = 32.0
 margin_bottom = 30.0
 script = ExtResource( 4 )
 
-[node name="SX" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer3"]
+[node name="X" type="Label" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc"]
 margin_right = 32.0
 margin_bottom = 10.0
 text = "X"
 script = ExtResource( 4 )
 
-[node name="XScl" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer3"]
+[node name="XScl" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc"]
 margin_top = 14.0
 margin_right = 32.0
 margin_bottom = 30.0
 text = "0"
 script = ExtResource( 4 )
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer"]
+[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc"]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 30.0
 script = ExtResource( 4 )
 
-[node name="SY" type="Label" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer4"]
+[node name="Y" type="Label" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
 margin_right = 32.0
 margin_bottom = 10.0
 text = "Y"
 script = ExtResource( 4 )
 
-[node name="YScl" type="LineEdit" parent="Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer4"]
+[node name="YScl" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
 margin_top = 14.0
 margin_right = 32.0
 margin_bottom = 30.0
 text = "0"
 script = ExtResource( 4 )
 
-[node name="ExitButton" type="TextureButton" parent="."]
+[node name="Exit" type="TextureButton" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 122.0

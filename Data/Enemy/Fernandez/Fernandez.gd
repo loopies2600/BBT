@@ -1,6 +1,9 @@
 extends Area2D
 
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Fernandez/FernandezConfig.tscn")
 const EXPLOSION := preload("res://Data/Particles/Explosion/Explosion.tscn")
+
+export (float) var explosionDelay = 1.0
 
 onready var anim := $Animator
 onready var eyes := [$Graphics/LEye, $Graphics/REye]
@@ -9,8 +12,11 @@ onready var area := $ExplosionArea
 
 var target
 
+var exploding := false
+
 func _ready():
 	var _unused = connect("body_entered", self, "_bodyEnter")
+	_unused = connect("body_exited", self, "_bodyExit")
 	
 func _process(_delta):
 	if !visible: return
@@ -32,19 +38,30 @@ func _lookAtPlayer():
 		e.offset = Vector2(1, 0).rotated(lookAngle).round()
 
 func _bodyEnter(body):
+	if exploding: return
 	if !visible: return
 	
 	if body is Kinematos:
 		target = body
+	else: return
 	
-		anim.play("Explode")
-		$CarCrash.play()
+	yield(get_tree().create_timer(explosionDelay), "timeout")
 	
+	anim.play("Explode")
+	$CarCrash.play()
+	exploding = true
+	
+func _bodyExit(body):
+	if body is Kinematos:
+		target = null
+		
 func explode():
+	get_tree().get_root().get_node("Main").currentScene.player.cam.shake(16, 16)
+	
 	var newExplosion := EXPLOSION.instance()
 	
 	newExplosion.position = global_position + Vector2(16, 32)
-	
+	newExplosion.radius = area.shape.radius
 	get_parent().add_child(newExplosion)
 	
 	if target is Player:
@@ -59,6 +76,7 @@ func explode():
 	
 func resetState():
 	target = null
+	exploding = false
 	
 	anim.play("Idle")
 	

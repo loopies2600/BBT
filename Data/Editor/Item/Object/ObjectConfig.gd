@@ -1,35 +1,48 @@
 extends Control
 
-onready var xPos := $Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer/XVal
-onready var yPos := $Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer2/YVal
-onready var angle := $Panel/Controls/Transform/VBoxContainer/HboxContainer/VBoxContainer3/Angle
-onready var xScl := $Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer3/XScl
-onready var yScl := $Panel/Controls/Transform/VBoxContainer/HboxContainer3/VBoxContainer/HboxContainer/VBoxContainer4/YScl
+onready var xPos := $P/Ctl/T/Vbc/Hbc/Vbc/SXPos
+onready var yPos := $P/Ctl/T/Vbc/Hbc/Vbc2/SYPos
 
-onready var exit := $ExitButton
+onready var angle := $P/Ctl/T/Vbc/Hbc/Vbc3/A
+
+onready var xScl := $P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc/XScl
+onready var yScl := $P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2/YScl
+
+onready var exit := $Exit
 
 var target : Node2D
 
 onready var targetTile := (target.global_position / 16).round()
 
 func _ready():
+	_setupExitButton()
+	_setupPosition()
+	_setupRotation()
+	_setupScale()
+	
+func _setupExitButton():
 	var _unused = exit.connect("pressed", self, "_onExitPress")
 	
+func _setupPosition():
 	xPos.text = str(targetTile.x)
 	yPos.text = str(targetTile.y)
 	
+	var _unused = xPos.connect("text_entered", self, "_xPosChange")
+	_unused = yPos.connect("text_entered", self, "_yPosChange")
+	
+func _setupRotation():
 	if target.get("_editorRotate"):
 		angle.text = str(target.get("_editorRotate").rotation_degrees)
 	else:
 		angle.text = str(target.rotation_degrees)
 		
+	var _unused = angle.connect("text_entered", self, "_angleChange")
+	
+func _setupScale():
 	xScl.text = str(target.scale.x)
 	yScl.text = str(target.scale.y)
 	
-	_unused = xPos.connect("text_entered", self, "_xPosChange")
-	_unused = yPos.connect("text_entered", self, "_yPosChange")
-	_unused = angle.connect("text_entered", self, "_angleChange")
-	_unused = xScl.connect("text_entered", self, "_xSclChange")
+	var _unused = xScl.connect("text_entered", self, "_xSclChange")
 	_unused = yScl.connect("text_entered", self, "_ySclChange")
 	
 func _xPosChange(new := "0"):
