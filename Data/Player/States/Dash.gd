@@ -26,5 +26,6 @@ func enter(msg := {}):
 		owner.throwObject(Vector2(owner.tossForce.x, 0).rotated(angle) - Vector2(0, owner.tossForce.y))
 		
 func physics_update(_delta):
-	if owner.is_on_floor():
+	if owner.is_on_floor() || owner.is_on_wall():
+		owner.velocity.x = 0
 		emit_signal("finished", "idle")
