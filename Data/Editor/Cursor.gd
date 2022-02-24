@@ -17,6 +17,7 @@ var alreadyPressed := false
 var cellPos := Vector2()
 
 onready var level : TileMap = Main.level
+onready var targetTilemap := level
 
 func _process(_delta):
 	var result : Vector2 = (_frickinPositionFormula() / level.cell_size).round() * level.cell_size
@@ -55,7 +56,7 @@ func _input(event):
 			if canPlace:
 				if Input.is_action_pressed("mouse_main"):
 					if target.isTile:
-						level.set_cellv(cellPos, target.tileID)
+						targetTilemap.set_cellv(cellPos, target.tileID)
 					else:
 						var occupied := _getNodeOnThisPos() != null
 						if occupied: return
@@ -75,10 +76,10 @@ func _input(event):
 							instance.owner = level
 					
 				if Input.is_action_pressed("mouse_secondary"):
-					var isTile := level.get_cellv(cellPos) != -1
+					var isTile := targetTilemap.get_cellv(cellPos) != -1
 					
 					if isTile:
-						level.set_cellv(cellPos, -1)
+						targetTilemap.set_cellv(cellPos, -1)
 					else:
 						var n = _getNodeOnThisPos()
 						

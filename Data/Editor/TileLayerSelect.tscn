@@ -1,0 +1,139 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Sprites/Editor/Objects.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Editor/SelectedItem.png" type="Texture" id=3]
+[ext_resource path="res://Data/Editor/TileLayerButton.gd" type="Script" id=4]
+[ext_resource path="res://Data/Editor/TileLayerSelect.gd" type="Script" id=5]
+[ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=6]
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 4.0
+content_margin_bottom = 6.0
+bg_color = Color( 0.913725, 0.847059, 0.717647, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 80, 0, 16, 16 )
+
+[node name="TileLayerSelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 344.0
+margin_top = 24.0
+margin_right = -10.0
+margin_bottom = -136.0
+theme = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PC" type="PanelContainer" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="PC"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 63.0
+margin_bottom = 63.0
+script = ExtResource( 6 )
+
+[node name="TextHbc" type="HBoxContainer" parent="PC/CenterContainer"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 59.0
+margin_bottom = 59.0
+script = ExtResource( 6 )
+
+[node name="Vbc" type="VBoxContainer" parent="PC/CenterContainer/TextHbc"]
+margin_right = 36.0
+margin_bottom = 56.0
+script = ExtResource( 6 )
+
+[node name="FG" type="Label" parent="PC/CenterContainer/TextHbc/Vbc"]
+margin_right = 36.0
+margin_bottom = 16.0
+custom_styles/normal = SubResource( 5 )
+text = "FG"
+
+[node name="B" type="Label" parent="PC/CenterContainer/TextHbc/Vbc"]
+margin_top = 20.0
+margin_right = 36.0
+margin_bottom = 36.0
+custom_styles/normal = SubResource( 5 )
+text = "BASE"
+
+[node name="BG" type="Label" parent="PC/CenterContainer/TextHbc/Vbc"]
+margin_top = 40.0
+margin_right = 36.0
+margin_bottom = 56.0
+custom_styles/normal = SubResource( 5 )
+text = "BG"
+
+[node name="LayerVbc" type="VBoxContainer" parent="PC/CenterContainer/TextHbc"]
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 56.0
+script = ExtResource( 6 )
+
+[node name="Foreground" type="TextureRect" parent="PC/CenterContainer/TextHbc/LayerVbc"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 2 )
+script = ExtResource( 4 )
+
+[node name="Border" type="Sprite" parent="PC/CenterContainer/TextHbc/LayerVbc/Foreground"]
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( -2, -2 )
+
+[node name="Base" type="TextureRect" parent="PC/CenterContainer/TextHbc/LayerVbc"]
+margin_top = 20.0
+margin_right = 16.0
+margin_bottom = 36.0
+texture = SubResource( 4 )
+script = ExtResource( 4 )
+selected = true
+
+[node name="Border" type="Sprite" parent="PC/CenterContainer/TextHbc/LayerVbc/Base"]
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( -2, -2 )
+
+[node name="Background" type="TextureRect" parent="PC/CenterContainer/TextHbc/LayerVbc"]
+margin_top = 40.0
+margin_right = 16.0
+margin_bottom = 56.0
+texture = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Border" type="Sprite" parent="PC/CenterContainer/TextHbc/LayerVbc/Background"]
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( -2, -2 )

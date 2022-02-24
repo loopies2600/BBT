@@ -15,6 +15,24 @@ collision_mask = 63
 format = 1
 script = ExtResource( 2 )
 
+[node name="Foreground" type="TileMap" parent="."]
+z_index = 16
+z_as_relative = false
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+
+[node name="Background" type="TileMap" parent="."]
+z_index = -16
+z_as_relative = false
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+
 [node name="LevelEffects" type="Node2D" parent="." groups=["NoRender"]]
 z_index = -4096
 script = ExtResource( 3 )
