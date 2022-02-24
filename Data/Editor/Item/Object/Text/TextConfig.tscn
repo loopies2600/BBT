@@ -37,9 +37,9 @@ region = Rect2( 80, 16, 16, 16 )
 [node name="TextConfig" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 168.0
+margin_left = 264.0
 margin_top = 24.0
-margin_right = -106.0
+margin_right = -10.0
 margin_bottom = -56.0
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
