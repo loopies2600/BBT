@@ -12,6 +12,7 @@ var configurator
 var holding
 var target
 
+var rotating := false
 var alreadyPressed := false
 
 var cellPos := Vector2()
@@ -20,6 +21,8 @@ onready var level : TileMap = Main.level
 onready var targetTilemap := level
 
 func _process(_delta):
+	rotating = Input.is_action_pressed("mouse_secondary")
+	
 	var result : Vector2 = (_frickinPositionFormula() / level.cell_size).round() * level.cell_size
 	
 	if !Main.editing:
@@ -29,6 +32,16 @@ func _process(_delta):
 	if canPlace:
 		global_position = result
 		cellPos = ((global_position / level.cell_size).round() / level.scale).round()
+	
+	match mode:
+		Modes.PLACE:
+			_configuratorCheck()
+			if target: texture = target.texture
+		Modes.MOVE:
+			texture = null
+			_configuratorCheck()
+		Modes.CONFIG:
+			texture = null
 	
 func _frickinPositionFormula() -> Vector2:
 	var mousePos := get_global_mouse_position()
@@ -49,10 +62,6 @@ func _input(event):
 		
 	match mode:
 		Modes.PLACE:
-			_configuratorCheck()
-			
-			if target: texture = target.texture
-			
 			if canPlace:
 				if Input.is_action_pressed("mouse_main"):
 					if target.isTile:
@@ -86,10 +95,6 @@ func _input(event):
 						if n:
 							n.queue_free()
 		Modes.MOVE:
-			texture = null
-			
-			_configuratorCheck()
-			
 			if canPlace:
 				if event.is_action_pressed("mouse_main"):
 					holding = _getNodeOnThisPos()
@@ -99,12 +104,18 @@ func _input(event):
 				if event is InputEventMouseMotion:
 					if !holding: return
 					
-					holding.global_position = (event.position - get_canvas_transform().origin) * get_parent().cam.zoom
-					holding.global_position = (holding.global_position / level.cell_size).round() * level.cell_size
+					if rotating:
+						var amt : float = event.relative.y * 0.025
+						
+						if holding.get("_editorRotate"):
+							holding.get("_editorRotate").rotation += amt
+						else:
+							holding.rotation += amt
+					else:
+						holding.global_position = (event.position - get_canvas_transform().origin) * get_parent().cam.zoom
+						holding.global_position = (holding.global_position / level.cell_size).round() * level.cell_size
 					
 		Modes.CONFIG:
-			texture = null
-			
 			if canPlace:
 				if Input.is_action_just_pressed("mouse_main"):
 					var isTile := level.get_cellv(cellPos) != -1

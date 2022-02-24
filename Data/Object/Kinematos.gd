@@ -10,6 +10,7 @@ export (float) var dustMinVel = 500.0
 export (float) var jumpHeight = 64
 export (float) var jumpDuration = 0.25
 export (float) var fallDuration = 0.22550
+export (float) var weight = 1.5
 
 var dir := 1
 
@@ -28,6 +29,7 @@ onready var fallGravity : float = (2.0 * jumpHeight / (fallDuration * fallDurati
 onready var spawnPos := global_position
 
 func resetState():
+	velocity = Vector2.ZERO
 	visible = true
 	set_physics_process(true)
 	set_process(true)
@@ -44,6 +46,10 @@ func _process(delta):
 	scale.y = -upDirection.y
 	
 func _physics_process(delta):
+	if Main.editing: 
+		_doDust = false
+		return
+	
 	_getVelocityBoost()
 	_applyGravity(delta)
 	
@@ -61,7 +67,7 @@ func _getVelocityBoost():
 		var collision = get_slide_collision(c)
 		
 		if collision.collider.get("velBoost"):
-			velocity += collision.collider.velBoost
+			velocity += collision.collider.velBoost / weight
 		
 func _dustTrigger():
 	if velocity.length() > dustMinVel:
@@ -93,7 +99,7 @@ func push(vel : int):
 				pushable = body
 		
 	if pushable:
-		pushable.velocity.x += vel
+		pushable.velocity.x += vel / weight
 	
 func kill():
 	emit_signal("died")

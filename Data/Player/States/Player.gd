@@ -30,7 +30,6 @@ var god := false
 var grounded := false
 var canInput := true
 var canGetStuff := false
-var weight := 1.0
 
 var levelManager
 
