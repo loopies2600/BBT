@@ -3,12 +3,13 @@ extends Sprite
 const OBJ_CONFIG := preload("res://Data/Editor/Item/Object/ObjectConfig.tscn")
 const TILE_CONFIG := preload("res://Data/Editor/Item/TileConfig.tscn")
 
-enum Modes {PLACE, CONFIG}
+enum Modes {PLACE, MOVE, CONFIG}
 var mode = Modes.PLACE
 
 var canPlace := true
 
 var configurator
+var holding
 var target
 
 var alreadyPressed := false
@@ -24,8 +25,6 @@ func _process(_delta):
 		texture = null
 		return
 		
-	mode = _getMode()
-	
 	if canPlace:
 		global_position = result
 		cellPos = ((global_position / level.cell_size).round() / level.scale).round()
@@ -37,18 +36,6 @@ func _frickinPositionFormula() -> Vector2:
 	var result : Vector2 = (((mousePos - cursorOffset) / level.cell_size).round()  / level.scale).round() * level.cell_size
 	
 	return result
-	
-func _getMode():
-	var activeButtonIdx := 0
-	
-	for c in range(get_parent().utilButtons.get_child_count()):
-		var b = get_parent().utilButtons.get_child(c)
-		
-		if b.is_in_group("Refresh"):
-			if b.pressed:
-				activeButtonIdx = c
-		
-	return activeButtonIdx
 	
 func _configuratorCheck():
 	if configurator:
@@ -62,7 +49,7 @@ func _input(event):
 	match mode:
 		Modes.PLACE:
 			_configuratorCheck()
-				
+			
 			if target: texture = target.texture
 			
 			if canPlace:
@@ -97,28 +84,42 @@ func _input(event):
 						
 						if n:
 							n.queue_free()
+		Modes.MOVE:
+			texture = null
+			
+			_configuratorCheck()
+			
+			if canPlace:
+				if event.is_action_pressed("mouse_main"):
+					holding = _getNodeOnThisPos()
+				if event.is_action_released("mouse_main"):
+					holding = null
+					
+				if event is InputEventMouseMotion:
+					if !holding: return
+					
+					holding.global_position = (event.position - get_canvas_transform().origin) * get_parent().cam.zoom
+					holding.global_position = (holding.global_position / level.cell_size).round() * level.cell_size
+					
 		Modes.CONFIG:
 			texture = null
 			
 			if canPlace:
-				var dir = int(Input.is_action_just_pressed("mouse_main")) - int(Input.is_action_just_pressed("mouse_secondary"))
-				
-				var isTile := level.get_cellv(cellPos) != -1
-				
-				if !isTile:
-					if Input.is_action_just_pressed("mouse_main"):
-						var n = _getNodeOnThisPos()
-						if !n: return
-						
-						var cfg = OBJ_CONFIG
+				if Input.is_action_just_pressed("mouse_main"):
+					var isTile := level.get_cellv(cellPos) != -1
 					
-						if n.get("CONFIGURATOR"):
-							cfg = n.get("CONFIGURATOR")
+					if !isTile:
+							var n = _getNodeOnThisPos()
+							if !n: return
+							
+							var cfg = OBJ_CONFIG
 						
-						_spawnConfigurator(cfg, {"target" : n})
-				else:
-					if Input.is_action_just_pressed("mouse_main"):
-						_spawnConfigurator(TILE_CONFIG, {"targetTile": cellPos})
+							if n.get("CONFIGURATOR"):
+								cfg = n.get("CONFIGURATOR")
+							
+							_spawnConfigurator(cfg, {"target" : n})
+					else:
+							_spawnConfigurator(TILE_CONFIG, {"targetTile": cellPos})
 		
 func _spawnConfigurator(config, params := {}):
 	if configurator: 

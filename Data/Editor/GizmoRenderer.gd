@@ -38,3 +38,5 @@ func _draw():
 	if get_parent().cursor.configurator:
 		draw_rect(Rect2(get_parent().cursor.configurator.targetTile * get_parent().level.cell_size * get_parent().level.scale, get_parent().level.cell_size * get_parent().level.scale), Color.tomato, false, 2)
 		
+	if get_parent().cursor.holding:
+		draw_rect(Rect2(get_parent().cursor.holding.global_position, get_parent().level.cell_size * get_parent().level.scale), Color.tomato, false, 2)

@@ -9,7 +9,7 @@ func _draw():
 	if !renderPos: return
 	
 	var s : Vector2 = get_parent().start.global_position - global_position
-	var m : Vector2 = get_parent().middle + Vector2(0, 64) - global_position
+	var m : Vector2 = get_parent().middle - global_position
 	var e : Vector2 = get_parent().end.global_position - global_position
 	
 	draw_polyline(Main.makeCurve([s, m, e], Vector2(8, 8), 24), Color.red, 3)

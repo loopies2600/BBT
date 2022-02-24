@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Data/Editor/MenuBar/ManipulatorButton.gd" type="Script" id=5]
 [ext_resource path="res://Data/Editor/MenuBar/Button/ItemConfig.gd" type="Script" id=6]
 [ext_resource path="res://Data/Editor/MenuBar/Button/Play.gd" type="Script" id=7]
+[ext_resource path="res://Data/Editor/MenuBar/Button/Move.gd" type="Script" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 0.0
@@ -26,6 +27,14 @@ region = Rect2( 0, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 3 )
@@ -117,9 +126,21 @@ texture_pressed = SubResource( 4 )
 stretch_mode = 2
 script = ExtResource( 4 )
 
-[node name="ItemConfig" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
+[node name="Move" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
 margin_left = 20.0
 margin_right = 36.0
+margin_bottom = 220.0
+mouse_filter = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = SubResource( 18 )
+texture_pressed = SubResource( 19 )
+stretch_mode = 2
+script = ExtResource( 8 )
+
+[node name="ItemConfig" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
+margin_left = 40.0
+margin_right = 56.0
 margin_bottom = 220.0
 focus_mode = 1
 mouse_filter = 1
@@ -131,8 +152,8 @@ stretch_mode = 2
 script = ExtResource( 6 )
 
 [node name="Grid" type="TextureButton" parent="UtilButtons"]
-margin_left = 40.0
-margin_right = 56.0
+margin_left = 60.0
+margin_right = 76.0
 margin_bottom = 220.0
 focus_mode = 1
 mouse_filter = 1
@@ -149,8 +170,8 @@ property = "showGrid"
 action = "show_grid"
 
 [node name="CellNumbers" type="TextureButton" parent="UtilButtons"]
-margin_left = 60.0
-margin_right = 76.0
+margin_left = 80.0
+margin_right = 96.0
 margin_bottom = 220.0
 mouse_filter = 1
 toggle_mode = true
@@ -166,8 +187,8 @@ property = "showCells"
 action = "show_cell_numbers"
 
 [node name="UsedTiles" type="TextureButton" parent="UtilButtons"]
-margin_left = 80.0
-margin_right = 96.0
+margin_left = 100.0
+margin_right = 116.0
 margin_bottom = 220.0
 mouse_filter = 1
 toggle_mode = true

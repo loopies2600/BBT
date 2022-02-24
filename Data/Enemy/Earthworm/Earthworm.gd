@@ -99,7 +99,9 @@ func partsUpdate(delta : float):
 func _physics_process(delta):
 	_lookAtPlayer()
 	
-	if Main.editing: return
+	if Main.editing: 
+		start.global_position = global_position
+		return
 	
 	partsUpdate(delta)
 	
