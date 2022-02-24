@@ -27,7 +27,8 @@ func _ready():
 func _tileTexGen():
 	var tex = editor.level.tile_set.tile_get_texture(tileID)
 	var region = editor.level.tile_set.tile_get_region(tileID)
-		
+	itemName = editor.level.tile_set.tile_get_name(tileID)
+	
 	var atlasTex := AtlasTexture.new()
 	var bgTex = TexTool.manipulate(tex, "replaceAlpha", Color.burlywood.darkened(0.125))
 	
@@ -42,6 +43,8 @@ func _process(_delta):
 func _itemClick(event):
 	if event is InputEvent:
 		if event.is_action_pressed("mouse_main"):
+			get_tree().get_nodes_in_group("Editor")[0].desc.msg(itemName)
+	
 			var containers = get_parent().get_parent().get_parent().get_parent().get_parent().containers
 			
 			for c in containers:

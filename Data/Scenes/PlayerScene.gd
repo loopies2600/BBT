@@ -7,6 +7,7 @@ onready var tilesTab := $GUILayer/EditorObjects/TabContainer/Tiles/ScrollContain
 onready var utilButtons := $GUILayer/MenuBar/UtilButtons
 onready var cam := $Camera
 onready var guiLayer := $GUILayer
+onready var desc := $GUILayer/Descriptor
 
 onready var level : TileMap = Main.level
 
