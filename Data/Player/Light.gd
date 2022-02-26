@@ -1,4 +1,8 @@
 extends Light2D
 
+onready var spr := $Lightbulb
+
 func _process(_delta):
-	visible = Main.level.darkMode
+	energy = 1 * int(Main.level.darkMode)
+	
+	spr.visible = Main.editing

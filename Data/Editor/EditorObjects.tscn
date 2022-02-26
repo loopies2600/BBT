@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://Data/Enemy/Fernandez/Fernandez.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Sprites/Editor/Theme.png" type="Texture" id=20]
 [ext_resource path="res://Data/Object/Text.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Sprites/Editor/Lightbulb.png" type="Texture" id=22]
+[ext_resource path="res://Data/Object/Light.tscn" type="PackedScene" id=23]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 0.0
@@ -85,6 +87,10 @@ region = Rect2( 0, 16, 16, 16 )
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 20 )
 region = Rect2( 64, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
@@ -173,7 +179,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Objects/ScrollContainer"]
-margin_right = 136.0
+margin_right = 156.0
 margin_bottom = 16.0
 script = ExtResource( 18 )
 
@@ -235,6 +241,12 @@ texture = SubResource( 13 )
 isTile = false
 itemName = "Text"
 itemScene = ExtResource( 21 )
+
+[node name="Light" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 14 )
+isTile = false
+itemName = "Light"
+itemScene = ExtResource( 23 )
 
 [node name="Entities" type="Tabs" parent="TabContainer"]
 visible = false

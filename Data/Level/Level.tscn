@@ -2,12 +2,11 @@
 
 [ext_resource path="res://Data/Tilesets/AreaZero.tres" type="TileSet" id=1]
 [ext_resource path="res://Data/Level/Level.gd" type="Script" id=2]
-[ext_resource path="res://Data/Level/LevelEffects.gd" type="Script" id=3]
-
-[sub_resource type="CanvasItemMaterial" id=1]
+[ext_resource path="res://Data/Object/LightBased.gd" type="Script" id=4]
+[ext_resource path="res://Data/Object/LightBased.material" type="Material" id=5]
 
 [node name="LevelLayout" type="TileMap"]
-material = SubResource( 1 )
+material = ExtResource( 5 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
@@ -23,6 +22,7 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 0
 collision_mask = 0
 format = 1
+script = ExtResource( 4 )
 
 [node name="Background" type="TileMap" parent="."]
 z_index = -16
@@ -32,7 +32,4 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 0
 collision_mask = 0
 format = 1
-
-[node name="LevelEffects" type="Node2D" parent="." groups=["NoRender"]]
-z_index = -4096
-script = ExtResource( 3 )
+script = ExtResource( 4 )

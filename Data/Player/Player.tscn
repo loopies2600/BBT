@@ -978,6 +978,7 @@ script = ExtResource( 14 )
 
 [node name="Light" type="Light2D" parent="."]
 texture = ExtResource( 12 )
+mode = 2
 script = ExtResource( 15 )
 
 [node name="Camera" type="Camera2D" parent="."]
