@@ -979,7 +979,11 @@ script = ExtResource( 14 )
 [node name="Light" type="Light2D" parent="."]
 texture = ExtResource( 12 )
 mode = 2
+range_layer_min = -512
+range_layer_max = 512
 script = ExtResource( 15 )
+
+[node name="Lightbulb" type="Sprite" parent="Light"]
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 160, 112 )
