@@ -1,8 +1,7 @@
-extends Light2D
+extends Sprite
 
-onready var spr := $Lightbulb
-
-func _process(_delta):
-	energy = 1 * int(Main.level.darkMode)
+func _ready():
+	add_to_group("Light")
 	
-	spr.visible = Main.editing
+func _process(_delta):
+	visible = Main.editing

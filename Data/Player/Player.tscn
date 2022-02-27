@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Data/Player/Tools.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/States/Player.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Data/Player/Camera.gd" type="Script" id=9]
 [ext_resource path="res://Data/Player/States/Crouch.gd" type="Script" id=10]
 [ext_resource path="res://Data/Player/States/Dead.gd" type="Script" id=11]
-[ext_resource path="res://Sprites/Particles/Light.png" type="Texture" id=12]
 [ext_resource path="res://Data/Player/States/Slide.gd" type="Script" id=14]
 [ext_resource path="res://Data/Player/Light.gd" type="Script" id=15]
 [ext_resource path="res://Sprites/Particles/BB/SlideDust3.png" type="Texture" id=16]
@@ -976,14 +975,9 @@ script = ExtResource( 11 )
 [node name="Slide" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
 
-[node name="Light" type="Light2D" parent="."]
-texture = ExtResource( 12 )
-mode = 2
-range_layer_min = -512
-range_layer_max = 512
+[node name="Light" type="Sprite" parent="."]
+position = Vector2( -8, -8 )
 script = ExtResource( 15 )
-
-[node name="Lightbulb" type="Sprite" parent="Light"]
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 160, 112 )
