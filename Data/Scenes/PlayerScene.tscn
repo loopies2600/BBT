@@ -38,11 +38,11 @@ script = ExtResource( 7 )
 
 [node name="EditorObjects" parent="GUILayer" instance=ExtResource( 5 )]
 anchor_bottom = 0.0
-margin_top = 172.0
-margin_bottom = 224.0
+margin_top = 188.0
+margin_bottom = 240.0
 
 [node name="MenuBar" parent="GUILayer" instance=ExtResource( 6 )]
-margin_bottom = -208.0
+margin_bottom = -224.0
 
 [node name="Descriptor" parent="GUILayer" instance=ExtResource( 8 )]
 

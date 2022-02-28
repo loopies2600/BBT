@@ -9,7 +9,7 @@ func _draw():
 	var size : Vector2 = get_viewport_rect().size * get_parent().cam.zoom
 	var pos : Vector2 = get_parent().cam.global_position
 	var separation : Vector2 = get_parent().level.cell_size * get_parent().level.scale
-	var limit : Vector2 = Vector2(320, 224) * get_parent().level.scale
+	var limit : Vector2 = Vector2(320, 240) * get_parent().level.scale
 	
 	if get_parent().showGrid:
 		var color := Color.darkgray

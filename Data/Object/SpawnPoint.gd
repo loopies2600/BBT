@@ -1,6 +1,4 @@
-extends Position2D
-
-const SPICON := preload("res://Sprites/Object/Editor/SpawnPoint.png")
+extends Sprite
 
 var y := 0.0
 var _time := 0.0
@@ -8,13 +6,8 @@ var _time := 0.0
 func _process(delta):
 	visible = Main.editing
 	
-	update()
-	
 	if !Main.editing: return
 	
 	_time += delta
 	
-	y = sin(_time * 2) * 4
-	
-func _draw():
-	draw_texture(SPICON, Vector2(-16, y))
+	offset.y += sin(_time * 2) * 0.25 

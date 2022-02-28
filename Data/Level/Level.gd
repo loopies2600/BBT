@@ -5,7 +5,7 @@ const INDESTRUCTIBLE := [23, 24]
 signal tile_anim_finished
 
 var camBoundariesX := Vector2(0, 320)
-var camBoundariesY := Vector2(0, 224)
+var camBoundariesY := Vector2(0, 240)
 
 var darkMode := false
 
@@ -51,14 +51,14 @@ func restoreMap():
 func _ready():
 	_flipOneWayCollisionShapes()
 	
-func purgeCircle(pos, radius, with := -1):
+func purgeCircle(pos, radius, with := -1, target := self):
 	for y in range(-radius - 1, radius + 1):
 		for x in range(-radius - 1, radius + 1):
 			if (x * x) + (y * y) <= (radius * radius):
-				if get_cellv(pos + Vector2(x, y)) in INDESTRUCTIBLE:
+				if target.get_cellv(pos + Vector2(x, y)) in INDESTRUCTIBLE:
 					pass
 				else:
-					set_cellv(pos + Vector2(x, y), with)
+					target.set_cellv(pos + Vector2(x, y), with)
 				
 func _flipOneWayCollisionShapes():
 	tile_set.tile_set_shape_transform(9, 0, Transform2D(deg2rad(90), Vector2(16, 0)))

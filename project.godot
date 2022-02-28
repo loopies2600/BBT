@@ -66,10 +66,10 @@ settings/fps/force_fps=60
 [display]
 
 window/size/width=418
-window/size/height=224
+window/size/height=240
 window/size/always_on_top=true
 window/size/test_width=836
-window/size/test_height=448
+window/size/test_height=480
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -174,6 +174,11 @@ set_move={
 set_dark={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":0,"physical_scancode":55,"unicode":0,"echo":false,"script":null)
+ ]
+}
+special={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
 }
 

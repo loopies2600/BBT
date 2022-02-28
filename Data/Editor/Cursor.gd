@@ -65,7 +65,8 @@ func _input(event):
 			if canPlace:
 				if Input.is_action_pressed("mouse_main"):
 					if target.isTile:
-						targetTilemap.set_cellv(cellPos, target.tileID)
+						if targetTilemap.get_cellv(cellPos) == -1:
+							targetTilemap.set_cellv(cellPos, target.tileID)
 					else:
 						var occupied := _getNodeOnThisPos() != null
 						if occupied: return
@@ -88,7 +89,15 @@ func _input(event):
 					var isTile := targetTilemap.get_cellv(cellPos) != -1
 					
 					if isTile:
-						targetTilemap.set_cellv(cellPos, -1)
+						if Input.is_action_pressed("special"):
+							var explosion := preload("res://Data/Particles/Explosion/Explosion.tscn").instance()
+							explosion.global_position = cellPos * 16
+							get_parent().add_child(explosion)
+							
+							level.purgeCircle(cellPos, 4, -1, targetTilemap)
+						else:
+							targetTilemap.set_cellv(cellPos, -1)
+							Main.plop(cellPos * 16 + Vector2(8, 8))
 					else:
 						var n = _getNodeOnThisPos()
 						

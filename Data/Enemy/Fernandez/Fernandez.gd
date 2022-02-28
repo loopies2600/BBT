@@ -47,13 +47,13 @@ func _bodyEnter(body):
 	yield(get_tree().create_timer(explosionDelay), "timeout")
 	
 	anim.play("Explode")
-	$CarCrash.play()
 	
 func _bodyExit(body):
 	if body is Kinematos:
 		target = null
 		
 func explode():
+	get_parent().purgeCircle(position / 16, area.shape.radius / 16, -1)
 	Main.currentScene.player.cam.shake(16, 16)
 	
 	var newExplosion := EXPLOSION.instance()

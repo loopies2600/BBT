@@ -10,13 +10,13 @@ export (int) var radius = 64
 var cRadius : int = radius
 
 func _ready():
+	$CarCrash.play()
+	
 	orbAmount = orbAmount * (radius / 16)
 	_spawnOrbs()
 	
 	for angle in [0, 90, 180, 270]:
 		_spawnStars(angle)
-	
-	get_parent().purgeCircle(position / 16, radius / 16, -1)
 	
 func _draw():
 	draw_circle(Vector2(), cRadius, Color.white)
@@ -51,4 +51,5 @@ func _spawnStars(initialAngle := 0):
 		
 		ang += 360 / starAmount
 		
-	queue_free()
+	get_tree().create_timer(0.225).connect("timeout", self, "queue_free")
+	
