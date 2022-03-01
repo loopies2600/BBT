@@ -23,6 +23,8 @@ func _bodyEnter(body):
 
 func _applyBoost(target):
 	if target is Player:
+		$Bounce.play()
+		
 		target.canInput = false
 		
 		var velocity = Vector2(distance, 0).rotated(TAU - PI / 2 + _editorRotate.rotation)

@@ -2,7 +2,7 @@ extends Node2D
 
 const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
-onready var cursor := $SelectedObject
+onready var cursor := $Cursor
 onready var tilesTab := $GUILayer/EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 onready var utilButtons := $GUILayer/MenuBar/UtilButtons
 onready var cam := $Camera

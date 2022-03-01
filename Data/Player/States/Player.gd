@@ -21,6 +21,7 @@ onready var light := $Light
 onready var ceilDetector := $CeilDetector
 onready var cam := $Camera
 onready var slideDust := $Graphics/SlideDust
+onready var sounds := [$Jump, $Dash, $Slide]
 
 var closeObj
 var holding

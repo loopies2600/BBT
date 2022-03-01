@@ -5,6 +5,7 @@ var time := 0.0
 func enter(_msg := {}):
 	owner.velocity = Vector2.ZERO
 	owner.anim.play("Slide")
+	owner.sounds[2].play()
 	
 	owner.slideDust.frame = 0
 	owner.slideDust.play()

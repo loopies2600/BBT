@@ -6,6 +6,9 @@ var cancelled := false
 func enter(msg := {}):
 	if !owner.god:
 		if msg.has("jumpHeight"):
+			owner.sounds[0].pitch_scale = rand_range(0.75, 1.25)
+			owner.sounds[0].play()
+			
 			if int(msg["jumpHeight"]) != 0:
 				owner.recalcJumpValues(msg["jumpHeight"])
 			

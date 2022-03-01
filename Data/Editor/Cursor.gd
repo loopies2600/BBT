@@ -4,6 +4,11 @@ const OBJ_CONFIG := preload("res://Data/Editor/Item/Object/ObjectConfig.tscn")
 const TILE_CONFIG := preload("res://Data/Editor/Item/TileConfig.tscn")
 
 enum Modes {PLACE, MOVE, CONFIG}
+
+onready var level : TileMap = Main.level
+onready var targetTilemap := level
+onready var sounds := [$PlaceObj, $RemoveObj]
+
 var mode = Modes.PLACE
 
 var canPlace := true
@@ -17,9 +22,9 @@ var alreadyPressed := false
 
 var cellPos := Vector2()
 
-onready var level : TileMap = Main.level
-onready var targetTilemap := level
-
+func _physics_process(_delta):
+	visible = !visible
+	
 func _process(_delta):
 	rotating = Input.is_action_pressed("mouse_secondary")
 	
@@ -67,10 +72,13 @@ func _input(event):
 					if target.isTile:
 						if targetTilemap.get_cellv(cellPos) == -1:
 							targetTilemap.set_cellv(cellPos, target.tileID)
+							sounds[0].play()
 					else:
 						var occupied := _getNodeOnThisPos() != null
 						if occupied: return
 						
+						sounds[0].play()
+					
 						var instance = target.itemScene.instance()
 						
 						if _singleInstanceCheck(instance):
@@ -96,12 +104,17 @@ func _input(event):
 							
 							level.purgeCircle(cellPos, 4, -1, targetTilemap)
 						else:
+							sounds[1].play()
+							
 							targetTilemap.set_cellv(cellPos, -1)
 							Main.plop(cellPos * 16 + Vector2(8, 8))
 					else:
 						var n = _getNodeOnThisPos()
 						
 						if n:
+							sounds[1].play()
+							Main.plop(cellPos * 16 + Vector2(8, 8))
+							
 							n.queue_free()
 		Modes.MOVE:
 			if canPlace:

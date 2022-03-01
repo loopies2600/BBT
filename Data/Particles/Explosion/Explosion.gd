@@ -51,5 +51,5 @@ func _spawnStars(initialAngle := 0):
 		
 		ang += 360 / starAmount
 		
-	get_tree().create_timer(0.225).connect("timeout", self, "queue_free")
+	get_tree().create_timer(0.25).connect("timeout", self, "queue_free")
 	

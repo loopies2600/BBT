@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Data/Editor/Camera.gd" type="Script" id=1]
-[ext_resource path="res://Data/Shader/General.shader" type="Shader" id=2]
-[ext_resource path="res://Data/Editor/Cursor.gd" type="Script" id=3]
+[ext_resource path="res://Data/Editor/Cursor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Data/Scenes/PlayerScene.gd" type="Script" id=4]
 [ext_resource path="res://Data/Editor/EditorObjects.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Editor/MenuBar.tscn" type="PackedScene" id=6]
@@ -11,26 +10,10 @@
 [ext_resource path="res://Data/Editor/GizmoRenderer.gd" type="Script" id=9]
 [ext_resource path="res://Data/Editor/TileLayerSelect.tscn" type="PackedScene" id=10]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 2 )
-shader_param/toScreen = false
-shader_param/canGlow = false
-shader_param/invertColors = false
-shader_param/glowing_color = Color( 1, 1, 1, 1 )
-shader_param/secondary_glowing_color = Color( 1, 1, 1, 1 )
-shader_param/brightness = 1.0
-shader_param/glowing_intensity = 1.0
-shader_param/precision = 0.1
-shader_param/opacity = 0.5
-shader_param/ditherScale = 1.0
-
 [node name="PlayScene" type="Node2D" groups=["Editor"]]
 script = ExtResource( 4 )
 
-[node name="SelectedObject" type="Sprite" parent="." groups=["Cursor"]]
-material = SubResource( 1 )
-centered = false
-script = ExtResource( 3 )
+[node name="Cursor" parent="." instance=ExtResource( 2 )]
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 layer = 8
