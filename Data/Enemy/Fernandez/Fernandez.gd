@@ -53,7 +53,6 @@ func _bodyExit(body):
 		target = null
 		
 func explode():
-	get_parent().purgeCircle(position / 16, area.shape.radius / 16, -1)
 	Main.currentScene.player.cam.shake(16, 16)
 	
 	var newExplosion := EXPLOSION.instance()
@@ -61,6 +60,8 @@ func explode():
 	newExplosion.position = global_position + Vector2(16, 32)
 	newExplosion.radius = area.shape.radius
 	get_parent().add_child(newExplosion)
+	
+	get_parent().purgeCircle(newExplosion.global_position / 16, ceil(area.shape.radius / 16), -1)
 	
 	if target is Player:
 		var vel := Vector2(512, 0).rotated((global_position - target.global_position).angle())
