@@ -71,6 +71,12 @@ func _input(event):
 				if Input.is_action_pressed("mouse_main"):
 					if target.isTile:
 						if targetTilemap.get_cellv(cellPos) == -1:
+							var placement := preload("res://Data/Particles/TilePlace.tscn").instance()
+							level.add_child(placement)
+							placement.global_position = cellPos * 16
+							
+							placement.texture = texture
+							
 							targetTilemap.set_cellv(cellPos, target.tileID)
 							sounds[0].play()
 					else:
