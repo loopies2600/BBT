@@ -30,9 +30,8 @@ func _tileTexGen():
 	itemName = editor.level.tile_set.tile_get_name(tileID)
 	
 	var atlasTex := AtlasTexture.new()
-	var bgTex = TexTool.manipulate(tex, "replaceAlpha", Color.burlywood.darkened(0.125))
 	
-	atlasTex.atlas = bgTex
+	atlasTex.atlas = tex
 	atlasTex.region = region
 	
 	return atlasTex

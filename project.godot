@@ -58,6 +58,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Main="*res://Data/Scenes/Main.tscn"
+Tools="*res://Data/Util/Tools.gd"
 
 [debug]
 

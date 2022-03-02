@@ -42,9 +42,9 @@ func physics_update(_delta):
 			owner.anim.play(anim)
 			
 	if owner.canInput:
-		if owner.tools.getInputDirection():
-			owner.dir = owner.tools.getInputDirection()
-			owner.velocity.x = clamp(owner.velocity.x + owner.accel * owner.tools.getInputDirection(), -owner.maxSpd, owner.maxSpd)
+		if owner.iDir:
+			owner.dir = owner.iDir
+			owner.velocity.x = clamp(owner.velocity.x + owner.accel * owner.iDir, -owner.maxSpd, owner.maxSpd)
 		else:
 			owner.velocity.x *= owner.airDamping
 			

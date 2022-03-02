@@ -11,12 +11,12 @@ region = Rect2( 96, 48, 16, 16 )
 [node name="EditorItem" type="TextureRect"]
 margin_right = 16.0
 margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
 rect_pivot_offset = Vector2( 8, 8 )
 texture = SubResource( 1 )
+expand = true
+stretch_mode = 1
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Border" type="TextureRect" parent="."]
 margin_left = -2.0
@@ -28,3 +28,10 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 0.76, 0.63, 0.46, 1 )
+show_behind_parent = true
+margin_right = 16.0
+margin_bottom = 16.0
+mouse_filter = 1

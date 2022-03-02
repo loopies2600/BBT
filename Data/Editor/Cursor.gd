@@ -22,9 +22,6 @@ var alreadyPressed := false
 
 var cellPos := Vector2()
 
-func _physics_process(_delta):
-	visible = !visible
-	
 func _process(_delta):
 	rotating = Input.is_action_pressed("mouse_secondary")
 	
@@ -70,7 +67,7 @@ func _input(event):
 			if canPlace:
 				if Input.is_action_pressed("mouse_main"):
 					if target.isTile:
-						if targetTilemap.get_cellv(cellPos) == -1:
+						if targetTilemap.get_cellv(cellPos) == -1 || targetTilemap.get_cellv(cellPos) != target.tileID:
 							var placement := preload("res://Data/Particles/TilePlace.tscn").instance()
 							level.add_child(placement)
 							placement.global_position = cellPos * 16

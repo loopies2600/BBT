@@ -5,6 +5,7 @@
 [ext_resource path="res://Streams/Sounds/PlaceTile.wav" type="AudioStream" id=3]
 
 [node name="Cursor" type="Sprite" groups=["Cursor"]]
+modulate = Color( 1, 1, 1, 0.501961 )
 centered = false
 script = ExtResource( 1 )
 

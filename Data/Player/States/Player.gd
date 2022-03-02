@@ -13,7 +13,6 @@ export (float) var slideDuration = 0.35
 
 onready var anim := $Graphics/Anim
 onready var gfx := $Graphics
-onready var tools := $Tools
 onready var objOffset := $Graphics/HeldObjectOffset
 onready var collisionBox := $CollisionBox
 onready var fsm := $StateMachine
@@ -28,6 +27,7 @@ var holding
 
 var god := false
 
+var iDir := 0
 var grounded := false
 var canInput := true
 var canGetStuff := false
@@ -65,6 +65,8 @@ func letsStart():
 	_hopIn()
 	
 func _process(delta):
+	iDir = Tools.getInputDirection(self)
+	
 	Main.entityLookTowards = global_position
 	
 	_bottomKillCheck()
@@ -77,7 +79,7 @@ func _bottomKillCheck():
 		kill({"noAnim" : true})
 	
 func _checkNHold(delta : float):
-	closeObj = tools.findNearObjects()
+	closeObj = Tools.findNearObjects(self, ["Holdable"], objDetectionRadius)
 	
 	if is_instance_valid(holding): 
 		holding.global_position = lerp(holding.global_position, objOffset.global_position, 16 * delta)

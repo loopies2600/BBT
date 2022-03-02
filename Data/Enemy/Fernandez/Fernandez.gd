@@ -42,8 +42,6 @@ func _bodyEnter(body):
 		target = body
 	else: return
 	
-	exploding = true
-	
 	yield(get_tree().create_timer(explosionDelay), "timeout")
 	
 	anim.play("Explode")
@@ -51,29 +49,45 @@ func _bodyEnter(body):
 func _bodyExit(body):
 	if body is Kinematos:
 		target = null
-		
+	
 func explode():
+	exploding = true
+	
+	get_parent().purgeCircle(area.global_position / 16, ceil(area.shape.radius / 16), -1)
+	
 	Main.currentScene.player.cam.shake(16, 16)
 	
 	var newExplosion := EXPLOSION.instance()
 	
-	newExplosion.position = global_position + Vector2(16, 32)
+	newExplosion.position = area.global_position
 	newExplosion.radius = area.shape.radius
 	get_parent().add_child(newExplosion)
 	
-	get_parent().purgeCircle(newExplosion.global_position / 16, ceil(area.shape.radius / 16), -1)
-	
-	if target is Player:
-		var vel := Vector2(512, 0).rotated((global_position - target.global_position).angle())
-		vel.y = -256
-	
-		target.kill({"velocity" : vel, "shakePower" : Vector2(16, 16)})
-	elif target is Kinematos:
-		target.kill()
-		
 	visible = false
 	
+	if is_instance_valid(target):
+		if target is Player:
+			var vel := Vector2(512, 0).rotated((global_position - target.global_position).angle())
+			vel.y = -256
+		
+			target.kill({"velocity" : vel, "shakePower" : Vector2(16, 16)})
+		elif target is Kinematos:
+			target.kill()
+	
+	yield(get_tree().create_timer(0.25), "timeout")
+	_explodeNeighbours()
+	
+func _explodeNeighbours():
+	remove_from_group("Explosives")
+	
+	var n = Tools.findNearObjects(self, ["Explosives"], area.shape.radius)
+	
+	if n:
+		n.explode()
+	
 func resetState():
+	add_to_group("Explosives")
+	
 	target = null
 	exploding = false
 	

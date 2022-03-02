@@ -18,7 +18,7 @@ func physics_update(_delta):
 	owner.velocity *= owner.damping
 	
 	if owner.canInput:
-		if owner.tools.getInputDirection():
+		if owner.iDir:
 			emit_signal("finished", "move")
 			
 		if !owner.is_on_floor():
