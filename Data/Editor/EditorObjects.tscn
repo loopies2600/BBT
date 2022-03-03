@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=18]
 [ext_resource path="res://Data/Enemy/Fernandez/Fernandez.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Data/Object/Text.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Data/Object/SpikyBall.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Data/Object/Light.tscn" type="PackedScene" id=23]
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -54,6 +55,10 @@ anti_aliasing_size = 0.01
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 8 )
 region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 8 )
@@ -188,6 +193,12 @@ texture = SubResource( 4 )
 isTile = false
 itemName = "Spike"
 itemScene = ExtResource( 7 )
+
+[node name="SpikyBall" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 15 )
+isTile = false
+itemName = "Spiky Ball"
+itemScene = ExtResource( 22 )
 
 [node name="GravitatorUp" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 texture = SubResource( 5 )

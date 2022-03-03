@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=1]
 [ext_resource path="res://Data/Enemy/Earthworm/Earthworm.gd" type="Script" id=2]
@@ -23,6 +23,84 @@ func _ready():
 	global_position = (((get_parent().global_position / get_tree().get_root().get_node(\"Main\").level.cell_size) + Vector2(8, 0)) * 16).round()
 "
 
+[sub_resource type="Animation" id=4]
+resource_name = "Deploy"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, 0 ), Vector2( -2, 2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head:rotation_degrees")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 90.0, -25.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 90.0 ]
+}
+
 [node name="Earthworm" type="Area2D" groups=["MultiState"]]
 z_index = -1
 collision_layer = 16
@@ -30,6 +108,7 @@ collision_mask = 16
 script = ExtResource( 2 )
 
 [node name="Head" type="Sprite" parent="."]
+rotation = 1.5708
 texture = ExtResource( 1 )
 centered = false
 offset = Vector2( -1, -1 )
@@ -91,3 +170,8 @@ one_shot = true
 
 [node name="GizmoRenderer" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
+[node name="DeployAnim" type="AnimationPlayer" parent="."]
+autoplay = "Deploy"
+anims/Deploy = SubResource( 4 )
+anims/RESET = SubResource( 5 )

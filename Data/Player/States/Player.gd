@@ -64,7 +64,7 @@ func letsStart():
 	
 	_hopIn()
 	
-func _process(delta):
+func _physics_process(delta):
 	iDir = Tools.getInputDirection(self)
 	
 	Main.entityLookTowards = global_position
@@ -73,6 +73,7 @@ func _process(delta):
 	_checkNHold(delta)
 	
 	gfx.scale.x = dir
+	push(maxSpd * dir)
 	
 func _bottomKillCheck():
 	if get_global_transform_with_canvas().origin.y > 240 && !collisionBox.disabled:

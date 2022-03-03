@@ -118,7 +118,7 @@ __meta__ = {
 
 [node name="Pencil" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
 margin_right = 16.0
-margin_bottom = 220.0
+margin_bottom = 236.0
 focus_mode = 1
 mouse_filter = 1
 toggle_mode = true
@@ -132,7 +132,7 @@ script = ExtResource( 4 )
 [node name="Move" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
 margin_left = 20.0
 margin_right = 36.0
-margin_bottom = 220.0
+margin_bottom = 236.0
 mouse_filter = 1
 toggle_mode = true
 shortcut_in_tooltip = false
@@ -144,7 +144,7 @@ script = ExtResource( 8 )
 [node name="ItemConfig" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
 margin_left = 40.0
 margin_right = 56.0
-margin_bottom = 220.0
+margin_bottom = 236.0
 focus_mode = 1
 mouse_filter = 1
 toggle_mode = true
@@ -157,7 +157,7 @@ script = ExtResource( 6 )
 [node name="Grid" type="TextureButton" parent="UtilButtons"]
 margin_left = 60.0
 margin_right = 76.0
-margin_bottom = 220.0
+margin_bottom = 236.0
 focus_mode = 1
 mouse_filter = 1
 toggle_mode = true
@@ -175,7 +175,7 @@ action = "show_grid"
 [node name="CellNumbers" type="TextureButton" parent="UtilButtons"]
 margin_left = 80.0
 margin_right = 96.0
-margin_bottom = 220.0
+margin_bottom = 236.0
 mouse_filter = 1
 toggle_mode = true
 shortcut_in_tooltip = false
@@ -192,7 +192,7 @@ action = "show_cell_numbers"
 [node name="UsedTiles" type="TextureButton" parent="UtilButtons"]
 margin_left = 100.0
 margin_right = 116.0
-margin_bottom = 220.0
+margin_bottom = 236.0
 mouse_filter = 1
 toggle_mode = true
 shortcut_in_tooltip = false
@@ -223,7 +223,7 @@ __meta__ = {
 [node name="DarkMode" type="TextureButton" parent="LevelButtons"]
 margin_left = 354.0
 margin_right = 370.0
-margin_bottom = 220.0
+margin_bottom = 236.0
 mouse_filter = 1
 toggle_mode = true
 shortcut_in_tooltip = false
@@ -236,7 +236,7 @@ script = ExtResource( 9 )
 [node name="Play" type="TextureButton" parent="LevelButtons"]
 margin_left = 374.0
 margin_right = 390.0
-margin_bottom = 220.0
+margin_bottom = 236.0
 focus_mode = 1
 mouse_filter = 1
 shortcut_in_tooltip = false
@@ -248,7 +248,7 @@ script = ExtResource( 7 )
 [node name="LevelConfig" type="TextureButton" parent="LevelButtons"]
 margin_left = 394.0
 margin_right = 410.0
-margin_bottom = 220.0
+margin_bottom = 236.0
 focus_mode = 1
 mouse_filter = 1
 shortcut_in_tooltip = false

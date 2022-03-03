@@ -55,7 +55,6 @@ func _physics_process(delta):
 	
 	velocity.y = move_and_slide(velocity, upDirection, !slideDownSlopes).y
 	
-	push(maxSpd * dir)
 	_dustTrigger()
 	
 func _applyGravity(delta : float):
@@ -99,7 +98,7 @@ func push(vel : int):
 				pushable = body
 		
 	if pushable:
-		pushable.velocity.x += vel / weight
+		pushable.velocity.x += vel / pushable.weight
 	
 func kill():
 	emit_signal("died")
