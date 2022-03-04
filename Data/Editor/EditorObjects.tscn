@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=2]
@@ -19,9 +19,11 @@
 [ext_resource path="res://Sprites/Object/BoosterHand.png" type="Texture" id=17]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=18]
 [ext_resource path="res://Data/Enemy/Fernandez/Fernandez.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Sprites/Enemy/HermitBlob.png" type="Texture" id=20]
 [ext_resource path="res://Data/Object/Text.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Data/Object/SpikyBall.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Data/Object/Light.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Data/Enemy/HermitBlob/HermitBlob.tscn" type="PackedScene" id=24]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 0.0
@@ -103,6 +105,10 @@ region = Rect2( 32, 0, 16, 16 )
 atlas = ExtResource( 12 )
 region = Rect2( 0, 48, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 20 )
+region = Rect2( 32, 0, 16, 16 )
+
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 96, 16, 16 )
@@ -179,7 +185,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Objects/ScrollContainer"]
-margin_right = 176.0
+margin_right = 196.0
 margin_bottom = 16.0
 script = ExtResource( 18 )
 
@@ -294,6 +300,12 @@ itemName = "Fernandez"
 itemScene = ExtResource( 19 )
 customParams = {
 }
+
+[node name="HermitBlob" parent="TabContainer/Entities/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 16 )
+isTile = false
+itemName = "Hermit Blob"
+itemScene = ExtResource( 24 )
 
 [node name="Markers" type="Tabs" parent="TabContainer"]
 visible = false

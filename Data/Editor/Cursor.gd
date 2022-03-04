@@ -139,6 +139,9 @@ func _input(event):
 					else:
 						holding.global_position = (event.position - get_canvas_transform().origin) * get_parent().cam.zoom
 						holding.global_position = (holding.global_position / level.cell_size).round() * level.cell_size
+						
+						if holding.get("spawnPos"):
+							holding.spawnPos = holding.global_position
 					
 		Modes.CONFIG:
 			if canPlace:

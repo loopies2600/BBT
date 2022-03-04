@@ -45,11 +45,12 @@ func _input(event):
 		_switchStates()
 		
 func _switchStates():
+	Main.editing = !Main.editing
 	cam.global_position = Vector2()
 	
 	level.resetObjectState()
 	
-	if Main.editing:
+	if !Main.editing:
 		if !_levelIsValid(): return
 		
 		if cursor.configurator:
@@ -66,7 +67,6 @@ func _switchStates():
 		_resetPlayValues()
 		cam.current = true
 		
-	Main.editing = !Main.editing
 	cursor.canPlace = Main.editing
 	
 func _resetPlayValues():

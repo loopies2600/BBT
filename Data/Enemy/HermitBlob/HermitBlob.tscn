@@ -1,0 +1,194 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/Enemy/HermitBlob.png" type="Texture" id=1]
+[ext_resource path="res://Data/Object/Spike.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Data/Enemy/HermitBlob/HermitBlob.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 64 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Hide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Spike:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -6 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Blob:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 4 ), Vector2( 1, 10 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Jump"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Spike:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -6 ), Vector2( 0, -16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Blob:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 4 ), Vector2( 4, -6 ), Vector2( 1, -6 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Blob:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.5, 2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Spike:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, -10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Blob:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 10 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Blob:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Show"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Spike:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Blob:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 10 ), Vector2( 1, 4 ) ]
+}
+
+[node name="HermitBlob" type="Area2D"]
+script = ExtResource( 3 )
+
+[node name="Blob" type="Sprite" parent="."]
+position = Vector2( 1, 10 )
+z_index = -5
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 17, 1, 14, 15 )
+
+[node name="LEye" type="Sprite" parent="Blob"]
+position = Vector2( 1, 4 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 11, 4, 5, 6 )
+
+[node name="Pupil" type="Sprite" parent="Blob/LEye"]
+position = Vector2( 1, 1 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 13, 0, 3, 4 )
+
+[node name="REye" type="Sprite" parent="Blob"]
+position = Vector2( 8, 4 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 11, 4, 5, 6 )
+
+[node name="Pupil" type="Sprite" parent="Blob/REye"]
+position = Vector2( 1, 1 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 13, 0, 3, 4 )
+
+[node name="Spike" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1, -10 )
+
+[node name="DetectionArea" type="CollisionShape2D" parent="."]
+position = Vector2( 7, -64 )
+shape = SubResource( 1 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+autoplay = "Show"
+anims/Hide = SubResource( 2 )
+anims/Jump = SubResource( 5 )
+anims/RESET = SubResource( 3 )
+anims/Show = SubResource( 4 )
