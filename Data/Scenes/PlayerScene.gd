@@ -45,14 +45,14 @@ func _input(event):
 		_switchStates()
 		
 func _switchStates():
+	if !_levelIsValid(): return
+	
 	Main.editing = !Main.editing
 	cam.global_position = Vector2()
 	
 	level.resetObjectState()
 	
 	if !Main.editing:
-		if !_levelIsValid(): return
-		
 		if cursor.configurator:
 			cursor.configurator.queue_free()
 			cursor.configurator = null

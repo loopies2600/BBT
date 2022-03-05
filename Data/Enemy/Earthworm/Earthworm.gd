@@ -29,8 +29,6 @@ func _ready():
 	var _unused = connect("body_entered", self, "_bodyEnter")
 	_unused = jumpTimer.connect("timeout", self, "_onDelayTimeout")
 	
-	_spawnBodyParts()
-	
 	resetState()
 	
 func _onDelayTimeout():
@@ -53,6 +51,7 @@ func resetState():
 	global_position = start.global_position
 	positions = [start.global_position - Vector2(0, 16), middle, end.global_position - Vector2(0, 16)]
 	
+	_spawnBodyParts()
 	_resetOlderPositions()
 	
 func initialize():
@@ -78,6 +77,11 @@ func _resetOlderPositions(placeholderPos := global_position):
 		bodyParts[i].global_position = olderPositions[0]
 	
 func _spawnBodyParts():
+	for p in bodyParts:
+		p.queue_free()
+		
+	bodyParts.clear()
+	
 	for i in range(parts):
 		var newPart = BODY_PART.instance()
 		
