@@ -54,10 +54,10 @@ func resetState():
 	_spawnBodyParts()
 	_resetOlderPositions()
 	
-func initialize():
-	_resetOlderPositions()
+	if !Main.editing:
+		_resetOlderPositions()
 	
-	jumpTimer.start(jumpDelay)
+		jumpTimer.start(jumpDelay)
 	
 func _setJumping(booly : bool):
 	if jumping == booly: return

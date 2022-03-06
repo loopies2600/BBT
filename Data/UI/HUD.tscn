@@ -3,13 +3,7 @@
 [ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=1]
 [ext_resource path="res://Sprites/UI/DitherPattern.png" type="Texture" id=2]
 [ext_resource path="res://Data/UI/HUD.gd" type="Script" id=3]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Label
-
-func _process(_delta):
-	text = \"%s FPS\" % Engine.get_frames_per_second()
-"
+[ext_resource path="res://Data/UI/TokenIcons.gd" type="Script" id=4]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -25,9 +19,6 @@ custom_fonts/font = ExtResource( 1 )
 text = "ATTEMPT 1"
 align = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BG" type="TextureRect" parent="Attempts"]
 show_behind_parent = true
@@ -38,32 +29,7 @@ margin_top = -1.0
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="FrameRate" type="Label" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -96.0
-margin_bottom = 9.0
-custom_fonts/font = ExtResource( 1 )
-text = "0 FPS"
-align = 1
-autowrap = true
-script = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BG" type="TextureRect" parent="FrameRate"]
-show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = 1.0
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="TokenIcons" type="Node2D" parent="."]
+position = Vector2( 408, 2 )
+script = ExtResource( 4 )

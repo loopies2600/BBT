@@ -1,5 +1,10 @@
 extends Sprite
 
+signal tile_placed(pos)
+signal tile_removed(pos)
+signal object_placed(pos)
+signal object_removed(pos)
+
 const OBJ_CONFIG := preload("res://Data/Editor/Item/Object/ObjectConfig.tscn")
 const TILE_CONFIG := preload("res://Data/Editor/Item/TileConfig.tscn")
 
@@ -22,6 +27,10 @@ var alreadyPressed := false
 
 var cellPos := Vector2()
 
+func _ready():
+	connect("object_placed", level, "_onObjectPlace")
+	connect("object_removed", level, "_onObjectRemoval")
+	
 func _process(_delta):
 	rotating = Input.is_action_pressed("mouse_secondary")
 	
@@ -76,6 +85,7 @@ func _input(event):
 							
 							targetTilemap.set_cellv(cellPos, target.tileID)
 							sounds[0].play()
+							emit_signal("tile_placed", cellPos)
 					else:
 						var occupied := _getNodeOnThisPos() != null
 						if occupied: return
@@ -95,6 +105,7 @@ func _input(event):
 								
 							level.add_child(instance)
 							instance.owner = level
+							emit_signal("object_placed", cellPos)
 					
 				if Input.is_action_pressed("mouse_secondary"):
 					var isTile := targetTilemap.get_cellv(cellPos) != -1
@@ -106,11 +117,13 @@ func _input(event):
 							get_parent().add_child(explosion)
 							
 							level.purgeCircle(cellPos, 4, -1, targetTilemap)
+							emit_signal("tile_removed", cellPos)
 						else:
 							sounds[1].play()
 							
 							targetTilemap.set_cellv(cellPos, -1)
 							Main.plop(cellPos * 16 + Vector2(8, 8))
+							emit_signal("tile_removed", cellPos)
 					else:
 						var n = _getNodeOnThisPos()
 						
@@ -119,6 +132,7 @@ func _input(event):
 							Main.plop(cellPos * 16 + Vector2(8, 8))
 							
 							n.queue_free()
+							emit_signal("object_removed", cellPos)
 		Modes.MOVE:
 			if canPlace:
 				if event.is_action_pressed("mouse_main"):

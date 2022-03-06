@@ -57,7 +57,6 @@ func _switchStates():
 			cursor.configurator.queue_free()
 			cursor.configurator = null
 		
-		level.initializeObjects()
 		level.copyMap()
 		
 		_spawnPlayer()
@@ -92,7 +91,6 @@ func restart():
 	Main.hud.aLabel.text = "ATTEMPT %s" % Main.attempt
 	
 	level.resetObjectState()
-	level.initializeObjects()
 	level.restoreMap()
 	
 	player.letsStart()

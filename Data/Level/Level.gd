@@ -17,15 +17,35 @@ var _flipXCopy := []
 var _flipYCopy := []
 var _transposeCopy := []
 
+var tokenAmount := 0
+var tokensCollected := 0
+
 func resetObjectState():
 	for c in get_children():
 		if c.has_method("resetState"):
 			c.resetState()
 	
-func initializeObjects():
-	for c in get_children():
-		if c.has_method("initialize"):
-			c.initialize()
+	_resetTokens()
+	
+func _onObjectPlace(_pos):
+	_resetTokens()
+	
+func _onObjectRemoval(_pos):
+	_resetTokens()
+	
+func _resetTokens():
+	var tok : Array = get_tree().get_nodes_in_group("Token")
+	
+	tokensCollected = 0
+	tokenAmount = tok.size()
+	
+	for t in tok:
+		t.disconnect("taken", self, "_onTokenCollect")
+		
+		t.connect("taken", self, "_onTokenCollect")
+	
+func _onTokenCollect():
+	tokensCollected = min(tokensCollected + 1, tokenAmount)
 	
 func copyMap():
 	_cellPosCopy.clear()
