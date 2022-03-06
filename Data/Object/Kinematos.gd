@@ -42,7 +42,7 @@ func recalcJumpValues(h := jumpHeight):
 	jumpGravity = (2.0 * h / (jumpDuration * jumpDuration))
 	fallGravity = (2.0 * h / (fallDuration * fallDuration))
 
-func _process(delta):
+func _process(_delta):
 	scale.y = -upDirection.y
 	
 func _physics_process(delta):

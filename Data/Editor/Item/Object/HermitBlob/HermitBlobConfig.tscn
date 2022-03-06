@@ -1,0 +1,333 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Sprites/Editor/Button.png" type="Texture" id=2]
+[ext_resource path="res://Data/Editor/Item/Object/HermitBlob/HermitBlobConfig.gd" type="Script" id=3]
+[ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_bottom = 2.0
+bg_color = Color( 0.905882, 0.835294, 0.698039, 1 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 80, 16, 16, 16 )
+
+[node name="HermitBlobConfig" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 264.0
+margin_top = 40.0
+margin_right = -10.0
+margin_bottom = -72.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="P" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ctl" type="TabContainer" parent="P"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+tab_align = 0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="T" type="Tabs" parent="P/Ctl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 20.0
+margin_right = -4.0
+margin_bottom = -4.0
+tab_align = 0
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 118.0
+margin_bottom = 84.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hbc" type="HBoxContainer" parent="P/Ctl/T/Vbc"]
+margin_right = 110.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc"]
+margin_right = 32.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="X" type="Label" parent="P/Ctl/T/Vbc/Hbc/Vbc"]
+margin_right = 32.0
+margin_bottom = 10.0
+text = "X"
+script = ExtResource( 4 )
+
+[node name="SXPos" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc/Vbc"]
+margin_top = 14.0
+margin_right = 32.0
+margin_bottom = 30.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="Y" type="Label" parent="P/Ctl/T/Vbc/Hbc/Vbc2"]
+margin_right = 32.0
+margin_bottom = 10.0
+text = "Y"
+script = ExtResource( 4 )
+
+[node name="SYPos" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc/Vbc2"]
+margin_top = 14.0
+margin_right = 32.0
+margin_bottom = 30.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Vbc3" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc"]
+margin_left = 72.0
+margin_right = 110.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="Angle" type="Label" parent="P/Ctl/T/Vbc/Hbc/Vbc3"]
+margin_right = 38.0
+margin_bottom = 10.0
+text = "Angle"
+script = ExtResource( 4 )
+
+[node name="A" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc/Vbc3"]
+margin_top = 14.0
+margin_right = 38.0
+margin_bottom = 30.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Scl" type="Label" parent="P/Ctl/T/Vbc"]
+margin_top = 34.0
+margin_right = 110.0
+margin_bottom = 42.0
+custom_styles/normal = SubResource( 4 )
+text = "Scale"
+script = ExtResource( 4 )
+
+[node name="Hbc2" type="HBoxContainer" parent="P/Ctl/T/Vbc"]
+margin_top = 46.0
+margin_right = 110.0
+margin_bottom = 76.0
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc2"]
+margin_right = 68.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hbc" type="HBoxContainer" parent="P/Ctl/T/Vbc/Hbc2/Vbc"]
+margin_right = 68.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc"]
+margin_right = 32.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="X" type="Label" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc"]
+margin_right = 32.0
+margin_bottom = 10.0
+text = "X"
+script = ExtResource( 4 )
+
+[node name="XScl" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc"]
+margin_top = 14.0
+margin_right = 32.0
+margin_bottom = 30.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="Y" type="Label" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
+margin_right = 32.0
+margin_bottom = 10.0
+text = "Y"
+script = ExtResource( 4 )
+
+[node name="YScl" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
+margin_top = 14.0
+margin_right = 32.0
+margin_bottom = 30.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Motion" type="Tabs" parent="P/Ctl"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 20.0
+margin_right = -4.0
+margin_bottom = -4.0
+tab_align = 0
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/Motion"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 118.0
+margin_bottom = 84.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hbc" type="HBoxContainer" parent="P/Ctl/Motion/Vbc"]
+margin_right = 110.0
+margin_bottom = 39.0
+script = ExtResource( 4 )
+
+[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/Motion/Vbc/Hbc"]
+margin_right = 44.0
+margin_bottom = 39.0
+script = ExtResource( 4 )
+
+[node name="JHL" type="Label" parent="P/Ctl/Motion/Vbc/Hbc/Vbc2"]
+margin_right = 44.0
+margin_bottom = 19.0
+text = "Jump
+height"
+script = ExtResource( 4 )
+
+[node name="JH" type="LineEdit" parent="P/Ctl/Motion/Vbc/Hbc/Vbc2"]
+margin_top = 23.0
+margin_right = 44.0
+margin_bottom = 39.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/Motion/Vbc/Hbc"]
+margin_left = 48.0
+margin_right = 86.0
+margin_bottom = 39.0
+script = ExtResource( 4 )
+
+[node name="JDL" type="Label" parent="P/Ctl/Motion/Vbc/Hbc/Vbc"]
+margin_right = 38.0
+margin_bottom = 19.0
+text = "Jump
+delay"
+script = ExtResource( 4 )
+
+[node name="JD" type="LineEdit" parent="P/Ctl/Motion/Vbc/Hbc/Vbc"]
+margin_top = 23.0
+margin_right = 38.0
+margin_bottom = 39.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Hbc2" type="HBoxContainer" parent="P/Ctl/Motion/Vbc"]
+margin_top = 43.0
+margin_right = 110.0
+margin_bottom = 82.0
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/Motion/Vbc/Hbc2"]
+margin_right = 86.0
+margin_bottom = 39.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hbc" type="HBoxContainer" parent="P/Ctl/Motion/Vbc/Hbc2/Vbc"]
+margin_right = 86.0
+margin_bottom = 39.0
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/Motion/Vbc/Hbc2/Vbc/Hbc"]
+margin_right = 44.0
+margin_bottom = 39.0
+script = ExtResource( 4 )
+
+[node name="JTL" type="Label" parent="P/Ctl/Motion/Vbc/Hbc2/Vbc/Hbc/Vbc"]
+margin_right = 44.0
+margin_bottom = 19.0
+text = "Jump
+time  "
+script = ExtResource( 4 )
+
+[node name="JT" type="LineEdit" parent="P/Ctl/Motion/Vbc/Hbc2/Vbc/Hbc/Vbc"]
+margin_top = 23.0
+margin_right = 44.0
+margin_bottom = 39.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/Motion/Vbc/Hbc2/Vbc/Hbc"]
+margin_left = 48.0
+margin_right = 86.0
+margin_bottom = 39.0
+script = ExtResource( 4 )
+
+[node name="FTL" type="Label" parent="P/Ctl/Motion/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
+margin_right = 38.0
+margin_bottom = 19.0
+text = "Fall
+time "
+script = ExtResource( 4 )
+
+[node name="FT" type="LineEdit" parent="P/Ctl/Motion/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
+margin_top = 23.0
+margin_right = 38.0
+margin_bottom = 39.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Exit" type="TextureButton" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 122.0
+margin_top = 4.0
+texture_normal = SubResource( 2 )
+texture_pressed = SubResource( 3 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

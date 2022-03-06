@@ -29,7 +29,7 @@ func physics_update(_delta):
 				emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
 				
 			if Input.is_action_just_pressed("attack"):
-				emit_signal("finished", "attack")
+				emit_signal("finished", "dash")
 			
 		if Input.is_action_pressed("look_down"):
 			emit_signal("finished", "crouch")

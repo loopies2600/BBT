@@ -1136,7 +1136,7 @@ script = ExtResource( 6 )
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
-[node name="Attack" type="Node" parent="StateMachine"]
+[node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
 
 [node name="Dead" type="Node" parent="StateMachine"]

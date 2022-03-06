@@ -49,7 +49,7 @@ func physics_update(_delta):
 			owner.velocity.x *= owner.airDamping
 			
 		if Input.is_action_just_pressed("attack"):
-			emit_signal("finished", "attack")
+			emit_signal("finished", "dash")
 			
 		if owner.god:
 			if Input.is_action_pressed("jump"):

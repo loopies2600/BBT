@@ -70,7 +70,7 @@ func _setJumping(booly : bool):
 func _resetOlderPositions(placeholderPos := global_position):
 	olderPositions.clear()
 	
-	for i in range(maxPosRecords):
+	for _i in range(maxPosRecords):
 		olderPositions.append(placeholderPos)
 		
 	for i in range(bodyParts.size()):
@@ -82,7 +82,7 @@ func _spawnBodyParts():
 		
 	bodyParts.clear()
 	
-	for i in range(parts):
+	for _i in range(parts):
 		var newPart = BODY_PART.instance()
 		
 		bodyParts.append(newPart)

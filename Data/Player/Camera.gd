@@ -4,7 +4,7 @@ export (float, 0, 1) var damping = 0.9
 
 var intensity := Vector2()
 
-func _process(delta):
+func _process(_delta):
 	intensity *= damping
 	
 	if intensity.length() > 0.5:

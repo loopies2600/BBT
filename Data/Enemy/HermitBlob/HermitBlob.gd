@@ -1,5 +1,7 @@
 extends Area2D
 
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/HermitBlob/HermitBlobConfig.tscn")
+
 export (float) var jumpDelay = 0.25
 export (float) var jumpHeight = 64
 export (float) var jumpDuration = 0.25

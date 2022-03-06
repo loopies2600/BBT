@@ -7,7 +7,7 @@ export (int) var orbAmount = 8
 export (int) var starAmount = 8
 export (int) var radius = 64
 
-var cRadius : int = radius
+var cRadius : float = radius
 
 func _ready():
 	$CarCrash.play()
@@ -27,7 +27,7 @@ func _process(_delta):
 	update()
 	
 func _spawnOrbs():
-	for i in range(orbAmount):
+	for _i in range(orbAmount):
 		yield(get_tree().create_timer(rand_range(0.05, 0.1)), "timeout")
 		
 		var newOrb := ORB.instance()
@@ -40,7 +40,7 @@ func _spawnOrbs():
 func _spawnStars(initialAngle := 0):
 	var ang := initialAngle
 	
-	for i in range(starAmount):
+	for _i in range(starAmount):
 		yield(get_tree().create_timer(rand_range(0.025, 0.05)), "timeout")
 		
 		var newStar := STAR.instance()
@@ -51,5 +51,5 @@ func _spawnStars(initialAngle := 0):
 		
 		ang += 360 / starAmount
 		
-	get_tree().create_timer(0.25).connect("timeout", self, "queue_free")
+	var _unused = get_tree().create_timer(0.25).connect("timeout", self, "queue_free")
 	

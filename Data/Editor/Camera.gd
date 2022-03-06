@@ -6,7 +6,7 @@ export (float) var zoomSpeed = 0.1
 
 var panning := false
 
-func _process(delta):
+func _process(_delta):
 	if Main.editing:
 		if get_parent().cursor.canPlace:
 			panning = Input.is_action_pressed("mouse_tertiary")

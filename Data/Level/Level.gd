@@ -2,6 +2,7 @@ extends TileMap
 
 const INDESTRUCTIBLE := [23, 24]
 
+# warning-ignore:unused_signal
 signal tile_anim_finished
 
 var camBoundariesX := Vector2(0, 320)
@@ -65,5 +66,5 @@ func _flipOneWayCollisionShapes():
 	tile_set.tile_set_shape_transform(10, 0, Transform2D(deg2rad(270), Vector2(0, 16)))
 	tile_set.tile_set_shape_transform(11, 0, Transform2D(deg2rad(180), Vector2(16, 16)))
 	
-func _process(delta):
+func _process(_delta):
 	material.light_mode = 2 * int(darkMode)

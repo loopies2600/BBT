@@ -8,9 +8,6 @@ func enter(msg := {}):
 	if msg.has("velocity"):
 		velocity = msg.velocity
 		
-	if is_instance_valid(owner.holding):
-		owner.throwObject()
-	
 	# spawnea el casco y aplica velocidad
 	if !msg.has("noAnim"):
 		var newHat = HARD_HAT.instance()

@@ -14,7 +14,7 @@ script = SubResource( 1 )
 
 [node name="BG" type="TextureRect" parent="."]
 margin_right = 416.0
-margin_bottom = 224.0
+margin_bottom = 240.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 2

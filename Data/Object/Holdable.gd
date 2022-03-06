@@ -15,6 +15,6 @@ func _ready():
 	
 	spawnPos = global_position
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	set_collision_mask_bit(3, doGravity)
 	velocity.x *= damping

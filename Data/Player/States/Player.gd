@@ -22,15 +22,11 @@ onready var cam := $Camera
 onready var slideDust := $Graphics/SlideDust
 onready var sounds := [$Jump, $Dash, $Slide]
 
-var closeObj
-var holding
-
 var god := false
 
 var iDir := 0
 var grounded := false
 var canInput := true
-var canGetStuff := false
 
 var levelManager
 
@@ -64,13 +60,12 @@ func letsStart():
 	
 	_hopIn()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	iDir = Tools.getInputDirection(self)
 	
 	Main.entityLookTowards = global_position
 	
 	_bottomKillCheck()
-	_checkNHold(delta)
 	
 	gfx.scale.x = dir
 	push(maxSpd * dir)
@@ -78,29 +73,6 @@ func _physics_process(delta):
 func _bottomKillCheck():
 	if get_global_transform_with_canvas().origin.y > 240 && !collisionBox.disabled:
 		kill({"noAnim" : true})
-	
-func _checkNHold(delta : float):
-	closeObj = Tools.findNearObjects(self, ["Holdable"], objDetectionRadius)
-	
-	if is_instance_valid(holding): 
-		holding.global_position = lerp(holding.global_position, objOffset.global_position, 16 * delta)
-	else:
-		holding = null
-		weight = 1.0
-	
-func takeObject():
-	if !closeObj: return
-	
-	holding = closeObj
-	weight = holding.weight
-	holding.set_collision_mask_bit(3, false)
-	holding.doGravity = false
-	
-func throwObject(force := Vector2()):
-	holding.velocity = force
-	
-	holding.doGravity = true
-	holding = null
 	
 func _dustTrigger():
 	pass
@@ -114,6 +86,7 @@ func _hopIn():
 	doGravity = true
 	
 	# necesitamos que TODO se adhiera a esto, por favor
+# warning-ignore:narrowing_conversion
 	var distance : int = Vector2(spawnPos.x, bottom).distance_to(spawnPos)
 	
 	fsm._change_state("air", {"jumpHeight" : distance, "antiCancel" : true})

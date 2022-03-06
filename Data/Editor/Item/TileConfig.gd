@@ -21,8 +21,14 @@ func _ready():
 	xValue.text = str(targetTile.x)
 	yValue.text = str(targetTile.y)
 	
+# warning-ignore:narrowing_conversion
+# warning-ignore:narrowing_conversion
 	flipH.pressed = level.is_cell_x_flipped(targetTile.x, targetTile.y)
+# warning-ignore:narrowing_conversion
+# warning-ignore:narrowing_conversion
 	flipV.pressed = level.is_cell_y_flipped(targetTile.x, targetTile.y)
+# warning-ignore:narrowing_conversion
+# warning-ignore:narrowing_conversion
 	transpose.pressed = level.is_cell_transposed(targetTile.x, targetTile.y)
 	
 func _xChange(new := "0"):

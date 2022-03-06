@@ -9,8 +9,8 @@
 [ext_resource path="res://Data/Object/Spike.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sprites/Editor/Objects.png" type="Texture" id=8]
 [ext_resource path="res://Data/Object/GravitySwitcher.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Sprites/Tileset/AreaZero.png" type="Texture" id=10]
-[ext_resource path="res://Data/Object/Holdable/Static/WoodenBox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Data/Object/OrbitingPlatforms/OrbitingPlatforms.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Sprites/Object/OrbitingPlatform.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/Enemy/Fernandez.png" type="Texture" id=12]
 [ext_resource path="res://Data/Enemy/Earthworm/Earthworm.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Sprites/Object/ConveyorBelt.png" type="Texture" id=14]
@@ -70,10 +70,6 @@ region = Rect2( 0, 0, 16, 16 )
 atlas = ExtResource( 8 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 10 )
-region = Rect2( 112, 48, 16, 16 )
-
 [sub_resource type="AtlasTexture" id=9]
 flags = 2
 atlas = ExtResource( 14 )
@@ -96,6 +92,10 @@ region = Rect2( 96, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 8 )
 region = Rect2( 112, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
@@ -182,7 +182,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Objects/ScrollContainer"]
-margin_right = 196.0
+margin_right = 176.0
 margin_bottom = 16.0
 script = ExtResource( 18 )
 
@@ -218,12 +218,6 @@ customParams = {
 "mode": 1
 }
 
-[node name="WoodenBox" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 7 )
-isTile = false
-itemName = "Wooden Box"
-itemScene = ExtResource( 11 )
-
 [node name="ConveyorBeltRight" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 texture = SubResource( 9 )
 isTile = false
@@ -256,6 +250,12 @@ texture = SubResource( 14 )
 isTile = false
 itemName = "Light"
 itemScene = ExtResource( 23 )
+
+[node name="OrbitingPlatforms" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 17 )
+isTile = false
+itemName = "Orbiting Platforms"
+itemScene = ExtResource( 10 )
 
 [node name="Entities" type="Tabs" parent="TabContainer"]
 visible = false
@@ -295,8 +295,6 @@ texture = SubResource( 12 )
 isTile = false
 itemName = "Fernandez"
 itemScene = ExtResource( 19 )
-customParams = {
-}
 
 [node name="HermitBlob" parent="TabContainer/Entities/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 texture = SubResource( 16 )

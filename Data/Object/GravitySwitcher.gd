@@ -19,7 +19,7 @@ func _bodyEnter(body):
 			if !Main.editing:
 				_changeGravityNDisable(body)
 	
-func _process(delta):
+func _process(_delta):
 	visible = !disabled
 	
 	update()

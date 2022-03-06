@@ -22,11 +22,6 @@ func enter(msg := {}):
 	if !msg.has("noBoost"):
 		owner.velocity = Vector2((owner.maxSpd * 2) / owner.weight, 0).rotated(angle)
 	
-	if !owner.holding:
-		owner.takeObject()
-	else:
-		owner.throwObject(Vector2(owner.tossForce.x, 0).rotated(angle) - Vector2(0, owner.tossForce.y))
-		
 func physics_update(_delta):
 	if owner.is_on_floor() || owner.is_on_wall():
 		owner.velocity.x = 0
