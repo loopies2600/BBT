@@ -71,7 +71,7 @@ window/size/height=240
 window/size/always_on_top=true
 window/size/test_width=836
 window/size/test_height=480
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [editor_plugins]
@@ -229,7 +229,6 @@ quality/shading/force_blinn_over_ggx=true
 quality/filters/anisotropic_filter_level=1
 quality/filters/use_nearest_mipmap_filter=true
 quality/lightmapping/use_bicubic_sampling=false
-environment/default_clear_color=Color( 1, 1, 1, 1 )
 quality/reflections/atlas_size=0
 quality/reflections/atlas_subdiv=0
 quality/depth/hdr=false

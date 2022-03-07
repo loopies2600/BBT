@@ -7,6 +7,11 @@
 [node name="ImageBG" type="ParallaxBackground"]
 script = ExtResource( 2 )
 
+[node name="ClearColor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.75, 0.75 )
 motion_mirroring = Vector2( 784, 768 )

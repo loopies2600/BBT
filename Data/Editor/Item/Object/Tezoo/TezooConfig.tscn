@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Sprites/Editor/Button.png" type="Texture" id=2]
-[ext_resource path="res://Data/Editor/Item/Object/Text/TextConfig.gd" type="Script" id=3]
+[ext_resource path="res://Data/Editor/Item/Object/Tezoo/TezooConfig.gd" type="Script" id=3]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -40,7 +40,7 @@ anchor_bottom = 1.0
 margin_left = 264.0
 margin_top = 24.0
 margin_right = -10.0
-margin_bottom = -56.0
+margin_bottom = -48.0
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -51,9 +51,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Ctl" type="VBoxContainer" parent="P"]
 anchor_right = 1.0
@@ -67,31 +64,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hbc" type="HBoxContainer" parent="P/Ctl"]
-margin_right = 128.0
-margin_bottom = 10.0
-script = ExtResource( 4 )
-
-[node name="TLabel" type="Label" parent="P/Ctl/Hbc"]
-margin_right = 32.0
-margin_bottom = 10.0
-text = "Text"
-script = ExtResource( 4 )
-
-[node name="TextVal" type="LineEdit" parent="P/Ctl"]
-margin_top = 14.0
-margin_right = 128.0
-margin_bottom = 30.0
-text = "SAMPLE TEXT"
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="TC" type="HBoxContainer" parent="P/Ctl"]
-margin_top = 34.0
 margin_right = 128.0
-margin_bottom = 44.0
+margin_bottom = 10.0
 script = ExtResource( 4 )
 
 [node name="TL" type="Label" parent="P/Ctl/TC"]
@@ -102,9 +77,9 @@ script = ExtResource( 4 )
 
 [node name="T" type="PanelContainer" parent="P/Ctl"]
 show_behind_parent = true
-margin_top = 48.0
+margin_top = 14.0
 margin_right = 128.0
-margin_bottom = 132.0
+margin_bottom = 98.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
 
@@ -239,6 +214,78 @@ script = ExtResource( 4 )
 [node name="YScl" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
 margin_top = 14.0
 margin_right = 32.0
+margin_bottom = 30.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="BC" type="HBoxContainer" parent="P/Ctl"]
+margin_top = 102.0
+margin_right = 128.0
+margin_bottom = 112.0
+script = ExtResource( 4 )
+
+[node name="BL" type="Label" parent="P/Ctl/BC"]
+margin_right = 50.0
+margin_bottom = 10.0
+text = "Bullets"
+script = ExtResource( 4 )
+
+[node name="B" type="PanelContainer" parent="P/Ctl"]
+show_behind_parent = true
+margin_top = 116.0
+margin_right = 128.0
+margin_bottom = 154.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/B"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 120.0
+margin_bottom = 34.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hbc" type="HBoxContainer" parent="P/Ctl/B/Vbc"]
+margin_right = 112.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/B/Vbc/Hbc"]
+margin_right = 56.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="FRL" type="Label" parent="P/Ctl/B/Vbc/Hbc/Vbc"]
+margin_right = 56.0
+margin_bottom = 10.0
+text = "Firerate"
+script = ExtResource( 4 )
+
+[node name="FR" type="LineEdit" parent="P/Ctl/B/Vbc/Hbc/Vbc"]
+margin_top = 14.0
+margin_right = 56.0
+margin_bottom = 30.0
+text = "0"
+script = ExtResource( 4 )
+
+[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/B/Vbc/Hbc"]
+margin_left = 60.0
+margin_right = 104.0
+margin_bottom = 30.0
+script = ExtResource( 4 )
+
+[node name="AmtL" type="Label" parent="P/Ctl/B/Vbc/Hbc/Vbc2"]
+margin_right = 44.0
+margin_bottom = 10.0
+text = "Amount"
+script = ExtResource( 4 )
+
+[node name="Amt" type="LineEdit" parent="P/Ctl/B/Vbc/Hbc/Vbc2"]
+margin_top = 14.0
+margin_right = 44.0
 margin_bottom = 30.0
 text = "0"
 script = ExtResource( 4 )

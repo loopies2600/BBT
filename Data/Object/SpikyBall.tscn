@@ -162,6 +162,7 @@ tracks/4/keys = {
 radius = 8.0
 
 [node name="SpikyBall" type="Area2D"]
+gravity = 25.0
 script = ExtResource( 2 )
 
 [node name="Graphics" type="Node2D" parent="."]

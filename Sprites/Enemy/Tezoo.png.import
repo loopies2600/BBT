@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/index.png-80964ad67552d78b1e33f58ad16188ff.stex"
+path="res://.import/Tezoo.png-032efd4ce041141ce8c039a178d62ed6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://web/index.png"
-dest_files=[ "res://.import/index.png-80964ad67552d78b1e33f58ad16188ff.stex" ]
+source_file="res://Sprites/Enemy/Tezoo.png"
+dest_files=[ "res://.import/Tezoo.png-032efd4ce041141ce8c039a178d62ed6.stex" ]
 
 [params]
 

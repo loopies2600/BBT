@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=2]
@@ -26,6 +26,8 @@
 [ext_resource path="res://Data/Enemy/HermitBlob/HermitBlob.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Sprites/Object/Token.png" type="Texture" id=25]
 [ext_resource path="res://Sprites/Object/OrbitingPlatform.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Enemy/Tezoo.png" type="Texture" id=27]
+[ext_resource path="res://Data/Enemy/Tezoo/Tezoo.tscn" type="PackedScene" id=28]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 0.0
@@ -114,6 +116,10 @@ region = Rect2( 0, 48, 16, 16 )
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 20 )
 region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 27 )
+region = Rect2( 32, 48, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
@@ -315,6 +321,14 @@ texture = SubResource( 16 )
 isTile = false
 itemName = "Hermit Blob"
 itemScene = ExtResource( 24 )
+
+[node name="Tezoo" parent="TabContainer/Entities/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+texture = SubResource( 19 )
+isTile = false
+itemName = "Tezoo"
+itemScene = ExtResource( 28 )
+customParams = {
+}
 
 [node name="Markers" type="Tabs" parent="TabContainer"]
 visible = false

@@ -22,8 +22,6 @@ func _fileDrop(files, _screen):
 	_setTexture(files[0])
 	
 func _setTexture(path := ""):
-	if !path.ends_with(".png"): return
-	
 	var img = Image.new()
 	var error = img.load(path)
 	

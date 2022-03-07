@@ -73,6 +73,15 @@ func makeCurve(points := [], offset := Vector2(), dist := 8):
 	
 	return c.get_baked_points()
 	
+func offscreenCheck(target : Node2D) -> bool:
+	var screenPos := target.get_global_transform_with_canvas().origin
+		
+	if screenPos.x > 418 || screenPos.x < 0:
+		return true
+	if screenPos.y > 240 || screenPos.y < 0:
+		return true
+	
+	return false
 "
 
 [node name="Main" type="Node2D"]

@@ -50,6 +50,7 @@ func letsStart():
 	# por ahora desactivemos la gravedad y los controles
 	canInput = false
 	doGravity = false
+	upDirection = Vector2.UP
 	
 	# para evitar que choque con algo mientras salta
 	# desactivemos su colisión
@@ -65,14 +66,8 @@ func _physics_process(_delta):
 	
 	Main.entityLookTowards = global_position
 	
-	_bottomKillCheck()
-	
 	gfx.scale.x = dir
 	push(maxSpd * dir)
-	
-func _bottomKillCheck():
-	if get_global_transform_with_canvas().origin.y > 240 && !collisionBox.disabled:
-		kill({"noAnim" : true})
 	
 func _dustTrigger():
 	pass
