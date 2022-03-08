@@ -1,6 +1,7 @@
 extends TileMap
 
 const INDESTRUCTIBLE := [23, 24]
+const SAVE_PATH = "user://level.tscn"
 
 # warning-ignore:unused_signal
 signal tile_anim_finished
@@ -20,6 +21,29 @@ var _transposeCopy := []
 var tokenAmount := 0
 var tokensCollected := 0
 
+func loadLvl():
+	var scn = load(SAVE_PATH)
+	
+	if scn:
+		var newLvl = scn.instance()
+		get_parent().add_child(newLvl)
+		
+		for c in newLvl.get_children():
+			if c is TileMap:
+				pass
+			else:
+				c.add_to_group("Instances")
+			
+		queue_free()
+	
+func saveLvl():
+	var scn := PackedScene.new()
+	
+	var err = scn.pack(self)
+	
+	if err == OK:
+		ResourceSaver.save(SAVE_PATH, scn)
+		
 func resetObjectState():
 	for c in get_children():
 		if c.has_method("resetState"):
@@ -70,6 +94,8 @@ func restoreMap():
 		set_cellv(_cellPosCopy[c], _cellIDCopy[c], _flipXCopy[c], _flipYCopy[c], _transposeCopy[c])
 		
 func _ready():
+	Main.level = self
+	
 	_flipOneWayCollisionShapes()
 	
 func purgeCircle(pos, radius, with := -1, target := self):

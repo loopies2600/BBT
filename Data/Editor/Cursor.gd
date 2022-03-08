@@ -71,6 +71,8 @@ func _input(event):
 	if !Main.editing:
 		return
 		
+	level.saveLvl()
+	
 	match mode:
 		Modes.PLACE:
 			if canPlace:
@@ -105,6 +107,7 @@ func _input(event):
 								
 							level.add_child(instance)
 							instance.owner = level
+							
 							emit_signal("object_placed", cellPos)
 					
 				if Input.is_action_pressed("mouse_secondary"):

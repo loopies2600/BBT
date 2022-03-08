@@ -26,6 +26,8 @@ var entityLookTowards := Vector2()
 
 func _ready():
 	add_child(level)
+	level.loadLvl()
+	
 	changeScene(PLAYER)
 	
 func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
