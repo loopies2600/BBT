@@ -16,7 +16,6 @@ var editing := true
 onready var hud := $HUD
 onready var background := $ImageBG
 onready var level : TileMap = preload(\"res://Data/Level/Level.tscn\").instance()
-onready var fileDialog := preload(\"res://Data/Editor/FileDialog.tscn\").instance()
 
 var currentScene
 
@@ -25,12 +24,9 @@ var attempt := 1
 var entityLookTowards := Vector2()
 
 func _ready():
-	add_child(fileDialog)
+	var lvl = JavaScript.eval(\"openFileDialog(.tscn, 'help')\")
 	
-	fileDialog.connect(\"popup_hide\", self, \"_dialogHide\")
-	fileDialog.popup()
-	
-func _dialogHide():
+func _levelInit():
 	add_child(level)
 	level.loadLvl()
 	
