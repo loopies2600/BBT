@@ -32,3 +32,31 @@ func sortByClosest(a, b) -> bool:
 	if a.global_position.distance_to(sortWho.global_position) < b.global_position.distance_to(sortWho.global_position):
 		return true
 	else: return false
+	
+func makeCurve(points := [], offset := Vector2(), dist := 8):
+	var c := Curve2D.new()
+	
+	for p in range(points.size()):
+		points[p] += offset
+		
+	var startDir = points[0].direction_to(points[1])
+	c.add_point(points[0], -startDir * dist, startDir * dist)
+	
+	for i in range(1, points.size() - 1):
+		var dir = points[i - 1].direction_to(points[i + 1])
+		c.add_point(points[i], -dir * dist, dir * dist)
+		
+	var endDir = points[-1].direction_to(points[-2])
+	c.add_point(points[-1], -endDir * dist, endDir * dist)
+	
+	return c.get_baked_points()
+	
+func offscreenCheck(target : Node2D) -> bool:
+	var screenPos := target.get_global_transform_with_canvas().origin
+		
+	if screenPos.x > 418 || screenPos.x < 0:
+		return true
+	if screenPos.y > 240 || screenPos.y < 0:
+		return true
+	
+	return false

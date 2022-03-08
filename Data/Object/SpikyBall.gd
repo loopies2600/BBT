@@ -18,7 +18,7 @@ func _physics_process(delta):
 	if doGravity:
 		velocity.y += gravity
 		
-		var kill = Main.offscreenCheck(self)
+		var kill = Tools.offscreenCheck(self)
 		
 		if kill: queue_free()
 		

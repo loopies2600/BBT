@@ -45,6 +45,8 @@ func _input(event):
 		_switchStates()
 		
 func _switchStates():
+	level.saveLvl()
+	
 	if !_levelIsValid(): return
 	
 	Main.editing = !Main.editing

@@ -70,8 +70,6 @@ func _configuratorCheck():
 func _input(event):
 	if !Main.editing:
 		return
-		
-	level.saveLvl()
 	
 	match mode:
 		Modes.PLACE:

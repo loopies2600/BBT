@@ -9,14 +9,14 @@ script/source = "extends Node
 
 const PLAYER := preload(\"res://Data/Scenes/PlayerScene.tscn\")
 const NGIOSTATUS := preload(\"res://Data/Scenes/NewgroundsChecker.tscn\")
-
 const NG := preload(\"res://Data/Util/Newgrounds.tscn\")
 
-var editing := false
+var editing := true
 
 onready var hud := $HUD
 onready var background := $ImageBG
 onready var level : TileMap = preload(\"res://Data/Level/Level.tscn\").instance()
+onready var fileDialog := preload(\"res://Data/Editor/FileDialog.tscn\").instance()
 
 var currentScene
 
@@ -25,6 +25,12 @@ var attempt := 1
 var entityLookTowards := Vector2()
 
 func _ready():
+	add_child(fileDialog)
+	
+	fileDialog.connect(\"popup_hide\", self, \"_dialogHide\")
+	fileDialog.popup()
+	
+func _dialogHide():
 	add_child(level)
 	level.loadLvl()
 	
@@ -56,34 +62,6 @@ func _input(event):
 				changeScene(NGIOSTATUS)
 			else:
 				changeScene(PLAYER)
-
-func makeCurve(points := [], offset := Vector2(), dist := 8):
-	var c := Curve2D.new()
-	
-	for p in range(points.size()):
-		points[p] += offset
-		
-	var startDir = points[0].direction_to(points[1])
-	c.add_point(points[0], -startDir * dist, startDir * dist)
-	
-	for i in range(1, points.size() - 1):
-		var dir = points[i - 1].direction_to(points[i + 1])
-		c.add_point(points[i], -dir * dist, dir * dist)
-		
-	var endDir = points[-1].direction_to(points[-2])
-	c.add_point(points[-1], -endDir * dist, endDir * dist)
-	
-	return c.get_baked_points()
-	
-func offscreenCheck(target : Node2D) -> bool:
-	var screenPos := target.get_global_transform_with_canvas().origin
-		
-	if screenPos.x > 418 || screenPos.x < 0:
-		return true
-	if screenPos.y > 240 || screenPos.y < 0:
-		return true
-	
-	return false
 "
 
 [node name="Main" type="Node2D"]

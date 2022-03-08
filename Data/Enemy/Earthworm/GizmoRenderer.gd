@@ -12,7 +12,7 @@ func _draw():
 	var m : Vector2 = get_parent().middle - global_position
 	var e : Vector2 = get_parent().end.global_position - global_position
 	
-	draw_polyline(Main.makeCurve([s, m, e], Vector2(8, 8), 24), Color.red, 3)
+	draw_polyline(Tools.makeCurve([s, m, e], Vector2(8, 8), 24), Color.red, 3)
 	
 	draw_rect(Rect2(s, Main.level.cell_size), Color.cornflower, false, 2)
 	draw_rect(Rect2(m, Main.level.cell_size), Color.fuchsia, false, 2)

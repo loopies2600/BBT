@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=2]
+
+[node name="FileDialog" type="FileDialog"]
+visible = true
+margin_top = 24.0
+margin_right = 418.0
+margin_bottom = 240.0
+theme = ExtResource( 2 )
+window_title = "Load Level"
+mode_overrides_title = false
+mode = 0
+access = 2
+filters = PoolStringArray( "*.tscn ; Level data" )
+current_dir = "/home/loopies/Documentos/GitHub/BBT"
+current_path = "/home/loopies/Documentos/GitHub/BBT/"
