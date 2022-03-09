@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Data/Util/OptimalLightRenderer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Data/Backgrounds/ImageBG.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/HTML5FileExchange/HTML5FileExchange.gd" type="Script" id=3]
 [ext_resource path="res://Data/UI/HUD.tscn" type="PackedScene" id=4]
 
 [sub_resource type="GDScript" id=1]
@@ -16,6 +17,7 @@ var editing := true
 onready var hud := $HUD
 onready var background := $ImageBG
 onready var level : TileMap = preload(\"res://Data/Level/Level.tscn\").instance()
+onready var fileTool := $FileTool
 
 var currentScene
 
@@ -24,7 +26,10 @@ var attempt := 1
 var entityLookTowards := Vector2()
 
 func _ready():
-	var lvl = JavaScript.eval(\"openFileDialog(.tscn, 'help')\")
+	if OS.get_name() == \"HTML5\":
+		yield(fileTool.loadLevel(), \"completed\")
+	
+	_levelInit()
 	
 func _levelInit():
 	add_child(level)
@@ -69,3 +74,6 @@ layer = 128
 [node name="ImageBG" parent="." instance=ExtResource( 2 )]
 
 [node name="OptimalLightRenderer" parent="." instance=ExtResource( 1 )]
+
+[node name="FileTool" type="Node" parent="."]
+script = ExtResource( 3 )

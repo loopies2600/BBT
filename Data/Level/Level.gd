@@ -1,7 +1,7 @@
 extends TileMap
 
 const INDESTRUCTIBLE := [23, 24]
-const SAVE_PATH = "user://level.tscn"
+const SAVE_PATH = "user://temp.tscn"
 
 # warning-ignore:unused_signal
 signal tile_anim_finished
