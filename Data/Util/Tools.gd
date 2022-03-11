@@ -2,6 +2,12 @@ extends Node
 
 var sortWho : Node2D
 
+onready var fileTool := Node.new()
+
+func _ready():
+	fileTool.set_script(load("res://addons/HTML5FileExchange/HTML5FileExchange.gd"))
+	add_child(fileTool)
+	
 func getInputDirection(who) -> int:
 	if !who.canInput: return 0
 	
@@ -60,3 +66,17 @@ func offscreenCheck(target : Node2D) -> bool:
 		return true
 	
 	return false
+
+func openFilePicker():
+	if OS.get_name() == "HTML5":
+		return fileTool.loadLevel()
+	elif OS.get_name() == "X11":
+		var out := []
+		OS.execute("/usr/bin/zenity", ["--file-selection", "--file-filter=Level data (.tscn) | *tscn"], true, out)
+		
+		if out[0]:
+			var path : String = out[0]
+			path.erase(out[0].length() - 1, 1)
+			
+			return ResourceLoader.load(path)
+	

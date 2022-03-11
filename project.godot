@@ -69,7 +69,6 @@ settings/fps/force_fps=60
 
 window/size/width=418
 window/size/height=240
-window/size/always_on_top=true
 window/size/test_width=836
 window/size/test_height=480
 window/stretch/mode="viewport"

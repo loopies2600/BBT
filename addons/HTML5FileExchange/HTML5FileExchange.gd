@@ -1,15 +1,8 @@
 extends Node
 
-signal InFocus
-
 func _ready():
 	if OS.get_name() == "HTML5" and OS.has_feature('JavaScript'):
 		_define_js()
-
-
-func _notification(notification:int) -> void:
-	if notification == MainLoop.NOTIFICATION_WM_FOCUS_IN:
-		emit_signal("InFocus")
 
 func _define_js()->void:
 	#Define JS script
@@ -41,7 +34,7 @@ func _define_js()->void:
 	}
 	function download(fileName, byte) {
 		var buffer = Uint8Array.from(byte);
-		var blob = new Blob([buffer], { type: 'image/png'});
+		var blob = new Blob([buffer], { type: '.tscn'});
 		var link = document.createElement('a');
 		link.href = window.URL.createObjectURL(blob);
 		link.download = fileName;
@@ -56,9 +49,6 @@ func loadLevel():
 		
 	#Execute js function
 	JavaScript.eval("upload();", true)	#opens promt for choosing file
-	
-	#label.text = "Wait for focus"
-	yield(self, "InFocus")	#wait until js promt is closed
 	
 	#label.text = "Timer on for loading"
 	yield(get_tree().create_timer(0.1), "timeout")	#give some time for async js data load
@@ -80,8 +70,12 @@ func loadLevel():
 	var fileName = JavaScript.eval("fileName;", true)
 	
 	var tscn := File.new()
-	tscn.open("user://temp.tscn", File.WRITE)
+	tscn.open("user://upload.tscn", File.WRITE)
 	tscn.store_buffer(fileData)
+	
+	tscn.close()
+	
+	return ResourceLoader.load("user://upload.tscn")
 
 func save_image(image:Image, fileName:String = "export")->void:
 	if OS.get_name() != "HTML5" or !OS.has_feature('JavaScript'):
