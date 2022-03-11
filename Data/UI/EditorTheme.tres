@@ -190,13 +190,19 @@ corner_radius_bottom_left = 4
 anti_aliasing = false
 anti_aliasing_size = 0.01
 
-[sub_resource type="StyleBoxFlat" id=35]
+[sub_resource type="StyleBoxFlat" id=37]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color( 0.913725, 0.847059, 0.717647, 1 )
-shadow_color = Color( 0, 0, 0, 0 )
+content_margin_bottom = 2.0
+bg_color = Color( 0.905882, 0.835294, 0.698039, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+expand_margin_bottom = 5.0
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id=9]
@@ -399,7 +405,7 @@ HScrollBar/styles/grabber_pressed = SubResource( 7 )
 HScrollBar/styles/scroll = SubResource( 8 )
 ItemList/colors/font_color_selected = Color( 0.301961, 0.301961, 0.717647, 1 )
 Label/colors/font_color = Color( 0, 0, 0, 1 )
-Label/styles/normal = SubResource( 35 )
+Label/styles/normal = SubResource( 37 )
 LineEdit/colors/cursor_color = Color( 0, 0, 0, 1 )
 LineEdit/colors/font_color = Color( 0, 0, 0, 1 )
 LineEdit/constants/minimum_spaces = 4
