@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Data/Tilesets/AreaZero.tres" type="TileSet" id=1]
 [ext_resource path="res://Data/Level/Level.gd" type="Script" id=2]
 [ext_resource path="res://Data/Object/LightBased.gd" type="Script" id=4]
-[ext_resource path="res://Data/Object/LightBased.material" type="Material" id=5]
 
 [node name="LevelLayout" type="TileMap"]
-material = ExtResource( 5 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2

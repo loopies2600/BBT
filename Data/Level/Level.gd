@@ -113,4 +113,7 @@ func _flipOneWayCollisionShapes():
 	tile_set.tile_set_shape_transform(11, 0, Transform2D(deg2rad(180), Vector2(16, 16)))
 	
 func _process(_delta):
-	material.light_mode = 2 * int(darkMode)
+	if Main.editing:
+		modulate.a = 1.0 if get_tree().get_nodes_in_group("Cursor")[0].targetTilemap.name == name else 0.5
+	else:
+		modulate.a = 1.0

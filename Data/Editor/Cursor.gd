@@ -32,6 +32,8 @@ func _ready():
 	connect("object_removed", level, "_onObjectRemoval")
 	
 func _process(_delta):
+	visible = Main.editing
+	
 	rotating = Input.is_action_pressed("mouse_secondary")
 	
 	var result : Vector2 = (_frickinPositionFormula() / level.cell_size).round() * level.cell_size
