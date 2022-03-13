@@ -16,12 +16,22 @@ var attempt := 1
 
 var entityLookTowards := Vector2()
 
-func _ready():
+func setNewLevel():
 	var newLvl = Tools.openFilePicker()
 	
 	if newLvl:
+		currentScene.queue_free()
+		currentScene = null
+	
+		level.queue_free()
+		level = null
+	
+		yield(get_tree(), "idle_frame")
 		level = newLvl.instance()
 		
+		_levelInit(level)
+		
+func _ready():
 	_levelInit(level)
 	
 func _levelInit(lev):

@@ -1,0 +1,219 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Editor/Button.png" type="Texture" id=2]
+[ext_resource path="res://Data/Editor/MenuBar/Button/Pencil.gd" type="Script" id=3]
+[ext_resource path="res://Data/Editor/MenuBar/ManipulatorButton.gd" type="Script" id=4]
+[ext_resource path="res://Data/Editor/MenuBar/Button/Move.gd" type="Script" id=5]
+[ext_resource path="res://Data/Editor/MenuBar/Button/ItemConfig.gd" type="Script" id=6]
+[ext_resource path="res://Data/Editor/MenuBar/Button/Play.gd" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.454902, 0.568627, 0.572549, 1 )
+border_width_left = 1
+border_color = Color( 0, 0, 0, 1 )
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 112, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 112, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 16, 16, 16 )
+
+[node name="Sidebar" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -144, 40 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UtilButtons" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 2.0
+margin_bottom = 2.0
+custom_constants/separation = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pencil" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
+margin_right = 414.0
+margin_bottom = 16.0
+mouse_filter = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+pressed = true
+texture_normal = SubResource( 2 )
+texture_pressed = SubResource( 3 )
+stretch_mode = 2
+script = ExtResource( 3 )
+
+[node name="Move" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
+margin_top = 20.0
+margin_right = 414.0
+margin_bottom = 36.0
+mouse_filter = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = SubResource( 4 )
+texture_pressed = SubResource( 5 )
+stretch_mode = 2
+script = ExtResource( 5 )
+
+[node name="ItemConfig" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
+margin_top = 40.0
+margin_right = 414.0
+margin_bottom = 56.0
+mouse_filter = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = SubResource( 6 )
+texture_pressed = SubResource( 7 )
+stretch_mode = 2
+script = ExtResource( 6 )
+
+[node name="Grid" type="TextureButton" parent="UtilButtons"]
+margin_top = 60.0
+margin_right = 414.0
+margin_bottom = 76.0
+mouse_filter = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+stretch_mode = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "showGrid"
+action = "show_grid"
+
+[node name="CellNumbers" type="TextureButton" parent="UtilButtons"]
+margin_top = 80.0
+margin_right = 414.0
+margin_bottom = 96.0
+mouse_filter = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = SubResource( 10 )
+texture_pressed = SubResource( 11 )
+stretch_mode = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "showCells"
+action = "show_cell_numbers"
+
+[node name="UsedTiles" type="TextureButton" parent="UtilButtons"]
+margin_top = 100.0
+margin_right = 414.0
+margin_bottom = 116.0
+mouse_filter = 1
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = SubResource( 12 )
+texture_pressed = SubResource( 13 )
+stretch_mode = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "showCellBox"
+action = "show_object_info"
+
+[node name="LevelButtons" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 6.0
+margin_right = -4.0
+margin_bottom = -2.0
+mouse_filter = 2
+custom_constants/separation = 4
+alignment = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="TextureButton" parent="LevelButtons"]
+margin_top = 216.0
+margin_right = 410.0
+margin_bottom = 232.0
+mouse_filter = 1
+shortcut_in_tooltip = false
+texture_normal = SubResource( 16 )
+texture_pressed = SubResource( 17 )
+stretch_mode = 2
+script = ExtResource( 7 )

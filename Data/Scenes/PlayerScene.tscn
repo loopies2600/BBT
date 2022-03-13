@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Data/Editor/Camera.gd" type="Script" id=1]
 [ext_resource path="res://Data/Editor/Cursor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Data/Editor/Sidebar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Data/Scenes/PlayerScene.gd" type="Script" id=4]
 [ext_resource path="res://Data/Editor/EditorObjects.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Editor/MenuBar.tscn" type="PackedScene" id=6]
@@ -19,6 +20,11 @@ script = ExtResource( 4 )
 layer = 8
 script = ExtResource( 7 )
 
+[node name="Sidebar" parent="GUILayer" instance=ExtResource( 3 )]
+margin_left = 392.0
+margin_top = 16.0
+margin_bottom = -48.0
+
 [node name="EditorObjects" parent="GUILayer" instance=ExtResource( 5 )]
 anchor_bottom = 0.0
 margin_top = 188.0
@@ -30,6 +36,9 @@ margin_bottom = -224.0
 [node name="Descriptor" parent="GUILayer" instance=ExtResource( 8 )]
 
 [node name="TileLayerSelect" parent="GUILayer" instance=ExtResource( 10 )]
+margin_left = 320.0
+margin_right = -34.0
+margin_bottom = -152.0
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0

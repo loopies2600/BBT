@@ -4,7 +4,7 @@ const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
 onready var cursor := $Cursor
 onready var tilesTab := $GUILayer/EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
-onready var utilButtons := $GUILayer/MenuBar/UtilButtons
+onready var utilButtons := $GUILayer/Sidebar/UtilButtons
 onready var cam := $Camera
 onready var guiLayer := $GUILayer
 onready var desc := $GUILayer/Descriptor
