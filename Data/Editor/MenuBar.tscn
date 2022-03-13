@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
@@ -93,19 +93,54 @@ region = Rect2( 16, 0, 16, 16 )
 atlas = ExtResource( 3 )
 region = Rect2( 16, 16, 16, 16 )
 
+[sub_resource type="StyleBoxFlat" id=24]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 1, 1, 1, 0.501961 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.235294, 0, 0, 0.501961 )
+
+[sub_resource type="StyleBoxFlat" id=26]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 1, 1, 1, 0.25098 )
+
+[sub_resource type="StyleBoxFlat" id=23]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 1, 1, 1, 0 )
+
 [node name="MenuBar" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BG" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="UtilButtons" type="HBoxContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -207,6 +242,7 @@ property = "showCellBox"
 action = "show_object_info"
 
 [node name="LevelButtons" type="HBoxContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -255,6 +291,36 @@ shortcut_in_tooltip = false
 texture_normal = SubResource( 16 )
 texture_pressed = SubResource( 17 )
 stretch_mode = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+margin_right = 34.0
+margin_bottom = 16.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="File" type="MenuButton" parent="Buttons"]
+margin_right = 32.0
+margin_bottom = 16.0
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/focus = SubResource( 26 )
+custom_styles/normal = SubResource( 23 )
+text = "File"
+flat = false
+script = ExtResource( 2 )
+
+[node name="PopupMenu2" type="PopupMenu" parent="Buttons/File"]
+margin_top = 16.0
+margin_right = 101.0
+margin_bottom = 61.0
+items = [ "Elemento 0", null, 0, false, false, 0, 0, null, "", false, "Elemento 1", null, 0, false, false, 1, 0, null, "", false, "Elemento 2", null, 0, false, false, 2, 0, null, "", false ]
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

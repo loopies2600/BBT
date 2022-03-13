@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=39 format=2]
+[gd_resource type="Theme" load_steps=42 format=2]
 
 [ext_resource path="res://Sprites/Font/Editor.tres" type="BitmapFont" id=1]
 [ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=2]
 [ext_resource path="res://Sprites/Editor/Theme.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/UI/FileDialog.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Font/Editor.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxFlat" id=19]
 content_margin_left = 4.0
@@ -237,30 +238,35 @@ corner_radius_bottom_left = 4
 anti_aliasing = false
 anti_aliasing_size = 0.01
 
+[sub_resource type="BitmapFont" id=39]
+textures = [ ExtResource( 5 ) ]
+chars = PoolIntArray( 80, 0, 35, 8, 5, 8, 0, 0, 6, 112, 0, 5, 40, 5, 8, 0, 0, 6, 48, 0, 20, 48, 5, 8, 0, 0, 6, 32, 0, 30, 56, 5, 8, 0, 0, 6, 96, 0, 25, 80, 5, 8, 0, 0, 6, 33, 0, 5, 64, 5, 8, 0, 0, 6, 65, 0, 0, 0, 5, 8, 0, 0, 6, 81, 0, 0, 16, 5, 8, 0, 0, 6, 97, 0, 10, 24, 5, 8, 0, 0, 6, 113, 0, 10, 40, 5, 8, 0, 0, 6, 49, 0, 25, 48, 5, 8, 0, 0, 6, 161, 0, 25, 72, 5, 8, 0, 0, 6, 34, 0, 20, 64, 5, 8, 0, 0, 6, 66, 0, 5, 0, 5, 8, 0, 0, 6, 82, 0, 5, 16, 5, 8, 0, 0, 6, 98, 0, 15, 24, 5, 8, 0, 0, 6, 114, 0, 15, 40, 5, 8, 0, 0, 6, 50, 0, 30, 48, 5, 8, 0, 0, 6, 35, 0, 25, 64, 5, 8, 0, 0, 6, 67, 0, 10, 0, 5, 8, 0, 0, 6, 83, 0, 10, 16, 5, 8, 0, 0, 6, 99, 0, 20, 24, 5, 8, 0, 0, 6, 115, 0, 20, 40, 5, 8, 0, 0, 6, 51, 0, 35, 48, 5, 8, 0, 0, 6, 36, 0, 15, 64, 5, 8, 0, 0, 6, 68, 0, 15, 0, 5, 8, 0, 0, 6, 84, 0, 15, 16, 5, 8, 0, 0, 6, 100, 0, 25, 24, 5, 8, 0, 0, 6, 116, 0, 25, 40, 5, 8, 0, 0, 6, 52, 0, 0, 56, 5, 8, 0, 0, 6, 37, 0, 30, 64, 5, 8, 0, 0, 6, 69, 0, 20, 0, 5, 8, 0, 0, 6, 85, 0, 20, 16, 5, 8, 0, 0, 6, 101, 0, 30, 24, 5, 8, 0, 0, 6, 117, 0, 30, 40, 5, 8, 0, 0, 6, 53, 0, 5, 56, 5, 8, 0, 0, 6, 38, 0, 35, 64, 5, 8, 0, 0, 6, 70, 0, 25, 0, 5, 8, 0, 0, 6, 86, 0, 25, 16, 5, 8, 0, 0, 6, 102, 0, 35, 24, 5, 8, 0, 0, 6, 118, 0, 35, 40, 5, 8, 0, 0, 6, 54, 0, 10, 56, 5, 8, 0, 0, 6, 71, 0, 30, 0, 5, 8, 0, 0, 6, 87, 0, 30, 16, 5, 8, 0, 0, 6, 103, 0, 0, 32, 5, 8, 0, 0, 6, 119, 0, 0, 48, 5, 8, 0, 0, 6, 55, 0, 15, 56, 5, 8, 0, 0, 6, 40, 0, 5, 72, 5, 8, 0, 0, 6, 72, 0, 35, 0, 5, 8, 0, 0, 6, 88, 0, 35, 16, 5, 8, 0, 0, 6, 104, 0, 5, 32, 5, 8, 0, 0, 6, 120, 0, 5, 48, 5, 8, 0, 0, 6, 56, 0, 20, 56, 5, 8, 0, 0, 6, 41, 0, 10, 72, 5, 8, 0, 0, 6, 73, 0, 0, 8, 5, 8, 0, 0, 6, 89, 0, 0, 24, 5, 8, 0, 0, 6, 105, 0, 10, 32, 5, 8, 0, 0, 6, 121, 0, 10, 48, 5, 8, 0, 0, 6, 57, 0, 25, 56, 5, 8, 0, 0, 6, 58, 0, 0, 64, 5, 8, 0, 0, 6, 42, 0, 0, 88, 5, 8, 0, 0, 6, 74, 0, 5, 8, 5, 8, 0, 0, 6, 90, 0, 5, 24, 5, 8, 0, 0, 6, 106, 0, 15, 32, 5, 8, 0, 0, 6, 122, 0, 15, 48, 5, 8, 0, 0, 6, 123, 0, 30, 80, 5, 8, 0, 0, 6, 91, 0, 10, 80, 5, 8, 0, 0, 6, 59, 0, 5, 80, 5, 8, 0, 0, 6, 43, 0, 30, 72, 5, 8, 0, 0, 6, 75, 0, 10, 8, 5, 8, 0, 0, 6, 107, 0, 20, 32, 5, 8, 0, 0, 6, 60, 0, 15, 88, 5, 8, 0, 0, 6, 44, 0, 35, 56, 5, 8, 0, 0, 6, 76, 0, 15, 8, 5, 8, 0, 0, 6, 108, 0, 25, 32, 5, 8, 0, 0, 6, 125, 0, 35, 80, 5, 8, 0, 0, 6, 93, 0, 15, 80, 5, 8, 0, 0, 6, 45, 0, 35, 72, 5, 8, 0, 0, 6, 61, 0, 15, 72, 5, 8, 0, 0, 6, 77, 0, 20, 8, 5, 8, 0, 0, 6, 109, 0, 30, 32, 5, 8, 0, 0, 6, 62, 0, 10, 88, 5, 8, 0, 0, 6, 126, 0, 5, 88, 5, 8, 0, 0, 6, 94, 0, 20, 80, 5, 8, 0, 0, 6, 46, 0, 30, 56, 5, 8, 0, 0, 6, 78, 0, 25, 8, 5, 8, 0, 0, 6, 110, 0, 35, 32, 5, 8, 0, 0, 6, 95, 0, 0, 80, 5, 8, 0, 0, 6, 191, 0, 20, 72, 5, 8, 0, 0, 6, 47, 0, 0, 72, 5, 8, 0, 0, 6, 63, 0, 10, 64, 5, 8, 0, 0, 6, 79, 0, 30, 8, 5, 8, 0, 0, 6, 111, 0, 0, 40, 5, 8, 0, 0, 6 )
+height = 6.0
+
 [sub_resource type="StyleBoxFlat" id=29]
 bg_color = Color( 0.894118, 0.764706, 0.678431, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+expand_margin_right = 23.0
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id=28]
-content_margin_left = 4.0
-content_margin_right = 4.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
+content_margin_left = 9.0
+content_margin_right = 32.0
+content_margin_top = 0.0
+content_margin_bottom = 3.0
 bg_color = Color( 0.792157, 0.733333, 0.643137, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0, 0, 0, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+expand_margin_top = 1.0
 anti_aliasing = false
+
+[sub_resource type="StyleBoxLine" id=38]
+color = Color( 0, 0, 0, 0.25098 )
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 4.0
@@ -420,9 +426,9 @@ PopupMenu/colors/font_color_accel = Color( 0.301961, 0.301961, 0.717647, 1 )
 PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
 PopupMenu/colors/font_color_hover = Color( 0.301961, 0.301961, 0.717647, 1 )
 PopupMenu/colors/font_color_separator = Color( 0.88, 0.88, 0.88, 1 )
-PopupMenu/constants/hseparation = 4
-PopupMenu/constants/vseparation = 4
-PopupMenu/fonts/font = null
+PopupMenu/constants/hseparation = 8
+PopupMenu/constants/vseparation = 8
+PopupMenu/fonts/font = SubResource( 39 )
 PopupMenu/icons/checked = null
 PopupMenu/icons/radio_checked = SubResource( 13 )
 PopupMenu/icons/radio_unchecked = SubResource( 15 )
@@ -433,7 +439,7 @@ PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
 PopupMenu/styles/panel = SubResource( 28 )
 PopupMenu/styles/panel_disabled = null
-PopupMenu/styles/separator = null
+PopupMenu/styles/separator = SubResource( 38 )
 TabContainer/colors/font_color_bg = Color( 0.521569, 0.388235, 0.388235, 1 )
 TabContainer/colors/font_color_fg = Color( 0, 0, 0, 1 )
 TabContainer/styles/panel = SubResource( 2 )
