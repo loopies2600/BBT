@@ -76,7 +76,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/HTML5FileExchange/plugin.cfg", "res://addons/newgrounds/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/HTML5FileExchange/plugin.cfg" )
 
 [importer_defaults]
 

@@ -47,7 +47,7 @@ func _input(event):
 func _switchStates():
 	level.saveLvl()
 	
-	if !_levelIsValid(): return
+	if !levelIsValid(): return
 	
 	Main.editing = !Main.editing
 	cam.global_position = Vector2()
@@ -97,7 +97,7 @@ func restart():
 	
 	player.letsStart()
 	
-func _levelIsValid() -> bool:
+func levelIsValid() -> bool:
 	var hasSpawnPoint := false
 	var hasTiles := level.get_used_cells().size() != 0
 	

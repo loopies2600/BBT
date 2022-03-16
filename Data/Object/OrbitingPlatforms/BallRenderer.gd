@@ -10,6 +10,7 @@ func _process(_delta):
 	
 func _draw():
 	for c in get_parent().get_children():
+# warning-ignore:narrowing_conversion
 		var pB : int = ceil(c.global_position.distance_to(get_parent().global_position)) / 16
 		
 		for i in range(pB):

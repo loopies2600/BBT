@@ -68,46 +68,58 @@ func offscreenCheck(target : Node2D) -> bool:
 	return false
 
 func openFilePicker():
-	if OS.get_name() == "HTML5":
-		return webFileTool.loadLevel()
-	elif OS.get_name() == "X11":
-		var out := []
-		var _unused = OS.execute("/usr/bin/zenity", ["--file-selection", "--file-filter=Level data (*.tscn) | *tscn"], true, out)
-		
-		if out[0]:
-			var path : String = out[0]
-			path.erase(out[0].length() - 1, 1)
+	match OS.get_name():
+		"HTML5":
+			return webFileTool.loadLevel()
+		"X11":
+			var out := []
+			var _unused = OS.execute("/usr/bin/zenity", ["--file-selection", "--file-filter=Level data (*.tscn) | *tscn", "--title=Load Level"], true, out)
+			
+			if out[0]:
+				var path : String = out[0]
+				path.erase(out[0].length() - 1, 1)
+				
+				return ResourceLoader.load(path)
+				
+		"Windows":
+			var getFile := [
+			"Add-Type -AssemblyName System.Windows.Forms",
+			"$FileBrowser = New-Object System.Windows.Forms.OpenFileDialog",
+			"$FileBrowser.filter = \"Level data | *.tscn\"",
+			"[void]$FileBrowser.ShowDialog()",
+			"$FileBrowser.FileName"]
+			
+			var tmpScript := File.new()
+			var _err = tmpScript.open("temp.ps1", File.WRITE)
+			
+			for line in getFile:
+				tmpScript.store_line(line)
+				
+			tmpScript.flush()
+			tmpScript.close()
+			
+			var dir := Directory.new()
+			_err = dir.open(".")
+			var path := dir.get_current_dir()
+			var out := []
+			_err = OS.execute("powershell.exe", [path + "/temp.ps1"], true, out)
+			
+			_err = dir.remove(path + "/temp.ps1")
+			
+			path = out[0]
+			path.erase(out[0].length() - 2, 2)
+			
 			
 			return ResourceLoader.load(path)
-			
-	elif OS.get_name() == "Windows":
-		var getFile := [
-		"Add-Type -AssemblyName System.Windows.Forms",
-		"$FileBrowser = New-Object System.Windows.Forms.OpenFileDialog",
-		"$FileBrowser.filter = \"Level data | *.tscn\"",
-		"[void]$FileBrowser.ShowDialog()",
-		"$FileBrowser.FileName"]
-		
-		var tmpScript := File.new()
-		var _err = tmpScript.open("temp.ps1", File.WRITE)
-		
-		for line in getFile:
-			tmpScript.store_line(line)
-			
-		tmpScript.flush()
-		tmpScript.close()
-		
-		var dir := Directory.new()
-		_err = dir.open(".")
-		var path := dir.get_current_dir()
-		var out := []
-		_err = OS.execute("powershell.exe", [path + "/temp.ps1"], true, out)
-		
-		_err = dir.remove(path + "/temp.ps1")
-		
-		path = out[0]
-		path.erase(out[0].length() - 2, 2)
-		
-		
-		return ResourceLoader.load(path)
 	
+func openFolderPicker():
+	match OS.get_name():
+		"X11":
+			var out := []
+			var _unused = OS.execute("/usr/bin/zenity", ["--file-selection", "--directory", "--title=Save Level"], true, out)
+			
+			if out[0]:
+				var path : String = out[0]
+				path.erase(out[0].length() - 1, 1)
+				
+				return path

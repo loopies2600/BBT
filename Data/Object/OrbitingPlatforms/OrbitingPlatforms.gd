@@ -23,7 +23,7 @@ func _spawnPlatforms():
 	
 	var ang := 0.0
 	
-	for i in range(amount):
+	for _i in range(amount):
 		var newPlat := PLATFORM.instance()
 		newPlat.initialAngle = rad2deg(ang)
 		newPlat.distance = distance

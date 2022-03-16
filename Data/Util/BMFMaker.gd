@@ -33,4 +33,4 @@ func generate():
 		column += 1
 		
 	bm.height = charSpacing.y
-	ResourceSaver.save(path, bm)
+	var _err = ResourceSaver.save(path, bm)

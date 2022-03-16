@@ -8,8 +8,12 @@ func _ready():
 		popup.add_item("Exit")
 	
 func _popupButtonPress(id := 0):
+	._popupButtonPress(id)
+	
 	match id:
 		0:
 			Main.setNewLevel()
+		1:
+			Main.saveLevel()
 		2:
 			get_tree().quit(0)

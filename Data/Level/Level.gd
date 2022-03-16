@@ -36,13 +36,13 @@ func loadLvl():
 			
 		queue_free()
 	
-func saveLvl():
+func saveLvl(path := SAVE_PATH):
 	var scn := PackedScene.new()
 	
 	var err = scn.pack(self)
 	
 	if err == OK:
-		ResourceSaver.save(SAVE_PATH, scn)
+		err = ResourceSaver.save(path, scn)
 		
 func resetObjectState():
 	for c in get_children():
@@ -69,6 +69,7 @@ func _resetTokens():
 		t.connect("taken", self, "_onTokenCollect")
 	
 func _onTokenCollect():
+# warning-ignore:narrowing_conversion
 	tokensCollected = min(tokensCollected + 1, tokenAmount)
 	
 func copyMap():
@@ -92,7 +93,16 @@ func restoreMap():
 		
 	for c in range(_cellPosCopy.size()):
 		set_cellv(_cellPosCopy[c], _cellIDCopy[c], _flipXCopy[c], _flipYCopy[c], _transposeCopy[c])
+	
+func clearContents():
+	for c in get_children():
+		if c.is_in_group("Instances"):
+			c.queue_free()
 		
+	for o in [self, $Foreground, $Background]:
+		for c in o.get_used_cells():
+			o.set_cellv(c, -1)
+	
 func _ready():
 	Main.level = self
 	

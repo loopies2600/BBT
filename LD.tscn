@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/Font/Editor.tres" type="BitmapFont" id=1]
+[ext_resource path="res://Sprites/Font/Editor.png" type="Texture" id=2]
+[ext_resource path="res://Data/Util/BMFMaker.gd" type="Script" id=3]
+
+[node name="LD" type="Label"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 172.0
+margin_top = 184.0
+margin_right = 249.0
+margin_bottom = 198.0
+custom_fonts/font = ExtResource( 1 )
+text = "LOADING"
+align = 1
+valign = 1
+script = ExtResource( 3 )
+charSize = Vector2( 5, 8 )
+charSpacing = Vector2( 6, 8 )
+texture = ExtResource( 2 )
+path = "res://Sprites/Font/Editor.tres"
+columns = PoolStringArray( "ABCDEFGH", "IJKLMNOP", "QRSTUVWX", "YZabcdef", "ghijklmn", "opqrstuv", "wxyz0123", "456789.,", ":!\?$\"#%&", "/()=¿¡+-", "_;[]^´{}", "*~><áéíó", "úñÑ " )

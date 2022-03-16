@@ -19,18 +19,40 @@ var entityLookTowards := Vector2()
 func setNewLevel():
 	var newLvl = Tools.openFilePicker()
 	
+	if OS.get_name() == "HTML5":
+		return
+		
 	if newLvl:
-		currentScene.queue_free()
-		currentScene = null
+		reload(newLvl)
 	
-		level.queue_free()
-		level = null
+func reload(newLvl : PackedScene):
+	currentScene.queue_free()
+	currentScene = null
 	
+	level.queue_free()
+	level = null
+	
+	yield(get_tree(), "idle_frame")
+	level = newLvl.instance()
+	
+	_levelInit(level)
+	
+func saveLevel():
+	if !currentScene.levelIsValid(): return
+	
+	if OS.get_name() == "HTML5":
+		level.saveLvl()
+		
 		yield(get_tree(), "idle_frame")
-		level = newLvl.instance()
 		
-		_levelInit(level)
+		Tools.webFileTool.downloadLevel()
+		return
 		
+	var path : String = Tools.openFolderPicker()
+	
+	if path:
+		level.saveLvl(path)
+	
 func _ready():
 	_levelInit(level)
 	

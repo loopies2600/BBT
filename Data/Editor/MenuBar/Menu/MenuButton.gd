@@ -17,5 +17,5 @@ func _mouseIn():
 func _mouseOut():
 	get_tree().get_nodes_in_group("Cursor")[0].canPlace = true
 	
-func _popupButtonPress(id := 0):
-	pass
+func _popupButtonPress(_id := 0):
+	get_tree().get_nodes_in_group("Cursor")[0].canPlace = true

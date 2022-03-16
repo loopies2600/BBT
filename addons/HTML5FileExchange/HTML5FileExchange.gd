@@ -1,11 +1,16 @@
 extends Node
 
+signal in_focus
+
 func _ready():
 	if OS.get_name() == "HTML5" and OS.has_feature('JavaScript'):
 		_define_js()
 
+func _notification(notification:int) -> void:
+	if notification == MainLoop.NOTIFICATION_WM_FOCUS_IN:
+		emit_signal("in_focus")
+		
 func _define_js()->void:
-	#Define JS script
 	JavaScript.eval("""
 	var fileData;
 	var fileType;
@@ -47,25 +52,22 @@ func loadLevel():
 	if OS.get_name() != "HTML5" or !OS.has_feature('JavaScript'):
 		return
 		
-	#Execute js function
-	JavaScript.eval("upload();", true)	#opens promt for choosing file
+	JavaScript.eval("upload();", true)
 	
-	#label.text = "Timer on for loading"
-	yield(get_tree().create_timer(0.1), "timeout")	#give some time for async js data load
+	yield(self, "in_focus")
 	
-	if JavaScript.eval("canceled;", true):	# if File Dialog closed w/o file
-		#label.text = "Canceled prompt"
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	if JavaScript.eval("canceled;", true):
 		return
 	
-	# use data from png data
-	#label.text = "Load image"
 	var fileData
 	while true:
 		fileData = JavaScript.eval("fileData;", true)
 		if fileData != null:
 			break
-		#label.text = "No image yet"
-		yield(get_tree().create_timer(1.0), "timeout")	#need more time to load data
+			
+		yield(get_tree().create_timer(1.0), "timeout")
 	
 	var fileName = JavaScript.eval("fileName;", true)
 	
@@ -75,23 +77,17 @@ func loadLevel():
 	
 	tscn.close()
 	
-	return ResourceLoader.load("user://upload.tscn")
-
-func save_image(image:Image, fileName:String = "export")->void:
+	Main.reload(ResourceLoader.load("user://upload.tscn"))
+	
+func downloadLevel(fileName:String = "level.tscn")->void:
 	if OS.get_name() != "HTML5" or !OS.has_feature('JavaScript'):
 		return
 		
-	image.clear_mipmaps()
-	if image.save_png("user://export_temp.png"):
-		#label.text = "Error saving temp file"
-		return
-	var file:File = File.new()
-	if file.open("user://export_temp.png", File.READ):
-		#label.text = "Error opening file"
-		return
-	var pngData = Array(file.get_buffer(file.get_len()))	#read data as PoolByteArray and convert it to Array for JS
+	var file := File.new()
+	
+	var _err = file.open("user://temp.tscn", File.READ)
+		
+	var levelData = Array(file.get_buffer(file.get_len()))
 	file.close()
-	var dir = Directory.new()
-	dir.remove("user://export_temp.png")
-	JavaScript.eval("download('%s', %s);" % [fileName, str(pngData)], true)
-	#label.text = "Saving DONE"
+	
+	JavaScript.eval("download('%s', %s);" % [fileName, str(levelData)], true)

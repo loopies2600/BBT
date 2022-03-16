@@ -1,4 +1,4 @@
 extends Sprite
 
-func _process(delta):
+func _process(_delta):
 	visible = Main.editing

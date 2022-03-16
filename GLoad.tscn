@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/UI/Border0.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/UI/Hourglass.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=3]
+[ext_resource path="res://LD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/Font/Big.tres" type="BitmapFont" id=5]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -25,14 +26,11 @@ stretch_mode = 2
 position = Vector2( 209, 120 )
 texture = ExtResource( 2 )
 
-[node name="LD" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 172.0
-margin_top = 184.0
-margin_right = 249.0
-margin_bottom = 198.0
-custom_fonts/font = ExtResource( 3 )
-text = "LOADING"
+[node name="LD" parent="." instance=ExtResource( 3 )]
+margin_left = 24.0
+margin_top = 176.0
+margin_right = 398.0
+margin_bottom = 243.0
+custom_fonts/font = ExtResource( 5 )
+text = "NOW LOADING"
+script = null

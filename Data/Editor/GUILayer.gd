@@ -2,7 +2,7 @@ extends CanvasLayer
 
 onready var guiObjects := [$Sidebar, $EditorObjects, $MenuBar]
 
-func _process(delta):
+func _process(_delta):
 	if Main.editing:
 		for o in guiObjects:
 			o.show()

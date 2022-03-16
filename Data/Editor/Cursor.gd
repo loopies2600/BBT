@@ -28,8 +28,8 @@ var alreadyPressed := false
 var cellPos := Vector2()
 
 func _ready():
-	connect("object_placed", level, "_onObjectPlace")
-	connect("object_removed", level, "_onObjectRemoval")
+	var _unused = connect("object_placed", level, "_onObjectPlace")
+	_unused = connect("object_removed", level, "_onObjectRemoval")
 	
 func _process(_delta):
 	visible = Main.editing
