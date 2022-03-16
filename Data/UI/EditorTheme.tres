@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_resource type="Theme" load_steps=42 format=2]
+=======
+[gd_resource type="Theme" load_steps=40 format=2]
+>>>>>>> Stashed changes
 
 [ext_resource path="res://Sprites/Font/Editor.tres" type="BitmapFont" id=1]
 [ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=2]
@@ -75,34 +79,42 @@ corner_radius_bottom_left = 2
 anti_aliasing = false
 
 [sub_resource type="AtlasTexture" id=11]
+flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=12]
+flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 16, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=13]
+flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=14]
+flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 48, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=15]
+flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=16]
+flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 32, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=17]
+flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=18]
+flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 0, 16, 16, 16 )
 
@@ -223,6 +235,16 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxTexture" id=38]
+texture = ExtResource( 3 )
+region_rect = Rect2( 64, 0, 48, 48 )
+margin_left = 32.0
+margin_right = 32.0
+margin_top = 32.0
+margin_bottom = 32.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.752941, 0.670588, 0.576471, 1 )
@@ -418,7 +440,7 @@ LineEdit/styles/normal = SubResource( 9 )
 MenuButton/colors/font_color_hover = Color( 0.301961, 0.301961, 0.717647, 1 )
 OptionButton/colors/font_color_focus = Color( 0.301961, 0.301961, 0.717647, 1 )
 OptionButton/colors/font_color_hover = Color( 0.301961, 0.301961, 0.717647, 1 )
-Panel/styles/panel = SubResource( 1 )
+Panel/styles/panel = SubResource( 38 )
 PanelContainer/styles/panel = SubResource( 1 )
 PopupMenu/colors/font_color = Color( 0, 0, 0, 1 )
 PopupMenu/colors/font_color_accel = Color( 0.301961, 0.301961, 0.717647, 1 )

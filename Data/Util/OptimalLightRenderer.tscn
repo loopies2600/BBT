@@ -13,6 +13,8 @@ func _process(_delta):
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 2 )
 shader_param/disabled_color = Color( 1, 1, 1, 1 )
+shader_param/reverse = false
+shader_param/replaceWith = Color( 1, 1, 1, 1 )
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("LightVP")
