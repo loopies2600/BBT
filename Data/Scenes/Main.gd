@@ -1,6 +1,6 @@
 extends Node
 
-const PLAYER := preload("res://Data/Scenes/PlayerScene.tscn")
+const EDITOR := preload("res://Data/Scenes/LevelEditor.tscn")
 const NGIOSTATUS := preload("res://Data/Scenes/NewgroundsChecker.tscn")
 const NG := preload("res://Data/Util/Newgrounds.tscn")
 
@@ -16,15 +16,6 @@ var attempt := 1
 
 var entityLookTowards := Vector2()
 
-func setNewLevel():
-	var newLvl = Tools.openFilePicker()
-	
-	if OS.get_name() == "HTML5":
-		return
-		
-	if newLvl:
-		reload(newLvl)
-	
 func reload(newLvl : PackedScene):
 	currentScene.queue_free()
 	currentScene = null
@@ -37,29 +28,13 @@ func reload(newLvl : PackedScene):
 	
 	_levelInit(level)
 	
-func saveLevel():
-	if !currentScene.levelIsValid(): return
-	
-	if OS.get_name() == "HTML5":
-		level.saveLvl()
-		
-		yield(get_tree(), "idle_frame")
-		
-		Tools.webFileTool.downloadLevel()
-		return
-		
-	var path : String = Tools.openFolderPicker()
-	
-	if path:
-		level.saveLvl(path)
-	
 func _ready():
 	_levelInit(level)
 	
 func _levelInit(lev):
 	add_child(lev)
 	
-	changeScene(PLAYER)
+	changeScene(EDITOR)
 	
 func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
 	for i in range(rotations.size()):
@@ -83,7 +58,7 @@ func changeScene(packedScene):
 func _input(event):
 	if event is InputEventKey && event.is_pressed() && !event.is_echo():
 		if event.scancode == KEY_F9:
-			if currentScene.name == "PlayScene":
+			if currentScene.name == "LevelEditor":
 				changeScene(NGIOSTATUS)
 			else:
-				changeScene(PLAYER)
+				changeScene(EDITOR)

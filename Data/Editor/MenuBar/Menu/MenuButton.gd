@@ -1,5 +1,6 @@
 extends MenuButton
 
+onready var editor := owner.owner
 onready var popup := get_popup()
 
 func _ready():
@@ -12,10 +13,10 @@ func _ready():
 	_unused = popup.connect("id_pressed", self, "_popupButtonPress")
 	
 func _mouseIn():
-	get_tree().get_nodes_in_group("Cursor")[0].canPlace = false
+	editor.cursor.canPlace = false
 	
 func _mouseOut():
-	get_tree().get_nodes_in_group("Cursor")[0].canPlace = true
+	editor.cursor.canPlace = true
 	
 func _popupButtonPress(_id := 0):
-	get_tree().get_nodes_in_group("Cursor")[0].canPlace = true
+	editor.cursor.canPlace = true

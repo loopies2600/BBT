@@ -1,15 +1,10 @@
 extends Node2D
 
-const ITEM := preload("res://Data/Editor/EditorItem.tscn")
-
 onready var cursor := $Cursor
-onready var tilesTab := $GUILayer/EditorObjects/TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 onready var utilButtons := $GUILayer/Sidebar/UtilButtons
 onready var cam := $Camera
 onready var guiLayer := $GUILayer
 onready var desc := $GUILayer/Descriptor
-
-onready var level : TileMap = Main.level
 
 var showGrid := false
 var showCells := false
@@ -22,8 +17,6 @@ func _ready():
 	
 	Main.editing = true
 	
-	_spawnTileItems()
-	
 func _process(_delta):
 	if Main.editing:
 		Main.entityLookTowards = get_global_mouse_position()
@@ -31,39 +24,55 @@ func _process(_delta):
 	# scroll BG
 	Main.background.scroll_offset = get_canvas_transform().origin
 	
-func _spawnTileItems():
-	for tile in level.tile_set.get_tiles_ids():
-		var newItem = ITEM.instance()
+func setNewLevel():
+	var newLvl = Tools.openFilePicker()
+	
+	if OS.get_name() == "HTML5":
+		return
 		
-		newItem.selected = tile == 0
-		newItem.tileID = tile
+	if newLvl:
+		Main.reload(newLvl)
+	
+func saveLevel():
+	if !levelIsValid(): return
+	
+	if OS.get_name() == "HTML5":
+		Main.level.saveLvl()
 		
-		tilesTab.add_child(newItem)
+		yield(get_tree(), "idle_frame")
+		
+		Tools.webFileTool.downloadLevel()
+		return
+		
+	var path : String = Tools.openFolderPicker()
+	
+	if path:
+		Main.level.saveLvl(path)
 	
 func _input(event):
 	if event.is_action_pressed("switch_state"):
 		_switchStates()
 		
 func _switchStates():
-	level.saveLvl()
+	Main.level.saveLvl()
 	
 	if !levelIsValid(): return
 	
 	Main.editing = !Main.editing
 	cam.global_position = Vector2()
 	
-	level.resetObjectState()
+	Main.level.resetObjectState()
 	
 	if !Main.editing:
 		if cursor.configurator:
 			cursor.configurator.queue_free()
 			cursor.configurator = null
 		
-		level.copyMap()
+		Main.level.copyMap()
 		
 		_spawnPlayer()
 	else:
-		level.restoreMap()
+		Main.level.restoreMap()
 		
 		_resetPlayValues()
 		cam.current = true
@@ -79,29 +88,29 @@ func _resetPlayValues():
 	Main.hud.aLabel.text = "ATTEMPT %s" % Main.attempt
 	
 func _spawnPlayer():
-	var spawn = level.get_node("SpawnPoint")
+	var spawn = Main.level.get_node("SpawnPoint")
 	
 	player = load("res://Data/Player/Player.tscn").instance()
 	
 	player.levelManager = self
 	player.global_position = spawn.global_position
 	
-	level.add_child(player)
+	Main.level.add_child(player)
 	
 func restart():
 	Main.attempt += 1
 	Main.hud.aLabel.text = "ATTEMPT %s" % Main.attempt
 	
-	level.resetObjectState()
-	level.restoreMap()
+	Main.level.resetObjectState()
+	Main.level.restoreMap()
 	
 	player.letsStart()
 	
 func levelIsValid() -> bool:
 	var hasSpawnPoint := false
-	var hasTiles := level.get_used_cells().size() != 0
+	var hasTiles : bool = Main.level.get_used_cells().size() != 0
 	
-	for c in level.get_children():
+	for c in Main.level.get_children():
 		if c.name == "SpawnPoint":
 			hasSpawnPoint = true
 	

@@ -25,9 +25,9 @@ func _ready():
 	if selected: cursor.target = self
 	
 func _tileTexGen():
-	var tex = editor.level.tile_set.tile_get_texture(tileID)
-	var region = editor.level.tile_set.tile_get_region(tileID)
-	itemName = editor.level.tile_set.tile_get_name(tileID)
+	var tex = Main.level.tile_set.tile_get_texture(tileID)
+	var region = Main.level.tile_set.tile_get_region(tileID)
+	itemName = Main.level.tile_set.tile_get_name(tileID)
 	
 	var atlasTex := AtlasTexture.new()
 	

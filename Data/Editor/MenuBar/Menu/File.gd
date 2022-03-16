@@ -12,8 +12,8 @@ func _popupButtonPress(id := 0):
 	
 	match id:
 		0:
-			Main.setNewLevel()
+			editor.setNewLevel()
 		1:
-			Main.saveLevel()
+			editor.saveLevel()
 		2:
 			get_tree().quit(0)

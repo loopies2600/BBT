@@ -48,8 +48,8 @@ script = ExtResource( 3 )
 
 [node name="Level" parent="Buttons" instance=ExtResource( 10 )]
 margin_left = 36.0
-margin_right = 74.0
+margin_right = 68.0
 focus_mode = 2
-text = "Level"
+text = "Edit"
 flat = false
 script = ExtResource( 4 )
