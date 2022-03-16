@@ -21,6 +21,7 @@ onready var ceilDetector := $CeilDetector
 onready var cam := $Camera
 onready var slideDust := $Graphics/SlideDust
 onready var sounds := [$Jump, $Dash, $Slide]
+onready var wallDetector := $WallDetector
 
 var god := false
 
@@ -36,30 +37,27 @@ func _ready():
 	letsStart()
 	
 func letsStart():
-	cam.set_as_toplevel(true)
+	cam.set_as_toplevel(false)
+	cam.position = Vector2()
+	
+	# activamos colisiones
+	collisionBox.set_deferred("disabled", false)
+	
+	# reiniciamos posición
+	global_position = spawnPos
 	
 	# las nubecitas se ven raras, procuro desactivarlas
 	_doDust = false
-	
-	# movemos a benito hacia lo más abajo del nivel
-	global_position = Vector2(spawnPos.x, bottom)
+	canInput = true
 	
 	# no podemos dejar que se le aplique ninguna fuerza
 	velocity = Vector2.ZERO
 	
 	# por ahora desactivemos la gravedad y los controles
-	canInput = false
-	doGravity = false
 	upDirection = Vector2.UP
 	
-	# para evitar que choque con algo mientras salta
-	# desactivemos su colisión
-	collisionBox.set_deferred("disabled", true)
-	
-	# esperemos un rato
-	yield(get_tree().create_timer(resetDelay / 2), "timeout")
-	
-	_hopIn()
+	# estado: idle
+	fsm._change_state("idle")
 	
 func _physics_process(_delta):
 	iDir = Tools.getInputDirection(self)
@@ -67,6 +65,8 @@ func _physics_process(_delta):
 	Main.entityLookTowards = global_position
 	
 	gfx.scale.x = dir
+	wallDetector.scale.x = dir
+	
 	push(maxSpd * dir)
 	
 func _dustTrigger():
@@ -76,21 +76,3 @@ func kill(msg := {}):
 	if god: return
 	
 	fsm._change_state("dead", msg)
-	
-func _hopIn():
-	doGravity = true
-	
-	# necesitamos que TODO se adhiera a esto, por favor
-# warning-ignore:narrowing_conversion
-	var distance : int = Vector2(spawnPos.x, bottom).distance_to(spawnPos)
-	
-	fsm._change_state("air", {"jumpHeight" : distance, "antiCancel" : true})
-	
-	# esperemos hasta que llegue a la punta
-	yield(get_tree().create_timer(jumpDuration), "timeout")
-	
-	cam.position = Vector2()
-	cam.set_as_toplevel(false)
-	
-	canInput = true
-	collisionBox.set_deferred("disabled", false)

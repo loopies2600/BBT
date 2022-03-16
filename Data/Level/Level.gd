@@ -28,12 +28,6 @@ func loadLvl():
 		var newLvl = scn.instance()
 		get_parent().add_child(newLvl)
 		
-		for c in newLvl.get_children():
-			if c is TileMap:
-				pass
-			else:
-				c.add_to_group("Instances")
-			
 		queue_free()
 	
 func saveLvl(path := SAVE_PATH):
@@ -106,6 +100,12 @@ func clearContents():
 func _ready():
 	Main.level = self
 	
+	for c in get_children():
+		if c is TileMap:
+			pass
+		else:
+			c.add_to_group("Instances")
+			
 	_flipOneWayCollisionShapes()
 	
 func purgeCircle(pos, radius, with := -1, target := self):
