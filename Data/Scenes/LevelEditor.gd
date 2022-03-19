@@ -69,8 +69,6 @@ func _switchStates():
 			cursor.configurator = null
 		
 		Main.level.copyMap()
-		
-		_spawnPlayer()
 	else:
 		Main.level.restoreMap()
 		
@@ -87,16 +85,6 @@ func _resetPlayValues():
 	Main.attempt = 1
 	Main.hud.aLabel.text = "ATTEMPT %s" % Main.attempt
 	
-func _spawnPlayer():
-	var spawn = Main.level.get_node("SpawnPoint")
-	
-	player = load("res://Data/Player/Player.tscn").instance()
-	
-	player.levelManager = self
-	player.global_position = spawn.global_position
-	
-	Main.level.add_child(player)
-	
 func restart():
 	Main.attempt += 1
 	Main.hud.aLabel.text = "ATTEMPT %s" % Main.attempt
@@ -104,29 +92,29 @@ func restart():
 	Main.level.resetObjectState()
 	Main.level.restoreMap()
 	
-	player.letsStart()
-	
 func levelIsValid() -> bool:
 	var hasSpawnPoint := false
 	var hasTiles : bool = Main.level.get_used_cells().size() != 0
 	
 	for c in Main.level.get_children():
-		if c.name == "SpawnPoint":
+		if c.name == "Player":
 			hasSpawnPoint = true
 	
 	if !hasTiles:
-		_message("Level is empty")
+		_message("Level is empty!")
 		return false
 	
 	if !hasSpawnPoint: 
-		_message("No player spawn point") 
+		_message("No player found!") 
 		return false
 		
 	return true
 		
-func _message(text := "ERROR"):
+func _message(text := "ERROR", title := "Error!"):
 	if guiLayer.get_node("Message"): return
 	
 	var newMsg = load("res://Data/Editor/Message.tscn").instance()
 	guiLayer.add_child(newMsg)
+	
 	newMsg.desc.text = text
+	newMsg.title.text = title

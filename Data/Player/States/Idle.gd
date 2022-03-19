@@ -1,6 +1,10 @@
 extends State
 
 func enter(_msg := {}):
+	owner.cam.set_as_toplevel(false)
+	owner.cam.position = Vector2()
+	owner.cam.current = true
+	
 	owner.slideDownSlopes = false
 	owner._doDust = false
 	

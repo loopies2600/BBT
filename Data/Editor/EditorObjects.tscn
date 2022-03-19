@@ -1,33 +1,9 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
-[ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Player/BB.png" type="Texture" id=3]
-[ext_resource path="res://Data/Editor/EditorItem.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Data/Editor/TabContainer.gd" type="Script" id=5]
-[ext_resource path="res://Data/Object/SpawnPoint.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Data/Object/Spike.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Sprites/Editor/Objects.png" type="Texture" id=8]
-[ext_resource path="res://Data/Object/GravitySwitcher.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Data/Object/OrbitingPlatforms/OrbitingPlatforms.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Data/Object/Token.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Sprites/Enemy/Fernandez.png" type="Texture" id=12]
-[ext_resource path="res://Data/Enemy/Earthworm/Earthworm.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Sprites/Object/ConveyorBelt.png" type="Texture" id=14]
-[ext_resource path="res://Data/Object/ConveyorBelt.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Data/Object/BoosterHand.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Sprites/Object/BoosterHand.png" type="Texture" id=17]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=18]
-[ext_resource path="res://Data/Enemy/Fernandez/Fernandez.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Sprites/Enemy/HermitBlob.png" type="Texture" id=20]
-[ext_resource path="res://Data/Object/Text.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Data/Object/SpikyBall.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Data/Object/Light.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Data/Enemy/HermitBlob/HermitBlob.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Sprites/Object/Token.png" type="Texture" id=25]
-[ext_resource path="res://Sprites/Object/OrbitingPlatform.png" type="Texture" id=26]
-[ext_resource path="res://Sprites/Enemy/Tezoo.png" type="Texture" id=27]
-[ext_resource path="res://Data/Enemy/Tezoo/Tezoo.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Data/Editor/EditorObjects.gd" type="Script" id=29]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 0.0
@@ -58,78 +34,11 @@ corner_radius_top_right = 8
 anti_aliasing = false
 anti_aliasing_size = 0.01
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 8 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 8 )
-region = Rect2( 16, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 2
-atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 2
-atlas = ExtResource( 14 )
-region = Rect2( 0, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 2
-atlas = ExtResource( 17 )
-region = Rect2( 0, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 8 )
-region = Rect2( 96, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 8 )
-region = Rect2( 112, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 26 )
-region = Rect2( 0, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 25 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 12 )
-region = Rect2( 0, 48, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 20 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 27 )
-region = Rect2( 32, 48, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 96, 16, 16 )
-
 [node name="EditorObjects" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
-script = ExtResource( 18 )
+script = ExtResource( 29 )
 
 [node name="BG" type="Panel" parent="."]
 anchor_right = 1.0
@@ -194,7 +103,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Objects/ScrollContainer"]
-margin_right = 216.0
+margin_right = 76.0
 margin_bottom = 16.0
 script = ExtResource( 18 )
 
@@ -202,80 +111,6 @@ script = ExtResource( 18 )
 margin_right = 16.0
 margin_bottom = 16.0
 script = ExtResource( 18 )
-
-[node name="Spike" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 4 )
-isTile = false
-itemName = "Spike"
-itemScene = ExtResource( 7 )
-
-[node name="SpikyBall" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 15 )
-isTile = false
-itemName = "Spiky Ball"
-itemScene = ExtResource( 22 )
-
-[node name="GravitatorUp" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 5 )
-isTile = false
-itemName = "Gravitator Up"
-itemScene = ExtResource( 9 )
-
-[node name="GravitatorDown" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 6 )
-isTile = false
-itemName = "Gravitator Down"
-itemScene = ExtResource( 9 )
-customParams = {
-"mode": 1
-}
-
-[node name="ConveyorBeltRight" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 9 )
-isTile = false
-itemName = "Conveyor Belt"
-itemScene = ExtResource( 15 )
-
-[node name="ConveyorBeltLeft" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 10 )
-isTile = false
-itemName = "Conveyor Belt"
-itemScene = ExtResource( 15 )
-customParams = {
-"dir": 1
-}
-
-[node name="BoosterHand" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 11 )
-isTile = false
-itemName = "Booster Hand"
-itemScene = ExtResource( 16 )
-
-[node name="Text" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 13 )
-isTile = false
-itemName = "Text"
-itemScene = ExtResource( 21 )
-
-[node name="Light" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 14 )
-isTile = false
-itemName = "Light"
-itemScene = ExtResource( 23 )
-
-[node name="OrbitingPlatforms" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 17 )
-isTile = false
-itemName = "Orbiting Platforms"
-itemScene = ExtResource( 10 )
-
-[node name="Token" parent="TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 18 )
-isTile = false
-itemName = "Token"
-itemScene = ExtResource( 11 )
-customParams = {
-}
 
 [node name="Entities" type="Tabs" parent="TabContainer"]
 visible = false
@@ -297,38 +132,10 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Entities/ScrollContainer"]
-margin_right = 56.0
-margin_bottom = 16.0
 script = ExtResource( 18 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Entities/ScrollContainer/VBoxContainer"]
 script = ExtResource( 18 )
-
-[node name="Earthworm" parent="TabContainer/Entities/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 8 )
-isTile = false
-itemName = "Earthworm"
-itemScene = ExtResource( 13 )
-
-[node name="Fernandez" parent="TabContainer/Entities/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 12 )
-isTile = false
-itemName = "Fernandez"
-itemScene = ExtResource( 19 )
-
-[node name="HermitBlob" parent="TabContainer/Entities/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 16 )
-isTile = false
-itemName = "Hermit Blob"
-itemScene = ExtResource( 24 )
-
-[node name="Tezoo" parent="TabContainer/Entities/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 19 )
-isTile = false
-itemName = "Tezoo"
-itemScene = ExtResource( 28 )
-customParams = {
-}
 
 [node name="Markers" type="Tabs" parent="TabContainer"]
 visible = false
@@ -350,18 +157,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Markers/ScrollContainer"]
-margin_right = 16.0
-margin_bottom = 16.0
 script = ExtResource( 18 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Markers/ScrollContainer/VBoxContainer"]
 margin_right = 16.0
 margin_bottom = 16.0
 script = ExtResource( 18 )
-
-[node name="BBSpawn" parent="TabContainer/Markers/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-texture = SubResource( 3 )
-isTile = false
-itemName = "Bennett Spawn"
-itemScene = ExtResource( 6 )
-singleInstance = true

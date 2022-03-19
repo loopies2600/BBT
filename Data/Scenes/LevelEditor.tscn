@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Data/Editor/Camera.gd" type="Script" id=1]
 [ext_resource path="res://Data/Editor/Cursor.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Data/Editor/Descriptor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Data/Editor/GizmoRenderer.gd" type="Script" id=9]
 [ext_resource path="res://Data/Editor/TileLayerSelect.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Data/Editor/EditorObjects.gd" type="Script" id=11]
 
 [node name="LevelEditor" type="Node2D" groups=["Editor"]]
 script = ExtResource( 4 )
@@ -30,7 +29,6 @@ margin_bottom = -48.0
 anchor_bottom = 0.0
 margin_top = 188.0
 margin_bottom = 240.0
-script = ExtResource( 11 )
 
 [node name="MenuBar" parent="GUILayer" instance=ExtResource( 6 )]
 margin_bottom = -224.0

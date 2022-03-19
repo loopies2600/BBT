@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/ConveyorBelt/ConveyorBeltConfig.tscn")
+
 enum Directions {RIGHT, LEFT}
 
 export (float) var animSpeed = 1
@@ -13,14 +15,15 @@ var velBoost := Vector2()
 func _ready():
 	sprite.region_rect.position.y = 16 * int(dir)
 	
-	velBoost = Vector2(speedBoost * (1 if dir == Directions.RIGHT else -1), 0)
-	
 func resetState():
 	sprite.region_rect.position.x = 0
 	
 func _process(_delta):
+	velBoost = Vector2(speedBoost * (1 if dir == Directions.RIGHT else -1), 0)
 	
 	if !Main.editing:
 		var actualDir := 1 if dir == Directions.RIGHT else -1
 	
 		sprite.region_rect.position.x -= (1 * animSpeed) * actualDir
+	else:
+		sprite.region_rect.position.y = 16 * int(dir)

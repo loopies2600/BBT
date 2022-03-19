@@ -7,4 +7,5 @@ func _ready():
 				   "air" : $Air,
 				   "dash" : $Dash,
 				   "dead" : $Dead,
-				   "slide" : $Slide }
+				   "slide" : $Slide,
+				   "editor" : $Editor }

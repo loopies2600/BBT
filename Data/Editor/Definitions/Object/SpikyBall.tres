@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Data/Editor/Definitions/Entry.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Editor/Objects.png" type="Texture" id=2]
+[ext_resource path="res://Data/Object/SpikyBall.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 16, 16, 16 )
+
+[resource]
+script = ExtResource( 1 )
+name = "Spiky Ball"
+editorIcon = SubResource( 15 )
+scene = ExtResource( 3 )
+singleInstance = false

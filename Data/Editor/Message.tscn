@@ -41,6 +41,7 @@ anti_aliasing = false
 anti_aliasing_size = 0.01
 
 [node name="Message" type="Control"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -192, -87 )
@@ -62,9 +63,9 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="CenterContainer"]
-margin_left = 186.0
+margin_left = 185.0
 margin_top = 109.0
-margin_right = 232.0
+margin_right = 231.0
 margin_bottom = 131.0
 rect_pivot_offset = Vector2( 50, 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -77,11 +78,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ERROR" type="Label" parent="."]
-margin_left = 190.0
-margin_top = 100.0
-margin_right = 228.0
-margin_bottom = 114.0
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+margin_bottom = -14.0
+
+[node name="Title" type="Label" parent="CenterContainer2"]
+margin_left = 189.0
+margin_top = 113.0
+margin_right = 227.0
+margin_bottom = 127.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
 custom_styles/normal = SubResource( 2 )

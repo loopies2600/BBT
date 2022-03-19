@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "Entry",
+"language": "GDScript",
+"path": "res://Data/Editor/Definitions/Entry.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Kinematos",
 "language": "GDScript",
@@ -40,6 +45,7 @@ _global_script_classes=[ {
 "path": "res://Data/Util/TexTool.gd"
 } ]
 _global_script_class_icons={
+"Entry": "",
 "Kinematos": "",
 "Math": "",
 "Player": "",
@@ -67,9 +73,9 @@ settings/fps/force_fps=60
 
 [display]
 
-window/size/width=418
+window/size/width=416
 window/size/height=240
-window/size/test_width=836
+window/size/test_width=832
 window/size/test_height=480
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"

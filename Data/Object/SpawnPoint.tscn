@@ -1,14 +1,20 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Data/Object/SpawnPoint.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/BB.png" type="Texture" id=2]
 
-[sub_resource type="Animation" id=3]
-resource_name = "Blink"
+[sub_resource type="GDScript" id=21]
+script/source = "extends Sprite
+
+func _process(_delta):
+	visible = Main.editing
+"
+
+[sub_resource type="Animation" id=20]
+resource_name = "Wait"
 length = 12.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:region_rect")
+tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -18,6 +24,42 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 32, 128, 32, 32 ), Rect2( 64, 128, 32, 32 ), Rect2( 32, 128, 32, 32 ), Rect2( 64, 128, 32, 32 ), Rect2( 32, 128, 32, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -110,10 +152,10 @@ centered = false
 offset = Vector2( 0, -16 )
 region_enabled = true
 region_rect = Rect2( 32, 128, 32, 32 )
-script = ExtResource( 1 )
+script = SubResource( 21 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 autoplay = "Pop"
-anims/Blink = SubResource( 3 )
+anims/Blink = SubResource( 20 )
 anims/Pop = SubResource( 1 )
 anims/RESET = SubResource( 2 )

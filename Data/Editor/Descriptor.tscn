@@ -22,21 +22,18 @@ anti_aliasing = false
 anti_aliasing_size = 0.01
 
 [node name="Descriptor" type="CenterContainer"]
-visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 40.0
 margin_bottom = 40.0
 mouse_filter = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="."]
-margin_left = 124.0
+margin_left = 123.0
 margin_top = 112.0
-margin_right = 294.0
+margin_right = 293.0
 margin_bottom = 128.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )

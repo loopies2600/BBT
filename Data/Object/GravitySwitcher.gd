@@ -1,5 +1,7 @@
 extends Area2D
 
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Gravitator/GravitatorConfig.tscn")
+
 enum Modes {UP, DOWN}
 
 export (Modes) var mode = Modes.UP

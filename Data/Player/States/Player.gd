@@ -29,17 +29,10 @@ var iDir := 0
 var grounded := false
 var canInput := true
 
-var levelManager
-
-onready var bottom : int = levelManager.cam.global_position.y + 256
-
 func _ready():
 	letsStart()
 	
 func letsStart():
-	cam.set_as_toplevel(false)
-	cam.position = Vector2()
-	
 	# activamos colisiones
 	collisionBox.set_deferred("disabled", false)
 	
@@ -60,6 +53,9 @@ func letsStart():
 	fsm._change_state("idle")
 	
 func _physics_process(_delta):
+	if Main.editing:
+		fsm._change_state("editor")
+		
 	iDir = Tools.getInputDirection(self)
 	
 	Main.entityLookTowards = global_position

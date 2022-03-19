@@ -46,4 +46,5 @@ func enter(msg := {}):
 	# esperar y reiniciar
 	yield(get_tree().create_timer(owner.resetDelay * 0.75), "timeout")
 	
-	owner.levelManager.restart()
+	Main.currentScene.restart()
+	owner.letsStart()

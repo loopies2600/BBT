@@ -45,58 +45,56 @@ margin_right = -10.0
 margin_bottom = -144.0
 theme = ExtResource( 1 )
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PC" type="PanelContainer" parent="."]
-margin_right = 64.0
-margin_bottom = 72.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 6 )
 
 [node name="CenterContainer" type="CenterContainer" parent="PC"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 63.0
+margin_right = 61.0
 margin_bottom = 71.0
 script = ExtResource( 6 )
 
 [node name="TextHbc" type="HBoxContainer" parent="PC/CenterContainer"]
-margin_left = 3.0
-margin_top = 4.0
-margin_right = 59.0
-margin_bottom = 66.0
+margin_left = 2.0
+margin_top = 7.0
+margin_right = 58.0
+margin_bottom = 63.0
 script = ExtResource( 6 )
 
 [node name="Vbc" type="VBoxContainer" parent="PC/CenterContainer/TextHbc"]
 margin_right = 36.0
-margin_bottom = 62.0
+margin_bottom = 56.0
 script = ExtResource( 6 )
 
 [node name="FG" type="Label" parent="PC/CenterContainer/TextHbc/Vbc"]
 margin_right = 36.0
-margin_bottom = 18.0
+margin_bottom = 16.0
 custom_styles/normal = SubResource( 5 )
 text = "FG"
 
 [node name="B" type="Label" parent="PC/CenterContainer/TextHbc/Vbc"]
-margin_top = 22.0
+margin_top = 20.0
 margin_right = 36.0
-margin_bottom = 40.0
+margin_bottom = 36.0
 custom_styles/normal = SubResource( 5 )
 text = "BASE"
 
 [node name="BG" type="Label" parent="PC/CenterContainer/TextHbc/Vbc"]
-margin_top = 44.0
+margin_top = 40.0
 margin_right = 36.0
-margin_bottom = 62.0
+margin_bottom = 56.0
 custom_styles/normal = SubResource( 5 )
 text = "BG"
 
 [node name="LayerVbc" type="VBoxContainer" parent="PC/CenterContainer/TextHbc"]
 margin_left = 40.0
 margin_right = 56.0
-margin_bottom = 62.0
+margin_bottom = 56.0
 script = ExtResource( 6 )
 
 [node name="Foreground" type="TextureRect" parent="PC/CenterContainer/TextHbc/LayerVbc"]
