@@ -10,7 +10,6 @@ func enter(_msg := {}):
 	
 func physics_update(_delta):
 	owner.velocity.x = clamp(owner.velocity.x + owner.accel * owner.iDir, -owner.maxSpd, owner.maxSpd) / owner.weight
-	owner.velocity.x *= abs(owner.get_floor_normal().y)
 	
 	if owner.canInput:
 		if !owner.iDir:

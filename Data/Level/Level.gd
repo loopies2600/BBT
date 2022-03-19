@@ -30,13 +30,14 @@ func loadLvl():
 		
 		queue_free()
 	
-func saveLvl(path := SAVE_PATH):
+func saveLvl(path := SAVE_PATH, fileName := "level.tscn"):
 	var scn := PackedScene.new()
 	
 	var err = scn.pack(self)
 	
 	if err == OK:
-		err = ResourceSaver.save(path, scn)
+		print(path)
+		err = ResourceSaver.save(path + "/" + fileName, scn)
 		
 func resetObjectState():
 	for c in get_children():

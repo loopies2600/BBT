@@ -17,7 +17,7 @@ func enter(msg := {}):
 			if msg.has("antiCancel"):
 				owner.velocity.y = 0.0
 				
-			owner.velocity += Vector2(owner.jumpVel, 0).rotated(owner.upDirection.angle())
+			owner.velocity += Vector2(owner.jumpVel, 0).rotated(owner.upDirection.angle()).rotated(owner.gfx.rotation)
 		else:
 			owner.recalcJumpValues(owner.jumpHeight)
 			
