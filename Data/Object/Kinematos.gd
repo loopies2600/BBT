@@ -46,15 +46,10 @@ func _process(_delta):
 	scale.y = -upDirection.y
 	
 func _physics_process(delta):
-	if Main.editing: 
-		_doDust = false
-		return
+	velocity.y = move_and_slide(velocity, upDirection, !slideDownSlopes).y
 	
 	_getVelocityBoost()
 	_applyGravity(delta)
-	
-	velocity.y = move_and_slide(velocity, upDirection, !slideDownSlopes).y
-	
 	_dustTrigger()
 	
 func _applyGravity(delta : float):

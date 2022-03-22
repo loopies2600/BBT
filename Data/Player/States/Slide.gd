@@ -13,7 +13,7 @@ func enter(_msg := {}):
 func physics_update(delta):
 	var spdCalc : float = 1.0 - (time / owner.slideDuration)
 	
-	owner.velocity.xz = ((owner.slideStrength / owner.slideDuration) * owner.dir) * spdCalc
+	owner.velocity.x = ((owner.slideStrength / owner.slideDuration) * owner.dir) * spdCalc
 	
 	time += delta
 	

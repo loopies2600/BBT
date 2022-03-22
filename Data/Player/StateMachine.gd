@@ -8,4 +8,5 @@ func _ready():
 				   "dash" : $Dash,
 				   "dead" : $Dead,
 				   "slide" : $Slide,
-				   "editor" : $Editor }
+				   "editor" : $Editor,
+				   "win" : $Win }

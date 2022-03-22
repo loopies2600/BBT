@@ -12,6 +12,7 @@ export (int) var slideStrength = 196
 export (float) var slideDuration = 0.35
 
 onready var anim := $Graphics/Anim
+onready var ganim := $Graphics/GAnim
 onready var gfx := $Graphics
 onready var objOffset := $Graphics/HeldObjectOffset
 onready var collisionBox := $CollisionBox
@@ -22,6 +23,7 @@ onready var cam := $Camera
 onready var slideDust := $Graphics/SlideDust
 onready var sounds := [$Jump, $Dash, $Slide]
 onready var wallDetector := $Graphics/WallDetector
+onready var bgTint := $BGTint
 
 var god := false
 
@@ -53,9 +55,6 @@ func letsStart():
 	fsm._change_state("idle")
 	
 func _physics_process(_delta):
-	if Main.editing:
-		fsm._change_state("editor")
-		
 	iDir = Tools.getInputDirection(self)
 	
 	Main.entityLookTowards = global_position

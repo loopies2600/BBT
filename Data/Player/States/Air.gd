@@ -34,6 +34,7 @@ func physics_update(_delta):
 	else:
 		if jumping:
 			var anim := "Jump"
+			owner.ganim.play("Jump")
 			
 			match get_parent().previous_state:
 				"slide":
@@ -61,6 +62,7 @@ func physics_update(_delta):
 				cancelled = true
 	
 	if owner.is_on_floor():
+		owner.ganim.play("FromJump")
 		emit_signal("finished", "idle")
 	
 func exit():
