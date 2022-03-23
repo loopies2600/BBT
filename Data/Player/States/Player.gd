@@ -31,6 +31,10 @@ var iDir := 0
 var grounded := false
 var canInput := true
 
+func resetState():
+	if Main.editing:
+		fsm._change_state("editor")
+	
 func _ready():
 	letsStart()
 	

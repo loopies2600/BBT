@@ -9,6 +9,7 @@ signal tile_anim_finished
 var camBoundariesX := Vector2(0, 320)
 var camBoundariesY := Vector2(0, 240)
 
+var blockToggle := false setget _onBlockToggle
 var darkMode := false
 
 var _cellPosCopy := []
@@ -21,6 +22,12 @@ var _transposeCopy := []
 var tokenAmount := 0
 var tokensCollected := 0
 
+func _onBlockToggle(booly : bool):
+	if blockToggle == booly: return
+	
+	blockToggle = booly
+	refreshToggleBlock()
+	
 func loadLvl():
 	var scn = load(SAVE_PATH)
 	
@@ -36,7 +43,6 @@ func saveLvl(path := SAVE_PATH, fileName := "level.tscn"):
 	var err = scn.pack(self)
 	
 	if err == OK:
-		print(path)
 		err = ResourceSaver.save(path + "/" + fileName, scn)
 		
 func resetObjectState():
@@ -45,6 +51,9 @@ func resetObjectState():
 			c.resetState()
 	
 	_resetTokens()
+	
+	blockToggle = false
+	refreshToggleBlock()
 	
 func _onObjectPlace(_pos):
 	_resetTokens()
@@ -89,6 +98,8 @@ func restoreMap():
 	for c in range(_cellPosCopy.size()):
 		set_cellv(_cellPosCopy[c], _cellIDCopy[c], _flipXCopy[c], _flipYCopy[c], _transposeCopy[c])
 	
+	refreshToggleBlock()
+	
 func clearContents():
 	for c in get_children():
 		if c.is_in_group("Instances"):
@@ -128,3 +139,25 @@ func _process(_delta):
 		modulate.a = 1.0 if get_tree().get_nodes_in_group("Cursor")[0].targetTilemap.name == name else 0.5
 	else:
 		modulate.a = 1.0
+		
+func refreshToggleBlock():
+	for t in get_used_cells():
+		if Main.editing:
+			if get_cellv(t) == 63:
+				set_cellv(t, 61)
+				
+			if get_cellv(t) == 64:
+				set_cellv(t, 62)
+		else:
+			if !blockToggle:
+				if get_cellv(t) == 61:
+					set_cellv(t, 63)
+					
+				if get_cellv(t) == 64:
+					set_cellv(t, 62)
+			else:
+				if get_cellv(t) == 63:
+					set_cellv(t, 61)
+					
+				if get_cellv(t) == 62:
+					set_cellv(t, 64)

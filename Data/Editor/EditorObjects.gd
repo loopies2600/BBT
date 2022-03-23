@@ -16,6 +16,9 @@ func _ready():
 	
 func _spawnTileItems():
 	for tile in Main.level.tile_set.get_tiles_ids():
+		if Main.level.tile_set.tile_get_name(tile).begins_with("_"):
+			return
+		
 		var newItem = ITEM.instance()
 		
 		newItem.selected = tile == 0
