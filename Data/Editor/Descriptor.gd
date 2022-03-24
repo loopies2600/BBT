@@ -9,6 +9,8 @@ func _ready():
 	var _unused = timer.connect("timeout", self, "_onTimeout")
 	
 func msg(msg := ""):
+	if l.text == msg: return
+	
 	l.text = msg
 	on = true
 	

@@ -2,12 +2,22 @@ extends "res://Data/Editor/AntiCursor.gd"
 
 const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
-const ENTITIES := [preload("res://Data/Editor/Definitions/Entity/Player.tres"), preload("res://Data/Editor/Definitions/Entity/Earthworm.tres"), preload("res://Data/Editor/Definitions/Entity/Fernandez.tres"), preload("res://Data/Editor/Definitions/Entity/HermitBlob.tres"), preload("res://Data/Editor/Definitions/Entity/Tezoo.tres")]
-const OBJECTS := [preload("res://Data/Editor/Definitions/Object/Spike.tres"), preload("res://Data/Editor/Definitions/Object/SpikyBall.tres"), preload("res://Data/Editor/Definitions/Object/Gravitator.tres"), preload("res://Data/Editor/Definitions/Object/ConveyorBelt.tres"), preload("res://Data/Editor/Definitions/Object/BoosterHand.tres"), preload("res://Data/Editor/Definitions/Object/Text.tres"), preload("res://Data/Editor/Definitions/Object/Light.tres"), preload("res://Data/Editor/Definitions/Object/OrbitingPlatforms.tres"), preload("res://Data/Editor/Definitions/Object/Token.tres")]
+const DEFPATH := "res://Data/Editor/Definitions/%s.tres"
+
+var Entities := []
+var Objects := []
 
 onready var tilesTab := $TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 
 func _ready():
+	# define objects
+	for i in ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton"]:
+		Objects.append(load(DEFPATH % ("Object/%s" % i)))
+		
+	# define entities
+	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo"]:
+		Entities.append(load(DEFPATH % ("Entity/%s" % i)))
+	
 	yield(owner, "ready")
 	
 	_spawnTileItems()
@@ -16,6 +26,7 @@ func _ready():
 	
 func _spawnTileItems():
 	for tile in Main.level.tile_set.get_tiles_ids():
+		# ignore tile if name starts with "_"
 		if Main.level.tile_set.tile_get_name(tile).begins_with("_"):
 			return
 		
@@ -27,7 +38,7 @@ func _spawnTileItems():
 		tilesTab.add_child(newItem)
 	
 func _spawnObjectItems(def := "Entities"):
-	var list : Array = get(def.to_upper())
+	var list : Array = get(def)
 	var tab := get_node("TabContainer/%s/ScrollContainer/VBoxContainer/HBoxContainer" % def)
 	
 	for o in list:

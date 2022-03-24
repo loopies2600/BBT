@@ -48,7 +48,6 @@ func _process(_delta):
 func _physics_process(delta):
 	velocity.y = move_and_slide(velocity, upDirection, !slideDownSlopes).y
 	
-	_getVelocityBoost()
 	_applyGravity(delta)
 	_dustTrigger()
 	
@@ -56,13 +55,6 @@ func _applyGravity(delta : float):
 	if doGravity:
 		velocity += Vector2((jumpGravity if velocity.y < 0.0 else fallGravity) * delta, 0).rotated(-upDirection.angle())
 	
-func _getVelocityBoost():
-	for c in get_slide_count():
-		var collision = get_slide_collision(c)
-		
-		if collision.collider.get("velBoost"):
-			velocity += collision.collider.velBoost / weight
-		
 func _dustTrigger():
 	if velocity.length() > dustMinVel:
 		_doDust = true

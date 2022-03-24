@@ -1,5 +1,7 @@
 extends TileMap
 
+signal block_toggled(rob)
+
 const INDESTRUCTIBLE := [23, 24]
 const SAVE_PATH = "user://temp.tscn"
 
@@ -26,6 +28,8 @@ func _onBlockToggle(booly : bool):
 	if blockToggle == booly: return
 	
 	blockToggle = booly
+	emit_signal("block_toggled", booly)
+	
 	refreshToggleBlock()
 	
 func loadLvl():

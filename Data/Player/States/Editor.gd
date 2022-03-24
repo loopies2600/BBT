@@ -7,6 +7,8 @@ func enter(_msg := {}):
 	owner.global_position = owner.spawnPos
 	
 func physics_update(_delta):
+	owner.velocity *= owner.damping
+	
 	owner.dir = 1
 	
 	if !Main.editing:
