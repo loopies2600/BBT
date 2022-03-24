@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/Editor/SelectedItem.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Editor/Objects.png" type="Texture" id=2]
+[ext_resource path="res://Data/Editor/TileLayerButton.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 16, 16 )
+
+[node name="TileLayerButton" type="TextureRect"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Border" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -2, -2 )

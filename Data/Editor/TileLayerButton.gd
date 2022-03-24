@@ -2,13 +2,15 @@ extends TextureRect
 
 onready var border := $Border
 
-export (bool) var selected := false
+export (bool) var selected := false setget _gotSelected
 
+func _gotSelected(booly):
+	selected = booly
+	
+	$Border.visible = booly
+	
 func _ready():
 	var _unused = connect("gui_input", self, "_itemClick")
-	
-func _process(_delta):
-	border.visible = selected
 	
 func _itemClick(event):
 	if event is InputEvent:
@@ -16,7 +18,7 @@ func _itemClick(event):
 			for i in get_parent().get_parent().get_parent().get_parent().get_parent().buttons:
 				i.selected = false
 				
-			selected = true
+			self.selected = true
 			
 			match name:
 				"Foreground":

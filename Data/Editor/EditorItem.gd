@@ -6,14 +6,18 @@ export (PackedScene) var itemScene
 export (bool) var singleInstance = false
 export (Dictionary) var customParams
 
-onready var border := $Border
 onready var editor = get_tree().get_nodes_in_group("Editor")[0]
 
 var cursor : Sprite
 
 var tileID := 0
-var selected := false
+var selected := false setget _gotSelected
 
+func _gotSelected(booly):
+	selected = booly
+	
+	$Border.visible = booly
+	
 func _ready():
 	if isTile:
 		texture = _tileTexGen()
@@ -35,9 +39,6 @@ func _tileTexGen():
 	atlasTex.region = region
 	
 	return atlasTex
-
-func _process(_delta):
-	border.visible = selected
 	
 func _itemClick(event):
 	if event is InputEvent:
@@ -50,6 +51,6 @@ func _itemClick(event):
 				for i in c.get_children():
 					i.selected = false
 				
-			selected = true
+			self.selected = true
 			
 			cursor.target = self

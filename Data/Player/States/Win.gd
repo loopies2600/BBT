@@ -16,7 +16,7 @@ func enter(_msg := {}):
 	
 	owner.recalcJumpValues(96)
 	
-func physics_update(delta):
+func physics_update(_delta):
 	match phase:
 		0:
 			owner.anim.play("Walk")

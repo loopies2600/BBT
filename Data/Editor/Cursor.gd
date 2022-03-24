@@ -4,6 +4,8 @@ signal tile_placed(pos)
 signal tile_removed(pos)
 signal object_placed(pos)
 signal object_removed(pos)
+signal mode_changed(idx)
+signal target_layer_changed(lname)
 
 const OBJ_CONFIG := preload("res://Data/Editor/Item/Object/ObjectConfig.tscn")
 const TILE_CONFIG := preload("res://Data/Editor/Item/TileConfig.tscn")
@@ -11,10 +13,10 @@ const TILE_CONFIG := preload("res://Data/Editor/Item/TileConfig.tscn")
 enum Modes {PLACE, MOVE, CONFIG}
 
 onready var level : TileMap = Main.level
-onready var targetTilemap := level
+onready var targetTilemap := level setget _setTarget
 onready var sounds := [$PlaceObj, $RemoveObj]
 
-var mode = Modes.PLACE
+var mode = Modes.PLACE setget _setMode
 
 var canPlace := true
 
@@ -27,6 +29,18 @@ var alreadyPressed := false
 
 var cellPos := Vector2()
 
+func _setMode(idx : int):
+	if mode == idx: return
+	
+	mode = idx
+	emit_signal("mode_changed", mode)
+	
+func _setTarget(t : TileMap):
+	if targetTilemap == t: return
+	
+	targetTilemap = t
+	emit_signal("target_layer_changed", targetTilemap.name)
+	
 func _ready():
 	var _unused = connect("object_placed", level, "_onObjectPlace")
 	_unused = connect("object_removed", level, "_onObjectRemoval")
