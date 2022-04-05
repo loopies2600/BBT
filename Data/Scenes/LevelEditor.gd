@@ -1,5 +1,7 @@
 extends Node2D
 
+const GLOAD := preload("res://GLoad.tscn")
+
 onready var cursor := $Cursor
 onready var utilButtons := $GUILayer/Sidebar/UtilButtons
 onready var cam := $Camera
@@ -25,6 +27,11 @@ func _process(_delta):
 	Main.background.scroll_offset = get_canvas_transform().origin
 	
 func setNewLevel():
+	add_child(GLOAD.instance())
+	
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	
 	var newLvl = Tools.openFilePicker()
 	
 	if OS.get_name() == "HTML5":
@@ -35,6 +42,11 @@ func setNewLevel():
 	
 func saveLevel():
 	if !levelIsValid(): return
+	
+	add_child(GLOAD.instance())
+	
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
 	
 	if OS.get_name() == "HTML5":
 		Main.level.saveLvl()
@@ -76,6 +88,7 @@ func _switchStates():
 		cam.current = true
 		
 	cursor.canPlace = Main.editing
+	Main.emit_signal("game_mode_changed", Main.editing)
 	
 func _resetPlayValues():
 	if player:
@@ -109,7 +122,7 @@ func levelIsValid() -> bool:
 		return false
 		
 	return true
-		
+	
 func _message(text := "ERROR", title := "Error!"):
 	if guiLayer.get_node("Message"): return
 	

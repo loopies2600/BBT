@@ -1,5 +1,9 @@
 extends Node
 
+# warning-ignore:unused_signal
+signal game_mode_changed(mode)
+signal scene_changed()
+
 const EDITOR := preload("res://Data/Scenes/LevelEditor.tscn")
 const NGIOSTATUS := preload("res://Data/Scenes/NewgroundsChecker.tscn")
 const NG := preload("res://Data/Util/Newgrounds.tscn")
@@ -21,7 +25,6 @@ func reload(newLvl : PackedScene):
 	currentScene = null
 	
 	level.queue_free()
-	level = null
 	
 	yield(get_tree(), "idle_frame")
 	level = newLvl.instance()
@@ -54,6 +57,8 @@ func changeScene(packedScene):
 		
 	currentScene = newScene
 	call_deferred("add_child", newScene)
+	
+	emit_signal("scene_changed")
 	
 func _input(event):
 	if event is InputEventKey && event.is_pressed() && !event.is_echo():

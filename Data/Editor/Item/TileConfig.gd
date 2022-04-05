@@ -8,9 +8,9 @@ onready var flipV := $Panel/Controls/Flip/VBoxContainer/HboxContainer/FlipY
 onready var transpose := $Panel/Controls/Flip/VBoxContainer/HboxContainer/Transpose
 
 onready var exit := $ExitButton
-onready var level : TileMap = Main.level
 
 var targetTile := Vector2()
+var targetMap : TileMap
 
 func _ready():
 	var _unused = exit.connect("pressed", self, "_onExitPress")
@@ -23,32 +23,32 @@ func _ready():
 	
 # warning-ignore:narrowing_conversion
 # warning-ignore:narrowing_conversion
-	flipH.pressed = level.is_cell_x_flipped(targetTile.x, targetTile.y)
+	flipH.pressed = targetMap.is_cell_x_flipped(targetTile.x, targetTile.y)
 # warning-ignore:narrowing_conversion
 # warning-ignore:narrowing_conversion
-	flipV.pressed = level.is_cell_y_flipped(targetTile.x, targetTile.y)
+	flipV.pressed = targetMap.is_cell_y_flipped(targetTile.x, targetTile.y)
 # warning-ignore:narrowing_conversion
 # warning-ignore:narrowing_conversion
-	transpose.pressed = level.is_cell_transposed(targetTile.x, targetTile.y)
+	transpose.pressed = targetMap.is_cell_transposed(targetTile.x, targetTile.y)
 	
 func _xChange(new := "0"):
-	var cellID = level.get_cellv(targetTile)
+	var cellID = targetMap.get_cellv(targetTile)
 	
-	level.set_cellv(targetTile, -1)
+	targetMap.set_cellv(targetTile, -1)
 	targetTile.x = int(new)
 	
-	level.set_cellv(targetTile, cellID)
+	targetMap.set_cellv(targetTile, cellID)
 	
 func _yChange(new := "0"):
-	var cellID = level.get_cellv(targetTile)
+	var cellID = targetMap.get_cellv(targetTile)
 	
-	level.set_cellv(targetTile, -1)
+	targetMap.set_cellv(targetTile, -1)
 	targetTile.y = int(new)
 	
-	level.set_cellv(targetTile, cellID)
+	targetMap.set_cellv(targetTile, cellID)
 	
 func _process(_delta):
-	level.set_cellv(targetTile, level.get_cellv(targetTile), flipH.pressed, flipV.pressed, transpose.pressed)
+	targetMap.set_cellv(targetTile, targetMap.get_cellv(targetTile), flipH.pressed, flipV.pressed, transpose.pressed)
 
 func _onExitPress():
 	get_parent().get_parent().cursor.configurator = null

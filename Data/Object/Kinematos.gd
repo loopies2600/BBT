@@ -3,11 +3,11 @@ class_name Kinematos
 
 signal died
 
-export (float) var maxSpd = 116
+export (float) var maxSpd = 116.0
 export (float) var dustSpawnRate = 0.025
 export (float) var dustMinVel = 500.0
 
-export (float) var jumpHeight = 64
+export (float) var jumpHeight = 64.0
 export (float) var jumpDuration = 0.25
 export (float) var fallDuration = 0.22550
 export (float) var weight = 1.5

@@ -59,6 +59,9 @@ _global_script_class_icons={
 config/name="Bennett Boy's Trouble"
 config/description="DEV BUILD"
 run/main_scene="res://GLoad.tscn"
+boot_splash/image="res://Sprites/GLoad.png"
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -238,6 +241,5 @@ quality/lightmapping/use_bicubic_sampling=false
 quality/reflections/atlas_size=0
 quality/reflections/atlas_subdiv=0
 quality/depth/hdr=false
-environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false
 quality/subsurface_scattering/quality=0

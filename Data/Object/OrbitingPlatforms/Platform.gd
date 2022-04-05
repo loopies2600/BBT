@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (float) var distance = 64
+export (float) var distance = 64.0
 export (int) var speed = -1
 export (Vector2) var orbitDimension = Vector2(1, 1)
 export (int) var initialAngle = 0

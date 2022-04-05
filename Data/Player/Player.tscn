@@ -134,7 +134,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.6 ),
+"times": PoolRealArray( 0, 0.6, 1, 1.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 64, 96, 32, 32 ), Rect2( 96, 96, 32, 32 ), Rect2( 96, 128, 32, 32 ), Rect2( 96, 96, 32, 32 ) ]
@@ -1141,6 +1141,7 @@ extents = Vector2( 7.5, 13.5 )
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 4
+collision_mask = 3
 collision/safe_margin = 0.1
 script = ExtResource( 2 )
 dustMinVel = 600.0
@@ -1179,11 +1180,13 @@ frame = 3
 centered = false
 
 [node name="CeilDetector" type="RayCast2D" parent="Graphics"]
+visible = false
 enabled = true
 cast_to = Vector2( 0, -16 )
 collision_mask = 62
 
 [node name="WallDetector" type="RayCast2D" parent="Graphics"]
+visible = false
 position = Vector2( 0, 8 )
 enabled = true
 cast_to = Vector2( 16, 0 )
@@ -1195,6 +1198,7 @@ anims/FromJump = SubResource( 24 )
 anims/Jump = SubResource( 23 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 1 )
 shape = SubResource( 11 )
 
@@ -1234,6 +1238,7 @@ position = Vector2( -8, -8 )
 script = ExtResource( 15 )
 
 [node name="Camera" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 160, 112 )
 limit_smoothed = true
 drag_margin_h_enabled = true

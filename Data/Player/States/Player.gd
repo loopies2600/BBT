@@ -1,7 +1,7 @@
 extends Kinematos
 class_name Player
 
-export (float) var accel = 100
+export (float) var accel = 100.0
 export (float, 0, 1) var bounciness = 0.5
 export (float, 0, 1) var airDamping = 0.98
 export (float, 0, 1) var damping = 0.5

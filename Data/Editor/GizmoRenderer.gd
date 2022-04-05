@@ -40,5 +40,7 @@ func _draw():
 	if get_parent().cursor.configurator:
 		draw_rect(Rect2(get_parent().cursor.configurator.targetTile * lvl.cell_size * lvl.scale, lvl.cell_size * lvl.scale), Color.tomato, false, 2)
 		
-	if get_parent().cursor.holding:
-		draw_rect(Rect2(get_parent().cursor.holding.global_position, lvl.cell_size * lvl.scale), Color.tomato, false, 2)
+	var hold = get_parent().cursor.modes[1].holding
+	
+	if hold && get_parent().cursor.mode == 1:
+		draw_rect(Rect2(hold.global_position, lvl.cell_size * lvl.scale), Color.tomato, false, 2)

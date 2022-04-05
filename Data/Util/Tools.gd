@@ -1,5 +1,19 @@
 extends Node
 
+const PS_FILE := [
+	"Add-Type -AssemblyName System.Windows.Forms",
+	"$FileBrowser = New-Object System.Windows.Forms.OpenFileDialog",
+	"$FileBrowser.filter = \"Level data | *.tscn\"",
+	"[void]$FileBrowser.ShowDialog()",
+	"$FileBrowser.FileName"]
+
+const PS_FOLDER := [
+	"Add-Type -AssemblyName System.Windows.Forms",
+	"$FolderDialog = New-Object -Typename System.Windows.Forms.FolderBrowserDialog",
+	"[void]$FolderDialog.ShowDialog()",
+	"$FolderDialog.SelectedPath"
+]
+
 var sortWho : Node2D
 
 onready var webFileTool := Node.new()
@@ -67,6 +81,28 @@ func offscreenCheck(target : Node2D) -> bool:
 	
 	return false
 
+func runPS(script := []) -> Array:
+	if !script: return []
+	
+	var tmpScript := File.new()
+	var _err = tmpScript.open("temp.ps1", File.WRITE)
+	
+	for line in script:
+		tmpScript.store_line(line)
+	
+	tmpScript.flush()
+	tmpScript.close()
+	
+	var dir := Directory.new()
+	_err = dir.open(".")
+	var path := dir.get_current_dir()
+	var out := []
+	_err = OS.execute("powershell.exe", [path + "/temp.ps1"], true, out)
+	
+	_err = dir.remove(path + "/temp.ps1")
+	
+	return out
+	
 func openFilePicker():
 	match OS.get_name():
 		"HTML5":
@@ -82,35 +118,13 @@ func openFilePicker():
 				return ResourceLoader.load(path)
 				
 		"Windows":
-			var getFile := [
-			"Add-Type -AssemblyName System.Windows.Forms",
-			"$FileBrowser = New-Object System.Windows.Forms.OpenFileDialog",
-			"$FileBrowser.filter = \"Level data | *.tscn\"",
-			"[void]$FileBrowser.ShowDialog()",
-			"$FileBrowser.FileName"]
+			var out := runPS(PS_FILE)
 			
-			var tmpScript := File.new()
-			var _err = tmpScript.open("temp.ps1", File.WRITE)
-			
-			for line in getFile:
-				tmpScript.store_line(line)
+			if out[0]:
+				var path = out[0]
+				path.erase(out[0].length() - 2, 2)
 				
-			tmpScript.flush()
-			tmpScript.close()
-			
-			var dir := Directory.new()
-			_err = dir.open(".")
-			var path := dir.get_current_dir()
-			var out := []
-			_err = OS.execute("powershell.exe", [path + "/temp.ps1"], true, out)
-			
-			_err = dir.remove(path + "/temp.ps1")
-			
-			path = out[0]
-			path.erase(out[0].length() - 2, 2)
-			
-			
-			return ResourceLoader.load(path)
+				return ResourceLoader.load(path)
 	
 func openFolderPicker():
 	match OS.get_name():
@@ -121,5 +135,13 @@ func openFolderPicker():
 			if out[0]:
 				var path : String = out[0]
 				path.erase(out[0].length() - 1, 1)
+				
+				return path
+		"Windows":
+			var out := runPS(PS_FOLDER)
+			
+			if out[0]:
+				var path = out[0]
+				path.erase(out[0].length() - 2, 2)
 				
 				return path

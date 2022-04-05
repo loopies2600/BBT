@@ -124,7 +124,16 @@ func _ready():
 			
 	_flipOneWayCollisionShapes()
 	
-func purgeCircle(pos, radius, with := -1, target := self):
+	yield(get_tree(), "idle_frame")
+	var _unused = get_tree().get_nodes_in_group("Cursor")[0].connect("target_layer_changed", self, "_onLayerChange")
+	
+func _onLayerChange(lname):
+	if Main.editing:
+		modulate.a = 0.5 * (1 + int(lname == name))
+	else:
+		modulate.a = 1.0
+	
+func purgeCircle(pos, radius, with := -1, target = self):
 	for y in range(-radius - 1, radius + 1):
 		for x in range(-radius - 1, radius + 1):
 			if (x * x) + (y * y) <= (radius * radius):
@@ -138,12 +147,6 @@ func _flipOneWayCollisionShapes():
 	tile_set.tile_set_shape_transform(10, 0, Transform2D(deg2rad(270), Vector2(0, 16)))
 	tile_set.tile_set_shape_transform(11, 0, Transform2D(deg2rad(180), Vector2(16, 16)))
 	
-func _process(_delta):
-	if Main.editing:
-		modulate.a = 1.0 if get_tree().get_nodes_in_group("Cursor")[0].targetTilemap.name == name else 0.5
-	else:
-		modulate.a = 1.0
-		
 func refreshToggleBlock():
 	for t in get_used_cells():
 		if Main.editing:

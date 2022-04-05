@@ -40,8 +40,7 @@ margin_bottom = -64.0
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="Panel" type="Panel" parent="."]
@@ -65,118 +64,118 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Controls"]
-margin_right = 128.0
-margin_bottom = 10.0
+margin_right = 132.0
+margin_bottom = 12.0
 script = ExtResource( 4 )
 
 [node name="PosLabel" type="Label" parent="Panel/Controls/HBoxContainer"]
 margin_right = 56.0
-margin_bottom = 10.0
+margin_bottom = 12.0
 text = "Position"
 
 [node name="Position" type="PanelContainer" parent="Panel/Controls"]
 show_behind_parent = true
-margin_top = 14.0
-margin_right = 128.0
-margin_bottom = 56.0
+margin_top = 16.0
+margin_right = 132.0
+margin_bottom = 60.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Position"]
 margin_left = 8.0
 margin_top = 4.0
-margin_right = 120.0
-margin_bottom = 38.0
+margin_right = 124.0
+margin_bottom = 40.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HboxContainer2" type="HBoxContainer" parent="Panel/Controls/Position/VBoxContainer"]
-margin_right = 112.0
+margin_right = 116.0
 script = ExtResource( 4 )
 
 [node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Position/VBoxContainer"]
 margin_top = 4.0
-margin_right = 112.0
-margin_bottom = 34.0
+margin_right = 116.0
+margin_bottom = 36.0
 script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Position/VBoxContainer/HboxContainer"]
 margin_right = 32.0
-margin_bottom = 30.0
+margin_bottom = 32.0
 script = ExtResource( 4 )
 
 [node name="X" type="Label" parent="Panel/Controls/Position/VBoxContainer/HboxContainer/VBoxContainer"]
 margin_right = 32.0
-margin_bottom = 10.0
+margin_bottom = 12.0
 text = "X"
 script = ExtResource( 4 )
 
 [node name="XVal" type="LineEdit" parent="Panel/Controls/Position/VBoxContainer/HboxContainer/VBoxContainer"]
-margin_top = 14.0
+margin_top = 16.0
 margin_right = 32.0
-margin_bottom = 30.0
+margin_bottom = 32.0
 text = "0"
 script = ExtResource( 4 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/Controls/Position/VBoxContainer/HboxContainer"]
 margin_left = 36.0
 margin_right = 68.0
-margin_bottom = 30.0
+margin_bottom = 32.0
 script = ExtResource( 4 )
 
 [node name="X2" type="Label" parent="Panel/Controls/Position/VBoxContainer/HboxContainer/VBoxContainer2"]
 margin_right = 32.0
-margin_bottom = 10.0
+margin_bottom = 12.0
 text = "Y"
 script = ExtResource( 4 )
 
 [node name="YVal" type="LineEdit" parent="Panel/Controls/Position/VBoxContainer/HboxContainer/VBoxContainer2"]
-margin_top = 14.0
+margin_top = 16.0
 margin_right = 32.0
-margin_bottom = 30.0
+margin_bottom = 32.0
 text = "0"
 script = ExtResource( 4 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/Controls"]
-margin_top = 60.0
-margin_right = 128.0
-margin_bottom = 70.0
+margin_top = 64.0
+margin_right = 132.0
+margin_bottom = 76.0
 script = ExtResource( 4 )
 
 [node name="FlipLabel" type="Label" parent="Panel/Controls/HBoxContainer2"]
 margin_right = 32.0
-margin_bottom = 10.0
+margin_bottom = 12.0
 text = "Flip"
 script = ExtResource( 4 )
 
 [node name="Flip" type="PanelContainer" parent="Panel/Controls"]
 show_behind_parent = true
-margin_top = 74.0
-margin_right = 128.0
-margin_bottom = 106.0
+margin_top = 80.0
+margin_right = 132.0
+margin_bottom = 114.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Flip"]
 margin_left = 8.0
 margin_top = 4.0
-margin_right = 120.0
-margin_bottom = 28.0
+margin_right = 124.0
+margin_bottom = 30.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Flip/VBoxContainer"]
-margin_right = 112.0
-margin_bottom = 24.0
+margin_right = 116.0
+margin_bottom = 26.0
 script = ExtResource( 4 )
 
 [node name="FlipX" type="CheckBox" parent="Panel/Controls/Flip/VBoxContainer/HboxContainer"]
-margin_right = 34.0
-margin_bottom = 24.0
+margin_right = 36.0
+margin_bottom = 26.0
 text = "X"
 script = ExtResource( 4 )
 __meta__ = {
@@ -184,9 +183,9 @@ __meta__ = {
 }
 
 [node name="FlipY" type="CheckBox" parent="Panel/Controls/Flip/VBoxContainer/HboxContainer"]
-margin_left = 38.0
-margin_right = 72.0
-margin_bottom = 24.0
+margin_left = 40.0
+margin_right = 76.0
+margin_bottom = 26.0
 text = "Y"
 script = ExtResource( 4 )
 __meta__ = {
@@ -194,9 +193,9 @@ __meta__ = {
 }
 
 [node name="Transpose" type="CheckBox" parent="Panel/Controls/Flip/VBoxContainer/HboxContainer"]
-margin_left = 76.0
-margin_right = 110.0
-margin_bottom = 24.0
+margin_left = 80.0
+margin_right = 116.0
+margin_bottom = 26.0
 text = "T"
 script = ExtResource( 4 )
 __meta__ = {

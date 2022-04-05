@@ -4,7 +4,7 @@ const CONFIGURATOR := preload("res://Data/Editor/Item/Object/OrbitingPlatforms/O
 const PLATFORM := preload("res://Data/Object/OrbitingPlatforms/Platform.tscn")
 
 export (int) var amount = 3
-export (float) var distance = 64
+export (float) var distance = 64.0
 export (int) var speed = -1
 
 var platforms := []

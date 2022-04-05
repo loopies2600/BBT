@@ -15,7 +15,7 @@ func _ready():
 		Objects.append(load(DEFPATH % ("Object/%s" % i)))
 		
 	# define entities
-	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo"]:
+	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro"]:
 		Entities.append(load(DEFPATH % ("Entity/%s" % i)))
 	
 	yield(owner, "ready")

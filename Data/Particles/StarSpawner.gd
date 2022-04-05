@@ -2,7 +2,7 @@ extends Sprite
 
 const STAR = preload("res://Data/Particles/Star.tscn")
 
-export (float) var distance = 48
+export (float) var distance = 48.0
 export (int) var speed = -3
 export (Vector2) var orbitDimension = Vector2(0.5, 1)
 export (int) var initialAngle = 0

@@ -8,7 +8,7 @@ func _ready():
 	
 func _onLayerChange(lname):
 	if Main.editing:
-		modulate.a = lname == name
+		modulate.a = 0.5 * (1 + int(lname == name))
 	else:
 		modulate.a = 1.0
 	

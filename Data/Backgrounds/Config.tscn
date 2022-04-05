@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/BG/Config.png" type="Texture" id=1]
+[ext_resource path="res://Data/Backgrounds/CheckeredBG.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 2
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 416, 240 )
+
+[node name="ConfigBG" type="TextureRect"]
+margin_right = 416.0
+margin_bottom = 240.0
+texture = SubResource( 2 )
+expand = true
+stretch_mode = 2
+script = ExtResource( 2 )

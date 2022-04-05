@@ -4,7 +4,7 @@ const CONFIGURATOR := preload("res://Data/Editor/Item/Object/ConveyorBelt/Convey
 
 enum Directions {RIGHT, LEFT}
 
-export (float) var animSpeed = 1
+export (float) var animSpeed = 1.0
 export (Directions) var dir = Directions.RIGHT
 export (int) var speedBoost = 64
 
