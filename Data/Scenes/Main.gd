@@ -8,6 +8,9 @@ const EDITOR := preload("res://Data/Scenes/LevelEditor.tscn")
 const NGIOSTATUS := preload("res://Data/Scenes/NewgroundsChecker.tscn")
 const NG := preload("res://Data/Util/Newgrounds.tscn")
 
+const DUST := preload("res://Data/Particles/FastDust.tscn")
+const EANIM := preload("res://Data/Particles/DustExplosion.tres")
+
 var editing := true
 
 onready var hud := $HUD
@@ -41,8 +44,10 @@ func _levelInit(lev):
 	
 func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
 	for i in range(rotations.size()):
-		var dust = load("res://Data/Particles/FastDust.tscn").instance()
-	
+		var dust = DUST.instance()
+		
+		dust.frames = EANIM
+		
 		level.add_child(dust)
 		dust.global_position = pos
 		dust.gravity = 4

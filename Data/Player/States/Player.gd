@@ -11,6 +11,10 @@ export (float) var resetDelay = 1.5
 export (int) var slideStrength = 196
 export (float) var slideDuration = 0.35
 
+export (float) var rocketSpeed = 256.0
+export (float) var rocketSteering = 6.0
+export (float) var rocketAccel = 32.0
+
 onready var anim := $Graphics/Anim
 onready var ganim := $Graphics/GAnim
 onready var gfx := $Graphics

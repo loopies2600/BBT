@@ -6,6 +6,7 @@ const DEFPATH := "res://Data/Editor/Definitions/%s.tres"
 
 var Entities := []
 var Objects := []
+var PowerUps := []
 
 onready var tilesTab := $TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 
@@ -18,11 +19,15 @@ func _ready():
 	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro"]:
 		Entities.append(load(DEFPATH % ("Entity/%s" % i)))
 	
+	for i in ["Rocket"]:
+		PowerUps.append(load(DEFPATH % ("PowerUp/%s" % i)))
+		
 	yield(owner, "ready")
 	
 	_spawnTileItems()
 	_spawnObjectItems("Objects")
 	_spawnObjectItems()
+	_spawnObjectItems("PowerUps")
 	
 func _spawnTileItems():
 	for tile in Main.level.tile_set.get_tiles_ids():

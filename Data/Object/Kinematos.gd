@@ -21,6 +21,7 @@ var velocity := Vector2()
 var upDirection := Vector2.UP
 
 var _doDust := false
+var dustOffset := Vector2()
 
 onready var jumpVel : float = (2.0 * jumpHeight / jumpDuration)
 onready var jumpGravity : float = (2.0 * jumpHeight / (jumpDuration * jumpDuration))
@@ -68,7 +69,7 @@ func _dustLoop():
 		var dust = load("res://Data/Particles/FastDust.tscn").instance()
 	
 		Main.currentScene.add_child(dust)
-		dust.global_position = global_position
+		dust.global_position = global_position + dustOffset
 	
 	yield(get_tree().create_timer(dustSpawnRate), "timeout")
 	_dustLoop()

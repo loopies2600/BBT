@@ -1,6 +1,6 @@
 extends TabContainer
 
-onready var containers := [$Tiles/ScrollContainer/VBoxContainer/HBoxContainer, $Objects/ScrollContainer/VBoxContainer/HBoxContainer, $Entities/ScrollContainer/VBoxContainer/HBoxContainer, $Markers/ScrollContainer/VBoxContainer/HBoxContainer]
+onready var containers := [$Tiles/ScrollContainer/VBoxContainer/HBoxContainer, $Objects/ScrollContainer/VBoxContainer/HBoxContainer, $Entities/ScrollContainer/VBoxContainer/HBoxContainer, $Markers/ScrollContainer/VBoxContainer/HBoxContainer, $PowerUps/ScrollContainer/VBoxContainer/HBoxContainer]
 
 func _ready():
 	var _unused = connect("tab_changed", self, "_tabChange")

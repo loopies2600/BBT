@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Sprites/Particles/Dust.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/Particles/DustBig.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Particles/DustMedium.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Particles/DustMedium.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Particles/Dust.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Particles/DustBig.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Particles/DustPrettyBig..png" type="Texture" id=4]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 10.0
@@ -27,12 +28,14 @@ func _animEnd():
 	queue_free()
 
 func _physics_process(delta):
+	if frames.get_frame_count(\"Idle\") == 4 && frame == 0: return
+	
 	velocity.y += gravity
 	
 	position += velocity * delta
 "
 
 [node name="FastDust" type="AnimatedSprite"]
-frames = SubResource( 1 )
+frames = SubResource( 3 )
 animation = "Idle"
 script = SubResource( 2 )
