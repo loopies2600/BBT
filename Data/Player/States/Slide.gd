@@ -4,13 +4,12 @@ var time := 0.0
 
 func enter(_msg := {}):
 	owner.velocity = Vector2.ZERO
+	
 	owner.anim.play("Slide")
 	owner.sounds[2].play()
 	
 	owner.slideDust.frame = 0
 	owner.slideDust.play()
-	
-	owner.global_position.y -= 8 * owner.upDirection.y
 	
 func physics_update(delta):
 	var spdCalc : float = 1.0 - (time / owner.slideDuration)
@@ -28,7 +27,6 @@ func physics_update(delta):
 	if !owner.ceilDetector.is_colliding():
 			if Input.is_action_just_pressed("jump"):
 				emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
-		
 	
 func exit():
 	time = 0.0

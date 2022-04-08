@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/Enemy/HermitBlob.png" type="Texture" id=1]
 [ext_resource path="res://Data/Object/Spike.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Data/Enemy/HermitBlob/HermitBlob.gd" type="Script" id=3]
+[ext_resource path="res://Data/Enemy/HermitBlob/GizmoRenderer.gd" type="Script" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3, 64 )
+[sub_resource type="RayShape2D" id=8]
+length = 64.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Hide"
@@ -258,8 +259,9 @@ region_rect = Rect2( 13, 0, 3, 4 )
 position = Vector2( -1, -10 )
 
 [node name="DetectionArea" type="CollisionShape2D" parent="."]
-position = Vector2( 7, -64 )
-shape = SubResource( 1 )
+position = Vector2( 7, 0 )
+rotation = 3.14159
+shape = SubResource( 8 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 autoplay = "Show"
@@ -272,3 +274,6 @@ anims/Show = SubResource( 4 )
 autoplay = "Blink"
 anims/Blink = SubResource( 6 )
 anims/RESET = SubResource( 7 )
+
+[node name="GizmoRenderer" type="Node2D" parent="."]
+script = ExtResource( 4 )

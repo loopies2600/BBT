@@ -16,7 +16,7 @@ func mainClick(_event):
 	if tile:
 		_spawnConfigurator(TILE_CONFIG, {"targetMap" : tgt, "targetTile": cell})
 	else:
-		var n = get_parent().getNodeOnThisPos()
+		var n = Main.getNodeOnThisPos(get_parent().cellPos)
 		
 		if !n: return
 		

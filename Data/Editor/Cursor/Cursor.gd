@@ -81,8 +81,7 @@ func _frickinPositionFormula() -> Vector2:
 	
 func configuratorCheck():
 	if configurator:
-		configurator.queue_free()
-		configurator = null
+		configurator.close()
 	
 func _input(event):
 	if !Main.editing:
@@ -92,12 +91,3 @@ func _input(event):
 		modes[mode].mainClick(event)
 	elif Input.is_action_pressed("mouse_secondary"):
 		modes[mode].subClick(event)
-		
-func getNodeOnThisPos(pos := cellPos) -> Node2D:
-	var node
-	
-	for c in get_tree().get_nodes_in_group("Instances"):
-		if (c.global_position / level.cell_size / level.scale).round() == pos:
-			node = c
-	
-	return node

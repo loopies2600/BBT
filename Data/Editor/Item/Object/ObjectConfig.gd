@@ -20,6 +20,9 @@ func _ready():
 	_setupRotation()
 	_setupScale()
 	
+	if target.get("drawGizmos") != null:
+		target.drawGizmos = true
+	
 func _setupExitButton():
 	var _unused = exit.connect("pressed", self, "_onExitPress")
 	
@@ -69,8 +72,14 @@ func _ySclChange(new := "0"):
 	target.scale.y = int(new)
 	
 func _onExitPress():
+	close()
+	
+func close():
 	get_parent().get_parent().cursor.configurator = null
 	get_parent().get_parent().cursor.canPlace = true
 	
+	if target.get("drawGizmos") != null:
+		target.drawGizmos = false
+		
 	queue_free()
 

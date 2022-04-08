@@ -23,6 +23,7 @@ var olderPositions := []
 
 var time := 0.0
 
+var drawGizmos := false
 var jumping := false setget _setJumping
 
 func _ready():

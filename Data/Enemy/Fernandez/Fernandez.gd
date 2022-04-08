@@ -12,6 +12,7 @@ onready var area := $ExplosionArea
 
 var target
 
+var drawGizmos := false
 var exploding := false
 
 func _ready():

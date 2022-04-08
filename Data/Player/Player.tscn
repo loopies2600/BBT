@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Data/Player/States/Editor.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/States/Player.gd" type="Script" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://Data/Player/States/Move.gd" type="Script" id=6]
 [ext_resource path="res://Data/Player/States/Air.gd" type="Script" id=7]
 [ext_resource path="res://Data/Player/States/Dash.gd" type="Script" id=8]
-[ext_resource path="res://Data/Player/CollisionBoxes/Standing.tres" type="Shape2D" id=9]
+[ext_resource path="res://Data/Player/CollisionBox.tres" type="Shape2D" id=9]
 [ext_resource path="res://Data/Player/States/Crouch.gd" type="Script" id=10]
 [ext_resource path="res://Data/Player/States/Dead.gd" type="Script" id=11]
 [ext_resource path="res://Streams/Sounds/Jump.wav" type="AudioStream" id=12]
@@ -22,7 +22,6 @@
 [ext_resource path="res://Data/Player/States/Win.gd" type="Script" id=20]
 [ext_resource path="res://Data/Player/BGTint.gd" type="Script" id=21]
 [ext_resource path="res://Data/Player/States/Rocket.gd" type="Script" id=22]
-[ext_resource path="res://Data/Player/CollisionBoxes/Crouching.tres" type="Shape2D" id=23]
 
 [sub_resource type="Animation" id=12]
 resource_name = "Crouch"
@@ -89,7 +88,7 @@ tracks/4/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../CollisionBox:shape")
+tracks/5/path = NodePath("../CollisionBox:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -97,11 +96,11 @@ tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 23 ) ]
+"update": 0,
+"values": [ Vector2( 0, 8 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("../CollisionBox:position")
+tracks/6/path = NodePath("../CollisionBox:shape:extents")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -110,7 +109,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 7 ) ]
+"values": [ Vector2( 7.5, 7.5 ) ]
 }
 
 [sub_resource type="Animation" id=21]
@@ -177,18 +176,6 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("../CollisionBox:shape")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
-}
 
 [sub_resource type="Animation" id=9]
 resource_name = "Dash"
@@ -241,30 +228,6 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Rect2( 64, 32, 32, 32 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../CollisionBox:shape")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../CollisionBox:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 1 ) ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -373,18 +336,6 @@ tracks/3/keys = {
 "method": "seek"
 } ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("../CollisionBox:shape")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
-}
 
 [sub_resource type="Animation" id=22]
 resource_name = "HappyDash"
@@ -437,18 +388,6 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Rect2( 96, 32, 32, 32 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../CollisionBox:shape")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -516,7 +455,7 @@ tracks/4/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../CollisionBox:shape")
+tracks/5/path = NodePath("../CollisionBox:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -524,11 +463,11 @@ tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
+"update": 0,
+"values": [ Vector2( 0, 3.75 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("../CollisionBox:position")
+tracks/6/path = NodePath("../CollisionBox:shape:extents")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -537,7 +476,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 1 ) ]
+"values": [ Vector2( 7.5, 11.75 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -579,18 +518,6 @@ tracks/2/keys = {
 "args": [ "Idle", -1, 1.0, false ],
 "method": "play"
 } ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../CollisionBox:shape")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=17]
@@ -657,18 +584,6 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("../CollisionBox:shape")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
-}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Jump"
@@ -695,18 +610,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Rect2( 0, 32, 32, 32 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../CollisionBox:shape")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -748,7 +651,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../CollisionBox:position")
+tracks/3/path = NodePath("CeilDetector:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -757,10 +660,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 1 ) ]
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("../CollisionBox:shape:extents")
+tracks/4/path = NodePath("Sprite:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -769,10 +672,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 7.5, 13.5 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CeilDetector:position")
+tracks/5/path = NodePath("../CollisionBox:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -781,10 +684,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 3.75 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Sprite:scale")
+tracks/6/path = NodePath("../CollisionBox:shape:extents")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -793,19 +696,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../CollisionBox:shape")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ ExtResource( 23 ) ]
+"values": [ Vector2( 7.5, 11.75 ) ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -872,18 +763,6 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("../CollisionBox:shape")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
-}
 
 [sub_resource type="Animation" id=16]
 resource_name = "Slide"
@@ -909,31 +788,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -4 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../CollisionBox:shape")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 23 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../CollisionBox:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0.5 ) ]
+"values": [ Vector2( 0, 4 ) ]
 }
 
 [sub_resource type="Animation" id=18]
@@ -986,18 +841,6 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../CollisionBox:shape")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -1052,18 +895,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("../CollisionBox:shape")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
-}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Walk"
@@ -1115,18 +946,6 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../CollisionBox:shape")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="SpriteFrames" id=19]
@@ -1287,13 +1106,11 @@ frame = 3
 centered = false
 
 [node name="CeilDetector" type="RayCast2D" parent="Graphics"]
-visible = false
 enabled = true
 cast_to = Vector2( 0, -16 )
 collision_mask = 62
 
 [node name="WallDetector" type="RayCast2D" parent="Graphics"]
-visible = false
 position = Vector2( 0, 8 )
 enabled = true
 cast_to = Vector2( 16, 0 )
@@ -1308,8 +1125,8 @@ anims/Jump = SubResource( 23 )
 anims/RESET = SubResource( 27 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1 )
-shape = ExtResource( 23 )
+position = Vector2( 0, 3.75 )
+shape = ExtResource( 9 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 3 )

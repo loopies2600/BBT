@@ -38,12 +38,16 @@ func resetState():
 	if Main.editing:
 		fsm._change_state("editor")
 	
-	upDirection = Vector2.UP
-	
 func _ready():
 	letsStart()
 	
 func letsStart():
+	# reiniciamos estado la de colisión
+	collisionBox.set_deferred("disabled", false)
+	
+	# reiciamos gravedad
+	upDirection = Vector2.UP
+	
 	# reiniciamos posición
 	global_position = spawnPos
 	

@@ -18,10 +18,7 @@ func _ready():
 func _itemClick(event):
 	if event is InputEvent:
 		if event.is_action_pressed("mouse_main"):
-			for i in get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().buttons:
-				i.selected = false
-				
-			self.selected = true
+			enable()
 			
 			match name:
 				"Foreground":
@@ -30,3 +27,9 @@ func _itemClick(event):
 					cursor.targetTilemap = Main.level
 				"Background":
 					cursor.targetTilemap = Main.level.get_node("Background")
+
+func enable():
+	for i in get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().buttons:
+		i.selected = false
+		
+	self.selected = true

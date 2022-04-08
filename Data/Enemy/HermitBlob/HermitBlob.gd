@@ -13,7 +13,9 @@ onready var fallGravity : float = (2.0 * jumpHeight / (fallDuration * fallDurati
 
 onready var anim := $Animator
 onready var spawnPos := global_position
+onready var ray := $DetectionArea
 
+var drawGizmos := false
 var velocity := Vector2()
 var doGravity := false
 

@@ -9,6 +9,7 @@ export (Modes) var mode = Modes.UP
 onready var detector := $Detector
 
 var disabled := false
+var drawGizmos := false
 
 func _ready():
 	get_child(0).visible = !Engine.editor_hint
@@ -29,8 +30,10 @@ func _process(_delta):
 	modulate = Color.tomato if mode == 0 else Color.cornflower
 	
 func _draw():
-	if Main.editing:
-		draw_rect(Rect2(-detector.shape.extents, detector.shape.extents * 2), Color.white / 2)
+	if !Main.editing: return
+	if !drawGizmos: return
+	
+	draw_rect(Rect2(-detector.shape.extents, detector.shape.extents * 2), Color.white / 2)
 		
 func _changeGravityNDisable(whoEntered):
 	var newDir := 1 if mode == Modes.UP else -1

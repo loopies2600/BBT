@@ -39,7 +39,7 @@ func mainClick(_event):
 			else:
 				var pos := cell + Vector2(1 * sx, 1 * sy)
 				
-				var occupied = get_parent().getNodeOnThisPos(pos) != null
+				var occupied = Main.getNodeOnThisPos(pos) != null
 				if occupied: return
 				
 				placeSnd.play()
@@ -91,7 +91,7 @@ func subClick(_event):
 					get_parent().emit_signal("tile_removed", cell)
 					
 			else:
-				var n = get_parent().getNodeOnThisPos(cell + Vector2(1 * sx, 1 * sy))
+				var n = Main.getNodeOnThisPos(cell + Vector2(1 * sx, 1 * sy))
 				
 				if n:
 					removeSnd.play()

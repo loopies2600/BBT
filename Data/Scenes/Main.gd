@@ -73,3 +73,12 @@ func _input(event):
 				changeScene(NGIOSTATUS)
 			else:
 				changeScene(EDITOR)
+	
+func getNodeOnThisPos(pos := Vector2()) -> Node2D:
+	var node
+	
+	for c in get_tree().get_nodes_in_group("Instances"):
+		if (c.global_position / level.cell_size / level.scale).round() == pos:
+			node = c
+	
+	return node

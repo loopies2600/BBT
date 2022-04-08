@@ -51,6 +51,9 @@ func _process(_delta):
 	targetMap.set_cellv(targetTile, targetMap.get_cellv(targetTile), flipH.pressed, flipV.pressed, transpose.pressed)
 
 func _onExitPress():
+	close()
+	
+func close():
 	get_parent().get_parent().cursor.configurator = null
 	get_parent().get_parent().cursor.canPlace = true
 	

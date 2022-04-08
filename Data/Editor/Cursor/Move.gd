@@ -13,7 +13,7 @@ func mainClick(event):
 	if !get_parent().canPlace: return
 	
 	if event.is_action_pressed("mouse_main"):
-		holding = get_parent().getNodeOnThisPos()
+		holding = Main.getNodeOnThisPos(get_parent().cellPos)
 	if event.is_action_released("mouse_main"):
 		holding = null
 	

@@ -115,7 +115,6 @@ func openFilePicker():
 				var path : String = out[0]
 				path.erase(out[0].length() - 1, 1)
 				
-				print(path)
 				return ResourceLoader.load(path)
 				
 		"Windows":

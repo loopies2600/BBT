@@ -5,6 +5,7 @@ func _process(_delta):
 	
 func _draw():
 	if !Main.editing: return
+	if !get_parent().drawGizmos: return
 	
 	var s : Vector2 = get_parent().start.global_position - global_position
 	var m : Vector2 = get_parent().middle - global_position
