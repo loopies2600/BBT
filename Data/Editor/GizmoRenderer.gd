@@ -31,14 +31,6 @@ func _draw():
 		for i in range(int((pos.y - size.y) / separation.x) - 1, int((size.y + pos.y) / separation.x) + 1):
 			draw_string(FONT, Vector2(pos.x + size.x - 304, i * separation.y), str(i), Color.darkgray)
 		
-	if get_parent().showCellBox:
-		for c in lvl.get_used_cells():
-			draw_rect(Rect2(Vector2(c.x, c.y) * lvl.cell_size * lvl.scale, lvl.cell_size * lvl.scale), Color(0.66, 0.66, 0.66, 0.5), true)
-			
-		for n in lvl.get_children():
-			if n.visible && !n.is_in_group("NoRender"):
-				draw_rect(Rect2(((n.global_position / lvl.cell_size).round() * lvl.cell_size) * lvl.scale, lvl.cell_size * lvl.scale), Color(0.66, 0.66, 0.66, 0.5), true)
-		
 	if get_parent().cursor.configurator:
 		draw_rect(Rect2(get_parent().cursor.configurator.targetTile * lvl.cell_size * lvl.scale, lvl.cell_size * lvl.scale), Color.tomato, false, 2)
 		

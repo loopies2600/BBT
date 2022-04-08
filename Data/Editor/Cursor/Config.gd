@@ -5,7 +5,6 @@ const TILE_CONFIG := preload("res://Data/Editor/Item/TileConfig.tscn")
 
 func update():
 	get_parent().texture = null
-	get_parent().scale = Vector2.ONE
 	
 func mainClick(_event):
 	if !get_parent().canPlace: return

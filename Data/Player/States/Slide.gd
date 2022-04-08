@@ -10,6 +10,8 @@ func enter(_msg := {}):
 	owner.slideDust.frame = 0
 	owner.slideDust.play()
 	
+	owner.global_position.y -= 8 * owner.upDirection.y
+	
 func physics_update(delta):
 	var spdCalc : float = 1.0 - (time / owner.slideDuration)
 	

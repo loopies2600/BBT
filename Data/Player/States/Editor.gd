@@ -1,6 +1,8 @@
 extends State
 
 func enter(_msg := {}):
+	owner.collisionBox.set_deferred("disabled", true)
+	
 	Main.cam.target = null
 	
 	owner.velocity = Vector2.ZERO
@@ -17,5 +19,7 @@ func physics_update(_delta):
 		emit_signal("finished", "idle")
 	
 func exit():
+	owner.collisionBox.set_deferred("disabled", false)
+	
 	owner.doGravity = true
 	owner.spawnPos = owner.global_position

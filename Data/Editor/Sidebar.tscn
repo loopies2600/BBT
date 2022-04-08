@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Editor/Button.png" type="Texture" id=2]
@@ -59,14 +59,6 @@ region = Rect2( 48, 0, 16, 16 )
 atlas = ExtResource( 2 )
 region = Rect2( 48, 16, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 16, 16, 16 )
-
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 2 )
 region = Rect2( 96, 0, 16, 16 )
@@ -80,18 +72,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -144, 40 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BG" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="UtilButtons" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -106,7 +92,7 @@ __meta__ = {
 }
 
 [node name="Pencil" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
-margin_right = 414.0
+margin_right = 412.0
 margin_bottom = 16.0
 mouse_filter = 1
 toggle_mode = true
@@ -119,7 +105,7 @@ script = ExtResource( 3 )
 
 [node name="Move" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
 margin_top = 20.0
-margin_right = 414.0
+margin_right = 412.0
 margin_bottom = 36.0
 mouse_filter = 1
 toggle_mode = true
@@ -131,7 +117,7 @@ script = ExtResource( 5 )
 
 [node name="ItemConfig" type="TextureButton" parent="UtilButtons" groups=["Refresh"]]
 margin_top = 40.0
-margin_right = 414.0
+margin_right = 412.0
 margin_bottom = 56.0
 mouse_filter = 1
 toggle_mode = true
@@ -143,7 +129,7 @@ script = ExtResource( 6 )
 
 [node name="Grid" type="TextureButton" parent="UtilButtons"]
 margin_top = 60.0
-margin_right = 414.0
+margin_right = 412.0
 margin_bottom = 76.0
 mouse_filter = 1
 toggle_mode = true
@@ -160,7 +146,7 @@ action = "show_grid"
 
 [node name="CellNumbers" type="TextureButton" parent="UtilButtons"]
 margin_top = 80.0
-margin_right = 414.0
+margin_right = 412.0
 margin_bottom = 96.0
 mouse_filter = 1
 toggle_mode = true
@@ -174,23 +160,6 @@ __meta__ = {
 }
 property = "showCells"
 action = "show_cell_numbers"
-
-[node name="UsedTiles" type="TextureButton" parent="UtilButtons"]
-margin_top = 100.0
-margin_right = 414.0
-margin_bottom = 116.0
-mouse_filter = 1
-toggle_mode = true
-shortcut_in_tooltip = false
-texture_normal = SubResource( 12 )
-texture_pressed = SubResource( 13 )
-stretch_mode = 2
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-property = "showCellBox"
-action = "show_object_info"
 
 [node name="LevelButtons" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -209,7 +178,7 @@ __meta__ = {
 
 [node name="Play" type="TextureButton" parent="LevelButtons"]
 margin_top = 216.0
-margin_right = 410.0
+margin_right = 408.0
 margin_bottom = 232.0
 mouse_filter = 1
 shortcut_in_tooltip = false

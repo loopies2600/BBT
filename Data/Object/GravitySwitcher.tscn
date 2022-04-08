@@ -19,9 +19,10 @@ func _ready():
 	set_as_toplevel(true)
 	
 	yield(get_tree(), \"idle_frame\")
-	global_position = get_parent().global_position
 	
 func _process(delta):
+	global_position = get_parent().global_position
+	
 	update()
 	
 	if !get_tree().get_root().get_node(\"Main\").editing: return

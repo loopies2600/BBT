@@ -49,6 +49,6 @@ func _changeGravityNDisable(whoEntered):
 	
 func resetState():
 	for star in $SpinningStars.get_children():
-		star.angle = star.initialAngle
+		star.angle = deg2rad(star.initialAngle)
 		
 	disabled = false

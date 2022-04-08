@@ -4,8 +4,6 @@ func _process(_delta):
 	update()
 	
 func _draw():
-	var renderPos : bool = Main.currentScene.showCellBox
-	
-	if !renderPos: return
+	if !Main.editing: return
 	
 	draw_circle(get_parent().area.position, get_parent().area.shape.radius, Color.deeppink)

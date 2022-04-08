@@ -1,4 +1,6 @@
-extends Sprite
+extends Node2D
+
+const BDTEX = preload("res://Sprites/Editor/SelectedTile.png")
 
 # warning-ignore:unused_signal
 signal tile_placed(pos)
@@ -21,6 +23,7 @@ var canPlace := true
 
 var configurator
 var target
+var texture : Texture
 
 var alreadyPressed := false
 
@@ -58,6 +61,15 @@ func _process(_delta):
 		cellPos = ((global_position / level.cell_size).round() / level.scale).round()
 	
 	modes[mode].update()
+	update()
+	
+func _draw():
+	if !texture: return
+	
+	for sx in range(modes[0].brushSize):
+		for sy in range(modes[0].brushSize):
+			draw_texture(texture, Vector2(16 * sx, 16 * sy))
+			draw_texture(BDTEX, Vector2(-16, -16) + Vector2(16 * sx, 16 * sy))
 	
 func _frickinPositionFormula() -> Vector2:
 	var mousePos := get_global_mouse_position()

@@ -27,11 +27,3 @@ initialAngle = 90
 z_index = 2
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
-
-[node name="SpriteMask" type="Light2D" parent="Spawner1"]
-offset = Vector2( 8, 0 )
-color = Color( 0, 0, 0, 1 )
-energy = 16.0
-mode = 2
-range_z_min = -2
-range_z_max = -1

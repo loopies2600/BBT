@@ -4,9 +4,7 @@ func _process(_delta):
 	update()
 	
 func _draw():
-	var renderPos : bool = Main.currentScene.showCellBox
-	
-	if !renderPos: return
+	if !Main.editing: return
 	
 	var s : Vector2 = get_parent().start.global_position - global_position
 	var m : Vector2 = get_parent().middle - global_position

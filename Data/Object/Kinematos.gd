@@ -47,8 +47,9 @@ func _process(_delta):
 	scale.y = -upDirection.y
 	
 func _physics_process(delta):
-	velocity.y = move_and_slide(velocity, upDirection, !slideDownSlopes).y
+	velocity = move_and_slide(velocity, upDirection, !slideDownSlopes)
 	
+	print(is_on_floor())
 	_applyGravity(delta)
 	_dustTrigger()
 	

@@ -11,7 +11,6 @@ var explosionRadius := 4
 func update():
 	get_parent().configuratorCheck()
 	if get_parent().target: get_parent().texture = get_parent().target.texture
-	get_parent().scale = Vector2(brushSize, brushSize)
 	
 func mainClick(_event):
 	if !get_parent().canPlace: return

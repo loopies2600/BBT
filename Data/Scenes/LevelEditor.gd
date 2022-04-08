@@ -11,7 +11,6 @@ onready var desc := $GUILayer/Descriptor
 
 var showGrid := false
 var showCells := false
-var showCellBox := false
 
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")

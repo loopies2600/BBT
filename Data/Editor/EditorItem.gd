@@ -8,7 +8,7 @@ export (Dictionary) var customParams
 
 onready var editor = get_tree().get_nodes_in_group("Editor")[0]
 
-var cursor : Sprite
+var cursor
 
 var tileID := 0
 var selected := false setget _gotSelected
