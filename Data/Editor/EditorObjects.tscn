@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Data/Editor/ACScroll.gd" type="Script" id=2]
 [ext_resource path="res://Data/Editor/TabContainer.gd" type="Script" id=5]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=18]
 [ext_resource path="res://Data/Editor/EditorObjects.gd" type="Script" id=29]
@@ -71,7 +72,7 @@ script = ExtResource( 18 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = false
-script = ExtResource( 18 )
+script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Tiles/ScrollContainer"]
 script = ExtResource( 18 )
@@ -94,7 +95,7 @@ script = ExtResource( 18 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = false
-script = ExtResource( 18 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -121,7 +122,7 @@ script = ExtResource( 18 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = false
-script = ExtResource( 18 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -146,7 +147,7 @@ script = ExtResource( 18 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = false
-script = ExtResource( 18 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -173,7 +174,7 @@ script = ExtResource( 18 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = false
-script = ExtResource( 18 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

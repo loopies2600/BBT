@@ -6,6 +6,8 @@ func _process(_delta):
 	update()
 	
 func _draw():
+	if !Main.editing: return
+	
 	var lvl : TileMap = Main.level
 	
 	var size : Vector2 = get_viewport_rect().size * get_parent().cam.zoom

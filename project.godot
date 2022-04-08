@@ -59,6 +59,8 @@ _global_script_class_icons={
 config/name="Bennett Boy's Trouble"
 config/description="DEV BUILD"
 run/main_scene="res://GLoad.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="bbt/"
 boot_splash/image="res://Sprites/GLoad.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
@@ -207,6 +209,7 @@ ssl/certificates="res://addons/newgrounds/certs.pem"
 
 [physics]
 
+common/physics_jitter_fix=1.0
 common/enable_pause_aware_picking=true
 2d/default_gravity=25
 

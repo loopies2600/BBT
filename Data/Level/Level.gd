@@ -5,8 +5,8 @@ signal block_toggled(rob)
 const INDESTRUCTIBLE := [23, 24]
 const SAVE_PATH = "user://temp.tscn"
 
-# warning-ignore:unused_signal
-signal tile_anim_finished
+onready var mus := $Music
+onready var bg := $ImageBG
 
 var camBoundariesX := Vector2(0, 320)
 var camBoundariesY := Vector2(0, 240)
@@ -117,7 +117,7 @@ func _ready():
 	Main.level = self
 	
 	for c in get_children():
-		if c is TileMap:
+		if c.name in ["Foreground", "Background", "Music", "ImageBG"]:
 			pass
 		else:
 			c.add_to_group("Instances")

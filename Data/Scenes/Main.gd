@@ -13,6 +13,7 @@ const EANIM := preload("res://Data/Particles/DustExplosion.tres")
 
 var editing := true
 
+onready var cam := $Camera
 onready var hud := $HUD
 onready var background := $ImageBG
 onready var level : TileMap = preload("res://Data/Level/Level.tscn").instance()

@@ -1,6 +1,8 @@
 extends State
 
 func enter(_msg := {}):
+	Main.cam.target = null
+	
 	owner.velocity = Vector2.ZERO
 	owner.doGravity = false
 	owner.anim.play("Wait")

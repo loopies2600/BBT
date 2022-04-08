@@ -85,7 +85,7 @@ func runPS(script := []) -> Array:
 	if !script: return []
 	
 	var tmpScript := File.new()
-	var _err = tmpScript.open("temp.ps1", File.WRITE)
+	var _err = tmpScript.open("user://temp.ps1", File.WRITE)
 	
 	for line in script:
 		tmpScript.store_line(line)
@@ -94,10 +94,10 @@ func runPS(script := []) -> Array:
 	tmpScript.close()
 	
 	var dir := Directory.new()
-	_err = dir.open(".")
-	var path := dir.get_current_dir()
+	_err = dir.open("user://")
+	var path := OS.get_user_data_dir()
 	var out := []
-	_err = OS.execute("powershell.exe", [path + "/temp.ps1"], true, out)
+	_err = OS.execute("powershell.exe", [path + "temp.ps1"], true, out)
 	
 	_err = dir.remove(path + "/temp.ps1")
 	
@@ -115,6 +115,7 @@ func openFilePicker():
 				var path : String = out[0]
 				path.erase(out[0].length() - 1, 1)
 				
+				print(path)
 				return ResourceLoader.load(path)
 				
 		"Windows":
@@ -122,7 +123,7 @@ func openFilePicker():
 			
 			if out[0]:
 				var path = out[0]
-				path.erase(out[0].length() - 2, 2)
+				path.erase(out[0].length() - 1, 2)
 				
 				return ResourceLoader.load(path)
 	
@@ -142,6 +143,6 @@ func openFolderPicker():
 			
 			if out[0]:
 				var path = out[0]
-				path.erase(out[0].length() - 2, 2)
+				path.erase(out[0].length() - 1, 2)
 				
 				return path

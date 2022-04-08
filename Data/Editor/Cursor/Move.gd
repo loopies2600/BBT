@@ -29,5 +29,5 @@ func mainClick(event):
 			else:
 				holding.rotation += amt
 		else:
-			holding.global_position = (event.position - get_parent().get_canvas_transform().origin) * get_parent().get_parent().cam.zoom
+			holding.global_position = (event.position - get_parent().get_canvas_transform().origin) * Main.cam.zoom
 			holding.global_position = (holding.global_position / get_parent().level.cell_size).round() * get_parent().level.cell_size

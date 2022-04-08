@@ -55,7 +55,7 @@ func explode():
 	
 	get_parent().purgeCircle(area.global_position / 16, ceil(area.shape.radius / 16), -1)
 	
-	Main.currentScene.player.cam.shake(16, 16)
+	Main.cam.shake(16, 16)
 	
 	var newExplosion := EXPLOSION.instance()
 	

@@ -27,15 +27,13 @@ func enter(msg := {}):
 	# desactivar colisiones y sacudir camara
 	Main.plop(owner.global_position)
 	
-	owner.cam.set_as_toplevel(true)
-	owner.cam.position = owner.position
-	
 	var shakePower := Vector2(3, 3)
 	
 	if msg.has("shakePower"):
 		shakePower = msg.shakePower
 		
-	owner.cam.shake(shakePower.x, shakePower.y)
+	Main.cam.shake(shakePower.x, shakePower.y)
+	Main.cam.target = null
 	
 	owner.collisionBox.set_deferred("disabled", true)
 	owner.canInput = false

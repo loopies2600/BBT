@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Data/Player/States/Editor.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/States/Player.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Data/Player/States/Move.gd" type="Script" id=6]
 [ext_resource path="res://Data/Player/States/Air.gd" type="Script" id=7]
 [ext_resource path="res://Data/Player/States/Dash.gd" type="Script" id=8]
-[ext_resource path="res://Data/Player/Camera.gd" type="Script" id=9]
 [ext_resource path="res://Data/Player/States/Crouch.gd" type="Script" id=10]
 [ext_resource path="res://Data/Player/States/Dead.gd" type="Script" id=11]
 [ext_resource path="res://Streams/Sounds/Jump.wav" type="AudioStream" id=12]
@@ -1172,6 +1171,33 @@ animations = [ {
 "speed": 30.0
 } ]
 
+[sub_resource type="Animation" id=26]
+resource_name = "Deploy"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 16 ), Vector2( 0, -16 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 2 ), Vector2( 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=24]
 resource_name = "FromJump"
 tracks/0/type = "value"
@@ -1224,6 +1250,33 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=11]
@@ -1284,9 +1337,12 @@ cast_to = Vector2( 16, 0 )
 collision_mask = 62
 
 [node name="GAnim" type="AnimationPlayer" parent="Graphics"]
+autoplay = "Deploy"
 playback_speed = 4.0
+anims/Deploy = SubResource( 26 )
 anims/FromJump = SubResource( 24 )
 anims/Jump = SubResource( 23 )
+anims/RESET = SubResource( 27 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 visible = false
@@ -1330,19 +1386,6 @@ script = ExtResource( 22 )
 [node name="Light" type="Sprite" parent="."]
 position = Vector2( -8, -8 )
 script = ExtResource( 15 )
-
-[node name="Camera" type="Camera2D" parent="."]
-visible = false
-position = Vector2( 160, 112 )
-limit_smoothed = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 20.0
-drag_margin_top = 0.4
-editor_draw_limits = true
-editor_draw_drag_margin = true
-script = ExtResource( 9 )
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )

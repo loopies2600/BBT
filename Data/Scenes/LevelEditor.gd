@@ -1,18 +1,17 @@
 extends Node2D
 
-const GLOAD := preload("res://GLoad.tscn")
+signal level_changed()
+signal level_saved()
 
 onready var cursor := $Cursor
 onready var utilButtons := $GUILayer/Sidebar/UtilButtons
-onready var cam := $Camera
+onready var cam : Camera2D = Main.cam
 onready var guiLayer := $GUILayer
 onready var desc := $GUILayer/Descriptor
 
 var showGrid := false
 var showCells := false
 var showCellBox := false
-
-var player : Player
 
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")
@@ -23,12 +22,7 @@ func _process(_delta):
 	if Main.editing:
 		Main.entityLookTowards = get_global_mouse_position()
 	
-	# scroll BG
-	Main.background.scroll_offset = get_canvas_transform().origin
-	
 func setNewLevel():
-	add_child(GLOAD.instance())
-	
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 	
@@ -39,11 +33,10 @@ func setNewLevel():
 		
 	if newLvl:
 		Main.reload(newLvl)
-	
+		emit_signal("level_changed")
+		
 func saveLevel():
 	if !levelIsValid(): return
-	
-	add_child(GLOAD.instance())
 	
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
@@ -60,7 +53,8 @@ func saveLevel():
 	
 	if path:
 		Main.level.saveLvl(path)
-	
+		emit_signal("level_saved")
+		
 func _input(event):
 	if event.is_action_pressed("switch_state"):
 		_switchStates()
@@ -71,7 +65,6 @@ func _switchStates():
 	if !levelIsValid(): return
 	
 	Main.editing = !Main.editing
-	cam.global_position = Vector2()
 	
 	Main.level.resetObjectState()
 	
@@ -81,20 +74,23 @@ func _switchStates():
 			cursor.configurator = null
 		
 		Main.level.copyMap()
+		
+		if Main.level.get("mus"):
+			Main.level.mus.play()
 	else:
 		Main.level.restoreMap()
 		
 		_resetPlayValues()
-		cam.current = true
+		
+		if Main.level.get("mus"):
+			Main.level.mus.stop()
+		
+		Main.cam.global_position = Vector2.ZERO
 		
 	cursor.canPlace = Main.editing
 	Main.emit_signal("game_mode_changed", Main.editing)
 	
 func _resetPlayValues():
-	if player:
-		player.queue_free()
-		player = null
-		
 	Main.attempt = 1
 	Main.hud.aLabel.text = "ATTEMPT %s" % Main.attempt
 	
@@ -106,18 +102,17 @@ func restart():
 	Main.level.restoreMap()
 	
 func levelIsValid() -> bool:
-	var hasSpawnPoint := false
+	var hasPlayer := false
 	var hasTiles : bool = Main.level.get_used_cells().size() != 0
 	
-	for c in Main.level.get_children():
-		if c.name == "Player":
-			hasSpawnPoint = true
+	if Main.level.get_node("Player"):
+		hasPlayer = true
 	
 	if !hasTiles:
 		_message("Level is empty!")
 		return false
 	
-	if !hasSpawnPoint: 
+	if !hasPlayer: 
 		_message("No player found!") 
 		return false
 		

@@ -28,12 +28,12 @@ func mainClick(_event):
 				if ttm.get_cellv(cell + Vector2(sx, sy)) == -1 || ttm.get_cellv(cell) != tgt.tileID:
 					placeSnd.play()
 					
-				if brushSize < 5:
-					var placement := preload("res://Data/Particles/TilePlace.tscn").instance()
-					lvl.add_child(placement)
-					placement.global_position = cell * 16 + Vector2(16 * sx, 16 * sy)
-					
-					placement.texture = get_parent().texture
+					if brushSize < 5:
+						var placement := preload("res://Data/Particles/TilePlace.tscn").instance()
+						lvl.add_child(placement)
+						placement.global_position = cell * 16 + Vector2(16 * sx, 16 * sy)
+						
+						placement.texture = get_parent().texture
 					
 				ttm.set_cellv(cell + Vector2(1 * sx, 1 * sy), tgt.tileID)
 				get_parent().emit_signal("tile_placed", cell)

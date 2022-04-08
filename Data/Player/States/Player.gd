@@ -23,7 +23,6 @@ onready var collisionBox := $CollisionBox
 onready var fsm := $StateMachine
 onready var light := $Light
 onready var ceilDetector := $Graphics/CeilDetector
-onready var cam := $Camera
 onready var slideDust := $Graphics/SlideDust
 onready var sounds := [$Jump, $Dash, $Slide]
 onready var wallDetector := $Graphics/WallDetector

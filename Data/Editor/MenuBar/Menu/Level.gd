@@ -7,6 +7,12 @@ func _ready():
 	
 	popup.set_item_checked(2, true)
 	
+	var _unused = Main.currentScene.connect("level_changed", self, "_lvlChange")
+	
+func _lvlChange():
+	popup.set_item_checked(1, Main.level.darkMode)
+	popup.set_item_checked(2, true if Main.level.bg.mode == 0 else false)
+	
 func _popupButtonPress(id := 0):
 	._popupButtonPress(id)
 	
@@ -23,4 +29,4 @@ func _popupButtonPress(id := 0):
 			
 			popup.set_item_checked(2, booly)
 			
-			Main.background.mode = 0 if booly else 1
+			Main.level.bg.mode = 0 if booly else 1

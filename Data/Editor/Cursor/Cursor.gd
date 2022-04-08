@@ -43,6 +43,8 @@ func _ready():
 	_unused = connect("object_removed", level, "_onObjectRemoval")
 	
 func _process(_delta):
+	Main.cam.canPlace = canPlace
+	
 	visible = Main.editing
 	
 	var result : Vector2 = (_frickinPositionFormula() / level.cell_size).round() * level.cell_size
