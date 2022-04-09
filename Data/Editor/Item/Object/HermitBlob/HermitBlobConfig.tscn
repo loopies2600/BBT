@@ -20,7 +20,7 @@ region = Rect2( 80, 16, 16, 16 )
 [node name="HermitBlobConfig" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 264.0
+margin_left = 240.0
 margin_top = 40.0
 margin_right = -10.0
 margin_bottom = -72.0
@@ -34,9 +34,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Ctl" type="TabContainer" parent="P"]
 anchor_right = 1.0
@@ -51,7 +48,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="T" type="Tabs" parent="P/Ctl"]
+[node name="Transform" type="Tabs" parent="P/Ctl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -61,7 +58,7 @@ margin_bottom = -4.0
 tab_align = 0
 script = ExtResource( 4 )
 
-[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T"]
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/Transform"]
 margin_left = 8.0
 margin_top = 4.0
 margin_right = 118.0
@@ -71,68 +68,68 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hbc" type="HBoxContainer" parent="P/Ctl/T/Vbc"]
+[node name="Hbc" type="HBoxContainer" parent="P/Ctl/Transform/Vbc"]
 margin_right = 110.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
 
-[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc"]
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/Transform/Vbc/Hbc"]
 margin_right = 32.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
 
-[node name="X" type="Label" parent="P/Ctl/T/Vbc/Hbc/Vbc"]
+[node name="X" type="Label" parent="P/Ctl/Transform/Vbc/Hbc/Vbc"]
 margin_right = 32.0
 margin_bottom = 12.0
 text = "X"
 script = ExtResource( 4 )
 
-[node name="SXPos" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc/Vbc"]
+[node name="SXPos" type="LineEdit" parent="P/Ctl/Transform/Vbc/Hbc/Vbc"]
 margin_top = 16.0
 margin_right = 32.0
 margin_bottom = 32.0
 text = "0"
 script = ExtResource( 4 )
 
-[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc"]
+[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/Transform/Vbc/Hbc"]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
 
-[node name="Y" type="Label" parent="P/Ctl/T/Vbc/Hbc/Vbc2"]
+[node name="Y" type="Label" parent="P/Ctl/Transform/Vbc/Hbc/Vbc2"]
 margin_right = 32.0
 margin_bottom = 12.0
 text = "Y"
 script = ExtResource( 4 )
 
-[node name="SYPos" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc/Vbc2"]
+[node name="SYPos" type="LineEdit" parent="P/Ctl/Transform/Vbc/Hbc/Vbc2"]
 margin_top = 16.0
 margin_right = 32.0
 margin_bottom = 32.0
 text = "0"
 script = ExtResource( 4 )
 
-[node name="Vbc3" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc"]
+[node name="Vbc3" type="VBoxContainer" parent="P/Ctl/Transform/Vbc/Hbc"]
 margin_left = 72.0
 margin_right = 110.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
 
-[node name="Angle" type="Label" parent="P/Ctl/T/Vbc/Hbc/Vbc3"]
+[node name="Angle" type="Label" parent="P/Ctl/Transform/Vbc/Hbc/Vbc3"]
 margin_right = 38.0
 margin_bottom = 12.0
 text = "Angle"
 script = ExtResource( 4 )
 
-[node name="A" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc/Vbc3"]
+[node name="A" type="LineEdit" parent="P/Ctl/Transform/Vbc/Hbc/Vbc3"]
 margin_top = 16.0
 margin_right = 38.0
 margin_bottom = 32.0
 text = "0"
 script = ExtResource( 4 )
 
-[node name="Scl" type="Label" parent="P/Ctl/T/Vbc"]
+[node name="Scl" type="Label" parent="P/Ctl/Transform/Vbc"]
 margin_top = 36.0
 margin_right = 110.0
 margin_bottom = 44.0
@@ -140,13 +137,13 @@ custom_styles/normal = SubResource( 4 )
 text = "Scale"
 script = ExtResource( 4 )
 
-[node name="Hbc2" type="HBoxContainer" parent="P/Ctl/T/Vbc"]
+[node name="Hbc2" type="HBoxContainer" parent="P/Ctl/Transform/Vbc"]
 margin_top = 48.0
 margin_right = 110.0
 margin_bottom = 80.0
 script = ExtResource( 4 )
 
-[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc2"]
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/Transform/Vbc/Hbc2"]
 margin_right = 68.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
@@ -154,42 +151,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hbc" type="HBoxContainer" parent="P/Ctl/T/Vbc/Hbc2/Vbc"]
+[node name="Hbc" type="HBoxContainer" parent="P/Ctl/Transform/Vbc/Hbc2/Vbc"]
 margin_right = 68.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
 
-[node name="Vbc" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc"]
+[node name="Vbc" type="VBoxContainer" parent="P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc"]
 margin_right = 32.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
 
-[node name="X" type="Label" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc"]
+[node name="X" type="Label" parent="P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc"]
 margin_right = 32.0
 margin_bottom = 12.0
 text = "X"
 script = ExtResource( 4 )
 
-[node name="XScl" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc"]
+[node name="XScl" type="LineEdit" parent="P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc"]
 margin_top = 16.0
 margin_right = 32.0
 margin_bottom = 32.0
 text = "0"
 script = ExtResource( 4 )
 
-[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc"]
+[node name="Vbc2" type="VBoxContainer" parent="P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc"]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
 
-[node name="Y" type="Label" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
+[node name="Y" type="Label" parent="P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
 margin_right = 32.0
 margin_bottom = 12.0
 text = "Y"
 script = ExtResource( 4 )
 
-[node name="YScl" type="LineEdit" parent="P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
+[node name="YScl" type="LineEdit" parent="P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc2"]
 margin_top = 16.0
 margin_right = 32.0
 margin_bottom = 32.0
@@ -322,7 +319,7 @@ script = ExtResource( 4 )
 [node name="Exit" type="TextureButton" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 122.0
+margin_left = 144.0
 margin_top = 4.0
 texture_normal = SubResource( 2 )
 texture_pressed = SubResource( 3 )

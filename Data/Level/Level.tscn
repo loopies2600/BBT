@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Data/Tilesets/AreaZero.tres" type="TileSet" id=1]
 [ext_resource path="res://Data/Level/Level.gd" type="Script" id=2]
 [ext_resource path="res://Streams/Music/Level.mp3" type="AudioStream" id=3]
-[ext_resource path="res://Data/Object/LightBased.gd" type="Script" id=4]
 [ext_resource path="res://Data/Backgrounds/ImageBG.tscn" type="PackedScene" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends TileMap
+
+func _ready():
+	set_as_toplevel(true)
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends TileMap
+
+func _ready():
+	set_as_toplevel(true)
+"
 
 [node name="LevelLayout" type="TileMap"]
 tile_set = ExtResource( 1 )
@@ -15,6 +28,7 @@ format = 1
 script = ExtResource( 2 )
 
 [node name="Foreground" type="TileMap" parent="."]
+modulate = Color( 1, 1, 1, 0.752941 )
 z_index = 16
 z_as_relative = false
 tile_set = ExtResource( 1 )
@@ -22,9 +36,10 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 0
 collision_mask = 0
 format = 1
-script = ExtResource( 4 )
+script = SubResource( 1 )
 
 [node name="Background" type="TileMap" parent="."]
+modulate = Color( 0.5, 0.5, 0.5, 1 )
 z_index = -16
 z_as_relative = false
 tile_set = ExtResource( 1 )
@@ -32,7 +47,7 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 0
 collision_mask = 0
 format = 1
-script = ExtResource( 4 )
+script = SubResource( 2 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

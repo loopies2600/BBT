@@ -1,7 +1,7 @@
 extends "res://Data/Editor/Item/Object/ObjectConfig.gd"
 
-onready var eRadius := $P/Ctl/T2/Hbc/Vbc/ER
-onready var eDelay := $P/Ctl/T2/Hbc/Vbc2/ED
+onready var eRadius := $P/Ctl/E2/Hbc/Vbc/ER
+onready var eDelay := $P/Ctl/E2/Hbc/Vbc2/ED
 
 func _ready():
 	eRadius.text = str(target.area.shape.radius)

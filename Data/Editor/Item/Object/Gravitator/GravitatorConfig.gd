@@ -1,6 +1,6 @@
 extends "res://Data/Editor/Item/Object/ObjectConfig.gd"
 
-onready var dirMenu := $P/Ctl/T/Vbc/Dir
+onready var dirMenu := $P/Ctl/Transform/Vbc/Dir
 onready var popup : PopupMenu
 
 func _ready():

@@ -1,20 +1,23 @@
 extends Control
 
-onready var xPos := $P/Ctl/T/Vbc/Hbc/Vbc/SXPos
-onready var yPos := $P/Ctl/T/Vbc/Hbc/Vbc2/SYPos
+onready var xPos := $P/Ctl/Transform/Vbc/Hbc/Vbc/SXPos
+onready var yPos := $P/Ctl/Transform/Vbc/Hbc/Vbc2/SYPos
 
-onready var angle := $P/Ctl/T/Vbc/Hbc/Vbc3/A
+onready var angle := $P/Ctl/Transform/Vbc/Hbc/Vbc3/A
 
-onready var xScl := $P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc/XScl
-onready var yScl := $P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2/YScl
+onready var xScl := $P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc/XScl
+onready var yScl := $P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc2/YScl
 
 onready var exit := $Exit
 
+var dragPos = null
 var target : Node2D
 
 onready var targetTile := (target.global_position / 16).round()
 
 func _ready():
+	var _unused = $P.connect("gui_input", self, "_onGuiInput")
+	
 	_setupExitButton()
 	_setupPosition()
 	_setupRotation()
@@ -66,10 +69,10 @@ func _angleChange(new := "0"):
 	target.rotation_degrees = int(new)
 	
 func _xSclChange(new := "0"):
-	target.scale.x = int(new)
+	target.scale.x = float(new)
 	
 func _ySclChange(new := "0"):
-	target.scale.y = int(new)
+	target.scale.y = float(new)
 	
 func _onExitPress():
 	close()
@@ -83,3 +86,13 @@ func close():
 		
 	queue_free()
 
+func _onGuiInput(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.pressed:
+				dragPos = get_global_mouse_position() - get_position()
+			else:
+				dragPos = null
+		
+	if event is InputEventMouseMotion && dragPos:
+		set_position(get_global_mouse_position() - dragPos)

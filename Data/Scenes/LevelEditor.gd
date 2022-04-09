@@ -8,7 +8,6 @@ onready var utilButtons := $GUILayer/Sidebar/UtilButtons
 onready var cam : Camera2D = Main.cam
 onready var guiLayer := $GUILayer
 onready var desc := $GUILayer/Descriptor
-onready var llButton := $GUILayer/PlaceOptions/PC/CenterContainer/Vbc/TextHbc/LayerVbc/LevelLayout
 
 var showGrid := false
 var showCells := false
@@ -75,9 +74,6 @@ func _switchStates():
 		
 		if Main.level.get("mus"):
 			Main.level.mus.play()
-		
-		cursor.targetTilemap = Main.level
-		llButton.enable()
 	else:
 		Main.level.restoreMap()
 		

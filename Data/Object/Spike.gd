@@ -1,14 +1,13 @@
-extends Area2D
+extends Node2D
 
 onready var _editorRotate = $Sprite
-onready var hurtBox := $Hurtbox
+onready var ray := $HurtRay
 
-func _ready():
-	var _unused = connect("body_entered", self, "_bodyEnter")
+func _physics_process(_delta):
+	ray.rotation_degrees = 180 + _editorRotate.rotation_degrees
 	
-func _process(_delta):
-	hurtBox.rotation_degrees = 180 + _editorRotate.rotation_degrees
-	
-func _bodyEnter(body):
-	if body is Kinematos:
-		body.kill()
+	if ray.is_colliding():
+		var body = ray.get_collider()
+		
+		if body is Kinematos:
+			body.kill()

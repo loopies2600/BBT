@@ -23,7 +23,6 @@ onready var collisionBox := $CollisionBox
 onready var fsm := $StateMachine
 onready var light := $Light
 onready var ceilDetector := $Graphics/CeilDetector
-onready var slideDust := $Graphics/SlideDust
 onready var sounds := [$Jump, $Dash, $Slide]
 onready var wallDetector := $Graphics/WallDetector
 onready var bgTint := $BGTint
@@ -35,6 +34,8 @@ var grounded := false
 var canInput := true
 
 func resetState():
+	letsStart()
+	
 	if Main.editing:
 		fsm._change_state("editor")
 	
@@ -63,6 +64,22 @@ func letsStart():
 	
 	# estado: idle
 	fsm._change_state("idle")
+	
+func closeToCeiling() -> bool:
+	var close := false
+	 
+	if ceilDetector.is_colliding():
+		var col = ceilDetector.get_collider()
+		
+		if col is TileMap:
+			var tile : int = col.get_cellv((global_position / 16).round() + Vector2(0, -1))
+			
+			if tile in [5, 11, 71]:
+				close = false
+			else:
+				close = true
+		
+	return close
 	
 func _physics_process(_delta):
 	iDir = Tools.getInputDirection(self)

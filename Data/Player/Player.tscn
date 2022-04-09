@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Data/Player/States/Editor.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/States/Player.gd" type="Script" id=2]
@@ -15,9 +15,6 @@
 [ext_resource path="res://Streams/Sounds/Slide.wav" type="AudioStream" id=13]
 [ext_resource path="res://Data/Player/States/Slide.gd" type="Script" id=14]
 [ext_resource path="res://Data/Player/Light.gd" type="Script" id=15]
-[ext_resource path="res://Sprites/Particles/BB/SlideDust3.png" type="Texture" id=16]
-[ext_resource path="res://Sprites/Particles/BB/SlideDust1.png" type="Texture" id=17]
-[ext_resource path="res://Sprites/Particles/BB/SlideDust2.png" type="Texture" id=18]
 [ext_resource path="res://Streams/Sounds/Dash.wav" type="AudioStream" id=19]
 [ext_resource path="res://Data/Player/States/Win.gd" type="Script" id=20]
 [ext_resource path="res://Data/Player/BGTint.gd" type="Script" id=21]
@@ -948,14 +945,6 @@ tracks/3/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="SpriteFrames" id=19]
-animations = [ {
-"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 16 ), null ],
-"loop": false,
-"name": "Flash",
-"speed": 30.0
-} ]
-
 [sub_resource type="Animation" id=26]
 resource_name = "Deploy"
 tracks/0/type = "value"
@@ -1067,7 +1056,7 @@ tracks/1/keys = {
 [node name="Player" type="KinematicBody2D"]
 z_index = 4
 collision_mask = 3
-collision/safe_margin = 1.0
+collision/safe_margin = 0.8
 script = ExtResource( 2 )
 dustMinVel = 600.0
 weight = 1.0
@@ -1098,20 +1087,13 @@ anims/Turn = SubResource( 18 )
 anims/Wait = SubResource( 20 )
 anims/Walk = SubResource( 5 )
 
-[node name="SlideDust" type="AnimatedSprite" parent="Graphics"]
-position = Vector2( -60, -18 )
-frames = SubResource( 19 )
-animation = "Flash"
-frame = 3
-centered = false
-
 [node name="CeilDetector" type="RayCast2D" parent="Graphics"]
 enabled = true
 cast_to = Vector2( 0, -16 )
 collision_mask = 62
 
 [node name="WallDetector" type="RayCast2D" parent="Graphics"]
-position = Vector2( 0, 8 )
+position = Vector2( 0, 12 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 62

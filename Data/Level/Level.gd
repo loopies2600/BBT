@@ -125,13 +125,10 @@ func _ready():
 	_flipOneWayCollisionShapes()
 	
 	yield(get_tree(), "idle_frame")
-	var _unused = get_tree().get_nodes_in_group("Cursor")[0].connect("target_layer_changed", self, "_onLayerChange")
 	
-func _onLayerChange(lname):
-	if Main.editing:
-		modulate.a = 0.5 * (1 + int(lname == name))
-	else:
-		modulate.a = 1.0
+	## DEBUG : print every tile + ID
+	for tile in tile_set.get_tiles_ids():
+		print("TILE %s = %s" % [tile, tile_set.tile_get_name(tile)])
 	
 func purgeCircle(pos, radius, with := -1, target = self):
 	for y in range(-radius - 1, radius + 1):

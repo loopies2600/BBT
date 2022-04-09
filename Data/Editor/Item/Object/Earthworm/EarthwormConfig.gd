@@ -1,10 +1,10 @@
 extends "res://Data/Editor/Item/Object/ObjectConfig.gd"
 
-onready var midX := $P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc/MXPos
-onready var midY := $P/Ctl/T/Vbc/Hbc2/Vbc/Hbc/Vbc2/MYPos
+onready var midX := $P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc/MXPos
+onready var midY := $P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc2/MYPos
 
-onready var eX := $P/Ctl/T/Vbc/Hbc3/Vbc/Hbc/Vbc/EXPos
-onready var eY := $P/Ctl/T/Vbc/Hbc3/Vbc/Hbc/Vbc2/EYPos
+onready var eX := $P/Ctl/Transform/Vbc/Hbc3/Vbc/Hbc/Vbc/EXPos
+onready var eY := $P/Ctl/Transform/Vbc/Hbc3/Vbc/Hbc/Vbc2/EYPos
 
 onready var spd := $P/Ctl/Worm/Vbc/Hbc/Vbc/Spd
 onready var jmpDl := $P/Ctl/Worm/Vbc/Hbc/Vbc2/JmpDl

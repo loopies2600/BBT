@@ -49,8 +49,9 @@ func physics_update(_delta):
 		else:
 			owner.velocity.x *= owner.airDamping
 			
-		if Input.is_action_just_pressed("attack"):
-			emit_signal("finished", "dash")
+		if !owner.wallDetector.is_colliding():
+			if Input.is_action_just_pressed("attack"):
+				emit_signal("finished", "dash")
 			
 		if owner.god:
 			if Input.is_action_pressed("jump"):

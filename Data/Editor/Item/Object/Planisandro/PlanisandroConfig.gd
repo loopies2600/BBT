@@ -1,8 +1,8 @@
 extends "res://Data/Editor/Item/Object/ObjectConfig.gd"
 
-onready var rd := $P/Ctl/Reaction/Vbc/Hbc/Vbc2/RD
-onready var wd := $P/Ctl/Reaction/Vbc/Hbc/Vbc/WD
-onready var auto := $P/Ctl/Reaction/Vbc/Hbc2/Vbc/Hbc/A
+onready var rd := $P/Ctl/Behavior/Vbc/Hbc/Vbc2/RD
+onready var wd := $P/Ctl/Behavior/Vbc/Hbc/Vbc/WD
+onready var auto := $P/Ctl/Behavior/Vbc/Hbc2/Vbc/Hbc/A
 
 func _ready():
 	rd.text = str(target.disableTime)

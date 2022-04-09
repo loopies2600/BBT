@@ -68,28 +68,35 @@ func subClick(_event):
 	var tile := ttm.get_cellv(cell) != -1
 	var lvl : TileMap = get_parent().level
 	
+	var exploded := false
+	
+	if Input.is_action_pressed("special"):
+		if lvl.get_cellv(cell) != -1:
+			var explosion := EXPLOSION.instance()
+			explosion.global_position = cell * 16
+			ttm.add_child(explosion)
+			
+			lvl.purgeCircle(cell, explosionRadius, -1, ttm)
+			
+			get_parent().emit_signal("tile_removed", cell)
+			exploded = true
+			
 	for sx in range(brushSize):
 		for sy in range(brushSize):
+			tile = ttm.get_cellv(cell + Vector2(1 * sx, 1 * sy)) != -1
+			
 			if tile:
-				if Input.is_action_pressed("special"):
-					var explosion := EXPLOSION.instance()
-					explosion.global_position = cell * 16
-					ttm.add_child(explosion)
-					
-					lvl.purgeCircle(cell, explosionRadius, -1, ttm)
-					
-					get_parent().emit_signal("tile_removed", cell)
-					
-				else:
-					removeSnd.play()
-					
-					ttm.set_cellv(cell + Vector2(1 * sx, 1 * sy), -1)
-					
-					if brushSize < 5:
-						Main.plop(cell * 16 + Vector2(8, 8) + Vector2(16 * sx, 16 * sy))
-							
-					get_parent().emit_signal("tile_removed", cell)
-					
+				if exploded: return
+				
+				removeSnd.play()
+				
+				if brushSize < 5 && ttm.get_cellv(cell + Vector2(1 * sx, 1 * sy)) != -1:
+					Main.plop(cell * 16 + Vector2(8, 8) + Vector2(16 * sx, 16 * sy))
+				
+				ttm.set_cellv(cell + Vector2(1 * sx, 1 * sy), -1)
+				
+				get_parent().emit_signal("tile_removed", cell)
+				
 			else:
 				var n = Main.getNodeOnThisPos(cell + Vector2(1 * sx, 1 * sy))
 				

@@ -11,9 +11,11 @@ onready var exit := $ExitButton
 
 var targetTile := Vector2()
 var targetMap : TileMap
+var dragPos = null
 
 func _ready():
-	var _unused = exit.connect("pressed", self, "_onExitPress")
+	var _unused = $Panel.connect("gui_input", self, "_onGuiInput")
+	_unused = exit.connect("pressed", self, "_onExitPress")
 	
 	_unused = xValue.connect("text_entered", self, "_xChange")
 	_unused = yValue.connect("text_entered", self, "_yChange")
@@ -58,3 +60,15 @@ func close():
 	get_parent().get_parent().cursor.canPlace = true
 	
 	queue_free()
+	
+
+func _onGuiInput(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.pressed:
+				dragPos = get_global_mouse_position() - get_position()
+			else:
+				dragPos = null
+		
+	if event is InputEventMouseMotion && dragPos:
+		set_position(get_global_mouse_position() - dragPos)
