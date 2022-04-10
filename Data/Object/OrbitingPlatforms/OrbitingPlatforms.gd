@@ -1,6 +1,6 @@
 extends Sprite
 
-const CONFIGURATOR := preload("res://Data/Editor/Item/Object/OrbitingPlatforms/OrbitingPlatformsConfig.tscn")
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/OrbitingPlatformsConfig.gd")
 const PLATFORM := preload("res://Data/Object/OrbitingPlatforms/Platform.tscn")
 
 export (int) var amount = 3

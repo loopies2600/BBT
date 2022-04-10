@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Planisandro/PlanisandroConfig.tscn")
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/PlanisandroConfig.gd")
 
 export (float) var disableTime = 1.0
 export (float) var waitTime = 4.0

@@ -1,10 +1,8 @@
 extends StaticBody2D
 
-const CONFIGURATOR := preload("res://Data/Editor/Item/Object/ToggleButton/ToggleButtonConfig.tscn")
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/ToggleButtonConfig.gd")
 
-enum ToggleModes {RED, BLUE}
-export (ToggleModes) var mode = ToggleModes.RED
-
+var main := true
 var col : Color
 
 onready var anim := $Animator
@@ -25,7 +23,7 @@ func _ready():
 	var _unused = Main.level.connect("block_toggled", self, "_onBlockToggle")
 	
 func _onBlockToggle(booly):
-	if mode == ToggleModes.RED:
+	if main:
 		self.pressed = !booly
 	else:
 		self.pressed = booly
@@ -34,7 +32,7 @@ func resetState():
 	self.pressed = false
 	
 func _physics_process(_delta):
-	col = "ff5555" if mode == 0 else "6983dd"
+	col = "ff5555" if main else "6983dd"
 	but.modulate = col
 	
 	if bodyDet.is_colliding() && !pressed:
@@ -42,8 +40,8 @@ func _physics_process(_delta):
 		
 func _buttonPress():
 	for b in get_tree().get_nodes_in_group("ToggleButtons"):
-		b.pressed = b.mode == mode
+		b.pressed = b.main == main
 		
 	self.pressed = true
 	
-	Main.level.blockToggle = false if mode else true
+	Main.level.blockToggle = true if main else false

@@ -29,14 +29,16 @@ func _process(delta):
 	
 	_time += delta
 	
-	if !get_parent().mode:
+	if !get_parent().reverse:
 		y = abs(sin(_time * 2)) * 4
 	else:
 		y = -abs(sin(_time * 2)) * 4
 	
 func _draw():
+	var whichOne := 0 if get_parent().reverse else 1
+	
 	if get_tree().get_root().get_node(\"Main\").editing:
-		draw_texture(AICONS[get_parent().mode], -AICONS[get_parent().mode].get_size() / 2 + Vector2(0, y))
+		draw_texture(AICONS[whichOne], -AICONS[whichOne].get_size() / 2 + Vector2(0, y))
 "
 
 [sub_resource type="Animation" id=3]

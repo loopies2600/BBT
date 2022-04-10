@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=41 format=2]
+[gd_resource type="Theme" load_steps=45 format=2]
 
 [ext_resource path="res://Sprites/Font/Editor.tres" type="BitmapFont" id=1]
 [ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=2]
@@ -277,6 +277,26 @@ grow_begin = 0.0
 grow_end = 0.0
 thickness = 2
 
+[sub_resource type="AtlasTexture" id=41]
+flags = 2
+atlas = ExtResource( 3 )
+region = Rect2( 32, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 2
+atlas = ExtResource( 3 )
+region = Rect2( 0, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 2
+atlas = ExtResource( 3 )
+region = Rect2( 48, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 2
+atlas = ExtResource( 3 )
+region = Rect2( 16, 48, 16, 16 )
+
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 4.0
 content_margin_right = 4.0
@@ -455,10 +475,18 @@ PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = SubResource( 38 )
 TabContainer/colors/font_color_bg = Color( 0.521569, 0.388235, 0.388235, 1 )
 TabContainer/colors/font_color_fg = Color( 0, 0, 0, 1 )
+TabContainer/icons/decrement = SubResource( 41 )
+TabContainer/icons/decrement_highlight = SubResource( 42 )
+TabContainer/icons/increment = SubResource( 43 )
+TabContainer/icons/increment_highlight = SubResource( 44 )
 TabContainer/styles/panel = SubResource( 2 )
 TabContainer/styles/tab_bg = SubResource( 4 )
 TabContainer/styles/tab_fg = SubResource( 3 )
 Tabs/fonts/font = ExtResource( 2 )
+Tabs/icons/decrement = SubResource( 41 )
+Tabs/icons/decrement_highlight = SubResource( 42 )
+Tabs/icons/increment = SubResource( 43 )
+Tabs/icons/increment_highlight = SubResource( 44 )
 Tree/colors/font_color = Color( 0, 0, 0, 1 )
 Tree/colors/font_color_selected = Color( 0.301961, 0.301961, 0.717647, 1 )
 Tree/styles/bg = SubResource( 23 )

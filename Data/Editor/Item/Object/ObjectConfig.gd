@@ -8,6 +8,10 @@ onready var angle := $P/Ctl/Transform/Vbc/Hbc/Vbc3/A
 onready var xScl := $P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc/XScl
 onready var yScl := $P/Ctl/Transform/Vbc/Hbc2/Vbc/Hbc/Vbc2/YScl
 
+onready var r := $P/Ctl/Modulate/Vbc/Hbc/Vbc/R
+onready var g := $P/Ctl/Modulate/Vbc/Hbc/Vbc2/G
+onready var b := $P/Ctl/Modulate/Vbc/Hbc/Vbc3/B
+
 onready var exit := $Exit
 
 var dragPos = null
@@ -22,6 +26,7 @@ func _ready():
 	_setupPosition()
 	_setupRotation()
 	_setupScale()
+	_setupModulate()
 	
 	if target.get("drawGizmos") != null:
 		target.drawGizmos = true
@@ -50,6 +55,11 @@ func _setupScale():
 	
 	var _unused = xScl.connect("text_entered", self, "_xSclChange")
 	_unused = yScl.connect("text_entered", self, "_ySclChange")
+	
+func _setupModulate():
+	r.text = str(target.modulate.r)
+	g.text = str(target.modulate.g)
+	b.text = str(target.modulate.b)
 	
 func _xPosChange(new := "0"):
 	target.global_position.x = int(new) * 16

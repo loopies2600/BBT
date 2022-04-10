@@ -1,9 +1,18 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
-[ext_resource path="res://Sprites/Editor/Button.png" type="Texture" id=2]
 [ext_resource path="res://Data/Editor/Item/TileConfig.gd" type="Script" id=3]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.752941, 0.670588, 0.576471, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 8.0
@@ -22,21 +31,67 @@ corner_radius_bottom_left = 4
 anti_aliasing = false
 anti_aliasing_size = 0.01
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
-region = Rect2( 80, 0, 16, 16 )
+[sub_resource type="Animation" id=3]
+resource_name = "Deploy"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 178 ), Vector2( 136, 178 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 392, 15 ), Vector2( 256, 15 ) ]
+}
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
-region = Rect2( 80, 16, 16, 16 )
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 136, 178 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 15 ) ]
+}
 
 [node name="TileConfig" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 256.0
-margin_top = 40.0
-margin_right = -8.0
-margin_bottom = -72.0
+margin_top = 15.0
+margin_right = -24.0
+margin_bottom = -47.0
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -46,10 +101,8 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_styles/panel = SubResource( 2 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Controls" type="VBoxContainer" parent="Panel"]
 anchor_right = 1.0
@@ -59,12 +112,9 @@ margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Controls"]
-margin_right = 136.0
+margin_right = 120.0
 margin_bottom = 12.0
 script = ExtResource( 4 )
 
@@ -76,7 +126,7 @@ text = "Position"
 [node name="Position" type="PanelContainer" parent="Panel/Controls"]
 show_behind_parent = true
 margin_top = 16.0
-margin_right = 136.0
+margin_right = 120.0
 margin_bottom = 60.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
@@ -84,7 +134,7 @@ script = ExtResource( 4 )
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Position"]
 margin_left = 8.0
 margin_top = 4.0
-margin_right = 128.0
+margin_right = 112.0
 margin_bottom = 40.0
 script = ExtResource( 4 )
 __meta__ = {
@@ -92,12 +142,12 @@ __meta__ = {
 }
 
 [node name="HboxContainer2" type="HBoxContainer" parent="Panel/Controls/Position/VBoxContainer"]
-margin_right = 120.0
+margin_right = 104.0
 script = ExtResource( 4 )
 
 [node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Position/VBoxContainer"]
 margin_top = 4.0
-margin_right = 120.0
+margin_right = 104.0
 margin_bottom = 36.0
 script = ExtResource( 4 )
 
@@ -140,7 +190,7 @@ script = ExtResource( 4 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/Controls"]
 margin_top = 64.0
-margin_right = 136.0
+margin_right = 120.0
 margin_bottom = 76.0
 script = ExtResource( 4 )
 
@@ -153,23 +203,23 @@ script = ExtResource( 4 )
 [node name="Flip" type="PanelContainer" parent="Panel/Controls"]
 show_behind_parent = true
 margin_top = 80.0
-margin_right = 136.0
-margin_bottom = 114.0
+margin_right = 120.0
+margin_bottom = 144.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Flip"]
 margin_left = 8.0
 margin_top = 4.0
-margin_right = 128.0
-margin_bottom = 30.0
+margin_right = 112.0
+margin_bottom = 60.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Flip/VBoxContainer"]
-margin_right = 120.0
+margin_right = 104.0
 margin_bottom = 26.0
 script = ExtResource( 4 )
 
@@ -192,21 +242,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Transpose" type="CheckBox" parent="Panel/Controls/Flip/VBoxContainer/HboxContainer"]
-margin_left = 80.0
-margin_right = 116.0
-margin_bottom = 26.0
+[node name="Transpose" type="CheckBox" parent="Panel/Controls/Flip/VBoxContainer"]
+margin_top = 30.0
+margin_right = 104.0
+margin_bottom = 56.0
 text = "T"
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExitButton" type="TextureButton" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 128.0
-margin_top = 4.0
-texture_normal = SubResource( 2 )
-texture_pressed = SubResource( 3 )
-script = ExtResource( 4 )
+[node name="Animator" type="AnimationPlayer" parent="."]
+autoplay = "Deploy"
+anims/Deploy = SubResource( 3 )
+anims/RESET = SubResource( 4 )

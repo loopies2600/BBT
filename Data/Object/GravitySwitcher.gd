@@ -1,13 +1,10 @@
 extends Area2D
 
-const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Gravitator/GravitatorConfig.tscn")
-
-enum Modes {UP, DOWN}
-
-export (Modes) var mode = Modes.UP
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/GravitatorConfig.gd")
 
 onready var detector := $Detector
 
+var reverse := true
 var disabled := false
 var drawGizmos := false
 
@@ -27,7 +24,7 @@ func _process(_delta):
 	
 	update()
 	
-	modulate = Color.tomato if mode == 0 else Color.cornflower
+	modulate = Color.tomato if reverse else Color.cornflower
 	
 func _draw():
 	if !Main.editing: return
@@ -36,7 +33,7 @@ func _draw():
 	draw_rect(Rect2(-detector.shape.extents, detector.shape.extents * 2), Color.white / 2)
 		
 func _changeGravityNDisable(whoEntered):
-	var newDir := 1 if mode == Modes.UP else -1
+	var newDir := 1 if reverse else -1
 	
 	if whoEntered.upDirection.y == newDir: return
 	

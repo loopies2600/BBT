@@ -1,7 +1,7 @@
 extends Node2D
 
 const BODY_PART := preload("res://Data/Enemy/Earthworm/WormBodyPart.tscn")
-const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Earthworm/EarthwormConfig.tscn")
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/EarthwormConfig.gd")
 
 export (int) var parts = 8
 export (int) var jumpHeight = -128

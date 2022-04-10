@@ -1,6 +1,6 @@
 extends Area2D
 
-const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Fernandez/FernandezConfig.tscn")
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/FernandezConfig.gd")
 const EXPLOSION := preload("res://Data/Particles/Explosion/Explosion.tscn")
 
 export (float) var explosionDelay = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sprites/Enemy/HermitBlob.png" type="Texture" id=1]
 [ext_resource path="res://Data/Object/Spike.tscn" type="PackedScene" id=2]
@@ -11,83 +11,59 @@ length = 64.0
 [sub_resource type="Animation" id=2]
 resource_name = "Hide"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Spike:position")
+tracks/0/path = NodePath("EditorRotate/Spike:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -6 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( -8, -8 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Blob:position")
+tracks/1/path = NodePath("EditorRotate/Blob:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -1, 4 ), Vector2( 1, 10 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Blob:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1.25, 0.75 ), Vector2( 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Overlay:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"update": 0,
+"values": [ Vector2( 0, 10 ) ]
 }
 
 [sub_resource type="Animation" id=5]
 resource_name = "Jump"
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Spike:position")
+tracks/0/path = NodePath("EditorRotate/Spike:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -6 ), Vector2( 0, -16 ) ]
+"values": [ Vector2( -8, -16 ), Vector2( -8, -24 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Blob:position")
+tracks/1/path = NodePath("EditorRotate/Blob:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.05, 0.15 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 4 ), Vector2( 4, -6 ), Vector2( 1, -6 ) ]
+"values": [ Vector2( 0, 4 ), Vector2( 0, -5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Blob:scale")
+tracks/2/path = NodePath("EditorRotate/Blob:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -102,7 +78,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Spike:position")
+tracks/0/path = NodePath("EditorRotate/Spike:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -114,7 +90,7 @@ tracks/0/keys = {
 "values": [ Vector2( -1, -10 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Blob:position")
+tracks/1/path = NodePath("EditorRotate/Blob:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -126,7 +102,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 10 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Blob:scale")
+tracks/2/path = NodePath("EditorRotate/Blob:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -137,23 +113,11 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Overlay:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Show"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Spike:position")
+tracks/0/path = NodePath("EditorRotate/Spike:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -162,10 +126,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -6 ) ]
+"values": [ Vector2( -8, -8 ), Vector2( -8, -16 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Blob:position")
+tracks/1/path = NodePath("EditorRotate/Blob:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -174,129 +138,52 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 10 ), Vector2( 1, 4 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Overlay:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "Blink"
-length = 4.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Overlay:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8, 1, 1.2, 1.3, 3, 3.2, 3.6, 3.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 9.2, 7.49998 ), Vector2( 9.2, 7.49998 ), Vector2( 9.2, 10 ), Vector2( 9.2, 10 ), Vector2( 9.2, 7.49998 ), Vector2( 9.2, 7.49998 ), Vector2( 9.2, 10 ), Vector2( 9.2, 10 ), Vector2( 9.2, 7.49998 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Overlay:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.8, 1, 1.2, 1.3, 3, 3.2, 3.6, 3.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 2.4, 0.166672 ), Vector2( 2.4, 0.166672 ), Vector2( 2.4, 1 ), Vector2( 2.4, 1 ), Vector2( 2.4, 0.166672 ), Vector2( 2.4, 0.166672 ), Vector2( 2.4, 1 ), Vector2( 2.4, 1 ), Vector2( 2.4, 0.166672 ) ]
-}
-
-[sub_resource type="Animation" id=7]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Overlay:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 9, 7 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Overlay:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 2.4, 1e-05 ) ]
+"values": [ Vector2( 0, 10 ), Vector2( 0, 2 ) ]
 }
 
 [node name="HermitBlob" type="Area2D"]
 script = ExtResource( 3 )
 
-[node name="Overlay" type="Sprite" parent="."]
-visible = false
-position = Vector2( 9, 7 )
-scale = Vector2( 2.4, 1e-05 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 11, 10, 5, 6 )
+[node name="EditorRotate" type="Node2D" parent="."]
+position = Vector2( 8, 8 )
 
-[node name="Blob" type="Sprite" parent="."]
+[node name="Blob" type="Sprite" parent="EditorRotate"]
 position = Vector2( 1, 10 )
 z_index = -5
 texture = ExtResource( 1 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 17, 1, 14, 15 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="LEye" type="Sprite" parent="Blob"]
-position = Vector2( 1, 4 )
+[node name="LEye" type="Sprite" parent="EditorRotate/Blob"]
+position = Vector2( -3, 0 )
 texture = ExtResource( 1 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 11, 4, 5, 6 )
 
-[node name="Pupil" type="Sprite" parent="Blob/LEye"]
-position = Vector2( 1, 1 )
+[node name="Pupil" type="Sprite" parent="EditorRotate/Blob/LEye"]
 texture = ExtResource( 1 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 13, 0, 3, 4 )
 
-[node name="REye" type="Sprite" parent="Blob"]
-position = Vector2( 8, 4 )
+[node name="REye" type="Sprite" parent="EditorRotate/Blob"]
+position = Vector2( 4, 0 )
 texture = ExtResource( 1 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 11, 4, 5, 6 )
 
-[node name="Pupil" type="Sprite" parent="Blob/REye"]
-position = Vector2( 1, 1 )
+[node name="Pupil" type="Sprite" parent="EditorRotate/Blob/REye"]
 texture = ExtResource( 1 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 13, 0, 3, 4 )
 
-[node name="Spike" parent="." instance=ExtResource( 2 )]
+[node name="Spike" parent="EditorRotate" instance=ExtResource( 2 )]
 position = Vector2( -1, -10 )
 
 [node name="DetectionArea" type="CollisionShape2D" parent="."]
-position = Vector2( 7, 0 )
+position = Vector2( 8, 8 )
 rotation = 3.14159
 shape = SubResource( 8 )
 
@@ -306,11 +193,6 @@ anims/Hide = SubResource( 2 )
 anims/Jump = SubResource( 5 )
 anims/RESET = SubResource( 3 )
 anims/Show = SubResource( 4 )
-
-[node name="Blink" type="AnimationPlayer" parent="."]
-autoplay = "Blink"
-anims/Blink = SubResource( 6 )
-anims/RESET = SubResource( 7 )
 
 [node name="GizmoRenderer" type="Node2D" parent="."]
 script = ExtResource( 4 )

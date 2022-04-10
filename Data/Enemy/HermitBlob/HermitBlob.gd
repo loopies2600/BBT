@@ -1,11 +1,13 @@
 extends Area2D
 
-const CONFIGURATOR := preload("res://Data/Editor/Item/Object/HermitBlob/HermitBlobConfig.tscn")
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/HermitBlobConfig.gd")
 
 export (float) var jumpDelay = 0.25
 export (float) var jumpHeight = 64.0
 export (float) var jumpDuration = 0.25
 export (float) var fallDuration = 0.22550
+
+onready var _editorRotate = $EditorRotate
 
 onready var jumpVel : float = (2.0 * jumpHeight / jumpDuration)
 onready var jumpGravity : float = (2.0 * jumpHeight / (jumpDuration * jumpDuration))
@@ -35,9 +37,11 @@ func resetState():
 		anim.play("Hide")
 	
 func _physics_process(delta):
+	ray.rotation = _editorRotate.rotation + PI
+	
 	if doGravity:
 		var grav : float = (jumpGravity if velocity.y < 0.0 else fallGravity) * delta
-		velocity += Vector2(0, grav).rotated(rotation)
+		velocity += Vector2(0, grav).rotated(_editorRotate.rotation)
 	
 	position += velocity * delta
 	
@@ -65,4 +69,4 @@ func jump():
 	
 	doGravity = true
 	
-	velocity -= Vector2(0, jumpVel).rotated(rotation)
+	velocity -= Vector2(0, jumpVel).rotated(_editorRotate.rotation)

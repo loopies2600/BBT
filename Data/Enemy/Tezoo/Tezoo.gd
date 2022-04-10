@@ -1,6 +1,6 @@
 extends Area2D
 
-const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Tezoo/TezooConfig.tscn")
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/TezooConfig.gd")
 const SPIKE := preload("res://Data/Object/SpikyBall.tscn")
 
 export (float) var fireTime = 0.1

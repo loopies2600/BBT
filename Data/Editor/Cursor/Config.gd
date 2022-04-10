@@ -1,6 +1,6 @@
 extends "res://Data/Editor/Cursor/CursorMode.gd"
 
-const OBJ_CONFIG := preload("res://Data/Editor/Item/Object/ObjectConfig.tscn")
+const OBJ_CONFIG := preload("res://Data/Editor/Item/Object/Neo/ObjectConfig.tscn")
 const TILE_CONFIG := preload("res://Data/Editor/Item/TileConfig.tscn")
 
 func update():
@@ -20,18 +20,21 @@ func mainClick(_event):
 		
 		if !n: return
 		
-		var cfg = OBJ_CONFIG
+		var scr
 		
 		if n.get("CONFIGURATOR"):
-			cfg = n.get("CONFIGURATOR")
+			scr = n.get("CONFIGURATOR")
 			
-		_spawnConfigurator(cfg, {"target" : n})
+		_spawnConfigurator(OBJ_CONFIG, {"target" : n}, scr)
 
-func _spawnConfigurator(config, params := {}):
+func _spawnConfigurator(config, params := {}, script = null):
 	get_parent().configuratorCheck()
 	
 	get_parent().configurator = config.instance()
 	
+	if script:
+		get_parent().configurator.set_script(script)
+		
 	for p in params:
 		get_parent().configurator.set(p, params[p])
 	
