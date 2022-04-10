@@ -4,6 +4,7 @@ extends Node
 signal game_mode_changed(mode)
 signal scene_changed()
 
+const TITLE := preload("res://Data/Scenes/Title.tscn")
 const EDITOR := preload("res://Data/Scenes/LevelEditor.tscn")
 const NGIOSTATUS := preload("res://Data/Scenes/NewgroundsChecker.tscn")
 const NG := preload("res://Data/Util/Newgrounds.tscn")
@@ -16,6 +17,7 @@ var editing := true
 onready var cam := $Camera
 onready var hud := $HUD
 onready var level : TileMap = preload("res://Data/Level/Level.tscn").instance()
+onready var olr := $OptimalLightRenderer/LightVP/BG
 
 var currentScene
 
@@ -36,6 +38,8 @@ func reload(newLvl : PackedScene):
 	
 func _ready():
 	_levelInit(level)
+	
+	changeScene(TITLE)
 	
 func _levelInit(lev):
 	add_child(lev)

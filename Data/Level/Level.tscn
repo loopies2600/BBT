@@ -51,5 +51,6 @@ script = SubResource( 2 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Music"
 
 [node name="ImageBG" parent="." instance=ExtResource( 5 )]

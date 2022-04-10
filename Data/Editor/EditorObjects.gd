@@ -12,16 +12,27 @@ onready var tilesTab := $TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxCo
 
 func _ready():
 	# define objects
+	print("--- OBJECT LIST ---")
 	for i in ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton"]:
+		print(i, " registered")
 		Objects.append(load(DEFPATH % ("Object/%s" % i)))
 		
-	# define entities
-	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro"]:
-		Entities.append(load(DEFPATH % ("Entity/%s" % i)))
+	print("")
 	
+	# define entities
+	print("--- ENTITY LIST ---")
+	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro"]:
+		print(i, " registered")
+		Entities.append(load(DEFPATH % ("Entity/%s" % i)))
+	print("")
+	
+	# define powerups (TEMP)
+	print("--- POWERUP LIST ---")
 	for i in ["Rocket"]:
+		print(i, " registered")
 		PowerUps.append(load(DEFPATH % ("PowerUp/%s" % i)))
-		
+	print("")
+	
 	yield(owner, "ready")
 	
 	_spawnTileItems()

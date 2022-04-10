@@ -24,6 +24,7 @@ func _popupButtonPress(id := 0):
 			
 			popup.set_item_checked(1, booly)
 			Main.level.darkMode = booly
+			Main.olr.visible = booly
 		2:
 			var booly := !popup.is_item_checked(2)
 			

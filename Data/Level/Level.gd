@@ -127,8 +127,9 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	
 	## DEBUG : print every tile + ID
+	print("--- TILE LIST ---")
 	for tile in tile_set.get_tiles_ids():
-		print("TILE %s = %s" % [tile, tile_set.tile_get_name(tile)])
+		print("Tile %s = %s" % [tile, tile_set.tile_get_name(tile)])
 	
 func purgeCircle(pos, radius, with := -1, target = self):
 	for y in range(-radius - 1, radius + 1):

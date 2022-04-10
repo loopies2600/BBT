@@ -16,9 +16,11 @@ script = ExtResource( 5 )
 
 [node name="PlaceObj" type="AudioStreamPlayer" parent="PlaceMode"]
 stream = ExtResource( 3 )
+bus = "Sound"
 
 [node name="RemoveObj" type="AudioStreamPlayer" parent="PlaceMode"]
 stream = ExtResource( 2 )
+bus = "Sound"
 
 [node name="MoveMode" type="Node" parent="."]
 script = ExtResource( 6 )

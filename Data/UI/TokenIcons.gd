@@ -9,6 +9,8 @@ func _process(_delta):
 	update()
 	
 func _draw():
+	if !is_instance_valid(Main.level): return
+	
 	for i in range(Main.level.tokenAmount):
 		draw_texture(EMPTY, Vector2() - Vector2(separation * i, 0))
 		

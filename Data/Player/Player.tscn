@@ -1150,12 +1150,15 @@ script = ExtResource( 15 )
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
+bus = "Sound"
 
 [node name="Dash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+bus = "Sound"
 
 [node name="Slide" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
+bus = "Sound"
 
 [node name="BGTint" type="Node2D" parent="."]
 show_behind_parent = true
