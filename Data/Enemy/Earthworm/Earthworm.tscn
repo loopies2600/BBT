@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sprites/Enemy/EarthWorm.png" type="Texture" id=1]
 [ext_resource path="res://Data/Enemy/Earthworm/Earthworm.gd" type="Script" id=2]
 [ext_resource path="res://Data/Enemy/Earthworm/GizmoRenderer.gd" type="Script" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends Position2D
@@ -101,10 +98,8 @@ tracks/2/keys = {
 "values": [ 90.0 ]
 }
 
-[node name="Earthworm" type="Area2D" groups=["MultiState"]]
+[node name="Earthworm" type="Node2D" groups=["MultiState"]]
 z_index = -1
-collision_layer = 16
-collision_mask = 16
 script = ExtResource( 2 )
 
 [node name="Head" type="Sprite" parent="."]
@@ -154,10 +149,6 @@ texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 48, 16, 3, 3 )
-
-[node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2( 8, 8 )
-shape = SubResource( 1 )
 
 [node name="Start" type="Position2D" parent="."]
 script = SubResource( 2 )

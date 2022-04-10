@@ -20,6 +20,9 @@ func _setMode(md : int):
 			rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		
 func _ready():
+	$ParallaxLayer.owner = get_parent()
+	rect.owner = get_parent()
+	
 	var _unused = get_tree().connect("files_dropped", self, "_fileDrop")
 	
 	_resizeRect()

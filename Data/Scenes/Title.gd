@@ -10,6 +10,13 @@ func _ready():
 	Main.cam.global_position = Vector2(208, 120)
 
 func _playPress():
+	playBt.disabled = true
+	
+	var trans = load("res://Data/UI/Transition/Transition.tscn").instance()
+	Main.add_child(trans)
+	
+	yield(trans, "transition_ended")
+	
 	Main.changeScene(Main.EDITOR)
 	
 	AudioServer.set_bus_mute(1, !musBt.pressed)

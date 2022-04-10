@@ -66,12 +66,6 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 96, 0, 16, 16 )
 
-[node name="HurtRay" type="RayCast2D" parent="."]
-position = Vector2( 8, 8 )
-rotation = 3.14159
-enabled = true
-cast_to = Vector2( 0, 8 )
-
 [node name="DeployAnim" type="AnimationPlayer" parent="."]
 autoplay = "Deploy"
 anims/Deploy = SubResource( 2 )

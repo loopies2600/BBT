@@ -130,6 +130,7 @@ func _ready():
 	print("--- TILE LIST ---")
 	for tile in tile_set.get_tiles_ids():
 		print("Tile %s = %s" % [tile, tile_set.tile_get_name(tile)])
+	print("")
 	
 func purgeCircle(pos, radius, with := -1, target = self):
 	for y in range(-radius - 1, radius + 1):

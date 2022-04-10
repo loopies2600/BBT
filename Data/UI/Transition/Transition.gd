@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal transition_ended()
+
 const BRICK := preload("res://Data/UI/Transition/Brick.tscn")
 
 export (float) var delay := 0.025
@@ -9,6 +11,7 @@ func _ready():
 	yield(_spawnBricks(), "completed")
 	yield(get_tree().create_timer(endDelay), "timeout")
 	
+	emit_signal("transition_ended")
 	yield(_sendBricksOffscreen(), "completed")
 	yield(get_tree().create_timer(endDelay), "timeout")
 	
@@ -23,10 +26,10 @@ func _spawnBricks():
 			var xOffset := 0 if Math.isEven(i) else -32
 			
 			var newBrick = BRICK.instance()
-			newBrick.global_position.x = x + xOffset
 			newBrick.floorY = y
 			
 			add_child(newBrick)
+			newBrick.global_position.x = x + xOffset
 			
 			yield(get_tree().create_timer(delay), "timeout")
 			

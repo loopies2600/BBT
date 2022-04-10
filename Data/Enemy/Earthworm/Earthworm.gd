@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 const BODY_PART := preload("res://Data/Enemy/Earthworm/WormBodyPart.tscn")
 const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Earthworm/EarthwormConfig.tscn")
@@ -26,9 +26,12 @@ var time := 0.0
 var drawGizmos := false
 var jumping := false setget _setJumping
 
+var hurtBox := RectangleShape2D.new()
+
 func _ready():
-	var _unused = connect("body_entered", self, "_bodyEnter")
-	_unused = jumpTimer.connect("timeout", self, "_onDelayTimeout")
+	hurtBox.extents = Vector2(8, 8)
+	
+	var _unused = jumpTimer.connect("timeout", self, "_onDelayTimeout")
 	
 	resetState()
 	
@@ -120,6 +123,18 @@ func _physics_process(delta):
 	else:
 		global_position = lerp(global_position, positions[2] + Vector2(0, 32), 8 * delta)
 	
+	# collision
+	var spaceState := get_world_2d().direct_space_state
+	var query := Physics2DShapeQueryParameters.new()
+	
+	query.set_shape(hurtBox)
+	query.transform = Transform2D(Vector2(1, 0), Vector2(0, 1), global_position + Vector2(8, 0))
+	
+	var collision = spaceState.intersect_shape(query)
+	
+	if collision && collision[0].collider is Player:
+		collision[0].collider.kill()
+
 func _lookAtPlayer():
 	var lookAngle := 0.0
 	

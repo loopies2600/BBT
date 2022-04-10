@@ -5,9 +5,7 @@ func _ready():
 	popup.add_check_item("Dark Mode")
 	popup.add_check_item("Tile Background")
 	
-	popup.set_item_checked(2, true)
-	
-	var _unused = Main.currentScene.connect("level_changed", self, "_lvlChange")
+	_lvlChange()
 	
 func _lvlChange():
 	popup.set_item_checked(1, Main.level.darkMode)
