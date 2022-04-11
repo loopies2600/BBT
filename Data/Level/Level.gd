@@ -3,7 +3,7 @@ extends TileMap
 signal block_toggled(rob)
 
 const INDESTRUCTIBLE := [23, 24]
-const SAVE_PATH = "user://temp.tscn"
+const SAVE_PATH = "user://"
 
 onready var mus := $Music
 onready var bg := $ImageBG

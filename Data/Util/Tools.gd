@@ -96,8 +96,9 @@ func runPS(script := []) -> Array:
 	var dir := Directory.new()
 	_err = dir.open("user://")
 	var path := OS.get_user_data_dir()
+	print(path)
 	var out := []
-	_err = OS.execute("powershell.exe", [path + "temp.ps1"], true, out)
+	_err = OS.execute("powershell.exe", ["%s/temp.ps1" % path], true, out)
 	
 	_err = dir.remove(path + "/temp.ps1")
 	

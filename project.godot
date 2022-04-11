@@ -56,11 +56,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Bennett Boy's Trouble"
+config/name="BBT"
 config/description="DEV BUILD"
 run/main_scene="res://GLoad.tscn"
-config/use_custom_user_dir=true
-config/custom_user_dir_name="bbt/"
 boot_splash/image="res://Sprites/GLoad.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )

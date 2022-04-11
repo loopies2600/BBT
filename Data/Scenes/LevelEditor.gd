@@ -41,11 +41,12 @@ func saveLevel():
 	yield(get_tree(), "idle_frame")
 	
 	if OS.get_name() == "HTML5":
-		Main.level.saveLvl()
+		Main.level.saveLvl("user:/", "temp.tscn")
 		
 		yield(get_tree(), "idle_frame")
 		
 		Tools.webFileTool.downloadLevel()
+		emit_signal("level_saved")
 		return
 		
 	var path : String = Tools.openFolderPicker()
