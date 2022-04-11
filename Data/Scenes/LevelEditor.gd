@@ -21,40 +21,6 @@ func _process(_delta):
 	if Main.editing:
 		Main.entityLookTowards = get_global_mouse_position()
 	
-func setNewLevel():
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	
-	var newLvl = Tools.openFilePicker()
-	
-	if OS.get_name() == "HTML5":
-		return
-		
-	if newLvl:
-		Main.reload(newLvl)
-		emit_signal("level_changed")
-		
-func saveLevel():
-	if !levelIsValid(): return
-	
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
-	
-	if OS.get_name() == "HTML5":
-		Main.level.saveLvl("user:/", "temp.tscn")
-		
-		yield(get_tree(), "idle_frame")
-		
-		Tools.webFileTool.downloadLevel()
-		emit_signal("level_saved")
-		return
-		
-	var path : String = Tools.openFolderPicker()
-	
-	if path:
-		Main.level.saveLvl(path)
-		emit_signal("level_saved")
-		
 func _input(event):
 	if event.is_action_pressed("switch_state"):
 		_switchStates()

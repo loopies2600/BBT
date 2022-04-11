@@ -68,7 +68,7 @@ config/icon="res://icon.png"
 
 Main="*res://Data/Scenes/Main.tscn"
 Tools="*res://Data/Util/Tools.gd"
-HTML5File="*res://addons/HTML5FileExchange/HTML5FileExchange.gd"
+WebFiles="*res://Data/Util/WebFiles.gd"
 
 [debug]
 
@@ -82,10 +82,6 @@ window/size/test_width=832
 window/size/test_height=480
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/HTML5FileExchange/plugin.cfg" )
 
 [importer_defaults]
 

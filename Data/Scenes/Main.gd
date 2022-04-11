@@ -25,13 +25,51 @@ var attempt := 1
 
 var entityLookTowards := Vector2()
 
+func setNewLevel():
+	var newLvl = Tools.openFilePicker()
+	
+	if OS.get_name() == "HTML5":
+		emit_signal("level_changed")
+		return
+		
+	if newLvl:
+		reload(newLvl)
+		emit_signal("level_changed")
+		
+func saveLevel():
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	
+	if OS.get_name() == "HTML5":
+		level.saveLvl("user:/", "temp.tscn")
+		
+		var temp := File.new()
+		temp.open("user://temp.tscn", File.READ)
+		var buffer = PoolByteArray(temp.get_buffer(temp.get_len()))
+		
+		temp.close()
+		
+		WebFiles.save_file("level.tscn", buffer, "text/plain")
+		
+		emit_signal("level_saved")
+		return
+		
+	var path : String = Tools.openFolderPicker()
+	
+	if path:
+		level.saveLvl(path)
+		emit_signal("level_saved")
+		
 func reload(newLvl : PackedScene):
 	currentScene.queue_free()
 	currentScene = null
 	
 	level.queue_free()
+	level = null
 	
 	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	
 	level = newLvl.instance()
 	
 	_levelInit(level)

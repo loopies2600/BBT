@@ -16,11 +16,8 @@ const PS_FOLDER := [
 
 var sortWho : Node2D
 
-onready var webFileTool := Node.new()
-
 func _ready():
-	webFileTool.set_script(load("res://addons/HTML5FileExchange/HTML5FileExchange.gd"))
-	add_child(webFileTool)
+	WebFiles.connect("file_opened", self, "_onWebFileOpen")
 	
 func getInputDirection(who) -> int:
 	if !who.canInput: return 0
@@ -104,10 +101,19 @@ func runPS(script := []) -> Array:
 	
 	return out
 	
+func _onWebFileOpen(_file, content):
+	var temp := File.new()
+	temp.open("user://temp.tscn", File.WRITE)
+	temp.store_buffer(content)
+	
+	temp.close()
+	
+	Main.reload(ResourceLoader.load("user://temp.tscn"))
+	
 func openFilePicker():
 	match OS.get_name():
 		"HTML5":
-			return webFileTool.loadLevel()
+			WebFiles.open_file(".tscn")
 		"X11":
 			var out := []
 			var _unused = OS.execute("/usr/bin/zenity", ["--file-selection", "--file-filter=Level data (*.tscn) | *tscn", "--title=Load Level"], true, out)
