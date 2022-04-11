@@ -30,3 +30,6 @@ func mainClick(event):
 		else:
 			holding.global_position = (event.position - Vector2(8, 8) - get_parent().get_canvas_transform().origin) * Main.cam.zoom
 			holding.global_position = (holding.global_position / get_parent().level.cell_size).round() * get_parent().level.cell_size
+
+			if holding.get("spawnPos"):
+				holding.set("spawnPos", holding.global_position)

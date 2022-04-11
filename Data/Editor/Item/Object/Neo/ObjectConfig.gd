@@ -85,6 +85,9 @@ func _addSwitch(tgVar : String, varName : String, on := true):
 func updateConfigurator():
 	targetTile = (target.global_position / 16).round()
 	
+	if target.get("spawnPos"):
+		target.set("spawnPos", target.global_position)
+	
 func close():
 	get_parent().get_parent().cursor.configurator = null
 	get_parent().get_parent().cursor.canPlace = true

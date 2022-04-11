@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Object/Gachapon.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Deploy"
+
+[node name="Gachapon" type="Node2D"]
+
+[node name="Ball" type="Sprite" parent="."]
+modulate = Color( 0.764706, 0.54902, 0.145098, 1 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="BG" type="Sprite" parent="Ball"]
+position = Vector2( 0, 8 )
+z_index = -1
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 8, 32, 24 )
+
+[node name="Item" type="Sprite" parent="."]
+z_index = -1
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 32 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+anims/Deploy = SubResource( 1 )

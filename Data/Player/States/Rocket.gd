@@ -43,6 +43,8 @@ func physics_update(delta):
 		owner.kill()
 		
 func exit():
+	owner.dustOffset = Vector2()
+	
 	rcVel = Vector2()
 	spd = 0.0
 	

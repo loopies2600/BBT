@@ -1,4 +1,4 @@
-extends Area2D
+extends Kinematos
 
 const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/FernandezConfig.gd")
 const EXPLOSION := preload("res://Data/Particles/Explosion/Explosion.tscn")
@@ -8,7 +8,8 @@ export (float) var explosionDelay = 1.0
 onready var anim := $Animator
 onready var eyes := [$Graphics/LEye, $Graphics/REye]
 onready var pupils := [$Graphics/LEye/Pupil, $Graphics/REye/Pupil]
-onready var area := $ExplosionArea
+onready var area := $ExplosionArea/Shape
+onready var col := $CollisionBox
 
 var target
 
@@ -16,8 +17,8 @@ var drawGizmos := false
 var exploding := false
 
 func _ready():
-	var _unused = connect("body_entered", self, "_bodyEnter")
-	_unused = connect("body_exited", self, "_bodyExit")
+	var _unused = $ExplosionArea.connect("body_entered", self, "_bodyEnter")
+	_unused = $ExplosionArea.connect("body_exited", self, "_bodyExit")
 	
 func _process(_delta):
 	if !visible: return
@@ -52,6 +53,8 @@ func _bodyExit(body):
 		target = null
 	
 func explode():
+	if !visible: return
+	
 	exploding = true
 	
 	get_parent().purgeCircle(area.global_position / 16, ceil(area.shape.radius / 16), -1)
@@ -65,6 +68,7 @@ func explode():
 	get_parent().add_child(newExplosion)
 	
 	visible = false
+	col.set_deferred("disabled", true)
 	
 	if is_instance_valid(target):
 		if target is Player:
@@ -87,6 +91,8 @@ func _explodeNeighbours():
 		n.explode()
 	
 func resetState():
+	velocity = Vector2()
+	
 	add_to_group("Explosives")
 	
 	target = null
@@ -95,3 +101,4 @@ func resetState():
 	anim.play("Idle")
 	
 	visible = true
+	col.set_deferred("disabled", false)

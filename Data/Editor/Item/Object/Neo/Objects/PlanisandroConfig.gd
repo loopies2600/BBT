@@ -11,6 +11,6 @@ func _ready():
 	_addSwitch("auto", "Automatic", false)
 	
 func updateConfigurator():
-	targetTile = (target.global_position / 16).round()
+	.updateConfigurator()
 	
 	target.resetState()

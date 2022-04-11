@@ -1,12 +1,16 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://Data/Editor/Definitions/Entry.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Object/PowerUps.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player/BB.png" type="Texture" id=2]
 [ext_resource path="res://Data/Player/Objects/PowerUpBlock.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 112, 16, 16 )
 
 [resource]
 script = ExtResource( 1 )
 name = "Tomfoolish Rocket"
-editorIcon = ExtResource( 2 )
+editorIcon = SubResource( 1 )
 scene = ExtResource( 3 )
 singleInstance = false

@@ -221,7 +221,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -45.0 ]
+"values": [ 0.0 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Graphics/Block:position")
@@ -299,7 +299,6 @@ script = SubResource( 4 )
 
 [node name="Trapdoor" type="Sprite" parent="Graphics"]
 position = Vector2( 0, -16 )
-rotation = -0.785398
 z_index = 1
 texture = ExtResource( 1 )
 region_enabled = true

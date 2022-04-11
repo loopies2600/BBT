@@ -11,6 +11,6 @@ func _ready():
 	_addVariableBox(1, "speed", "Speed")
 	
 func updateConfigurator():
-	targetTile = (target.global_position / 16).round()
+	.updateConfigurator()
 	
 	target._spawnPlatforms()

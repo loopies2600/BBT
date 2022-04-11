@@ -87,7 +87,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -1, -10 ) ]
+"values": [ Vector2( -8, -8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("EditorRotate/Blob:position")
@@ -99,7 +99,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 10 ) ]
+"values": [ Vector2( 0, 10 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("EditorRotate/Blob:scale")
@@ -148,7 +148,7 @@ script = ExtResource( 3 )
 position = Vector2( 8, 8 )
 
 [node name="Blob" type="Sprite" parent="EditorRotate"]
-position = Vector2( 1, 10 )
+position = Vector2( 0, 10 )
 z_index = -5
 texture = ExtResource( 1 )
 region_enabled = true
@@ -180,7 +180,7 @@ region_enabled = true
 region_rect = Rect2( 13, 0, 3, 4 )
 
 [node name="Spike" parent="EditorRotate" instance=ExtResource( 2 )]
-position = Vector2( -1, -10 )
+position = Vector2( -8, -8 )
 
 [node name="DetectionArea" type="CollisionShape2D" parent="."]
 position = Vector2( 8, 8 )
