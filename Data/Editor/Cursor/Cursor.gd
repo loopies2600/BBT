@@ -79,9 +79,12 @@ func _frickinPositionFormula() -> Vector2:
 	
 	return result
 	
-func configuratorCheck():
+func configuratorCheck() -> bool:
 	if configurator:
 		configurator.close()
+		return true
+		
+	return false
 	
 func _input(event):
 	if !Main.editing:

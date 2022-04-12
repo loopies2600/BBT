@@ -1,6 +1,6 @@
 extends Node2D
 
-const FONT := preload("res://Sprites/Font/Main.tres")
+const FONT := preload("res://Sprites/Font/Editor.tres")
 
 func _process(_delta):
 	update()
@@ -26,10 +26,10 @@ func _draw():
 		
 	if get_parent().showCells:
 		for i in range(int((pos.x - size.x) / separation.x) - 1, int((size.x + pos.x) / separation.x) + 1):
-			draw_string(FONT, Vector2(i * separation.x, pos.y + size.y - 192), str(i), Color.darkgray)
+			draw_string(FONT, Vector2(i * separation.x, pos.y + size.y - (330 * get_parent().cam.zoom.y)), str(i), Color.darkgray)
 			
 		for i in range(int((pos.y - size.y) / separation.x) - 1, int((size.y + pos.y) / separation.x) + 1):
-			draw_string(FONT, Vector2(pos.x + size.x - 304, i * separation.y), str(i), Color.darkgray)
+			draw_string(FONT, Vector2(pos.x + size.x - (600 * get_parent().cam.zoom.x), i * separation.y), str(i), Color.darkgray)
 		
 	if get_parent().cursor.configurator:
 		draw_rect(Rect2(get_parent().cursor.configurator.targetTile * lvl.cell_size * lvl.scale, lvl.cell_size * lvl.scale), Color.tomato, false, 2)

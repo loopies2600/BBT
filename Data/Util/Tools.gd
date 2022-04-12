@@ -71,7 +71,7 @@ func makeCurve(points := [], offset := Vector2(), dist := 8):
 func offscreenCheck(target : Node2D) -> bool:
 	var screenPos := target.get_global_transform_with_canvas().origin
 		
-	if screenPos.x > 418 || screenPos.x < 0:
+	if screenPos.x > 416 || screenPos.x < 0:
 		return true
 	if screenPos.y > 240 || screenPos.y < 0:
 		return true

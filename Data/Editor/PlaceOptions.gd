@@ -5,6 +5,9 @@ onready var bs := $PC/CenterContainer/Vbc/Hbc/BS
 onready var cursor = get_tree().get_nodes_in_group("Cursor")[0]
 onready var er := $PC/CenterContainer/Vbc/Hbc2/ER
 
+onready var bsW := $PC/CenterContainer/Vbc/Hbc
+onready var erW := $PC/CenterContainer/Vbc/Hbc2
+
 func _ready():
 	buttons[1].selected = true
 	
@@ -26,7 +29,13 @@ func _erChange(new := "0"):
 	cursor.modes[0].explosionRadius = int(new)
 	
 func _onModeChange(idx : int):
-	visible = idx == 0
-
+	visible = idx != 1
+	
+	bsW.visible = idx == 0
+	erW.visible = idx == 0
+	
+	rect_size = Vector2(88, 136) if idx == 0 else Vector2(72, 72)
+	rect_position = Vector2(296, 24) if idx == 0 else Vector2(312, 24)
+	
 func _onGMChange(idx : int):
 	visible = idx == 1

@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=2]
+[ext_resource path="res://Sprites/Editor/Button.png" type="Texture" id=3]
+[ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=4]
+[ext_resource path="res://Data/Editor/KnownBugs.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 80, 16, 16, 16 )
+
+[node name="KnownBugs" type="Panel"]
+margin_left = 112.0
+margin_top = 24.0
+margin_right = 304.0
+margin_bottom = 216.0
+theme = ExtResource( 1 )
+script = ExtResource( 5 )
+
+[node name="BG" type="ColorRect" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -112.0
+margin_top = -24.0
+margin_right = 112.0
+margin_bottom = 24.0
+color = Color( 0.0627451, 0.0156863, 0, 0.501961 )
+script = ExtResource( 4 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 118.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/normal = SubResource( 1 )
+text = "KNOWN BUGS"
+script = ExtResource( 4 )
+
+[node name="Label" type="RichTextLabel" parent="."]
+margin_left = 8.0
+margin_top = 24.0
+margin_right = 184.0
+margin_bottom = 184.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_constants/line_separation = 4
+text = "--- ORBITING PLATFORMS ---
+
+*Cambiar su angulo hace que el bloque principal cambie de posicion y deje de estar en el centro
+
+--- SPIKES/BLOB ---
+
+*Las espinas tienen una hitbox bastante grande
+
+*Siendo que la hitbox esta en la punta de la espina, puedes simplemente caminar a traves de ella si la acomodas bien
+
+*No hay razón en hacer tan alto el salto de una blob siendo que el rango donde te detecta no cambia
+
+--- EARTHWORM ---
+
+*Que se esconda un bloque abajo de donde lo colocaste funciona bien, pero la animacion al saltar es muy brusca, siendo que en 1 frame ya esta una casilla arriba de
+
+--- EDITOR ---
+
+*El vidrio negro esta muy lejos de las demas variantes
+
+*Las rampas estan muy lejos de las demas variantes
+
+*A las tiles \"Zero\" les haria falta una tile de esquina (entre medio de una arriba y otra a su costado)
+
+*Objetos que esten en la capa principal pueden eliminarse desde las otras capas
+( NO ES BUG )
+
+*Hacer click a lo que sea en config mode abre el menu, este tiene las cajas donde pones propiedades encima de la barra de herramientas
+( NO ES BUG )
+
+*Hay 2 tiles con el nombre \"Zero Border Side\"
+
+*Las tiles \"Zero Border Bottom\" y una de las \"Zero Border Side\" solo tienen colision en bordes especificos y no como bloque completo
+
+*Cualquier texto escrito en minusculas no va a verse en el editor
+( NO ES BUG )"
+script = ExtResource( 4 )
+
+[node name="Exit" type="TextureButton" parent="."]
+margin_left = 168.0
+margin_top = 4.0
+margin_right = 184.0
+margin_bottom = 20.0
+texture_normal = SubResource( 2 )
+texture_pressed = SubResource( 3 )
+script = ExtResource( 4 )

@@ -1,6 +1,42 @@
 <!DOCTYPE html>
 <html xmlns='https://www.w3.org/1999/xhtml' lang='' xml:lang=''>
 <head>
+	<script>
+	window.GodotWebFiles = {
+		open_file_callback: null,
+		open_file: (accept, text, multiple) => {
+			if (window.GodotWebFiles.open_file_callback == null) return;
+			let input = document.createElement('input');
+			input.type = 'file';
+			if (accept != "") {
+				input.setAttribute("accept", accept);
+			}
+			if (multiple) {
+				input.setAttribute("multiple", "multiple");
+			}
+			input.onchange = e => {
+				for (let i = 0; i < e.target.files.length; i++) {
+					let file = e.target.files[i];
+					let reader = new FileReader();
+					if (text) {
+						reader.readAsText(file, 'UTF-8');
+					} else {
+						reader.readAsArrayBuffer(file);
+					}
+					reader.onload = readerEvent => {
+						let result = readerEvent.target.result;
+						if (!text) {
+							result = new Uint8Array(result);
+						}
+						window.GodotWebFiles.open_file_callback(file.name, text, result);
+					}
+				}
+			}
+			input.click();
+		}
+	}
+	</script>
+	
 	<meta charset='utf-8' />
 	<meta name='viewport' content='width=device-width, user-scalable=no' />
 	<title>Bennett Boy's Trouble</title>

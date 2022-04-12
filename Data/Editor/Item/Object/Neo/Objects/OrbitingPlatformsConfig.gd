@@ -8,6 +8,7 @@ func _ready():
 	_addVariableBox(0, "amount", "Amount")
 	
 	_addRow("")
+	_addVariableBox(1, "delayTime", "Delay")
 	_addVariableBox(1, "speed", "Speed")
 	
 func updateConfigurator():

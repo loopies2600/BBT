@@ -90,10 +90,21 @@ func _physics_process(_delta):
 	
 	push(maxSpd * dir)
 	
+	_funkyCeilFix()
+	
+func _funkyCeilFix():
+	if is_on_ceiling():
+		velocity.y = 0
+	
+		collisionBox.set_deferred("disabled", true)
+		yield(get_tree().create_timer(0.15), "timeout")
+		collisionBox.set_deferred("disabled", false)
+		
 func _dustTrigger():
 	pass
 	
 func kill(msg := {}):
+	if Main.editing: return
 	if god: return
 	
 	fsm._change_state("dead", msg)

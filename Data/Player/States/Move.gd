@@ -1,7 +1,8 @@
 extends State
 
 func enter(_msg := {}):
-	if owner.iDir != owner.dir:
+	if owner.iDir && owner.iDir != owner.dir:
+		owner.dir = owner.iDir
 		owner.anim.play("Turn")
 		yield(owner.anim, "animation_finished")
 		owner.anim.play("Walk")

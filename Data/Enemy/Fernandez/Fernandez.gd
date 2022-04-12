@@ -20,6 +20,8 @@ func _ready():
 	var _unused = $ExplosionArea.connect("body_entered", self, "_bodyEnter")
 	_unused = $ExplosionArea.connect("body_exited", self, "_bodyExit")
 	
+	doGravity = false
+	
 func _process(_delta):
 	if !visible: return
 	
@@ -37,29 +39,27 @@ func _lookAtPlayer():
 		e.offset = Vector2(1, 0).rotated(lookAngle).round()
 
 func _bodyEnter(body):
-	if exploding: return
+	if Main.editing: return
 	if !visible: return
 	
-	if body is Kinematos:
+	if body is Player:
+		if exploding: return
+		
 		target = body
-	else: return
-	
-	yield(get_tree().create_timer(explosionDelay), "timeout")
-	
-	anim.play("Explode")
-	
+		exploding = true
+		
+		yield(get_tree().create_timer(explosionDelay), "timeout")
+		
+		anim.play("Explode")
+		
 func _bodyExit(body):
-	if body is Kinematos:
+	if body is Player:
 		target = null
 	
 func explode():
 	if !visible: return
 	
-	exploding = true
-	
 	get_parent().purgeCircle(area.global_position / 16, ceil(area.shape.radius / 16), -1)
-	
-	Main.cam.shake(16, 16)
 	
 	var newExplosion := EXPLOSION.instance()
 	
@@ -70,33 +70,43 @@ func explode():
 	visible = false
 	col.set_deferred("disabled", true)
 	
-	if is_instance_valid(target):
-		if target is Player:
-			var vel := Vector2(512, 0).rotated((global_position - target.global_position).angle())
-			vel.y = -256
+	_explodeNeighbors()
+	
+	if target:
+		var vel := Vector2(512, 0).rotated((global_position - target.global_position).angle())
+		vel.y = -256
 		
-			target.kill({"velocity" : vel, "shakePower" : Vector2(16, 16)})
-		elif target is Kinematos:
-			target.kill()
+		target.kill({"velocity" : vel, "shakePower" : Vector2(16, 16)})
 	
-	yield(get_tree().create_timer(0.25), "timeout")
-	_explodeNeighbours()
+func _explodeNeighbors():
+	var spaceState := get_world_2d().direct_space_state
+	var query := Physics2DShapeQueryParameters.new()
 	
-func _explodeNeighbours():
-	remove_from_group("Explosives")
+	query.set_shape(area.shape)
+	query.collision_layer = $ExplosionArea.collision_layer
+	query.transform = Transform2D(Vector2(1, 0), Vector2(0, 1), self.global_position + Vector2(16, 0))
 	
-	var n = Tools.findNearObjects(self, ["Explosives"], area.shape.radius)
+	var result := spaceState.intersect_shape(query)
 	
-	if n:
-		n.explode()
+	if result:
+		for r in result:
+			var target = r.collider
+			
+			if target is Kinematos:
+				yield(get_tree().create_timer(0.25), "timeout")
+				target.kill()
+				
+func kill():
+	explode()
 	
 func resetState():
-	velocity = Vector2()
+	doGravity = !Main.editing
 	
-	add_to_group("Explosives")
+	velocity = Vector2.ZERO
+	global_position = spawnPos
 	
-	target = null
 	exploding = false
+	target = null
 	
 	anim.play("Idle")
 	

@@ -3,8 +3,10 @@ extends Area2D
 onready var _editorRotate := $Graphics/Spikes
 onready var anim := $Graphics/Animator
 
-var doGravity := false
+var lifeTime := 4.0
+var _time := 0.0
 
+var doGravity := false
 var velocity := Vector2()
 
 func resetState():
@@ -17,10 +19,10 @@ func _ready():
 func _physics_process(delta):
 	if doGravity:
 		velocity.y += gravity
+		_time += delta
 		
-		var kill = Tools.offscreenCheck(self)
-		
-		if kill: queue_free()
+		if _time >= lifeTime:
+			queue_free()
 		
 	position += velocity * delta
 	

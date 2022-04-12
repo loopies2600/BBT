@@ -6,16 +6,30 @@ const PLATFORM := preload("res://Data/Object/OrbitingPlatforms/Platform.tscn")
 export (int) var amount = 3
 export (float) var distance = 64.0
 export (int) var speed = -1
+export (float) var delayTime = 0.01
+
+onready var delay := $Delay
 
 var platforms := []
 
 func resetState():
 	_spawnPlatforms()
 	
+	if !Main.editing:
+		delay.start(delayTime)
+	
 func _ready():
+	var _unused = delay.connect("timeout", self, "_onDelayEnd")
+	
 	_spawnPlatforms()
 	
+func _onDelayEnd():
+	for p in platforms:
+		p.enabled = true
+	
 func _spawnPlatforms():
+	delay.wait_time = delayTime
+	
 	for p in platforms:
 		p.queue_free()
 		

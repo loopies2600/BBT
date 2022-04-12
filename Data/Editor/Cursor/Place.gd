@@ -37,6 +37,8 @@ func mainClick(_event):
 				ttm.set_cellv(cell + Vector2(1 * sx, 1 * sy), tgt.tileID)
 				get_parent().emit_signal("tile_placed", cell)
 			else:
+				if ttm != Main.level: return
+				
 				var pos := cell + Vector2(1 * sx, 1 * sy)
 				
 				var occupied = Main.getNodeOnThisPos(pos) != null
@@ -71,7 +73,7 @@ func subClick(_event):
 	var exploded := false
 	
 	if Input.is_action_pressed("special"):
-		if lvl.get_cellv(cell) != -1:
+		if ttm.get_cellv(cell) != -1:
 			var explosion := EXPLOSION.instance()
 			explosion.global_position = cell * 16
 			ttm.add_child(explosion)
@@ -98,6 +100,8 @@ func subClick(_event):
 				get_parent().emit_signal("tile_removed", cell)
 				
 			else:
+				if ttm != Main.level: return
+				
 				var n = Main.getNodeOnThisPos(cell + Vector2(1 * sx, 1 * sy))
 				
 				if n:

@@ -12,7 +12,7 @@ func _physics_process(_delta):
 	var query := Physics2DShapeQueryParameters.new()
 	
 	query.set_shape(hurtBox)
-	query.transform = Transform2D(Vector2(1, 0), Vector2(0, 1), global_position + Vector2(8, 0))
+	query.transform = Transform2D(Vector2(1, 0), Vector2(0, 1), self._editorRotate.global_position + Vector2(8, 0))
 	
 	var collision = spaceState.intersect_shape(query)
 	

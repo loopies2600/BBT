@@ -21,6 +21,8 @@ var drawGizmos := false
 var velocity := Vector2()
 var doGravity := false
 
+var _time := 0.0
+
 func _ready():
 	var _unused = connect("body_entered", self, "_bodyEnter")
 	
@@ -43,9 +45,11 @@ func _physics_process(delta):
 		var grav : float = (jumpGravity if velocity.y < 0.0 else fallGravity) * delta
 		velocity += Vector2(0, grav).rotated(_editorRotate.rotation)
 	
+		_time += delta
+		
 	position += velocity * delta
 	
-	if doGravity && global_position.y > spawnPos.y:
+	if doGravity && _time >= jumpDuration + fallDuration:
 		_resetMotion()
 		anim.play("Hide")
 	
@@ -53,6 +57,7 @@ func _resetMotion():
 	global_position = spawnPos
 	velocity = Vector2.ZERO
 	doGravity = false
+	_time = 0.0
 	
 func _bodyEnter(body):
 	if anim.current_animation in ["Show", "Jump"]: return

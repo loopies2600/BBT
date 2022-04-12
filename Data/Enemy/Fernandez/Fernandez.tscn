@@ -390,9 +390,9 @@ tracks/8/keys = {
 
 [sub_resource type="RectangleShape2D" id=6]
 
-[node name="Fernandez" type="KinematicBody2D" groups=["Explosives"]]
+[node name="Fernandez" type="KinematicBody2D"]
 z_index = 1
-collision_layer = 0
+collision_layer = 16
 collision_mask = 2
 script = ExtResource( 2 )
 
@@ -437,6 +437,8 @@ region_enabled = true
 region_rect = Rect2( 35, 36, 10, 10 )
 
 [node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 17
 
 [node name="Shape" type="CollisionShape2D" parent="ExplosionArea"]
 position = Vector2( 16, 0 )
