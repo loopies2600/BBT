@@ -6,6 +6,8 @@ const TILESPR := preload("res://Data/Particles/GenericSprite.tscn")
 const INDESTRUCTIBLE := [23, 24]
 const SAVE_PATH = "user://"
 
+export (Texture) var bgTex = load("res://Sprites/UI/Border0.png")
+
 onready var mus := $Music
 onready var bg := $ImageBG
 
@@ -149,7 +151,7 @@ func purgeCircle(pos, radius, with := -1, target = self):
 		
 		target.set_cellv(c, with)
 		
-func funnyTileAnim(cellPos := Vector2()):
+func funnyTileAnim(cellPos := Vector2(), vel := Vector2(rand_range(-512, 512), rand_range(-256, -512))):
 	var id := get_cellv(cellPos)
 	
 	if id == -1: return
@@ -157,8 +159,7 @@ func funnyTileAnim(cellPos := Vector2()):
 	var newTS := TILESPR.instance()
 	newTS.global_position = Vector2(8, 8) + cellPos * 16
 	
-	newTS.velocity.x = rand_range(-512, 512)
-	newTS.velocity.y = rand_range(-256, -512)
+	newTS.velocity = vel
 	newTS.rotation = rand_range(0, TAU)
 	newTS.rotSpeed = 8
 	newTS.z_index = 32

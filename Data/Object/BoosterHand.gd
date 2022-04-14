@@ -1,13 +1,18 @@
 extends Area2D
 
+const CONFIGURATOR = preload("res://Data/Editor/Item/Object/Neo/Objects/BoosterHandConfig.gd")
+
 export (int) var distance = 700
 export (float) var inputLockTime := 0.2
+export (float) var ___tempRot = 0.0
 
 onready var anim := $Animator
 
 onready var _editorRotate := $Graphics
 
 func _ready():
+	_editorRotate.rotation = ___tempRot
+	
 	var _unused = connect("body_entered", self, "_bodyEnter")
 	_unused = connect("body_exited", self, "_bodyExit")
 	

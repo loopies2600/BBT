@@ -30,6 +30,10 @@ func _process(_delta):
 	_lookAtPlayer()
 	
 func _physics_process(_delta):
+	if Main.editing:
+		velocity = Vector2()
+		return
+	
 	if is_on_floor():
 		velocity.x *= 0.4
 	

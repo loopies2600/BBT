@@ -6,6 +6,7 @@ export (float) var jumpDelay = 0.25
 export (float) var jumpHeight = 64.0
 export (float) var jumpDuration = 0.25
 export (float) var fallDuration = 0.22550
+export (float) var ___tempRot = 0.0
 
 onready var _editorRotate = $EditorRotate
 
@@ -24,6 +25,8 @@ var doGravity := false
 var _time := 0.0
 
 func _ready():
+	_editorRotate.rotation = ___tempRot
+	
 	var _unused = connect("body_entered", self, "_bodyEnter")
 	
 func recalcJumpValues():

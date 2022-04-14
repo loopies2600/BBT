@@ -4,7 +4,8 @@ const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/Gravita
 
 onready var detector := $Detector
 
-var reverse := true
+export (bool) var reverse = true
+
 var disabled := false
 var drawGizmos := false
 

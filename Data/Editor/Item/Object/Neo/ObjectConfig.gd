@@ -88,6 +88,9 @@ func updateConfigurator():
 	
 	if target.get("spawnPos"):
 		target.set("spawnPos", target.global_position)
+		
+	if target.get("_editorRotate"):
+		target.set("___tempRot", target._editorRotate.rotation)
 	
 func close():
 	get_parent().get_parent().cursor.configurator = null

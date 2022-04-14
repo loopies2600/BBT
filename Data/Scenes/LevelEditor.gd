@@ -12,6 +12,8 @@ onready var desc := $GUILayer/Descriptor
 var showGrid := false
 var showCells := false
 
+var bgTex : Texture
+
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")
 	

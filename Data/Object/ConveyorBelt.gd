@@ -21,6 +21,6 @@ func _process(_delta):
 	velBoost = Vector2(speedBoost, 0)
 	
 	if !Main.editing:
-		sprite.region_rect.position.x -= (speedBoost / 64)
+		sprite.region_rect.position.x += animSpeed * sign(speedBoost)
 	else:
 		sprite.region_rect.position.y = 16 *  (0 if sign(speedBoost) == 1 else 1)

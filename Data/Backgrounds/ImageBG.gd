@@ -20,9 +20,9 @@ func _setMode(md : int):
 			rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		
 func _ready():
-	$ParallaxLayer.owner = get_parent()
-	rect.owner = get_parent()
-	
+	if get_parent().bgTex:
+		rect.texture = get_parent().bgTex
+		
 	var _unused = get_tree().connect("files_dropped", self, "_fileDrop")
 	
 	_resizeRect()
@@ -37,10 +37,10 @@ func _process(_delta):
 func _resizeRect():
 	rect.rect_size = Vector2(0, 96)
 	
-	while rect.rect_size.x < get_viewport().size.x * 2:
+	while rect.rect_size.x < get_viewport().size.x * 4:
 		rect.rect_size.x += rect.texture.get_size().x
 		
-	while rect.rect_size.y < get_viewport().size.y * 2:
+	while rect.rect_size.y < get_viewport().size.y * 4:
 		rect.rect_size.y += rect.texture.get_size().y
 	
 	$ParallaxLayer.motion_mirroring = rect.rect_size
@@ -54,10 +54,13 @@ func _setTexture(path := ""):
 	
 	if error != OK: return
 	
+	img.compress(Image.COMPRESS_S3TC, Image.COMPRESS_SOURCE_GENERIC, 0.5)
+	
 	var tex = ImageTexture.new()
 	tex.create_from_image(img)
 	
 	rect.texture = tex
+	get_parent().bgTex = tex
 	
 	if mode == Modes.TILE:
 		_resizeRect()

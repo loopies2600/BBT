@@ -2,7 +2,8 @@ extends StaticBody2D
 
 const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/ToggleButtonConfig.gd")
 
-var main := true
+export (bool) var main = true
+
 var col : Color
 
 onready var anim := $Animator

@@ -1,10 +1,14 @@
 extends Node2D
 
+export (float) var ___tempRot = 0.0
+
 onready var _editorRotate = $Sprite
 
 var hurtBox := RectangleShape2D.new()
 
 func _ready():
+	_editorRotate.rotation = ___tempRot
+	
 	hurtBox.extents = Vector2(8, 8)
 	
 func _physics_process(_delta):

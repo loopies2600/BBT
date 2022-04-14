@@ -12,6 +12,8 @@ export (float) var jumpDuration = 0.25
 export (float) var fallDuration = 0.22550
 export (float) var weight = 1.5
 
+export (Vector2) var spawnPos
+
 var dir := 1
 
 var doGravity := true
@@ -27,8 +29,6 @@ onready var jumpVel : float = (2.0 * jumpHeight / jumpDuration)
 onready var jumpGravity : float = (2.0 * jumpHeight / (jumpDuration * jumpDuration))
 onready var fallGravity : float = (2.0 * jumpHeight / (fallDuration * fallDuration))
 
-onready var spawnPos := global_position
-
 func resetState():
 	velocity = Vector2.ZERO
 	visible = true
@@ -36,6 +36,8 @@ func resetState():
 	set_process(true)
 	
 func _ready():
+	spawnPos = global_position
+	
 	_dustLoop()
 	
 func recalcJumpValues(h := jumpHeight):

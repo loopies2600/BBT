@@ -63,9 +63,14 @@ func mainClick(_event):
 						
 						get_parent().emit_signal("object_placed", pos)
 
-func subClick(_event):
+func subClick(event):
 	if !get_parent().canPlace: return
 	
+	var mot := Vector2()
+	
+	if event is InputEventMouseMotion:
+		mot = event.relative
+		
 	var cell : Vector2 = get_parent().cellPos
 	var ttm : TileMap = get_parent().targetTilemap
 	var tile := ttm.get_cellv(cell) != -1
@@ -96,8 +101,8 @@ func subClick(_event):
 					
 					if brushSize < 5 && ttm.get_cellv(cell + Vector2(1 * x, 1 * y)) != -1:
 						Main.plop(cell * 16 + Vector2(8, 8) + Vector2(16 * x, 16 * y))
-					
-					Main.level.funnyTileAnim(cell + Vector2(1 * x, 1 * y))
+						
+					Main.level.funnyTileAnim(cell + Vector2(1 * x, 1 * y), Vector2(256 * sin(mot.x), rand_range(-256, -512)))
 					ttm.set_cellv(cell + Vector2(1 * x, 1 * y), -1)
 					
 					get_parent().emit_signal("tile_removed", cell)

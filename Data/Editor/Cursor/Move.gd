@@ -33,3 +33,7 @@ func mainClick(event):
 
 			if holding.get("spawnPos"):
 				holding.set("spawnPos", holding.global_position)
+				
+			if holding.get("_editorRotate"):
+				holding.set("___tempRot", holding._editorRotate.rotation)
+	
