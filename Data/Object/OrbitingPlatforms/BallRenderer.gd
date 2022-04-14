@@ -20,3 +20,7 @@ func _draw():
 				var w : float = (1.0 / pB) * i
 				
 				draw_texture(BALL, lerp(get_parent().global_position, c.global_position, w))
+	
+	if !get_parent().drawGizmos: return
+	
+	draw_arc(get_parent().global_position + Vector2(8, 8), get_parent().distance, 0, TAU, 24, Color.tomato, 2)

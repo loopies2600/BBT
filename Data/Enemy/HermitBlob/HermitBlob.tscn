@@ -181,6 +181,7 @@ region_rect = Rect2( 13, 0, 3, 4 )
 
 [node name="Spike" parent="EditorRotate" instance=ExtResource( 2 )]
 position = Vector2( -8, -8 )
+attached = true
 
 [node name="DetectionArea" type="CollisionShape2D" parent="."]
 position = Vector2( 8, 8 )

@@ -50,7 +50,12 @@ func mainClick(_event):
 					var instance = tgt.itemScene.instance()
 					
 					if _singleInstanceCheck(instance):
-						lvl.get_node(instance.name).global_position = (pos * lvl.cell_size).round()
+						var inst = lvl.get_node(instance.name)
+						
+						inst.global_position = (pos * lvl.cell_size).round()
+						
+						if inst.get("spawnPos"):
+							inst.spawnPos = inst.global_position
 					else:
 						instance.global_position = (pos * lvl.cell_size).round()
 						instance.add_to_group("Instances")

@@ -175,23 +175,24 @@ func _flipOneWayCollisionShapes():
 	tile_set.tile_set_shape_transform(11, 0, Transform2D(deg2rad(180), Vector2(16, 16)))
 	
 func refreshToggleBlock():
-	for t in get_used_cells():
-		if Main.editing:
-			if get_cellv(t) == 63:
-				set_cellv(t, 61)
-				
-			if get_cellv(t) == 64:
-				set_cellv(t, 62)
-		else:
-			if !blockToggle:
-				if get_cellv(t) == 61:
-					set_cellv(t, 63)
+	for l in [self, $Foreground, $Background]:
+		for t in l.get_used_cells():
+			if Main.editing:
+				if l.get_cellv(t) == 63:
+					l.set_cellv(t, 61)
 					
-				if get_cellv(t) == 64:
-					set_cellv(t, 62)
+				if l.get_cellv(t) == 64:
+					l.set_cellv(t, 62)
 			else:
-				if get_cellv(t) == 63:
-					set_cellv(t, 61)
-					
-				if get_cellv(t) == 62:
-					set_cellv(t, 64)
+				if !blockToggle:
+					if l.get_cellv(t) == 61:
+						l.set_cellv(t, 63)
+						
+					if l.get_cellv(t) == 64:
+						l.set_cellv(t, 62)
+				else:
+					if l.get_cellv(t) == 63:
+						l.set_cellv(t, 61)
+						
+					if l.get_cellv(t) == 62:
+						l.set_cellv(t, 64)

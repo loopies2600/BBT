@@ -10,6 +10,8 @@ export (float) var delayTime = 0.01
 
 onready var delay := $Delay
 
+var drawGizmos := false
+
 var platforms := []
 
 func resetState():

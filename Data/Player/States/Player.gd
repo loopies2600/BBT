@@ -1,12 +1,12 @@
 extends Kinematos
 class_name Player
 
+const CONFIGURATOR = preload("res://Data/Editor/Item/Object/Neo/Objects/PlayerConfig.gd")
+
 export (float) var accel = 100.0
 export (float, 0, 1) var bounciness = 0.5
 export (float, 0, 1) var airDamping = 0.98
 export (float, 0, 1) var damping = 0.5
-export (Vector2) var tossForce = Vector2(825, 368)
-export (int) var objDetectionRadius = 32
 export (float) var resetDelay = 1.5
 export (int) var slideStrength = 196
 export (float) var slideDuration = 0.35
@@ -18,7 +18,6 @@ export (float) var rocketAccel = 32.0
 onready var anim := $Graphics/Anim
 onready var ganim := $Graphics/GAnim
 onready var gfx := $Graphics
-onready var objOffset := $Graphics/HeldObjectOffset
 onready var collisionBox := $CollisionBox
 onready var fsm := $StateMachine
 onready var light := $Light
@@ -26,6 +25,7 @@ onready var ceilDetector := $Graphics/CeilDetector
 onready var sounds := [$Jump, $Dash, $Slide]
 onready var wallDetector := $Graphics/WallDetector
 onready var bgTint := $BGTint
+onready var resetTimer := $StateMachine/Dead/ResetTimer
 
 var god := false
 
@@ -44,6 +44,9 @@ func _ready():
 	letsStart()
 	
 func letsStart():
+	# arreglar un bugcito!
+	resetTimer.stop()
+	
 	# reiniciamos estado la de colisión
 	collisionBox.set_deferred("disabled", false)
 	
@@ -67,15 +70,41 @@ func letsStart():
 	fsm._change_state("idle")
 	
 func closeToCeiling() -> bool:
+	var cJumpableTiles : PoolIntArray = [-1, 5, 11, 71]
+	
 	var close := false
 	 
 	if ceilDetector.is_colliding():
 		var col = ceilDetector.get_collider()
 		
+		close = true
+		
 		if col is TileMap:
-			var tile : int = col.get_cellv((global_position / 16).round() + Vector2(0, -1))
+			var tile : int = col.get_cellv(col.world_to_map(global_position) + Vector2(0, -1))
 			
-			if tile in [5, 11, 71]:
+			if tile in cJumpableTiles:
+				close = false
+			else:
+				close = true
+		
+	return close
+	
+func closeToWall() -> bool:
+	var dashableTiles : PoolIntArray =  [-1, 5, 6, 7, 8, 11, 27, 33, 71]
+	
+	var close := false
+	 
+	if wallDetector.is_colliding():
+		var col = wallDetector.get_collider()
+		
+		close = true
+		
+		if col is TileMap:
+			dashableTiles.append(9 if dir == 1 else 10)
+			
+			var tile : int = col.get_cellv(col.world_to_map(global_position) + Vector2(1 * dir, 0))
+			
+			if tile in dashableTiles:
 				close = false
 			else:
 				close = true

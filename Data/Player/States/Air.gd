@@ -2,8 +2,11 @@ extends State
 
 var jumping := false
 var cancelled := false
+var ignoreAnim := false
 
 func enter(msg := {}):
+	ignoreAnim = msg.has("ignoreAnim")
+	
 	if !owner.god:
 		if msg.has("jumpHeight"):
 			owner.sounds[0].pitch_scale = rand_range(0.75, 1.25)
@@ -28,20 +31,21 @@ func enter(msg := {}):
 		owner._doDust = true
 		
 func physics_update(_delta):
-	if sign(owner.velocity.y) == -sign(owner.upDirection.y):
-		if get_parent().previous_state != "slide":
-			owner.anim.play("Fall")
-	else:
-		if jumping:
-			var anim := "Jump"
-			owner.ganim.play("Jump")
+	if !ignoreAnim:
+		if sign(owner.velocity.y) == -sign(owner.upDirection.y):
+			if get_parent().previous_state != "slide":
+				owner.anim.play("Fall")
+		else:
+			if jumping:
+				var anim := "Jump"
+				owner.ganim.play("Jump")
+				
+				match get_parent().previous_state:
+					"slide":
+						anim = "Dash"
 			
-			match get_parent().previous_state:
-				"slide":
-					anim = "Dash"
-		
-			owner.anim.play(anim)
-			
+				owner.anim.play(anim)
+				
 	if owner.canInput:
 		if owner.iDir:
 			owner.dir = owner.iDir

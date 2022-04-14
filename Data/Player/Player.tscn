@@ -1197,6 +1197,9 @@ script = ExtResource( 8 )
 [node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource( 11 )
 
+[node name="ResetTimer" type="Timer" parent="StateMachine/Dead"]
+one_shot = true
+
 [node name="Slide" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
 
