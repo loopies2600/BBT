@@ -2,7 +2,7 @@ extends Camera2D
 
 export (float, 0, 1) var damping = 0.9
 export (int) var minZoom = 1
-export (int) var maxZoom = 2
+export (int) var maxZoom = 4
 export (float) var zoomSpeed = 0.1
 
 var canPlace := false

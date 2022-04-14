@@ -50,6 +50,20 @@ func _physics_process(delta):
 	
 	_applyGravity(delta)
 	_dustTrigger()
+	_applyVelBoost()
+	
+func _applyVelBoost():
+	if Main.editing: return
+	
+	var velBoost := Vector2()
+	
+	for s in get_slide_count():
+		var collision = get_slide_collision(s)
+		
+		if collision.collider.get("velBoost"):
+			velBoost = collision.collider.velBoost
+		
+	velocity += velBoost
 	
 func _applyGravity(delta : float):
 	if doGravity:

@@ -25,7 +25,7 @@ func physics_update(delta):
 		
 	if !owner.closeToCeiling():
 			if Input.is_action_just_pressed("jump"):
-				emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight, "antiCancel" : true})
+				emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
 	
 func exit():
 	time = 0.0

@@ -2,6 +2,7 @@ extends TileMap
 
 signal block_toggled(rob)
 
+const TILESPR := preload("res://Data/Particles/GenericSprite.tscn")
 const INDESTRUCTIBLE := [23, 24]
 const SAVE_PATH = "user://"
 
@@ -133,14 +134,40 @@ func _ready():
 	print("")
 	
 func purgeCircle(pos, radius, with := -1, target = self):
-	for y in range(-radius - 1, radius + 1):
-		for x in range(-radius - 1, radius + 1):
-			if (x * x) + (y * y) <= (radius * radius):
-				if target.get_cellv(pos + Vector2(x, y)) in INDESTRUCTIBLE:
+	var cells := []
+	
+	for y in range(-radius, radius):
+		for x in range(-radius, radius):
+			if (x * x) + (y * y) < (radius * radius):
+				if target.get_cellv(pos + Vector2(x, y)) in INDESTRUCTIBLE || target.get_cellv(pos + Vector2(x, y)) == -1:
 					pass
 				else:
-					target.set_cellv(pos + Vector2(x, y), with)
-				
+					cells.append(pos + Vector2(x, y))
+					
+	for c in cells:
+		funnyTileAnim(c)
+		
+		target.set_cellv(c, with)
+		
+func funnyTileAnim(cellPos := Vector2()):
+	var id := get_cellv(cellPos)
+	
+	if id == -1: return
+	
+	var newTS := TILESPR.instance()
+	newTS.global_position = Vector2(8, 8) + cellPos * 16
+	
+	newTS.velocity.x = rand_range(-512, 512)
+	newTS.velocity.y = rand_range(-256, -512)
+	newTS.rotation = rand_range(0, TAU)
+	newTS.rotSpeed = 8
+	newTS.z_index = 32
+	
+	newTS.texture = tile_set.tile_get_texture(id)
+	newTS.region_rect = tile_set.tile_get_region(id)
+	
+	add_child(newTS)
+	
 func _flipOneWayCollisionShapes():
 	tile_set.tile_set_shape_transform(9, 0, Transform2D(deg2rad(90), Vector2(16, 0)))
 	tile_set.tile_set_shape_transform(10, 0, Transform2D(deg2rad(270), Vector2(0, 16)))

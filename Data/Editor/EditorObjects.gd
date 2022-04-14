@@ -44,12 +44,17 @@ func _spawnTileItems():
 	for tile in Main.level.tile_set.get_tiles_ids():
 		# ignore tile if name starts with "_"
 		if !Main.level.tile_set.tile_get_name(tile).begins_with("_"):
+			var tTab = tilesTab
+			
 			var newItem = ITEM.instance()
 			
 			newItem.selected = tile == 0
 			newItem.tileID = tile
 			
-			tilesTab.add_child(newItem)
+			if tile in [61, 62]:
+				tTab = $TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer
+				
+			tTab.add_child(newItem)
 	
 func _spawnObjectItems(def := "Entities"):
 	var list : Array = get(def)

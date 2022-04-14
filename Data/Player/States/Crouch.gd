@@ -10,8 +10,11 @@ func physics_update(_delta):
 	owner.velocity *= owner.damping
 	
 	if owner.canInput:
-		if owner.iDir:
+		if owner.iDir && owner.iDir != owner.dir:
 			owner.dir = owner.iDir
+			owner.anim.play("CrouchTurn")
+			yield(get_tree().create_timer(0.05), "timeout")
+			owner.anim.play("Crouch")
 			
 		if !owner.is_on_floor():
 			emit_signal("finished", "air")

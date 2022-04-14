@@ -14,7 +14,7 @@ func _ready():
 	angle = deg2rad(initialAngle)
 	
 func _physics_process(delta):
-	position = center + Vector2(sin(angle) * orbitDimension.x, cos(angle) * orbitDimension.y) * distance
+	position = (Vector2(1, 0).rotated(angle).normalized() * distance) * orbitDimension
 	
 	if !enabled: return
 	

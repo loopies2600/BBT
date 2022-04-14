@@ -6,6 +6,7 @@ func _tabSetup():
 	_addRow("Start Position")
 	_addVariableBox(0, "global_position:x", "X", "none", 16)
 	_addVariableBox(0, "global_position:y", "Y", "none", 16)
+	_addVariableBox(0, "z_index", "Depth")
 	
 	_addRow("Mid Position")
 	_addVariableBox(0, "middle:x", "X", "none", 16)

@@ -17,6 +17,8 @@ var drawGizmos := false
 var exploding := false
 
 func _ready():
+	area.shape = area.shape.duplicate()
+	
 	var _unused = $ExplosionArea.connect("body_entered", self, "_bodyEnter")
 	_unused = $ExplosionArea.connect("body_exited", self, "_bodyExit")
 	
@@ -26,6 +28,10 @@ func _process(_delta):
 	if !visible: return
 	
 	_lookAtPlayer()
+	
+func _physics_process(_delta):
+	if is_on_floor():
+		velocity.x *= 0.4
 	
 func _lookAtPlayer():
 	var lookAngle := 0.0

@@ -1,6 +1,6 @@
 extends State
 
-const HARD_HAT = preload("res://Data/Player/Objects/HardHat.tscn")
+const HARD_HAT = preload("res://Data/Particles/GenericSprite.tscn")
 
 func enter(msg := {}):
 	var velocity := Vector2(owner.velocity.x, owner.jumpHeight * owner.upDirection.y * 6)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Player/BB.png" type="Texture" id=1]
+[ext_resource path="res://Data/Particles/GenericSprite.gd" type="Script" id=2]
+
+[node name="GenericSprite" type="Sprite"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 100, 65, 25, 17 )
+script = ExtResource( 2 )

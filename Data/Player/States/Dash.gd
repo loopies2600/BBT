@@ -1,6 +1,8 @@
 extends State
 
 func enter(msg := {}):
+	owner.canDash = false
+	
 	if owner.is_on_floor():
 		owner.anim.play("Jump")
 	else:
@@ -25,4 +27,4 @@ func enter(msg := {}):
 func physics_update(_delta):
 	if owner.is_on_floor() || owner.is_on_wall():
 		owner.velocity.x = 0
-		emit_signal("finished", "idle")
+		emit_signal("finished", "air")

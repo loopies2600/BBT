@@ -4,6 +4,7 @@ export (float) var gravity = 25.0
 export (float) var lifetime = 2.0
 
 var velocity := Vector2()
+var rotSpeed := 2.0
 var upDirection := Vector2.UP
 
 func _ready():
@@ -14,3 +15,4 @@ func _physics_process(delta):
 	velocity.y -= gravity * upDirection.y
 	
 	position += velocity * delta
+	rotation += rotSpeed * delta

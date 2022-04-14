@@ -23,6 +23,7 @@ func _tabSetup():
 	_addRow("Position")
 	_addVariableBox(0, "global_position:x", "X", "none", 16)
 	_addVariableBox(0, "global_position:y", "Y", "none", 16)
+	_addVariableBox(0, "z_index", "Depth")
 	
 	_addRow("Affine")
 	_addVariableBox(1, "scale:x", "X", "_editorRotate")

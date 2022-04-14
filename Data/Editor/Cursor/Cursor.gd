@@ -1,7 +1,5 @@
 extends Node2D
 
-const BDTEX = preload("res://Sprites/Editor/SelectedTile.png")
-
 # warning-ignore:unused_signal
 signal tile_placed(pos)
 # warning-ignore:unused_signal
@@ -66,11 +64,13 @@ func _process(_delta):
 func _draw():
 	if !texture: return
 	
-	for sx in range(modes[0].brushSize):
-		for sy in range(modes[0].brushSize):
-			draw_texture(texture, Vector2(16 * sx, 16 * sy))
-			draw_texture(BDTEX, Vector2(-16, -16) + Vector2(16 * sx, 16 * sy))
+	var radius : int = modes[0].brushSize
 	
+	for y in range(-radius, radius):
+		for x in range(-radius, radius):
+			if (x * x) + (y * y) < (radius * radius):
+				draw_texture(texture, Vector2(16 * x, 16 * y))
+
 func _frickinPositionFormula() -> Vector2:
 	var mousePos := get_global_mouse_position()
 	var cursorOffset := Vector2(8, 8)

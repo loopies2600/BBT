@@ -32,6 +32,7 @@ var god := false
 var iDir := 0
 var grounded := false
 var canInput := true
+var canDash := true
 
 func resetState():
 	letsStart()
@@ -97,7 +98,7 @@ func _funkyCeilFix():
 		velocity.y = 0
 	
 		collisionBox.set_deferred("disabled", true)
-		yield(get_tree().create_timer(0.15), "timeout")
+		yield(get_tree().create_timer(0.11), "timeout")
 		collisionBox.set_deferred("disabled", false)
 		
 func _dustTrigger():
