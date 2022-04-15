@@ -135,7 +135,7 @@ func _ready():
 		print("Tile %s = %s" % [tile, tile_set.tile_get_name(tile)])
 	print("")
 	
-func purgeCircle(pos, radius, with := -1, target = self):
+func purgeCircle(pos := Vector2(), radius := 0, with := -1, target = self):
 	var cells := []
 	
 	for y in range(-radius, radius):
@@ -150,7 +150,20 @@ func purgeCircle(pos, radius, with := -1, target = self):
 		funnyTileAnim(c)
 		
 		target.set_cellv(c, with)
-		
+	
+func getTilesInRadius(pos := Vector2(), radius := 0) -> PoolVector2Array:
+	var tiles : PoolVector2Array = []
+	
+	for y in range(-radius, radius):
+		for x in range(-radius, radius):
+			if (x * x) + (y * y) < (radius * radius):
+				var tPos := pos + Vector2(x, y)
+				
+				if get_cellv(tPos) != -1:
+					tiles.append(tPos)
+				
+	return tiles
+	
 func funnyTileAnim(cellPos := Vector2(), vel := Vector2(rand_range(-512, 512), rand_range(-256, -512))):
 	var id := get_cellv(cellPos)
 	

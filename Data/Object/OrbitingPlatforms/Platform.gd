@@ -12,6 +12,7 @@ var enabled := false
 
 func _ready():
 	angle = deg2rad(initialAngle)
+	add_to_group("CeilKick")
 	
 func _physics_process(delta):
 	position = (Vector2(1, 0).rotated(angle).normalized() * distance) * orbitDimension

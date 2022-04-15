@@ -21,7 +21,7 @@ func _ready():
 	
 	# define entities
 	print("--- ENTITY LIST ---")
-	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro"]:
+	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro", "Midget"]:
 		print(i, " registered")
 		Entities.append(load(DEFPATH % ("Entity/%s" % i)))
 	print("")

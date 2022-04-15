@@ -70,7 +70,7 @@ func letsStart():
 	fsm._change_state("idle")
 	
 func closeToCeiling() -> bool:
-	var cJumpableTiles : PoolIntArray = [-1, 5, 11, 71]
+	var cJumpableTiles : PoolIntArray = [5, 11, 71]
 	
 	var close := false
 	 
@@ -90,7 +90,7 @@ func closeToCeiling() -> bool:
 	return close
 	
 func closeToWall() -> bool:
-	var dashableTiles : PoolIntArray =  [-1, 5, 6, 7, 8, 11, 27, 33, 71]
+	var dashableTiles : PoolIntArray =  [5, 6, 7, 8, 11, 27, 33, 71]
 	
 	var close := false
 	 
@@ -124,12 +124,9 @@ func _physics_process(_delta):
 	
 func _funkyCeilFix():
 	if is_on_ceiling():
-		velocity.y = 0
+		ganim.play("WallCol")
+		position.y += 14
 	
-		collisionBox.set_deferred("disabled", true)
-		yield(get_tree().create_timer(0.11), "timeout")
-		collisionBox.set_deferred("disabled", false)
-		
 func _dustTrigger():
 	pass
 	
