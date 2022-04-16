@@ -24,9 +24,29 @@ var target
 var texture : Texture
 
 var alreadyPressed := false
-
 var cellPos := Vector2()
 
+var _tileEntryTemplate := {
+	"cell": Vector2(),
+	"id": 2,
+	"ttm" : Main.level,
+	"flip_x" : false,
+	"flip_y" : false,
+	"transpose" : false
+}
+
+var tileHistory := []
+
+func _restoreTileAction():
+	if tileHistory.empty(): return
+	
+	var action = tileHistory.pop_back()
+	
+	for entry in action:
+		entry = action[entry]
+		
+		entry.ttm.set_cellv(entry.cell, entry.id, entry.flip_x, entry.flip_y, entry.transpose)
+		
 func _setMode(idx : int):
 	if mode == idx: return
 	
@@ -53,7 +73,7 @@ func _process(_delta):
 	if !Main.editing:
 		texture = null
 		return
-		
+	
 	if canPlace:
 		global_position = result
 		cellPos = ((global_position / level.cell_size).round() / level.scale).round()
@@ -93,8 +113,11 @@ func configuratorCheck() -> bool:
 func _input(event):
 	if !Main.editing:
 		return
-	
+		
 	if Input.is_action_pressed("mouse_main"):
 		modes[mode].mainClick(event)
 	elif Input.is_action_pressed("mouse_secondary"):
 		modes[mode].subClick(event)
+	
+	if event.is_action("undo") && !event.is_echo() && event.is_pressed():
+		_restoreTileAction()

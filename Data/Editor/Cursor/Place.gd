@@ -25,12 +25,12 @@ func update():
 	get_parent().configuratorCheck()
 	if get_parent().target: get_parent().texture = get_parent().target.texture
 	
-func _getCellsInRadius(cell := Vector2()) -> Array:
+func _getCellsInRadius(cell := Vector2(), radius := brushSize) -> Array:
 	var cells := []
 	
-	for y in range(-brushSize, brushSize):
-		for x in range(-brushSize, brushSize):
-			if (x * x) + (y * y) < (brushSize * brushSize):
+	for y in range(-radius, radius):
+		for x in range(-radius, radius):
+			if (x * x) + (y * y) < (radius * radius):
 				cells.append(cell + Vector2(x, y))
 		
 	return cells
@@ -99,6 +99,8 @@ func mainClick(_event):
 func subClick(event):
 	if !get_parent().canPlace: return
 	
+	var action := {}
+	
 	var mot := Vector2()
 	
 	if event is InputEventMouseMotion:
@@ -111,7 +113,11 @@ func subClick(event):
 	
 	var exploded := false
 	
+	var availableTiles := _getCellsInRadius(cell, explosionRadius)
+	
 	if Input.is_action_pressed("special"):
+		action = _actionGen(availableTiles, ttm)
+		
 		if ttm.get_cellv(cell) != -1:
 			var explosion := EXPLOSION.instance()
 			explosion.global_position = cell * 16
@@ -121,10 +127,17 @@ func subClick(event):
 			
 			get_parent().emit_signal("tile_removed", cell)
 			exploded = true
+			
+			if !action.empty(): get_parent().tileHistory.append(action)
+			
+			return
 		
-	var availableTiles := _getCellsInRadius(cell)
+	availableTiles = _getCellsInRadius(cell)
 	
 	if floodFill: availableTiles = Main.level.floodFill(cell, 32, ttm, [-1, ttm.get_cellv(cell)])
+	
+	action = _actionGen(availableTiles, ttm)
+	if !action.empty(): get_parent().tileHistory.append(action)
 	
 	for t in availableTiles:
 		tile = ttm.get_cellv(t) != -1
@@ -141,7 +154,6 @@ func subClick(event):
 			ttm.set_cellv(t, -1)
 			
 			get_parent().emit_signal("tile_removed", cell)
-			
 		else:
 			if ttm != Main.level: return
 			
@@ -155,6 +167,27 @@ func subClick(event):
 				n.queue_free()
 				get_parent().emit_signal("object_removed", cell)
 
+func _actionGen(tileArr : Array, ttm : TileMap) -> Dictionary:
+	var act := {}
+	var cnt := 0
+		
+	for t in tileArr:
+		if ttm.get_cellv(t) != -1:
+			var entry := {
+				"cell": t,
+				"id": ttm.get_cellv(t),
+				"ttm" : ttm,
+				"flip_x" : ttm.is_cell_x_flipped(t.x, t.y),
+				"flip_y" : ttm.is_cell_y_flipped(t.x, t.y),
+				"transpose" : ttm.is_cell_transposed(t.x, t.y)
+			}
+			
+			act[str(cnt)] = entry
+			
+			cnt += 1
+			
+	return act
+	
 func _singleInstanceCheck(inst):
 	var exists := false
 	

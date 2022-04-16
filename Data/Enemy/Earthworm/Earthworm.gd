@@ -19,7 +19,7 @@ onready var positions := [start.global_position - Vector2(0, 16), middle, end.gl
 
 var bodyParts := []
 var maxPosRecords := 1024
-var olderPositions := []
+var olderPositions : PoolVector2Array = []
 
 var time := 0.0
 
@@ -72,7 +72,7 @@ func _setJumping(booly : bool):
 		jumpTimer.start(jumpDelay)
 		
 func _resetOlderPositions(placeholderPos := global_position):
-	olderPositions.clear()
+	olderPositions.resize(0)
 	
 	for _i in range(maxPosRecords):
 		olderPositions.append(placeholderPos)
