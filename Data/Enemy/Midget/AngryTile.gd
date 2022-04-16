@@ -1,5 +1,7 @@
 extends Sprite
 
+onready var anim := $Animator
+
 var targetPos := Vector2.ZERO
 var snap := true
 
@@ -20,6 +22,8 @@ func _physics_process(delta):
 		global_position = lerp(global_position, targetPos, 16 * delta)
 		return
 		
+	anim.play("Attack")
+	
 	_time += delta
 	
 	if _time > 4.0:

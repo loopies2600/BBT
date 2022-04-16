@@ -87,7 +87,9 @@ func _dustLoop():
 	if _doDust:
 		var dust = load("res://Data/Particles/FastDust.tscn").instance()
 	
-		Main.currentScene.add_child(dust)
+		Main.add_child(dust)
+		
+		dust.z_index -= abs(z_index)
 		dust.global_position = global_position + dustOffset
 	
 	yield(get_tree().create_timer(dustSpawnRate), "timeout")

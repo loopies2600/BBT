@@ -38,6 +38,8 @@ func _getCellsInRadius(cell := Vector2(), radius := brushSize) -> Array:
 func mainClick(_event):
 	if !get_parent().canPlace: return
 	
+	var action := {}
+	
 	var tile : bool = get_parent().target.isTile
 	var cell : Vector2 = get_parent().cellPos
 	var ttm : TileMap = get_parent().targetTilemap
@@ -47,6 +49,15 @@ func mainClick(_event):
 	var availableTiles := _getCellsInRadius(cell)
 	
 	if floodFill: availableTiles = Main.level.floodFill(cell, 32, ttm, [-1, ttm.get_cellv(cell)])
+	
+	var tileSav := []
+	
+	action = _actionGen(availableTiles, ttm, [tgt.tileID])
+	
+	for entry in action:
+		action[entry].id = tgt.tileID
+		
+	if !action.empty(): get_parent().tilePlacingHistory.append(action)
 	
 	for t in availableTiles:
 		if tile:
@@ -95,7 +106,7 @@ func mainClick(_event):
 			if instance.get("_editorRotate"): rotationTarget = instance._editorRotate
 			
 			rotationTarget.rotation_degrees = basePlaceOptions.rotation_degrees
-
+	
 func subClick(event):
 	if !get_parent().canPlace: return
 	
@@ -128,7 +139,7 @@ func subClick(event):
 			get_parent().emit_signal("tile_removed", cell)
 			exploded = true
 			
-			if !action.empty(): get_parent().tileHistory.append(action)
+			if !action.empty(): get_parent().tileRemovalHistory.append(action)
 			
 			return
 		
@@ -137,7 +148,7 @@ func subClick(event):
 	if floodFill: availableTiles = Main.level.floodFill(cell, 32, ttm, [-1, ttm.get_cellv(cell)])
 	
 	action = _actionGen(availableTiles, ttm)
-	if !action.empty(): get_parent().tileHistory.append(action)
+	if !action.empty(): get_parent().tileRemovalHistory.append(action)
 	
 	for t in availableTiles:
 		tile = ttm.get_cellv(t) != -1
@@ -167,12 +178,14 @@ func subClick(event):
 				n.queue_free()
 				get_parent().emit_signal("object_removed", cell)
 
-func _actionGen(tileArr : Array, ttm : TileMap) -> Dictionary:
+func _actionGen(tileArr : Array, ttm : TileMap, exclude := [-1]) -> Dictionary:
 	var act := {}
 	var cnt := 0
 		
 	for t in tileArr:
-		if ttm.get_cellv(t) != -1:
+		if ttm.get_cellv(t) in exclude:
+			pass
+		else:
 			var entry := {
 				"cell": t,
 				"id": ttm.get_cellv(t),

@@ -35,17 +35,35 @@ var _tileEntryTemplate := {
 	"transpose" : false
 }
 
-var tileHistory := []
+var tileRemovalHistory := []
+var tilePlacingHistory := []
 
-func _restoreTileAction():
-	if tileHistory.empty(): return
+func _plcTile():
+	if tileRemovalHistory.empty(): return
 	
-	var action = tileHistory.pop_back()
+	var action = _toyWithDict(tileRemovalHistory)
+	
+	tilePlacingHistory.append(action)
+	
+func _delTile():
+	if tilePlacingHistory.empty(): return
+	
+	var action = _toyWithDict(tilePlacingHistory, false)
+	
+	tileRemovalHistory.append(action)
+	
+func _toyWithDict(arr : Array, placeTile := true):
+	var action = arr.pop_back()
 	
 	for entry in action:
 		entry = action[entry]
 		
-		entry.ttm.set_cellv(entry.cell, entry.id, entry.flip_x, entry.flip_y, entry.transpose)
+		if placeTile:
+			entry.ttm.set_cellv(entry.cell, entry.id, entry.flip_x, entry.flip_y, entry.transpose)
+		else:
+			entry.ttm.set_cellv(entry.cell, -1)
+		
+	return action
 		
 func _setMode(idx : int):
 	if mode == idx: return
@@ -120,4 +138,6 @@ func _input(event):
 		modes[mode].subClick(event)
 	
 	if event.is_action("undo") && !event.is_echo() && event.is_pressed():
-		_restoreTileAction()
+		_delTile()
+	if event.is_action("redo") && !event.is_echo() && event.is_pressed():
+		_plcTile()
