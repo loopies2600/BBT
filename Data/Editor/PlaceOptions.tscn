@@ -52,7 +52,7 @@ region = Rect2( 80, 0, 16, 16 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -328.0
-margin_bottom = -104.0
+margin_bottom = -88.0
 theme = ExtResource( 1 )
 script = ExtResource( 5 )
 
@@ -66,14 +66,14 @@ script = ExtResource( 6 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 87.0
-margin_bottom = 135.0
+margin_bottom = 151.0
 script = ExtResource( 6 )
 
 [node name="Vbc" type="VBoxContainer" parent="PC/CenterContainer"]
 margin_left = 4.0
-margin_top = 10.0
+margin_top = 3.0
 margin_right = 81.0
-margin_bottom = 124.0
+margin_bottom = 147.0
 
 [node name="Hbc" type="HBoxContainer" parent="PC/CenterContainer/Vbc"]
 margin_right = 77.0
@@ -165,3 +165,16 @@ texture = SubResource( 3 )
 margin_top = 40.0
 margin_bottom = 56.0
 texture = SubResource( 4 )
+
+[node name="Hbc3" type="HBoxContainer" parent="PC/CenterContainer/Vbc"]
+margin_top = 118.0
+margin_right = 77.0
+margin_bottom = 144.0
+script = ExtResource( 6 )
+
+[node name="FF" type="CheckButton" parent="PC/CenterContainer/Vbc/Hbc3"]
+margin_right = 49.0
+margin_bottom = 26.0
+custom_styles/normal = SubResource( 1 )
+text = "Fill"
+script = ExtResource( 6 )

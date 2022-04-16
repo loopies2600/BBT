@@ -112,7 +112,6 @@ tracks/6/keys = {
 [sub_resource type="Animation" id=28]
 resource_name = "CrouchTurn"
 length = 12.0
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -132,10 +131,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 7.7, 8, 10.1, 10.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 7.7, 8, 10.1, 10.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Rect2( 0, 160, 32, 32 ), Rect2( 32, 64, 32, 32 ), Rect2( 0, 64, 32, 32 ), Rect2( 32, 64, 32, 32 ), Rect2( 0, 64, 32, 32 ) ]
+"values": [ Rect2( 0, 160, 32, 32 ), Rect2( 0, 64, 32, 32 ), Rect2( 32, 64, 32, 32 ), Rect2( 0, 64, 32, 32 ), Rect2( 32, 64, 32, 32 ), Rect2( 0, 64, 32, 32 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:position")
@@ -314,6 +313,30 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Rect2( 64, 32, 32, 32 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../CollisionBox:shape:extents")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7.5, 11.75 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../CollisionBox:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 3.75 ) ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -696,6 +719,30 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Rect2( 0, 32, 32, 32 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../CollisionBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 3.75 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../CollisionBox:shape:extents")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7.5, 11.75 ) ]
 }
 
 [sub_resource type="Animation" id=4]

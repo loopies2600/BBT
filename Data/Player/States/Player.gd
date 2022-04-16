@@ -35,6 +35,7 @@ var canInput := true
 var canDash := true
 
 func resetState():
+	.resetState()
 	letsStart()
 	
 	if Main.editing:
@@ -50,12 +51,6 @@ func letsStart():
 	# reiniciamos estado la de colisión
 	collisionBox.set_deferred("disabled", false)
 	
-	# reiciamos gravedad
-	upDirection = Vector2.UP
-	
-	# reiniciamos posición
-	global_position = spawnPos
-	
 	# las nubecitas se ven raras, procuro desactivarlas
 	_doDust = false
 	canInput = true
@@ -70,7 +65,7 @@ func letsStart():
 	fsm._change_state("idle")
 	
 func closeToCeiling() -> bool:
-	var cJumpableTiles : PoolIntArray = [5, 11, 71]
+	var cJumpableTiles : PoolIntArray = [5, 11, 58, 71]
 	
 	var close := false
 	 
@@ -120,12 +115,8 @@ func _physics_process(_delta):
 	
 	push(maxSpd * dir)
 	
-	_funkyCeilFix()
-	
-func _funkyCeilFix():
 	if is_on_ceiling():
 		ganim.play("WallCol")
-		position.y += 14
 	
 func _dustTrigger():
 	pass

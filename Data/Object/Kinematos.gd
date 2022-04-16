@@ -30,6 +30,10 @@ onready var jumpGravity : float = (2.0 * jumpHeight / (jumpDuration * jumpDurati
 onready var fallGravity : float = (2.0 * jumpHeight / (fallDuration * fallDuration))
 
 func resetState():
+	upDirection = Vector2.UP
+	global_position = spawnPos
+	doGravity = !Main.editing
+	
 	velocity = Vector2.ZERO
 	visible = true
 	set_physics_process(true)

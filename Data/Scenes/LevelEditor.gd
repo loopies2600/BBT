@@ -1,8 +1,5 @@
 extends Node2D
 
-signal level_changed()
-signal level_saved()
-
 onready var cursor := $Cursor
 onready var utilButtons := $GUILayer/Sidebar/UtilButtons
 onready var cam : Camera2D = Main.cam

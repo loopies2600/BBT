@@ -18,7 +18,7 @@ func physics_update(delta):
 	time += delta
 	
 	if time >= owner.slideDuration:
-		emit_signal("finished", "idle")
+		emit_signal("finished", "crouch")
 		
 	if owner.is_on_wall():
 		emit_signal("finished", "idle")

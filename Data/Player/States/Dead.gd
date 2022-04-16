@@ -5,7 +5,7 @@ const HARD_HAT = preload("res://Data/Particles/GenericSprite.tscn")
 onready var timer := $ResetTimer
 
 func _ready():
-	timer.connect("timeout", self, "_resetTimerEnd")
+	var _unused = timer.connect("timeout", self, "_resetTimerEnd")
 	
 func enter(msg := {}):
 	var velocity := Vector2(owner.velocity.x, owner.jumpHeight * owner.upDirection.y * 6)

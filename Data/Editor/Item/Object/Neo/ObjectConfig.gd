@@ -16,6 +16,7 @@ func _ready():
 		target.drawGizmos = true
 	
 	_tabSetup()
+	_modulateTabSetup()
 	
 func _tabSetup():
 	_addTab("Main")
@@ -29,6 +30,17 @@ func _tabSetup():
 	_addVariableBox(1, "scale:x", "X", "_editorRotate")
 	_addVariableBox(1, "scale:y", "Y", "_editorRotate")
 	_addVariableBox(1, "rotation_degrees", "Angle", "_editorRotate")
+	
+func _modulateTabSetup():
+	_addTab("Modulate")
+	_addRow("")
+	
+	_addVariableBox(1, "modulate:r", "Red")
+	_addVariableBox(1, "modulate:g", "Green")
+	_addVariableBox(1, "modulate:b", "Blue")
+	
+	_addRow("")
+	_addVariableBox(2, "modulate", "Hex              ")
 	
 func _addTab(tName := "Tab"):
 	var newTab = TAB.instance()
@@ -91,6 +103,9 @@ func updateConfigurator():
 		
 	if target.get("_editorRotate"):
 		target.set("___tempRot", target._editorRotate.rotation)
+		
+	for l in get_tree().get_nodes_in_group("LabelRefresh"):
+		l.refresh()
 	
 func close():
 	get_parent().get_parent().cursor.configurator = null

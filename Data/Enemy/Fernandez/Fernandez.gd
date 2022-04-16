@@ -100,11 +100,11 @@ func _explodeNeighbors():
 	
 	if result:
 		for r in result:
-			var target = r.collider
+			var tgt = r.collider
 			
-			if target is Kinematos:
+			if tgt is Kinematos:
 				yield(get_tree().create_timer(0.25), "timeout")
-				target.kill()
+				tgt.kill()
 				
 func kill():
 	explode()

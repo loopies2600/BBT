@@ -32,9 +32,8 @@ func _ready():
 	doGravity = false
 	
 func resetState():
-	doGravity = !Main.editing
+	.resetState()
 	anim.play("Idle")
-	global_position = spawnPos
 	
 	seekTimer.stop()
 	tossTimer.stop()

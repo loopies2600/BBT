@@ -5,12 +5,32 @@ const EXPLOSION := preload("res://Data/Particles/Explosion/Explosion.tscn")
 onready var placeSnd := $PlaceObj
 onready var removeSnd := $RemoveObj
 
+var basePlaceOptions := {
+	"flip_x": false,
+	"flip_y": false,
+	"transpose": false,
+	"rotation_degrees": 0.0,
+	"scale:x": 1.0,
+	"scale:y": 1.0
+	}
+	
 var brushSize := 1
 var explosionRadius := 4
+var floodFill := false
 
 func update():
 	get_parent().configuratorCheck()
 	if get_parent().target: get_parent().texture = get_parent().target.texture
+	
+func _getCellsInRadius(cell := Vector2()) -> Array:
+	var cells := []
+	
+	for y in range(-brushSize, brushSize):
+		for x in range(-brushSize, brushSize):
+			if (x * x) + (y * y) < (brushSize * brushSize):
+				cells.append(cell + Vector2(x, y))
+		
+	return cells
 	
 func mainClick(_event):
 	if !get_parent().canPlace: return
@@ -21,52 +41,56 @@ func mainClick(_event):
 	var tgt = get_parent().target
 	var lvl : TileMap = get_parent().level
 	
-	for y in range(-brushSize, brushSize):
-		for x in range(-brushSize, brushSize):
-			if (x * x) + (y * y) < (brushSize * brushSize):
-				if tile:
-					if ttm.get_cellv(cell + Vector2(x, y)) == -1 || ttm.get_cellv(cell) != tgt.tileID:
-						placeSnd.play()
-						
-						if brushSize < 5:
-							var placement := preload("res://Data/Particles/TilePlace.tscn").instance()
-							lvl.add_child(placement)
-							placement.global_position = cell * 16 + Vector2(16 * x, 16 * y)
-							
-							placement.texture = get_parent().texture
-						
-					ttm.set_cellv(cell + Vector2(1 * x, 1 * y), tgt.tileID)
-					get_parent().emit_signal("tile_placed", cell)
-				else:
-					if ttm != Main.level: return
+	var availableTiles := _getCellsInRadius(cell)
+	
+	if floodFill: availableTiles = Main.level.floodFill(cell, 32, ttm, [-1, ttm.get_cellv(cell)])
+	
+	for t in availableTiles:
+		if tile:
+			if ttm.get_cellv(t) == -1 || ttm.get_cellv(cell) != tgt.tileID:
+				placeSnd.play()
+			
+			ttm.set_cellv(t, tgt.tileID, basePlaceOptions.flip_x, basePlaceOptions.flip_y, basePlaceOptions.transpose)
+			get_parent().emit_signal("tile_placed", cell)
+		else:
+			if ttm != Main.level: return
+			
+			var pos : Vector2 = t
 					
-					var pos := cell + Vector2(1 * x, 1 * y)
+			var occupied = Main.getNodeOnThisPos(pos) != null
+			if occupied: return
 					
-					var occupied = Main.getNodeOnThisPos(pos) != null
-					if occupied: return
-					
-					placeSnd.play()
-						
-					var instance = tgt.itemScene.instance()
-					
-					if _singleInstanceCheck(instance):
-						var inst = lvl.get_node(instance.name)
-						
-						inst.global_position = (pos * lvl.cell_size).round()
-						
-						if inst.get("spawnPos"):
-							inst.spawnPos = inst.global_position
-					else:
-						instance.global_position = (pos * lvl.cell_size).round()
-						instance.add_to_group("Instances")
-						
-						for p in tgt.customParams:
-							instance.set(p, tgt.customParams[p])
-						
-						lvl.add_child(instance)
-						instance.owner = lvl
-						
-						get_parent().emit_signal("object_placed", pos)
+			placeSnd.play()
+				
+			var instance = tgt.itemScene.instance()
+			
+			if _singleInstanceCheck(instance):
+				var inst = lvl.get_node(instance.name)
+				
+				inst.global_position = (pos * lvl.cell_size).round()
+				
+				if inst.get("spawnPos"):
+					inst.spawnPos = inst.global_position
+			else:
+				instance.global_position = (pos * lvl.cell_size).round()
+				instance.add_to_group("Instances")
+				
+				for p in tgt.customParams:
+					instance.set(p, tgt.customParams[p])
+				
+				lvl.add_child(instance)
+				instance.owner = lvl
+				
+				get_parent().emit_signal("object_placed", pos)
+				
+			instance.scale.x = basePlaceOptions["scale:x"]
+			instance.scale.y = basePlaceOptions["scale:y"]
+			
+			var rotationTarget = instance
+			
+			if instance.get("_editorRotate"): rotationTarget = instance._editorRotate
+			
+			rotationTarget.rotation_degrees = basePlaceOptions.rotation_degrees
 
 func subClick(event):
 	if !get_parent().canPlace: return
@@ -93,38 +117,39 @@ func subClick(event):
 			
 			get_parent().emit_signal("tile_removed", cell)
 			exploded = true
+		
+	var availableTiles := _getCellsInRadius(cell)
+	
+	if floodFill: availableTiles = Main.level.floodFill(cell, 32, ttm, [-1, ttm.get_cellv(cell)])
+	
+	for t in availableTiles:
+		tile = ttm.get_cellv(t) != -1
+		
+		if tile:
+			if exploded: return
 			
-	for y in range(-brushSize, brushSize):
-		for x in range(-brushSize, brushSize):
-			if (x * x) + (y * y) < (brushSize * brushSize):
-				tile = ttm.get_cellv(cell + Vector2(1 * x, 1 * y)) != -1
+			removeSnd.play()
+			
+			if brushSize < 5 && ttm.get_cellv(t) != -1:
+				Main.plop(Vector2(8, 8) + t * 16)
 				
-				if tile:
-					if exploded: return
+			Main.level.funnyTileAnim(t, Vector2(256 * sin(mot.x), rand_range(-256, -512)))
+			ttm.set_cellv(t, -1)
+			
+			get_parent().emit_signal("tile_removed", cell)
+			
+		else:
+			if ttm != Main.level: return
+			
+			var n = Main.getNodeOnThisPos(t)
+			
+			if n:
+				removeSnd.play()
+				
+				Main.plop(Vector2(8, 8) + t * 16)
 					
-					removeSnd.play()
-					
-					if brushSize < 5 && ttm.get_cellv(cell + Vector2(1 * x, 1 * y)) != -1:
-						Main.plop(cell * 16 + Vector2(8, 8) + Vector2(16 * x, 16 * y))
-						
-					Main.level.funnyTileAnim(cell + Vector2(1 * x, 1 * y), Vector2(256 * sin(mot.x), rand_range(-256, -512)))
-					ttm.set_cellv(cell + Vector2(1 * x, 1 * y), -1)
-					
-					get_parent().emit_signal("tile_removed", cell)
-					
-				else:
-					if ttm != Main.level: return
-					
-					var n = Main.getNodeOnThisPos(cell + Vector2(1 * x, 1 * y))
-					
-					if n:
-						removeSnd.play()
-					
-						if brushSize < 5:
-							Main.plop(cell * 16 + Vector2(8, 8) + Vector2(16 * x, 16 * y))
-							
-						n.queue_free()
-						get_parent().emit_signal("object_removed", cell)
+				n.queue_free()
+				get_parent().emit_signal("object_removed", cell)
 
 func _singleInstanceCheck(inst):
 	var exists := false

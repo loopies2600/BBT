@@ -7,6 +7,8 @@ onready var flipH := $Panel/Controls/Flip/VBoxContainer/HboxContainer/FlipX
 onready var flipV := $Panel/Controls/Flip/VBoxContainer/HboxContainer/FlipY
 onready var transpose := $Panel/Controls/Flip/VBoxContainer/Transpose
 
+onready var configMan = get_parent().get_parent().cursor.modes[0]
+
 var targetTile := Vector2()
 var targetMap : TileMap
 
@@ -45,6 +47,10 @@ func _yChange(new := "0"):
 	
 func _process(_delta):
 	targetMap.set_cellv(targetTile, targetMap.get_cellv(targetTile), flipH.pressed, flipV.pressed, transpose.pressed)
+	
+	configMan.basePlaceOptions.flip_x = flipH.pressed
+	configMan.basePlaceOptions.flip_y = flipV.pressed
+	configMan.basePlaceOptions.transpose = transpose.pressed
 
 func _onExitPress():
 	close()

@@ -3,6 +3,8 @@ extends Node
 # warning-ignore:unused_signal
 signal game_mode_changed(mode)
 signal scene_changed()
+signal level_changed()
+signal level_saved()
 
 const TITLE := preload("res://Data/Scenes/Title.tscn")
 const EDITOR := preload("res://Data/Scenes/LevelEditor.tscn")
@@ -44,6 +46,7 @@ func saveLevel():
 		level.saveLvl("user:/", "temp.tscn")
 		
 		var temp := File.new()
+# warning-ignore:return_value_discarded
 		temp.open("user://temp.tscn", File.READ)
 		var buffer = PoolByteArray(temp.get_buffer(temp.get_len()))
 		

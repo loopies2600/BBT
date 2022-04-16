@@ -17,6 +17,7 @@ const PS_FOLDER := [
 var sortWho : Node2D
 
 func _ready():
+# warning-ignore:return_value_discarded
 	WebFiles.connect("file_opened", self, "_onWebFileOpen")
 	
 func getInputDirection(who) -> int:
@@ -103,6 +104,7 @@ func runPS(script := []) -> Array:
 	
 func _onWebFileOpen(_file, content):
 	var temp := File.new()
+# warning-ignore:return_value_discarded
 	temp.open("user://temp.tscn", File.WRITE)
 	temp.store_buffer(content)
 	
