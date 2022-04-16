@@ -13,3 +13,4 @@ func _draw():
 		
 		draw_set_transform(Vector2(), 0.0, l.scale)
 		draw_texture(TEX, (scrPos / scale - (TEX.get_size() / 2) + Vector2(8, 8)))
+	

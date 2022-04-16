@@ -11,7 +11,10 @@ var basePlaceOptions := {
 	"transpose": false,
 	"rotation_degrees": 0.0,
 	"scale:x": 1.0,
-	"scale:y": 1.0
+	"scale:y": 1.0,
+	"modulate:r": 1.0,
+	"modulate:g": 1.0,
+	"modulate:b": 1.0
 	}
 	
 var brushSize := 1
@@ -85,6 +88,7 @@ func mainClick(_event):
 				
 			instance.scale.x = basePlaceOptions["scale:x"]
 			instance.scale.y = basePlaceOptions["scale:y"]
+			instance.modulate = Color(basePlaceOptions["modulate:r"], basePlaceOptions["modulate:g"], basePlaceOptions["modulate:b"], 1.0)
 			
 			var rotationTarget = instance
 			
@@ -133,7 +137,7 @@ func subClick(event):
 			if brushSize < 5 && ttm.get_cellv(t) != -1:
 				Main.plop(Vector2(8, 8) + t * 16)
 				
-			Main.level.funnyTileAnim(t, Vector2(256 * sin(mot.x), rand_range(-256, -512)))
+			Main.level.funnyTileAnim(ttm, t, Vector2(256 * sin(mot.x), rand_range(-256, -512)))
 			ttm.set_cellv(t, -1)
 			
 			get_parent().emit_signal("tile_removed", cell)

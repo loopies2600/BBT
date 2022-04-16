@@ -27,6 +27,8 @@ func mainClick(event):
 				holding.get("_editorRotate").rotation += amt
 			else:
 				holding.rotation += amt
+				
+			get_parent().modes[0].basePlaceOptions.rotation_degrees += amt
 		else:
 			holding.global_position = (event.position - Vector2(8, 8) - get_parent().get_canvas_transform().origin) * Main.cam.zoom
 			holding.global_position = (holding.global_position / get_parent().level.cell_size).round() * get_parent().level.cell_size

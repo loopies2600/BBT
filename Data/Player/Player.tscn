@@ -1208,7 +1208,7 @@ tracks/1/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-z_index = 4
+z_index = 8
 collision_mask = 3
 script = ExtResource( 2 )
 dustMinVel = 600.0

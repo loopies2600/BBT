@@ -1,16 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Data/Util/LightRenderer.gd" type="Script" id=1]
-[ext_resource path="res://Data/Shader/Light.gdshader" type="Shader" id=2]
+[ext_resource path="res://Data/Shader/Light.gdshader" type="Shader" id=1]
+[ext_resource path="res://Data/Util/LightRenderer.gd" type="Script" id=2]
+[ext_resource path="res://Data/Util/ColorRenderer.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 2 )
+shader = ExtResource( 1 )
 shader_param/disabled_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("LightVP")
 
-[node name="OptimalLightRenderer" type="CanvasLayer"]
+[node name="OnTop" type="CanvasLayer"]
 
 [node name="LightVP" type="Viewport" parent="."]
 size = Vector2( 418, 240 )
@@ -25,9 +26,12 @@ margin_bottom = 240.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="LightRenderer" type="Node2D" parent="LightVP"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Light" type="Sprite" parent="."]
 material = SubResource( 3 )
 texture = SubResource( 1 )
 centered = false
+
+[node name="ColorRenderer" type="Node2D" parent="."]
+script = ExtResource( 3 )

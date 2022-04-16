@@ -28,6 +28,9 @@ func _ready():
 	
 	if selected: cursor.target = self
 	
+func _process(_delta):
+	if !isTile: modulate = Color(cursor.modes[0].basePlaceOptions["modulate:r"], cursor.modes[0].basePlaceOptions["modulate:g"], cursor.modes[0].basePlaceOptions["modulate:b"], 1.0)
+	
 func _tileTexGen():
 	var tex = Main.level.tile_set.tile_get_texture(tileID)
 	var region = Main.level.tile_set.tile_get_region(tileID)

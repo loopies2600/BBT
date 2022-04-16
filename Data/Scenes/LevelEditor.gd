@@ -18,7 +18,7 @@ func _ready():
 	
 func _process(_delta):
 	if Main.editing:
-		Main.entityLookTowards = get_global_mouse_position()
+		Main.entityLookTowards = cursor.get_global_mouse_position()
 	
 func _input(event):
 	if event.is_action_pressed("switch_state"):

@@ -26,13 +26,17 @@ func _ready():
 	
 	_unused = value.connect("text_entered", self, "_varChange")
 	
-	if tgVar == "modulate":
+	if tgVar in ["modulate:r", "modulate:g", "modulate:b", "modulate"]:
 		add_to_group("LabelRefresh")
-		value.text = target.modulate.to_html(false)
 	
+	if tgVar == "modulate":
+		value.text = target.modulate.to_html(false)
+		
 func refresh():
 	if tgVar == "modulate":
 		value.text = target.modulate.to_html(false)
+	else:
+		value.text = str(target.get_indexed(tgVar))
 		
 func _varChange(new := ""):
 	var typeCast = new
@@ -45,12 +49,18 @@ func _varChange(new := ""):
 	
 	target.set_indexed(tgVar, typeCast)
 	
-	owner.updateConfigurator()
-	
-func _process(_delta):
-	if tgVar in ["scale:x", "scale:y", "rotation_degrees"]:
+	if tgVar in ["scale:x", "scale:y", "rotation_degrees", "modulate:r", "modulate:g", "modulate:b"]:
 		configMan.basePlaceOptions[tgVar] = float(value.text)
 		
+	if tgVar == "modulate":
+		var col : Color = value.text
+		
+		configMan.basePlaceOptions["modulate:r"] = col.r
+		configMan.basePlaceOptions["modulate:g"] = col.g
+		configMan.basePlaceOptions["modulate:b"] = col.b
+		
+	owner.updateConfigurator()
+	
 func _mouseIn():
 	editor.cursor.canPlace = false
 	

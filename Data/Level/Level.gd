@@ -117,6 +117,9 @@ func clearContents():
 			o.set_cellv(c, -1)
 	
 func _ready():
+	$Foreground.set_as_toplevel(true)
+	$Background.set_as_toplevel(true)
+	
 	Main.level = self
 	
 	for c in get_children():
@@ -147,7 +150,7 @@ func purgeCircle(pos := Vector2(), radius := 0, with := -1, target = self):
 					cells.append(pos + Vector2(x, y))
 					
 	for c in cells:
-		funnyTileAnim(c)
+		funnyTileAnim(target, c)
 		
 		target.set_cellv(c, with)
 	
@@ -202,8 +205,8 @@ func floodFill(pos := Vector2(), maxDistance := 32, targetTilemap : TileMap = se
 			
 	return possibleCells
 	
-func funnyTileAnim(cellPos := Vector2(), vel := Vector2(rand_range(-512, 512), rand_range(-256, -512))):
-	var id := get_cellv(cellPos)
+func funnyTileAnim(targetTilemap : TileMap, cellPos := Vector2(), vel := Vector2(rand_range(-512, 512), rand_range(-256, -512))):
+	var id := targetTilemap.get_cellv(cellPos)
 	
 	if id == -1: return
 	
@@ -214,6 +217,7 @@ func funnyTileAnim(cellPos := Vector2(), vel := Vector2(rand_range(-512, 512), r
 	newTS.rotation = rand_range(0, TAU)
 	newTS.rotSpeed = 8
 	newTS.z_index = 32
+	newTS.modulate = targetTilemap.modulate
 	
 	newTS.texture = tile_set.tile_get_texture(id)
 	newTS.region_rect = tile_set.tile_get_region(id)

@@ -69,13 +69,17 @@ func _draw():
 	for y in range(-radius, radius):
 		for x in range(-radius, radius):
 			if (x * x) + (y * y) < (radius * radius):
-				draw_texture(texture, Vector2(16 * x, 16 * y))
+				var mod := Color.white
+				
+				if !target.isTile: mod = Color(modes[0].basePlaceOptions["modulate:r"], modes[0].basePlaceOptions["modulate:g"], modes[0].basePlaceOptions["modulate:b"], 1.0)
+				
+				draw_texture(texture, Vector2(16 * x, 16 * y), mod)
 
 func _frickinPositionFormula() -> Vector2:
 	var mousePos := get_global_mouse_position()
 	var cursorOffset := Vector2(8, 8)
 	
-	var result : Vector2 = (((mousePos - cursorOffset) / level.cell_size).round()  / level.scale).round() * level.cell_size
+	var result : Vector2 = (((mousePos - cursorOffset) / level.cell_size).round() / level.scale).round() * level.cell_size
 	
 	return result
 	

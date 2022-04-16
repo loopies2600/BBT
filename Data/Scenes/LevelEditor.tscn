@@ -21,12 +21,13 @@ atlas = ExtResource( 1 )
 region = Rect2( 144, 16, 16, 16 )
 
 [node name="LevelEditor" type="Node2D" groups=["Editor"]]
+z_index = 32
 script = ExtResource( 4 )
 
 [node name="Cursor" parent="." instance=ExtResource( 2 )]
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
-layer = 8
+layer = 16
 script = ExtResource( 7 )
 
 [node name="Sidebar" parent="GUILayer" instance=ExtResource( 3 )]
