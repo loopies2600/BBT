@@ -36,5 +36,5 @@ func _draw():
 		
 	var hold = get_parent().cursor.modes[1].holding
 	
-	if hold && get_parent().cursor.mode == 1:
+	if is_instance_valid(hold) && get_parent().cursor.mode == 1:
 		draw_rect(Rect2(hold.global_position, lvl.cell_size * lvl.scale), Color.tomato, false, 2)

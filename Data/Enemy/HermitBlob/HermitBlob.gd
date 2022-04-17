@@ -23,8 +23,11 @@ var velocity := Vector2()
 var doGravity := false
 
 var _time := 0.0
+var _sOffset := Vector2(0, -6)
 
 func _ready():
+	$EditorRotate/Spike.baseTrans = self
+	
 	_editorRotate.rotation = ___tempRot
 	
 	var _unused = connect("body_entered", self, "_bodyEnter")

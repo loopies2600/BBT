@@ -27,8 +27,8 @@ func _tabSetup():
 	_addVariableBox(0, "z_index", "Depth")
 	
 	_addRow("Affine")
-	_addVariableBox(1, "scale:x", "X", "_editorRotate")
-	_addVariableBox(1, "scale:y", "Y", "_editorRotate")
+	_addVariableBox(1, "scale:x", "X")
+	_addVariableBox(1, "scale:y", "Y")
 	_addVariableBox(1, "rotation_degrees", "Angle", "_editorRotate")
 	
 func _modulateTabSetup():

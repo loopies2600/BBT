@@ -4,23 +4,21 @@ export (float) var ___tempRot = 0.0
 
 onready var _editorRotate = $Sprite
 
-export (bool) var attached = false
+var baseTrans : Node2D = self
+var drawGizmos := false
 
 var hurtBox := RectangleShape2D.new()
 var t : Transform2D
+var _sOffset := Vector2(0, 0)
 
 func _ready():
 	_editorRotate.rotation = ___tempRot
 	
-	if attached: _editorRotate = get_parent()
-	
-	hurtBox.extents = Vector2(8, 8)
+	hurtBox.extents = Vector2(3, 3)
 	
 func _physics_process(_delta):
-	var pos : Vector2 = get_parent().global_position if attached else global_position
-	var offs : Vector2 = Vector2(-4, -4) if attached else Vector2(4, 8 * cos(_editorRotate.rotation / 2))
-	
-	t = Transform2D(Vector2(1, 0), Vector2(0, 1), pos + offs)
+	t = baseTrans.get_global_transform()
+	t.origin += Vector2(8, 8) + (Vector2(5, 6) * (baseTrans.get_scale() - Vector2.ONE)) + (baseTrans._sOffset.rotated(baseTrans._editorRotate.rotation) * baseTrans.get_scale())
 	
 	var spaceState := get_world_2d().direct_space_state
 	var query := Physics2DShapeQueryParameters.new()
