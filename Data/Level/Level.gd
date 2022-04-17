@@ -1,20 +1,25 @@
 extends TileMap
 
 signal block_toggled(rob)
+signal block_timer_started()
+signal block_timer_ended()
 
 const TILESPR := preload("res://Data/Particles/GenericSprite.tscn")
 const INDESTRUCTIBLE := [23, 24]
 const SAVE_PATH = "user://"
 
 export (Texture) var bgTex = load("res://Sprites/UI/Border0.png")
+export (float) var blockTimerTime = 5.0
 
 onready var mus := $Music
 onready var bg := $ImageBG
+onready var blockTimer := $BlockTimer
 
 var camBoundariesX := Vector2(0, 320)
 var camBoundariesY := Vector2(0, 240)
 
 var blockToggle := false setget _onBlockToggle
+var timedBlockToggle := false setget _onTimedBlockToggle
 var darkMode := false
 
 var _cellPosCopy := []
@@ -34,6 +39,16 @@ func _onBlockToggle(booly : bool):
 	emit_signal("block_toggled", booly)
 	
 	refreshToggleBlock()
+	
+func _onTimedBlockToggle(booly : bool):
+	if timedBlockToggle == booly: return
+	
+	timedBlockToggle = booly
+	emit_signal("block_timer_started")
+	blockTimer.start(blockTimerTime)
+	Main.ot._spawnBlockTimer()
+	
+	refreshTimedBlock()
 	
 func loadLvl():
 	var scn = load(SAVE_PATH)
@@ -60,7 +75,12 @@ func resetObjectState():
 	_resetTokens()
 	
 	blockToggle = false
+	timedBlockToggle = false
+	
+	blockTimer.stop()
+	
 	refreshToggleBlock()
+	refreshTimedBlock()
 	
 func _onObjectPlace(_pos):
 	_resetTokens()
@@ -106,6 +126,7 @@ func restoreMap():
 		set_cellv(_cellPosCopy[c], _cellIDCopy[c], _flipXCopy[c], _flipYCopy[c], _transposeCopy[c])
 	
 	refreshToggleBlock()
+	refreshTimedBlock()
 	
 func clearContents():
 	for c in get_children():
@@ -123,7 +144,7 @@ func _ready():
 	Main.level = self
 	
 	for c in get_children():
-		if c.name in ["Foreground", "Background", "Music", "ImageBG"]:
+		if c.name in ["Foreground", "Background", "Music", "ImageBG", "BlockTimer"]:
 			pass
 		else:
 			c.add_to_group("Instances")
@@ -137,6 +158,8 @@ func _ready():
 	for tile in tile_set.get_tiles_ids():
 		print("Tile %s = %s" % [tile, tile_set.tile_get_name(tile)])
 	print("")
+	
+	var _unused = blockTimer.connect("timeout", self, "_blockTimerEnd")
 	
 func purgeCircle(pos := Vector2(), radius := 0, with := -1, target = self):
 	var cells := []
@@ -230,24 +253,36 @@ func _flipOneWayCollisionShapes():
 	tile_set.tile_set_shape_transform(11, 0, Transform2D(deg2rad(180), Vector2(16, 16)))
 	
 func refreshToggleBlock():
+	if Main.editing:
+		_replaceID(63, 61)
+		_replaceID(64, 62)
+	else:
+		if blockToggle:
+			_replaceID(63, 61)
+			_replaceID(62, 64)
+		else:
+			_replaceID(61, 63)
+			_replaceID(64, 62)
+	
+func refreshTimedBlock():
+	if Main.editing:
+		_replaceID(78, 77)
+		_replaceID(80, 79)
+	else:
+		if timedBlockToggle:
+			_replaceID(78, 77)
+			_replaceID(79, 80)
+		else:
+			_replaceID(77, 78)
+			_replaceID(80, 79)
+			
+func _replaceID(from : int, to : int):
 	for l in [self, $Foreground, $Background]:
 		for t in l.get_used_cells():
-			if Main.editing:
-				if l.get_cellv(t) == 63:
-					l.set_cellv(t, 61)
-					
-				if l.get_cellv(t) == 64:
-					l.set_cellv(t, 62)
-			else:
-				if !blockToggle:
-					if l.get_cellv(t) == 61:
-						l.set_cellv(t, 63)
-						
-					if l.get_cellv(t) == 64:
-						l.set_cellv(t, 62)
-				else:
-					if l.get_cellv(t) == 63:
-						l.set_cellv(t, 61)
-						
-					if l.get_cellv(t) == 62:
-						l.set_cellv(t, 64)
+			if l.get_cellv(t) == from:
+				l.set_cellv(t, to)
+				
+func _blockTimerEnd():
+	timedBlockToggle = false
+	refreshTimedBlock()
+	emit_signal("block_timer_ended")

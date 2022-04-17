@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Explosion.png-193e47abb902529c12ae6d477d816fb0.s3tc.stex"
-path.etc="res://.import/Explosion.png-193e47abb902529c12ae6d477d816fb0.etc.stex"
+path.s3tc="res://.import/MonitorBlock.png-70110674d454355ffa646710bd0551e0.s3tc.stex"
+path.etc="res://.import/MonitorBlock.png-70110674d454355ffa646710bd0551e0.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Sprites/Particles/Explosion.png"
-dest_files=[ "res://.import/Explosion.png-193e47abb902529c12ae6d477d816fb0.s3tc.stex", "res://.import/Explosion.png-193e47abb902529c12ae6d477d816fb0.etc.stex" ]
+source_file="res://Sprites/Object/MonitorBlock.png"
+dest_files=[ "res://.import/MonitorBlock.png-70110674d454355ffa646710bd0551e0.s3tc.stex", "res://.import/MonitorBlock.png-70110674d454355ffa646710bd0551e0.etc.stex" ]
 
 [params]
 
@@ -22,8 +22,8 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
+flags/filter=false
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

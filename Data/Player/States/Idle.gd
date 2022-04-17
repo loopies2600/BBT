@@ -21,10 +21,6 @@ func enter(_msg := {}):
 func physics_update(_delta):
 	owner.velocity *= owner.damping
 	
-	var dbgDir = int(Input.is_action_just_pressed("ui_down")) - int(Input.is_action_just_pressed("ui_up"))
-	
-	owner.position.x += dbgDir
-	
 	if owner.canInput:
 		if owner.iDir:
 			emit_signal("finished", "move")

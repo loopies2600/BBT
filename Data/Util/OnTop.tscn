@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Data/Shader/Light.gdshader" type="Shader" id=1]
 [ext_resource path="res://Data/Util/LightRenderer.gd" type="Script" id=2]
+[ext_resource path="res://Data/Util/OnTop.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 1 )
@@ -11,6 +12,7 @@ shader_param/disabled_color = Color( 1, 1, 1, 1 )
 viewport_path = NodePath("LightVP")
 
 [node name="OnTop" type="CanvasLayer"]
+script = ExtResource( 3 )
 
 [node name="LightVP" type="Viewport" parent="."]
 size = Vector2( 418, 240 )

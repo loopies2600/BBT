@@ -1,0 +1,193 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Data/Object/TimerMonitor/Mat.tres" type="Material" id=1]
+[ext_resource path="res://Sprites/Object/TimerMonitor.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Object/MonitorWindow.png" type="Texture" id=3]
+[ext_resource path="res://Data/Object/TimerMonitor/TimerMonitorMesh.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/Font/Editor.tres" type="BitmapFont" id=5]
+
+[sub_resource type="CubeMesh" id=3]
+material = ExtResource( 1 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 1, 1, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_unshaded = true
+params_cull_mode = 2
+params_depth_draw_mode = 1
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 1.0
+albedo_texture = ExtResource( 3 )
+uv1_offset = Vector3( 0.5, 0.5, 0 )
+uv1_triplanar = true
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BG:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 32, 16, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BG:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BG:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Refresh"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("BG:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 32, 16, 16, 16 ), Rect2( 32, 0, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BG:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BG:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("MonitorDisplay")
+
+[node name="TimerMonitorMesh" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -1, -4.37114e-08, 7.57103e-08, 0, 0.866025, 0.5, -8.74228e-08, 0.5, -0.866025, 0, 1.19305, -1.76176 )
+current = true
+
+[node name="Block" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Window" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Antenna" type="Sprite3D" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0.0232685, 0.8, 0 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 112, 0, 16, 16 )
+
+[node name="MonitorDisplay" type="Viewport" parent="."]
+size = Vector2( 32, 32 )
+usage = 0
+render_target_v_flip = true
+
+[node name="BG" type="Sprite" parent="MonitorDisplay"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 32, 16, 16, 16 )
+
+[node name="Character" type="Sprite" parent="MonitorDisplay"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 96, 0, 16, 16 )
+
+[node name="Label" type="Label" parent="MonitorDisplay"]
+visible = false
+margin_right = 22.0
+margin_bottom = 22.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+align = 1
+valign = 1
+
+[node name="Animator" type="AnimationPlayer" parent="MonitorDisplay"]
+autoplay = "Refresh"
+anims/RESET = SubResource( 7 )
+anims/Refresh = SubResource( 8 )
+
+[node name="DisplaySprite" type="Sprite3D" parent="."]
+transform = Transform( -3, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, -0.51182 )
+texture = SubResource( 6 )

@@ -38,3 +38,7 @@ stream = ExtResource( 3 )
 bus = "Music"
 
 [node name="ImageBG" parent="." instance=ExtResource( 5 )]
+
+[node name="BlockTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

@@ -11,7 +11,7 @@ script = ExtResource( 5 )
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 layer = 128
 
-[node name="OptimalLightRenderer" parent="." instance=ExtResource( 1 )]
+[node name="OnTop" parent="." instance=ExtResource( 1 )]
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true

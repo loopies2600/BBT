@@ -40,6 +40,8 @@ func _physics_process(_delta):
 		_buttonPress()
 		
 func _buttonPress():
+	if Main.editing: return
+	
 	for b in get_tree().get_nodes_in_group("ToggleButtons"):
 		b.pressed = b.main == main
 		

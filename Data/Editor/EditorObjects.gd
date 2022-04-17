@@ -13,7 +13,7 @@ onready var tilesTab := $TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxCo
 func _ready():
 	# define objects
 	print("--- OBJECT LIST ---")
-	for i in ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor"]:
+	for i in ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor", "TimerToggleButton"]:
 		print(i, " registered")
 		Objects.append(load(DEFPATH % ("Object/%s" % i)))
 		
@@ -51,7 +51,7 @@ func _spawnTileItems():
 			newItem.selected = tile == 0
 			newItem.tileID = tile
 			
-			if tile in [61, 62]:
+			if tile in [61, 62, 77, 79]:
 				tTab = $TabContainer/Objects/ScrollContainer/VBoxContainer/HBoxContainer
 				
 			tTab.add_child(newItem)

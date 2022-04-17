@@ -19,7 +19,8 @@ var editing := true
 onready var cam := $Camera
 onready var hud := $HUD
 onready var level : TileMap = preload("res://Data/Level/Level.tscn").instance()
-onready var olr := $OptimalLightRenderer/LightVP/BG
+onready var olr := $OnTop/LightVP/BG
+onready var ot := $OnTop
 
 var currentScene
 
@@ -78,6 +79,8 @@ func reload(newLvl : PackedScene):
 	_levelInit(level)
 	
 func _ready():
+	var _unused = connect("game_mode_changed", ot, "reset")
+	
 	_levelInit(level)
 	
 	changeScene(TITLE)
