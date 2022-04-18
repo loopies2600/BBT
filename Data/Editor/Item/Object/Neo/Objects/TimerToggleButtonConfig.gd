@@ -3,6 +3,6 @@ extends "res://Data/Editor/Item/Object/Neo/ObjectConfig.gd"
 func _tabSetup():
 	._tabSetup()
 	
-	_addRow("Behavior")
+	_addRow("Timer")
 	
-	_addSwitch("main", "Main Button")
+	_addVariableBox(1, "duration", "Duration")

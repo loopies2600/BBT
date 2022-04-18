@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Data/Object/TimerMonitor/Mat.tres" type="Material" id=1]
 [ext_resource path="res://Sprites/Object/TimerMonitor.png" type="Texture" id=2]
@@ -14,7 +14,6 @@ size = Vector3( 1, 1, 1 )
 size = Vector3( 1, 1, 0.2 )
 
 [sub_resource type="SpatialMaterial" id=5]
-flags_unshaded = true
 params_cull_mode = 2
 params_depth_draw_mode = 1
 params_use_alpha_scissor = true
@@ -130,6 +129,10 @@ tracks/3/keys = {
 [sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("MonitorDisplay")
 
+[sub_resource type="Environment" id=9]
+ambient_light_color = Color( 0.690196, 0.690196, 0.690196, 1 )
+adjustment_enabled = true
+
 [node name="TimerMonitorMesh" type="Spatial"]
 script = ExtResource( 4 )
 
@@ -148,6 +151,7 @@ material/0 = SubResource( 5 )
 
 [node name="Antenna" type="Sprite3D" parent="."]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0.0232685, 0.8, 0 )
+shaded = true
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 112, 0, 16, 16 )
@@ -191,3 +195,9 @@ anims/Refresh = SubResource( 8 )
 [node name="DisplaySprite" type="Sprite3D" parent="."]
 transform = Transform( -3, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, -0.51182 )
 texture = SubResource( 6 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.98458, 0.139424, 0.10566, 0.0801209, -0.896309, 0.436131, 0.155511, -0.42094, -0.893659, 1.02775, 1.95147, -2.20905 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 9 )

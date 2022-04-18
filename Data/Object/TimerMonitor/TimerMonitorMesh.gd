@@ -12,6 +12,8 @@ func _ready():
 	$Camera.set_as_toplevel(true)
 	
 func _process(delta):
+	$DirectionalLight.rotation.x += 8 * delta
+	
 	bg.flip_v = !bg.flip_v
 	
 	if rotSpeed < 1768:

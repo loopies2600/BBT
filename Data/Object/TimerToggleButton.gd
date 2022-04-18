@@ -1,5 +1,9 @@
 extends StaticBody2D
 
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/TimerToggleButtonConfig.gd")
+
+export (float) var duration = 5.0
+
 onready var anim := $Animator
 onready var bodyDet := $BodyDet
 
@@ -31,4 +35,5 @@ func _buttonPress():
 	
 	self.pressed = true
 	
+	Main.level.blockTimerTime = duration
 	Main.level.timedBlockToggle = pressed
