@@ -14,7 +14,6 @@ func _ready():
 	_editorRotate.rotation = ___tempRot
 	
 	var _unused = connect("body_entered", self, "_bodyEnter")
-	_unused = connect("body_exited", self, "_bodyExit")
 	
 func _process(_delta):
 	$RayCollider.rotation_degrees = 180 + _editorRotate.rotation_degrees
