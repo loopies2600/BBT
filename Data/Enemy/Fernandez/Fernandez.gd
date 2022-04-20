@@ -4,6 +4,7 @@ const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/Fernand
 const EXPLOSION := preload("res://Data/Particles/Explosion/Explosion.tscn")
 
 export (float) var explosionDelay = 1.0
+export (float) var radius = 32.0 setget _setRadius
 
 onready var anim := $Animator
 onready var eyes := [$Graphics/LEye, $Graphics/REye]
@@ -16,6 +17,12 @@ var target
 var drawGizmos := false
 var exploding := false
 
+func _setRadius(nr : float):
+	if radius == nr: return
+	
+	radius = nr
+	area.shape.radius = radius
+	
 func _ready():
 	area.shape = area.shape.duplicate()
 	
@@ -69,8 +76,7 @@ func _bodyExit(body):
 func explode():
 	if !visible: return
 	
-	get_parent().purgeCircle(area.global_position / 16, ceil(area.shape.radius / 16), -1)
-	
+	_fuckingDestroyEverything()
 	var newExplosion := EXPLOSION.instance()
 	
 	newExplosion.position = area.global_position
@@ -88,6 +94,13 @@ func explode():
 		
 		target.kill({"velocity" : vel, "shakePower" : Vector2(16, 16)})
 	
+func _fuckingDestroyEverything():
+	var tiles : Array = Main.level.getTilesInRadius((area.global_position / 16).round(), ceil(area.shape.radius / 16), Main.level.INDESTRUCTIBLE)
+	
+	for t in tiles:
+		Main.level.funnyTileAnim(Main.level, t)
+		Main.level.set_cellv(t, -1)
+		
 func _explodeNeighbors():
 	var spaceState := get_world_2d().direct_space_state
 	var query := Physics2DShapeQueryParameters.new()

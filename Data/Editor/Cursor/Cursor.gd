@@ -111,7 +111,7 @@ func _draw():
 				
 				if !target.isTile: mod = Color(modes[0].basePlaceOptions["modulate:r"], modes[0].basePlaceOptions["modulate:g"], modes[0].basePlaceOptions["modulate:b"], 1.0)
 				
-				draw_texture(texture, Vector2(16 * x, 16 * y), mod)
+				draw_texture(texture, Vector2(targetTilemap.cell_size.x * x, targetTilemap.cell_size.x * y), mod)
 
 func _frickinPositionFormula() -> Vector2:
 	var mousePos := get_global_mouse_position()
@@ -133,6 +133,8 @@ func _input(event):
 		return
 		
 	if Input.is_action_pressed("mouse_main"):
+		if Input.is_action_pressed("special"): return
+		
 		modes[mode].mainClick(event)
 	elif Input.is_action_pressed("mouse_secondary"):
 		modes[mode].subClick(event)

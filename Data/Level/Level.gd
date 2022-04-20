@@ -5,7 +5,7 @@ signal block_timer_started()
 signal block_timer_ended()
 
 const TILESPR := preload("res://Data/Particles/GenericSprite.tscn")
-const INDESTRUCTIBLE := [23, 24]
+const INDESTRUCTIBLE := [23, 24, 61, 62, 63, 64, 77, 78, 79, 80]
 const SAVE_PATH = "user://"
 
 export (Texture) var bgTex = load("res://Sprites/UI/Border0.png")
@@ -22,12 +22,7 @@ var blockToggle := false setget _onBlockToggle
 var timedBlockToggle := false setget _onTimedBlockToggle
 var darkMode := false
 
-var _cellPosCopy := []
-var _cellIDCopy := []
-
-var _flipXCopy := []
-var _flipYCopy := []
-var _transposeCopy := []
+var _mapCopy := []
 
 var tokenAmount := 0
 var tokensCollected := 0
@@ -104,26 +99,25 @@ func _onTokenCollect():
 	tokensCollected = min(tokensCollected + 1, tokenAmount)
 	
 func copyMap():
-	_cellPosCopy.clear()
-	_cellIDCopy.clear()
-	_flipXCopy.clear()
-	_flipYCopy.clear()
-	_transposeCopy.clear()
+	_mapCopy.clear()
 	
 	for c in get_used_cells():
-		_cellPosCopy.append(c)
-		_cellIDCopy.append(get_cellv(c))
+		var cell := {
+			"cell": c, 
+			"id": get_cellv(c), 
+			"fx": is_cell_x_flipped(c.x, c.y), 
+			"fy": is_cell_y_flipped(c.x, c.y), 
+			"t": is_cell_transposed(c.x, c.y)
+			}
+			
+		_mapCopy.append(cell)
 		
-		_flipXCopy.append(is_cell_x_flipped(c.x, c.y))
-		_flipYCopy.append(is_cell_y_flipped(c.x, c.y))
-		_transposeCopy.append(is_cell_transposed(c.x, c.y))
-	
 func restoreMap():
 	for c in get_used_cells():
 		set_cellv(c, -1)
 		
-	for c in range(_cellPosCopy.size()):
-		set_cellv(_cellPosCopy[c], _cellIDCopy[c], _flipXCopy[c], _flipYCopy[c], _transposeCopy[c])
+	for c in _mapCopy:
+		set_cellv(c.cell, c.id, c.fx, c.fy, c.t)
 	
 	refreshToggleBlock()
 	refreshTimedBlock()
@@ -161,22 +155,13 @@ func _ready():
 	
 	var _unused = blockTimer.connect("timeout", self, "_blockTimerEnd")
 	
-func purgeCircle(pos := Vector2(), radius := 0, with := -1, target = self):
-	var cells := []
+func _process(_delta):
+	update()
 	
-	for y in range(-radius, radius):
-		for x in range(-radius, radius):
-			if (x * x) + (y * y) < (radius * radius):
-				if target.get_cellv(pos + Vector2(x, y)) in INDESTRUCTIBLE || target.get_cellv(pos + Vector2(x, y)) == -1:
-					pass
-				else:
-					cells.append(pos + Vector2(x, y))
-					
-	for c in cells:
-		funnyTileAnim(target, c)
+func _draw():
+	for c in get_used_cells():
+		draw_rect(Rect2((cell_size / 2) + (c * cell_size), cell_size), Color(0, 0, 0, 0.5))
 		
-		target.set_cellv(c, with)
-	
 func getTilesInRadius(pos := Vector2(), radius := 0, exclude := [-1, 61, 62, 63, 64]) -> PoolVector2Array:
 	var tiles : PoolVector2Array = []
 	
@@ -234,7 +219,7 @@ func funnyTileAnim(targetTilemap : TileMap, cellPos := Vector2(), vel := Vector2
 	if id == -1: return
 	
 	var newTS := TILESPR.instance()
-	newTS.global_position = Vector2(8, 8) + cellPos * 16
+	newTS.global_position = Vector2(8, 8) + (cellPos * cell_size)
 	
 	newTS.velocity = vel
 	newTS.rotation = rand_range(0, TAU)

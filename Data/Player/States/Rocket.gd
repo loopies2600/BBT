@@ -32,7 +32,8 @@ func physics_update(delta):
 	owner.dustOffset = Vector2(-24, 12).rotated(owner.rotation)
 	
 	if owner.get_slide_count():
-		Main.level.purgeCircle((owner.global_position / 16).round(), 4)
+		_fuckingDestroyEverything()
+		
 		owner.rotation = 0.0
 		
 		var explosion := EXPLOSION.instance()
@@ -41,6 +42,13 @@ func physics_update(delta):
 		
 		owner.velocity = Vector2()
 		owner.kill()
+	
+func _fuckingDestroyEverything():
+	var tiles : Array = Main.level.getTilesInRadius((owner.global_position / 16).round(), 4, Main.level.INDESTRUCTIBLE)
+	
+	for t in tiles:
+		Main.level.funnyTileAnim(Main.level, t)
+		Main.level.set_cellv(t, -1)
 		
 func exit():
 	owner.dustOffset = Vector2()

@@ -1,7 +1,5 @@
 extends "res://Data/Editor/Cursor/CursorMode.gd"
 
-const EXPLOSION := preload("res://Data/Particles/Explosion/Explosion.tscn")
-
 onready var placeSnd := $PlaceObj
 onready var removeSnd := $RemoveObj
 
@@ -18,7 +16,6 @@ var basePlaceOptions := {
 	}
 	
 var brushSize := 1
-var explosionRadius := 4
 var floodFill := false
 
 func update():
@@ -122,28 +119,7 @@ func subClick(event):
 	var tile := ttm.get_cellv(cell) != -1
 	var lvl : TileMap = get_parent().level
 	
-	var exploded := false
-	
-	var availableTiles := _getCellsInRadius(cell, explosionRadius)
-	
-	if Input.is_action_pressed("special"):
-		action = _actionGen(availableTiles, ttm)
-		
-		if ttm.get_cellv(cell) != -1:
-			var explosion := EXPLOSION.instance()
-			explosion.global_position = cell * 16
-			ttm.add_child(explosion)
-			
-			lvl.purgeCircle(cell, explosionRadius, -1, ttm)
-			
-			get_parent().emit_signal("tile_removed", cell)
-			exploded = true
-			
-			if !action.empty(): get_parent().tileRemovalHistory.append(action)
-			
-			return
-		
-	availableTiles = _getCellsInRadius(cell)
+	var availableTiles := _getCellsInRadius(cell)
 	
 	if floodFill: availableTiles = Main.level.floodFill(cell, 32, ttm, [-1, ttm.get_cellv(cell)])
 	
@@ -154,12 +130,10 @@ func subClick(event):
 		tile = ttm.get_cellv(t) != -1
 		
 		if tile:
-			if exploded: return
-			
 			removeSnd.play()
 			
 			if brushSize < 5 && ttm.get_cellv(t) != -1:
-				Main.plop(Vector2(8, 8) + t * 16)
+				Main.plop(Vector2(8, 8) + t * ttm.cell_size)
 				
 			Main.level.funnyTileAnim(ttm, t, Vector2(256 * sin(mot.x), rand_range(-256, -512)))
 			ttm.set_cellv(t, -1)
@@ -173,7 +147,7 @@ func subClick(event):
 			if n:
 				removeSnd.play()
 				
-				Main.plop(Vector2(8, 8) + t * 16)
+				Main.plop(Vector2(8, 8) + t * ttm.cell_size)
 					
 				n.queue_free()
 				get_parent().emit_signal("object_removed", cell)

@@ -16,7 +16,9 @@ func _process(_delta):
 	
 	if get_parent().editing:
 		if canPlace:
-			panning = Input.is_action_pressed("mouse_tertiary")
+			var shiftPan := Input.is_action_pressed("mouse_main") && Input.is_action_pressed("special")
+			
+			panning = Input.is_action_pressed("mouse_tertiary") || shiftPan
 			
 		offset = Vector2.ZERO
 		intensity = Vector2.ZERO

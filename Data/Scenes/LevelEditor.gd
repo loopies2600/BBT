@@ -48,7 +48,12 @@ func _switchStates():
 		if Main.level.get("mus"):
 			Main.level.mus.stop()
 		
-		Main.cam.global_position = Vector2.ZERO
+		var camPos := Vector2.ZERO
+		
+		if Main.level.get_node("Player"):
+			camPos = Main.level.get_node("Player").global_position
+		
+		Main.cam.global_position = camPos
 		
 	cursor.canPlace = Main.editing
 	Main.emit_signal("game_mode_changed", Main.editing)
