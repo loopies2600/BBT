@@ -12,6 +12,7 @@ const NGIOSTATUS := preload("res://Data/Scenes/NewgroundsChecker.tscn")
 const NG := preload("res://Data/Util/Newgrounds.tscn")
 
 const DUST := preload("res://Data/Particles/FastDust.tscn")
+const STAR := preload("res://Data/Particles/Star.tres")
 const EANIM := preload("res://Data/Particles/DustExplosion.tres")
 
 var editing := true
@@ -100,6 +101,22 @@ func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
 		dust.global_position = pos
 		dust.gravity = 4
 		dust.velocity = Vector2(0, -75).rotated(deg2rad(rotations[i]))
+	
+func shine(pos := Vector2(), col := Color.white, amt := 8, spd := 256):
+	var ang := 0.0
+	
+	for i in range(amt):
+		var newStar = DUST.instance()
+		
+		newStar.global_position = pos
+		newStar.frames = STAR
+		newStar.mode = 1
+		newStar.velocity = Vector2(spd, 0).rotated(ang)
+		newStar.modulate = col
+		
+		level.add_child(newStar)
+		
+		ang += TAU / amt
 	
 func changeScene(packedScene):
 	var newScene = packedScene.instance()

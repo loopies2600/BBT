@@ -8,15 +8,7 @@ func enter(_msg := {}):
 	owner.slideDownSlopes = false
 	owner._doDust = false
 	
-	var suffix := ""
-	
-	match get_parent().previous_state:
-		"air":
-			suffix = "FromJump"
-		"slide":
-			suffix = "FromSlide"
-		
-	owner.anim.play("Idle" + suffix)
+	owner.anim.play("Idle")
 	
 func physics_update(_delta):
 	owner.velocity *= owner.damping

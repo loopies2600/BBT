@@ -2,15 +2,15 @@
 
 [ext_resource path="res://Data/Editor/Definitions/Entry.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Editor/Objects.png" type="Texture" id=2]
-[ext_resource path="res://Data/Object/Button/DoorButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Data/Object/Motion/Bridge.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
-region = Rect2( 112, 16, 16, 16 )
+region = Rect2( 0, 32, 16, 16 )
 
 [resource]
 script = ExtResource( 1 )
-name = "Door + Button"
+name = "Bridge"
 editorIcon = SubResource( 1 )
 scene = ExtResource( 3 )
 singleInstance = false

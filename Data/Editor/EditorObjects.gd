@@ -13,7 +13,7 @@ onready var tilesTab := $TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxCo
 func _ready():
 	# define objects
 	print("--- OBJECT LIST ---")
-	for i in ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor", "TimerToggleButton", "DoorButton"]:
+	for i in ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor", "TimerToggleButton", "DoorButton", "Bridge"]:
 		print(i, " registered")
 		Objects.append(load(DEFPATH % ("Object/%s" % i)))
 		

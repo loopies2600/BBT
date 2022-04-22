@@ -15,6 +15,8 @@ layer = 128
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
+smoothing_enabled = true
+smoothing_speed = 12.0
 drag_margin_top = 0.4
 drag_margin_bottom = 0.4
 editor_draw_limits = true

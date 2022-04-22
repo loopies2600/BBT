@@ -24,6 +24,7 @@ func _ready():
 
 func _process(delta):
 	if !Main.level.blockTimer.is_stopped():
+# warning-ignore:narrowing_conversion
 		self.timeLeft = round(Main.level.blockTimer.time_left)
 	
 	if Input.is_action_just_pressed("jump"):

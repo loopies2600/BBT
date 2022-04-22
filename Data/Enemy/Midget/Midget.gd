@@ -76,7 +76,7 @@ func _seek():
 			tossTimer.start(tossDelay)
 	
 func _findPlayer() -> Player:
-	var target : Player
+	var tgt : Player
 	
 	var shape = CircleShape2D.new()
 	shape.radius = detectionRadius
@@ -95,9 +95,9 @@ func _findPlayer() -> Player:
 			var col = r.collider
 			
 			if col is Player:
-				target = col
+				tgt = col
 				
-	return target
+	return tgt
 	
 func _spawnAngryTile(cellPos := Vector2()):
 	var id := Main.level.get_cellv(cellPos)

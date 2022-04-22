@@ -2,7 +2,7 @@ extends StaticBody2D
 
 const DOOR := preload("res://Data/Object/Door.tscn")
 
-export (Vector2) var memDoorPos = Vector2()
+export (String) var _doorName
 
 onready var anim := $Animator
 onready var bodyDet := $BodyDet
@@ -18,12 +18,16 @@ func _onPress(booly : bool):
 	anim.play("On" if pressed else "Off")
 	
 func _ready():
-	door = DOOR.instance()
+	door = get_parent().get_node(_doorName)
 	
-	door.add_to_group("Instances")
-	door.global_position = memDoorPos if memDoorPos != Vector2() else global_position + Vector2(16, -16)
-	
-	get_parent().call_deferred("add_child", door)
+	if !door:
+		door = DOOR.instance()
+		
+		door.add_to_group("Instances")
+		door.global_position = global_position + Vector2(16, -16)
+		_doorName = door.name
+		
+		get_parent().call_deferred("add_child", door)
 	
 	var _unused = connect("tree_exited", door, "queue_free")
 	_unused = door.connect("tree_exiting", self, "queue_free")
@@ -33,10 +37,6 @@ func _timerEnd():
 	
 func resetState():
 	self.pressed = false
-	
-func _process(_delta):
-	if door:
-		memDoorPos = door.global_position
 	
 func _physics_process(_delta):
 	if bodyDet.is_colliding() && !pressed:

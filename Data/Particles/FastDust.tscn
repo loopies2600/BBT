@@ -16,6 +16,9 @@ animations = [ {
 [sub_resource type="GDScript" id=2]
 script/source = "extends AnimatedSprite
 
+var mode := 0
+
+var damping := 0.95
 var velocity := Vector2()
 var gravity := 2.0
 
@@ -30,7 +33,13 @@ func _animEnd():
 func _physics_process(delta):
 	if frames.get_frame_count(\"Idle\") == 4 && frame == 0: return
 	
-	velocity.y += gravity
+	match mode:
+		0:
+			velocity.y += gravity
+		1:
+			velocity *= damping
+		2:
+			pass
 	
 	position += velocity * delta
 "

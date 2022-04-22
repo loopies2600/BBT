@@ -11,9 +11,6 @@ var target : Node2D
 var intensity := Vector2()
 
 func _process(_delta):
-	drag_margin_h_enabled = !get_parent().editing
-	drag_margin_v_enabled = !get_parent().editing
-	
 	if get_parent().editing:
 		if canPlace:
 			var shiftPan := Input.is_action_pressed("mouse_main") && Input.is_action_pressed("special")
@@ -26,7 +23,12 @@ func _process(_delta):
 		zoom = Vector2.ONE
 	
 		if target:
-			global_position = target.global_position
+			var camOffset = Vector2()
+			
+			if target.get("camOffset"):
+				camOffset = target.camOffset
+			
+			global_position = target.global_position + camOffset
 		
 		intensity *= damping
 		

@@ -4,7 +4,14 @@ enum PowerUps { ROCKET }
 
 export (PowerUps) var pwr = PowerUps.ROCKET
 
+onready var anim := $Gachapon/Animator
+
+func resetState():
+	anim.play("Idle")
+	
 func _ready():
+	add_to_group("Gachapons")
+	
 	var _unused = connect("body_entered", self, "_playerEnter")
 	
 func _playerEnter(body):
@@ -15,7 +22,9 @@ func _playerEnter(body):
 			Main.plop(body.global_position)
 			
 			body.fsm._change_state("air")
+			anim.play("Idle")
 			return
-			
+		
+		anim.play("Open")
 		Main.plop(body.global_position)
 		body.fsm._change_state(pwrName.to_lower())

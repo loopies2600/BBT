@@ -22,6 +22,7 @@ var slideDownSlopes := false
 var velocity := Vector2()
 var upDirection := Vector2.UP
 
+var camOffset := Vector2()
 var _doDust := false
 var dustOffset := Vector2()
 

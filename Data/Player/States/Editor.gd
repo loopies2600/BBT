@@ -1,6 +1,8 @@
 extends State
 
 func enter(_msg := {}):
+	Main.ot.dmr.marks.clear()
+	
 	randomize()
 	
 	owner.collisionBox.set_deferred("disabled", true)

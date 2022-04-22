@@ -8,6 +8,8 @@ func _ready():
 	var _unused = timer.connect("timeout", self, "_resetTimerEnd")
 	
 func enter(msg := {}):
+	Main.ot.dmr.marks.append(owner.global_position)
+	
 	var velocity := Vector2(owner.velocity.x, owner.jumpHeight * owner.upDirection.y * 6)
 	
 	if msg.has("velocity"):

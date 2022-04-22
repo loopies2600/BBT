@@ -1,0 +1,14 @@
+extends Node2D
+
+const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/TextConfig.gd")
+const RANDOMQUOTES := ["HOLA", "INSERTE TEXTO", "SAMPLE TEXT", "YOUR TEXT GOES HERE", "MATATE", "NO SE QUE ESCRIBIR", "AMONG GUNS", "BENNETT BOY MY BELOVED", "EDITOR TEXT", "LABEL", "TOP LEFT ANCHORED", "HI MA'AM", "HOLA ABUELITA", "LOOPIES 2022", "NEWGROUNDS EXCLUSIVE", "BIRDS AIN'T REAL", "HIS PENIS LOOKS EXACTLY LIKE TOAD FROM MARIO KART", "UOHHHHHHHHHHHHHHH!!!!", "WHAT IF WE KISSED ON BENNETT'S WORKSHOP?", "IM UNEMPLOYED!", "THE ONE AND ONLY", "YOU CAN'T GRASP THE TRUE FORM OF THIS TEXT LABEL"]
+
+export (String) var _tempTxt
+
+onready var label := $Label
+
+func _ready():
+	label.text = RANDOMQUOTES[randi() % RANDOMQUOTES.size()]
+	
+	if _tempTxt:
+		label.text = _tempTxt

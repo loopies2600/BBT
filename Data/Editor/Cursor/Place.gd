@@ -47,8 +47,6 @@ func mainClick(_event):
 	
 	if floodFill: availableTiles = Main.level.floodFill(cell, 32, ttm, [-1, ttm.get_cellv(cell)])
 	
-	var tileSav := []
-	
 	action = _actionGen(availableTiles, ttm, [tgt.tileID])
 	
 	for entry in action:
@@ -117,7 +115,6 @@ func subClick(event):
 	var cell : Vector2 = get_parent().cellPos
 	var ttm : TileMap = get_parent().targetTilemap
 	var tile := ttm.get_cellv(cell) != -1
-	var lvl : TileMap = get_parent().level
 	
 	var availableTiles := _getCellsInRadius(cell)
 	

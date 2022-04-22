@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SpikyBall.png-6063235974d8cd3cc016716ab796f280.stex"
+path="res://.import/BridgeLimit.png-5bbfaa9bada2e5834dc743ecd240117f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Data/Object/SpikyBall.png"
-dest_files=[ "res://.import/SpikyBall.png-6063235974d8cd3cc016716ab796f280.stex" ]
+source_file="res://Sprites/Object/BridgeLimit.png"
+dest_files=[ "res://.import/BridgeLimit.png-5bbfaa9bada2e5834dc743ecd240117f.stex" ]
 
 [params]
 

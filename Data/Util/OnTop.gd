@@ -2,6 +2,9 @@ extends CanvasLayer
 
 const MONITOR := preload("res://Data/Object/TimerMonitor/TimerMonitor.tscn")
 
+onready var dmr := $DeathMarkerRenderer
+onready var ti := $TokenIcons
+
 var _blockTimer = null
 
 func reset(_mode := 0):

@@ -31,6 +31,8 @@ func physics_update(delta):
 	owner.velocity = Vector2(spd, 0).rotated(owner.rotation)
 	owner.dustOffset = Vector2(-24, 12).rotated(owner.rotation)
 	
+	owner.camOffset = lerp(owner.camOffset, Vector2(112, 0).rotated(owner.rotation), 4 * delta)
+	
 	if owner.get_slide_count():
 		_fuckingDestroyEverything()
 		
@@ -52,6 +54,7 @@ func _fuckingDestroyEverything():
 		
 func exit():
 	owner.dustOffset = Vector2()
+	owner.camOffset = Vector2()
 	
 	rcVel = Vector2()
 	spd = 0.0

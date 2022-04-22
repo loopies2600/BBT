@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Data/Particles/SpinningStars.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Data/Object/GravitySwitcher.gd" type="Script" id=2]
+[ext_resource path="res://Data/Object/Motion/GravitySwitcher.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Object/GravityChanger.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Data/Object/PointingArrow.gd" type="Script" id=1]
+[ext_resource path="res://Data/Object/Decoration/PointingArrow.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Editor/Arrow.png" type="Texture" id=2]
 
 [node name="PointingArrow" type="Node2D"]

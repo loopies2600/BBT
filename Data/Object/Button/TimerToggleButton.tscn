@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/Tileset/AreaZero.png" type="Texture" id=1]
-[ext_resource path="res://Data/Object/ToggleButton.gd" type="Script" id=2]
+[ext_resource path="res://Data/Object/Button/TimerToggleButton.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Off"
@@ -159,7 +159,7 @@ extents = Vector2( 8, 4 )
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Graphics/Base:region_rect")
+tracks/0/path = NodePath("Graphics/Button:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -168,10 +168,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 64, 112, 16, 16 ) ]
+"values": [ Rect2( 64, 112, 16, 10 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Graphics/Button:region_rect")
+tracks/1/path = NodePath("CollisionBox:shape")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -180,10 +180,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 64, 112, 16, 10 ) ]
+"values": [ SubResource( 4 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionBox:shape")
+tracks/2/path = NodePath("CollisionBox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -192,10 +192,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ SubResource( 4 ) ]
+"values": [ Vector2( 8, 10.5 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CollisionBox:position")
+tracks/3/path = NodePath("CollisionBox:shape:extents")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -204,10 +204,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 8, 10.5 ) ]
+"values": [ Vector2( 8, 4 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CollisionBox:shape:extents")
+tracks/4/path = NodePath("Graphics:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -216,10 +216,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 8, 4 ) ]
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Graphics:position")
+tracks/5/path = NodePath("Graphics:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -228,10 +228,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Graphics:scale")
+tracks/6/path = NodePath("Graphics/Button:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -240,22 +240,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Graphics/Button:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[node name="ToggleButton" type="StaticBody2D"]
+[node name="TimerToggleButton" type="StaticBody2D"]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource( 2 )
@@ -263,6 +251,7 @@ script = ExtResource( 2 )
 [node name="Graphics" type="Node2D" parent="."]
 
 [node name="Button" type="Sprite" parent="Graphics"]
+modulate = Color( 1, 0.913725, 0.443137, 1 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
@@ -273,7 +262,7 @@ position = Vector2( 0, 16 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 64, 112, 16, 16 )
+region_rect = Rect2( 112, 128, 16, 16 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 autoplay = "Off"

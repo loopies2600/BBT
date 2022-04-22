@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Data/Editor/Definitions/Entry.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/BB.png" type="Texture" id=2]
-[ext_resource path="res://Data/Player/Objects/PowerUpBlock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Data/Object/PowerUp/Rocket.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
