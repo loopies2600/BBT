@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 const CONFIGURATOR := preload("res://Data/Editor/Item/Object/Neo/Objects/BridgeConfig.gd")
 const LIMIT := preload("res://Sprites/Object/BridgeLimit.png")
@@ -7,10 +7,7 @@ const SEGMENT := preload("res://Data/Object/Motion/BridgeSegment.tscn")
 export (float) var weigth := 1.25
 export (int) var segAmt := 8 setget _setAmount
 
-onready var detector := $Detector
-
 var curSeg
-var bodies := []
 var segments := []
 
 func _setAmount(new := 1):
@@ -20,9 +17,6 @@ func _setAmount(new := 1):
 	_setupBridge()
 	
 func _ready():
-	var _unused = connect("body_entered", self, "_bodyEnter")
-	_unused = connect("body_exited", self, "_bodyExit")
-	
 	_setupBridge()
 	
 func _setupBridge():
@@ -39,17 +33,19 @@ func _setupBridge():
 		
 		segments.append(newSeg)
 	
-	detector.shape.length = 16 * segAmt
-	
 func _physics_process(delta):
 	update()
 	
 	var maxDepression
+	var player : Player = Main.level.get_node("Player")
+	var closeEnough = abs(player.global_position.y - segments[curSeg].global_position.y) < 16 + (curSeg * 1.5)
 	
-	if bodies:
-		curSeg = floor((bodies[0].global_position.x - global_position.x) / 16) + 1
+	if player && closeEnough:
+		curSeg = floor((player.global_position.x - global_position.x) / 16) + 1
 	else:
 		curSeg = 0
+	
+	curSeg = max(0, curSeg)
 	
 # warning-ignore:integer_division
 	if curSeg <= segAmt / 2:
@@ -75,10 +71,3 @@ func _draw():
 	draw_set_transform(Vector2(16 + 16 * segAmt, -16), 0.0, Vector2(-1, 1))
 	draw_texture(LIMIT, Vector2())
 	
-func _bodyEnter(body):
-	if body is Kinematos:
-		bodies.append(body)
-	
-func _bodyExit(body):
-	if bodies:
-		bodies.erase(body)

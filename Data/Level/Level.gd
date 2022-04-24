@@ -160,7 +160,15 @@ func _process(_delta):
 	
 func _draw():
 	for c in get_used_cells():
-		draw_rect(Rect2((cell_size / 2) + (c * cell_size), cell_size), Color(0, 0, 0, 0.5))
+		var id := get_cellv(c)
+		var scl := Vector2(-1 if is_cell_x_flipped(c.x, c.y) else 1, -1 if is_cell_y_flipped(c.x, c.y) else 1)
+		var pos : Vector2 = (c * 16) + Vector2(8, 8)
+		
+		pos += Vector2(16 if sign(scl.x) == -1 else 0, 16 if sign(scl.y) == -1 else 0)
+		
+		draw_set_transform(pos, 0.0, scl)
+		
+		draw_texture_rect_region(tile_set.tile_get_texture(id), Rect2(Vector2(), Vector2(16, 16)), tile_set.tile_get_region(id), Color(0, 0, 0, 0.5))
 		
 func getTilesInRadius(pos := Vector2(), radius := 0, exclude := [-1, 61, 62, 63, 64]) -> PoolVector2Array:
 	var tiles : PoolVector2Array = []

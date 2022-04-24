@@ -110,7 +110,14 @@ func _draw():
 				var mod := Color.white
 				
 				if !target.isTile: mod = Color(modes[0].basePlaceOptions["modulate:r"], modes[0].basePlaceOptions["modulate:g"], modes[0].basePlaceOptions["modulate:b"], 1.0)
-				
+				else:
+					var fx : bool = modes[0].basePlaceOptions["flip_x"]
+					var fy : bool = modes[0].basePlaceOptions["flip_y"]
+					
+					var pos = Vector2(16 if fx else 0, 16 if fy else 0)
+					
+					draw_set_transform(pos, 0.0, Vector2(-1 if fx else 1, -1 if fy else 1))
+					
 				draw_texture(texture, Vector2(targetTilemap.cell_size.x * x, targetTilemap.cell_size.x * y), mod)
 
 func _frickinPositionFormula() -> Vector2:

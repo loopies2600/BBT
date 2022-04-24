@@ -38,6 +38,8 @@ func _timerEnd():
 func resetState():
 	self.pressed = false
 	
+	door.anim.play("RESET")
+	
 func _physics_process(_delta):
 	if bodyDet.is_colliding() && !pressed:
 		_buttonPress()
