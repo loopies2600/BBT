@@ -10,4 +10,5 @@ func _ready():
 				   "slide" : $Slide,
 				   "editor" : $Editor,
 				   "win" : $Win,
-				   "rocket" : $Rocket }
+				   "rocket" : $Rocket,
+				   "walled" : $Walled }

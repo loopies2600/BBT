@@ -15,6 +15,8 @@ export (float) var rocketSpeed = 256.0
 export (float) var rocketSteering = 6.0
 export (float) var rocketAccel = 32.0
 
+export (float) var wallTime = 0.5
+
 onready var anim := $Graphics/Anim
 onready var ganim := $Graphics/GAnim
 onready var gfx := $Graphics

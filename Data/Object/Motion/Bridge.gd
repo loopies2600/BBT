@@ -7,7 +7,7 @@ const SEGMENT := preload("res://Data/Object/Motion/BridgeSegment.tscn")
 export (float) var weigth := 1.25
 export (int) var segAmt := 8 setget _setAmount
 
-var curSeg
+var curSeg := 0.0
 var segments := []
 
 func _setAmount(new := 1):
@@ -38,14 +38,13 @@ func _physics_process(delta):
 	
 	var maxDepression
 	var player : Player = Main.level.get_node("Player")
-	var closeEnough = abs(player.global_position.y - segments[curSeg].global_position.y) < 16 + (curSeg * 1.5)
 	
-	if player && closeEnough:
+	if player && player.is_on_floor():
 		curSeg = floor((player.global_position.x - global_position.x) / 16) + 1
 	else:
 		curSeg = 0
 	
-	curSeg = max(0, curSeg)
+	curSeg = clamp(curSeg, 0, segAmt + 1)
 	
 # warning-ignore:integer_division
 	if curSeg <= segAmt / 2:

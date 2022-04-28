@@ -25,6 +25,6 @@ func enter(msg := {}):
 		owner.velocity = Vector2((owner.maxSpd * 2) / owner.weight, 0).rotated(angle)
 	
 func physics_update(_delta):
-	if owner.is_on_floor() || owner.is_on_wall():
+	if owner.get_slide_count():
 		owner.velocity.x = 0
 		emit_signal("finished", "air")
