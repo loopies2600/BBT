@@ -35,6 +35,7 @@ var iDir := 0
 var grounded := false
 var canInput := true
 var canDash := true
+var canWallJump := true
 
 func resetState():
 	.resetState()

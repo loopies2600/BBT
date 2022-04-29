@@ -11,4 +11,5 @@ func _ready():
 				   "editor" : $Editor,
 				   "win" : $Win,
 				   "rocket" : $Rocket,
-				   "walled" : $Walled }
+				   "walled" : $Walled,
+				   "look_up" : $Gaze }

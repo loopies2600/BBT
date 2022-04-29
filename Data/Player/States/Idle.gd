@@ -2,6 +2,7 @@ extends State
 
 func enter(_msg := {}):
 	owner.canDash = true
+	owner.canWallJump = true
 	
 	Main.cam.target = owner
 	
@@ -22,6 +23,9 @@ func physics_update(_delta):
 			
 		if Input.is_action_just_pressed("jump"):
 			emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
+			
+		if Input.is_action_just_pressed("look_up"):
+			emit_signal("finished", "look_up")
 			
 		if Input.is_action_pressed("look_down"):
 			emit_signal("finished", "crouch")

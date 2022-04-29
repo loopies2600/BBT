@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Data/Player/States/Editor.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/States/Player.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://Streams/Sounds/Slide.wav" type="AudioStream" id=13]
 [ext_resource path="res://Data/Player/States/Slide.gd" type="Script" id=14]
 [ext_resource path="res://Data/Player/Light.gd" type="Script" id=15]
+[ext_resource path="res://Data/Player/BennyInfo.gd" type="Script" id=16]
+[ext_resource path="res://Data/Player/States/Gaze.gd" type="Script" id=17]
 [ext_resource path="res://Streams/Sounds/Dash.wav" type="AudioStream" id=19]
 [ext_resource path="res://Data/Player/States/Win.gd" type="Script" id=20]
 [ext_resource path="res://Data/Player/BGTint.gd" type="Script" id=21]
@@ -22,7 +24,7 @@
 
 [sub_resource type="Animation" id=12]
 resource_name = "Crouch"
-length = 0.25
+length = 12.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:rotation_degrees")
@@ -43,10 +45,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 7.7, 8, 10.1, 10.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Rect2( 0, 64, 32, 32 ) ]
+"values": [ Rect2( 0, 64, 32, 32 ), Rect2( 32, 64, 32, 32 ), Rect2( 0, 64, 32, 32 ), Rect2( 32, 64, 32, 32 ), Rect2( 0, 64, 32, 32 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:position")
@@ -445,6 +447,18 @@ tracks/3/keys = {
 "method": "seek"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=22]
 resource_name = "HappyDash"
@@ -733,6 +747,171 @@ tracks/1/keys = {
 "values": [ Rect2( 0, 32, 32, 32 ) ]
 }
 
+[sub_resource type="Animation" id=32]
+resource_name = "LookUp"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 7.7, 8, 10.1, 10.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 32, 160, 32, 32 ), Rect2( 112, 160, 32, 32 ), Rect2( 32, 160, 32, 32 ), Rect2( 112, 160, 32, 32 ), Rect2( 32, 160, 32, 32 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CeilDetector:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../CollisionBox:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 3.75 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../CollisionBox:shape:height")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("../CollisionBox:shape:radius")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10.0 ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "LookUpTurn"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 7.7, 8, 10.1, 10.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 167, 128, 25, 32 ), Rect2( 32, 160, 32, 32 ), Rect2( 112, 160, 32, 32 ), Rect2( 32, 160, 32, 32 ), Rect2( 112, 160, 32, 32 ), Rect2( 32, 160, 32, 32 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CeilDetector:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
@@ -808,7 +987,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0, 3.75 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("../CollisionBox:shape:extents")
+tracks/6/path = NodePath("../CollisionBox:shape:height")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -817,27 +996,15 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 7.5, 11.75 ) ]
+"values": [ 5.0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("../CollisionBox:shape:height")
+tracks/7/path = NodePath("../CollisionBox:shape:radius")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 5.0 ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("../CollisionBox:shape:radius")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -1093,6 +1260,123 @@ tracks/3/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=35]
+resource_name = "WallFall"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 164, 96, 28, 29 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.3, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.75, 1.5 ), Vector2( 0.625, 1.6 ), Vector2( 0.75, 1.5 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Anim")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1.0, false ],
+"method": "seek"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ) ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "WallJump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 144, 160, 32, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ), Vector2( -4, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=31]
 resource_name = "Walled"
 tracks/0/type = "value"
@@ -1300,12 +1584,16 @@ anims/Idle = SubResource( 3 )
 anims/IdleFromJump = SubResource( 7 )
 anims/IdleFromSlide = SubResource( 17 )
 anims/Jump = SubResource( 6 )
+anims/LookUp = SubResource( 32 )
+anims/LookUpTurn = SubResource( 33 )
 anims/RESET = SubResource( 4 )
 anims/Rocket = SubResource( 25 )
 anims/Slide = SubResource( 16 )
 anims/Turn = SubResource( 18 )
 anims/Wait = SubResource( 20 )
 anims/Walk = SubResource( 5 )
+anims/WallFall = SubResource( 35 )
+anims/WallJump = SubResource( 34 )
 anims/Walled = SubResource( 31 )
 
 [node name="CeilDetector" type="RayCast2D" parent="Graphics"]
@@ -1342,6 +1630,10 @@ script = ExtResource( 4 )
 [node name="Crouch" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
 
+[node name="CamTimer" type="Timer" parent="StateMachine/Crouch"]
+wait_time = 0.8
+one_shot = true
+
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
@@ -1372,6 +1664,13 @@ script = ExtResource( 22 )
 [node name="Walled" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
+[node name="Gaze" type="Node" parent="StateMachine"]
+script = ExtResource( 17 )
+
+[node name="CamTimer" type="Timer" parent="StateMachine/Gaze"]
+wait_time = 0.8
+one_shot = true
+
 [node name="Light" type="Sprite" parent="."]
 position = Vector2( -8, -8 )
 script = ExtResource( 15 )
@@ -1391,3 +1690,9 @@ bus = "Sound"
 [node name="BGTint" type="Node2D" parent="."]
 show_behind_parent = true
 script = ExtResource( 21 )
+
+[node name="BennyInfo" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="BIRenderer" type="Node2D" parent="BennyInfo"]
+script = ExtResource( 16 )

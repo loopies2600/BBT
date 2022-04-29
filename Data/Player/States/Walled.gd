@@ -8,7 +8,7 @@ func enter(_msg := {}):
 	owner._doDust = false
 	owner.anim.play("Walled")
 	owner.doGravity = false
-	owner.velocity.y = 0.0
+	owner.velocity = Vector2.ZERO
 
 func physics_update(delta):
 	_time += delta
@@ -22,6 +22,7 @@ func physics_update(delta):
 		emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
 		owner.dir = -owner.dir
 		owner.velocity.x = (owner.maxSpd * 2) * owner.dir
+		owner.canWallJump = false
 	
 func exit():
 	owner.doGravity = true

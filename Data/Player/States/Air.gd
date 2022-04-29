@@ -27,14 +27,21 @@ func enter(msg := {}):
 	if msg.has("antiCancel"):
 		cancelled = true
 	
-	if get_parent().previous_state == "slide":
+	if get_parent().previous_state == "slide" || get_parent().previous_state == "walled":
 		owner._doDust = true
 		
 func physics_update(_delta):
 	if !ignoreAnim:
 		if sign(owner.velocity.y) == -sign(owner.upDirection.y):
-			if get_parent().previous_state != "slide":
-				owner.anim.play("Fall")
+			var anim := "Fall"
+			
+			match get_parent().previous_state:
+				"slide":
+					anim = "Dash"
+				"walled":
+					anim = "WallFall"
+				
+			owner.anim.play(anim)
 		else:
 			if jumping:
 				var anim := "Jump"
@@ -43,6 +50,8 @@ func physics_update(_delta):
 				match get_parent().previous_state:
 					"slide":
 						anim = "Dash"
+					"walled":
+						anim = "WallJump"
 			
 				owner.anim.play(anim)
 				
@@ -61,7 +70,7 @@ func physics_update(_delta):
 			if Input.is_action_pressed("jump"):
 				owner.velocity.y = owner.jumpHeight * owner.upDirection.y
 		
-		if owner.closeToWall() && Input.is_action_just_pressed("jump"):
+		if owner.is_on_wall() && Input.is_action_just_pressed("jump") && owner.canWallJump:
 			emit_signal("finished", "walled")
 		
 		if jumping && !cancelled:

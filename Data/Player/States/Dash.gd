@@ -2,6 +2,7 @@ extends State
 
 func enter(msg := {}):
 	owner.canDash = false
+	owner.canWallJump = true
 	
 	if owner.is_on_floor():
 		owner.anim.play("Jump")
