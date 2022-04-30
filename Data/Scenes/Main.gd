@@ -105,7 +105,7 @@ func plop(pos := Vector2(), rotations := [0, 45, 90, 135, 180, 225, 270, 315]):
 func shine(pos := Vector2(), col := Color.white, amt := 8, spd := 256):
 	var ang := 0.0
 	
-	for i in range(amt):
+	for _i in range(amt):
 		var newStar = DUST.instance()
 		
 		newStar.global_position = pos

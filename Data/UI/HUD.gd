@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-onready var tIcons := $TokenIcons
 onready var aLabel := $Attempts
 
 func _process(delta):

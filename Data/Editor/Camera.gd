@@ -9,8 +9,11 @@ var canPlace := false
 var panning := false
 var target : Node2D
 var intensity := Vector2()
+var lock := false
 
 func _process(_delta):
+	if lock: return
+	
 	if get_parent().editing:
 		if canPlace:
 			var shiftPan := Input.is_action_pressed("mouse_main") && Input.is_action_pressed("special")
@@ -41,6 +44,8 @@ func shake(xOff := 0, yOff := 0):
 	intensity = Vector2(xOff, yOff)
 	
 func _input(event):
+	if lock: return
+	
 	if panning:
 		if event is InputEventMouseMotion:
 			global_position -= event.relative * zoom

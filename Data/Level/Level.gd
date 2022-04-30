@@ -3,6 +3,8 @@ extends TileMap
 signal block_toggled(rob)
 signal block_timer_started()
 signal block_timer_ended()
+signal state_reset()
+signal shadows_redrawn()
 
 const TILESPR := preload("res://Data/Particles/GenericSprite.tscn")
 const INDESTRUCTIBLE := [23, 24, 61, 62, 63, 64, 77, 78, 79, 80]
@@ -63,10 +65,9 @@ func saveLvl(path := SAVE_PATH, fileName := "level.tscn"):
 		err = ResourceSaver.save(path + "/" + fileName, scn)
 		
 func resetObjectState():
-	for c in get_children():
-		if c.has_method("resetState"):
-			c.resetState()
-	
+	emit_signal("state_reset")
+	Main.ot.reset()
+	Main.cam.lock = false
 	_resetTokens()
 	
 	blockToggle = false
@@ -76,6 +77,7 @@ func resetObjectState():
 	
 	refreshToggleBlock()
 	refreshTimedBlock()
+	redrawShadows()
 	
 func _onObjectPlace(_pos):
 	_resetTokens()
@@ -155,8 +157,11 @@ func _ready():
 	
 	var _unused = blockTimer.connect("timeout", self, "_blockTimerEnd")
 	
-func _process(_delta):
+	redrawShadows()
+	
+func redrawShadows():
 	update()
+	emit_signal("shadows_redrawn")
 	
 func _draw():
 	for c in get_used_cells():
@@ -257,6 +262,8 @@ func refreshToggleBlock():
 			_replaceID(61, 63)
 			_replaceID(64, 62)
 	
+	redrawShadows()
+	
 func refreshTimedBlock():
 	if Main.editing:
 		_replaceID(78, 77)
@@ -268,7 +275,9 @@ func refreshTimedBlock():
 		else:
 			_replaceID(77, 78)
 			_replaceID(80, 79)
-			
+	
+	redrawShadows()
+	
 func _replaceID(from : int, to : int):
 	for l in [self, $Foreground, $Background]:
 		for t in l.get_used_cells():

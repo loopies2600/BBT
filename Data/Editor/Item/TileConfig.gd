@@ -15,6 +15,9 @@ var targetMap : TileMap
 func _ready():
 	var _unused = xValue.connect("text_entered", self, "_xChange")
 	_unused = yValue.connect("text_entered", self, "_yChange")
+	_unused = flipH.connect("pressed", self, "_flipHPress")
+	_unused = flipV.connect("pressed", self, "_flipVPress")
+	_unused = transpose.connect("pressed", self, "_tPress")
 	
 	xValue.text = str(targetTile.x)
 	yValue.text = str(targetTile.y)
@@ -29,6 +32,8 @@ func _ready():
 # warning-ignore:narrowing_conversion
 	transpose.pressed = targetMap.is_cell_transposed(targetTile.x, targetTile.y)
 	
+	Main.level.redrawShadows()
+	
 func _xChange(new := "0"):
 	var cellID = targetMap.get_cellv(targetTile)
 	
@@ -36,6 +41,8 @@ func _xChange(new := "0"):
 	targetTile.x = int(new)
 	
 	targetMap.set_cellv(targetTile, cellID)
+	
+	Main.level.redrawShadows()
 	
 func _yChange(new := "0"):
 	var cellID = targetMap.get_cellv(targetTile)
@@ -45,12 +52,25 @@ func _yChange(new := "0"):
 	
 	targetMap.set_cellv(targetTile, cellID)
 	
-func _process(_delta):
+	Main.level.redrawShadows()
+	
+func _flipHPress():
+	_checkTransform()
+	
+func _flipVPress():
+	_checkTransform()
+	
+func _tPress():
+	_checkTransform()
+	
+func _checkTransform():
 	targetMap.set_cellv(targetTile, targetMap.get_cellv(targetTile), flipH.pressed, flipV.pressed, transpose.pressed)
 	
 	configMan.basePlaceOptions.flip_x = flipH.pressed
 	configMan.basePlaceOptions.flip_y = flipV.pressed
 	configMan.basePlaceOptions.transpose = transpose.pressed
+	
+	Main.level.redrawShadows()
 
 func _onExitPress():
 	close()

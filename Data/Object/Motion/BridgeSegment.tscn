@@ -8,6 +8,15 @@ extents = Vector2( 8, 8 )
 [node name="BridgeSegment" type="KinematicBody2D"]
 z_index = 1
 
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.501961 )
+position = Vector2( 8, 8 )
+z_index = -1
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 64, 160, 16, 16 )
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false

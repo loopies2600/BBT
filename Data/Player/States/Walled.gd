@@ -16,7 +16,7 @@ func physics_update(delta):
 	if _time >= owner.wallTime:
 		emit_signal("finished", "air")
 	
-	owner.velocity.y += 24 * delta
+	owner.velocity.y -= (24 * owner.upDirection.y) * delta
 	
 	if Input.is_action_just_released("jump"):
 		emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})

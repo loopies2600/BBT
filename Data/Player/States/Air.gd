@@ -70,7 +70,7 @@ func physics_update(_delta):
 			if Input.is_action_pressed("jump"):
 				owner.velocity.y = owner.jumpHeight * owner.upDirection.y
 		
-		if owner.is_on_wall() && Input.is_action_just_pressed("jump") && owner.canWallJump:
+		if owner.closeToWall() && Input.is_action_just_pressed("jump") && owner.canWallJump:
 			emit_signal("finished", "walled")
 		
 		if jumping && !cancelled:

@@ -28,6 +28,7 @@ onready var sounds := [$Jump, $Dash, $Slide]
 onready var wallDetector := $Graphics/WallDetector
 onready var bgTint := $BGTint
 onready var resetTimer := $StateMachine/Dead/ResetTimer
+onready var debugInfo := $BennyInfo/BIRenderer
 
 var god := false
 
@@ -48,6 +49,9 @@ func _ready():
 	letsStart()
 	
 func letsStart():
+	# borrar trayectoria
+	debugInfo.motionPoints = []
+	
 	# arreglar un bugcito!
 	resetTimer.stop()
 	
@@ -88,7 +92,7 @@ func closeToCeiling() -> bool:
 	return close
 	
 func closeToWall() -> bool:
-	var dashableTiles : PoolIntArray =  [5, 6, 7, 8, 11, 27, 33, 71]
+	var dashableTiles : PoolIntArray =  [5, 6, 7, 8, 11, 27, 33, 71, 83]
 	
 	var close := false
 	 

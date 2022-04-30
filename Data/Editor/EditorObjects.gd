@@ -6,38 +6,30 @@ const DEFPATH := "res://Data/Editor/Definitions/%s.tres"
 
 var Entities := []
 var Objects := []
+var Markers := []
 var PowerUps := []
 
 onready var tilesTab := $TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 
 func _ready():
-	# define objects
-	print("--- OBJECT LIST ---")
 	for i in ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor", "TimerToggleButton", "DoorButton", "Bridge"]:
-		print(i, " registered")
 		Objects.append(load(DEFPATH % ("Object/%s" % i)))
 		
-	print("")
-	
-	# define entities
-	print("--- ENTITY LIST ---")
 	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro", "Midget"]:
-		print(i, " registered")
 		Entities.append(load(DEFPATH % ("Entity/%s" % i)))
-	print("")
-	
-	# define powerups (TEMP)
-	print("--- POWERUP LIST ---")
+		
+	for i in ["LockCam"]:
+		Markers.append(load(DEFPATH % ("Marker/%s" % i)))
+		
 	for i in ["Rocket"]:
-		print(i, " registered")
 		PowerUps.append(load(DEFPATH % ("PowerUp/%s" % i)))
-	print("")
-	
+		
 	yield(owner, "ready")
 	
 	_spawnTileItems()
-	_spawnObjectItems("Objects")
 	_spawnObjectItems()
+	_spawnObjectItems("Entities")
+	_spawnObjectItems("Markers")
 	_spawnObjectItems("PowerUps")
 	
 func _spawnTileItems():
@@ -56,7 +48,7 @@ func _spawnTileItems():
 				
 			tTab.add_child(newItem)
 	
-func _spawnObjectItems(def := "Entities"):
+func _spawnObjectItems(def := "Objects"):
 	var list : Array = get(def)
 	var tab := get_node("TabContainer/%s/ScrollContainer/VBoxContainer/HBoxContainer" % def)
 	

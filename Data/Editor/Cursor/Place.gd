@@ -41,7 +41,7 @@ func mainClick(_event):
 	var cell : Vector2 = get_parent().cellPos
 	var ttm : TileMap = get_parent().targetTilemap
 	var tgt = get_parent().target
-	var lvl : TileMap = get_parent().level
+	var lvl : TileMap = Main.level
 	
 	var availableTiles := _getCellsInRadius(cell)
 	
@@ -61,6 +61,9 @@ func mainClick(_event):
 			
 			ttm.set_cellv(t, tgt.tileID, basePlaceOptions.flip_x, basePlaceOptions.flip_y, basePlaceOptions.transpose)
 			get_parent().emit_signal("tile_placed", cell)
+			
+			if ttm == Main.level:
+				Main.level.redrawShadows()
 		else:
 			if ttm != Main.level: return
 			
@@ -89,6 +92,9 @@ func mainClick(_event):
 				
 				lvl.add_child(instance)
 				instance.owner = lvl
+				
+				if instance.has_method("resetState"):
+					var _unused = lvl.connect("state_reset", instance, "resetState")
 				
 				get_parent().emit_signal("object_placed", pos)
 				
@@ -136,6 +142,9 @@ func subClick(event):
 			ttm.set_cellv(t, -1)
 			
 			get_parent().emit_signal("tile_removed", cell)
+			
+			if ttm == Main.level:
+				Main.level.redrawShadows()
 		else:
 			if ttm != Main.level: return
 			
@@ -148,7 +157,7 @@ func subClick(event):
 					
 				n.queue_free()
 				get_parent().emit_signal("object_removed", cell)
-
+	
 func _actionGen(tileArr : Array, ttm : TileMap, exclude := [-1]) -> Dictionary:
 	var act := {}
 	var cnt := 0

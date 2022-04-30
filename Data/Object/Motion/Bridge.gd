@@ -33,13 +33,15 @@ func _setupBridge():
 		
 		segments.append(newSeg)
 	
-func _physics_process(delta):
+func _process(delta):
 	update()
+	
+	if Main.editing: return
 	
 	var maxDepression
 	var player : Player = Main.level.get_node("Player")
 	
-	if player && player.is_on_floor():
+	if player && player.global_position.x > global_position.x && abs(player.global_position.y - global_position.y) < 32:
 		curSeg = floor((player.global_position.x - global_position.x) / 16) + 1
 	else:
 		curSeg = 0
@@ -63,8 +65,16 @@ func _physics_process(delta):
 			segDist = 1 - (diff / ((segAmt - curSeg) + 1))
 		
 		targetY = floor(maxDepression * sin(deg2rad(90 * segDist))) * weigth
-		segments[i].position.y = lerp(segments[i].position.y, targetY, 16 * delta)
-	
+		
+		var ty : float = targetY
+		var lspd := 16.0
+		
+		if curSeg <= 1 || curSeg >= segAmt:
+			ty = 0.0
+			lspd = 32.0
+		
+		segments[i].position.y = lerp(segments[i].position.y, ty, lspd * delta)
+		
 func _draw():
 	draw_texture(LIMIT, Vector2(-16, -16))
 	draw_set_transform(Vector2(16 + 16 * segAmt, -16), 0.0, Vector2(-1, 1))

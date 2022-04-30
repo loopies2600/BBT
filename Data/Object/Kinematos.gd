@@ -51,6 +51,8 @@ func recalcJumpValues(h := jumpHeight):
 	fallGravity = (2.0 * h / (fallDuration * fallDuration))
 	
 func _physics_process(delta):
+	if Main.editing: return
+	
 	scale.y = abs(scale.y) * -upDirection.y
 	
 	velocity = move_and_slide(velocity, upDirection, !slideDownSlopes)
@@ -90,7 +92,6 @@ func _dustLoop():
 	
 		Main.add_child(dust)
 		
-		dust.z_index -= abs(z_index)
 		dust.global_position = global_position + dustOffset
 	
 	yield(get_tree().create_timer(dustSpawnRate), "timeout")

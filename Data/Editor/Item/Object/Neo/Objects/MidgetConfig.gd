@@ -1,6 +1,8 @@
 extends "res://Data/Editor/Item/Object/Neo/ObjectConfig.gd"
 
-func _ready():
+func _tabSetup():
+	._tabSetup()
+	
 	_addTab("Behavior")
 	
 	_addRow("Seek radius")
