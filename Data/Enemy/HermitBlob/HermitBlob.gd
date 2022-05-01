@@ -17,6 +17,7 @@ onready var fallGravity : float = (2.0 * jumpHeight / (fallDuration * fallDurati
 onready var anim := $Animator
 onready var spawnPos := global_position
 onready var ray := $DetectionArea
+onready var spike := $EditorRotate/Spike
 
 var drawGizmos := false
 var velocity := Vector2()
@@ -26,7 +27,8 @@ var _time := 0.0
 var _sOffset := Vector2(0, -6)
 
 func _ready():
-	$EditorRotate/Spike.baseTrans = self
+	spike.baseTrans = self
+	spike._editorRotate.get_node("Shadow").queue_free()
 	
 	_editorRotate.rotation = ___tempRot
 	

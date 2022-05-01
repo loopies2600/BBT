@@ -100,7 +100,9 @@ func _fuckingDestroyEverything():
 	for t in tiles:
 		Main.level.funnyTileAnim(Main.level, t)
 		Main.level.set_cellv(t, -1)
-		
+	
+	Main.level.redrawShadows()
+	
 func _explodeNeighbors():
 	var spaceState := get_world_2d().direct_space_state
 	var query := Physics2DShapeQueryParameters.new()

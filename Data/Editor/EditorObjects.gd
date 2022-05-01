@@ -4,6 +4,11 @@ const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 
 const DEFPATH := "res://Data/Editor/Definitions/%s.tres"
 
+const OLIST := ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor", "TimerToggleButton", "DoorButton", "Bridge"]
+const ELIST := ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro", "Midget", "Sunny"]
+const MLIST := ["LockCam", "LevelBitmap"]
+const PLIST := ["Rocket"]
+
 var Entities := []
 var Objects := []
 var Markers := []
@@ -12,16 +17,16 @@ var PowerUps := []
 onready var tilesTab := $TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 
 func _ready():
-	for i in ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor", "TimerToggleButton", "DoorButton", "Bridge"]:
+	for i in OLIST:
 		Objects.append(load(DEFPATH % ("Object/%s" % i)))
 		
-	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro", "Midget", "Sunny"]:
+	for i in ELIST:
 		Entities.append(load(DEFPATH % ("Entity/%s" % i)))
 		
-	for i in ["LockCam"]:
+	for i in MLIST:
 		Markers.append(load(DEFPATH % ("Marker/%s" % i)))
 		
-	for i in ["Rocket"]:
+	for i in PLIST:
 		PowerUps.append(load(DEFPATH % ("PowerUp/%s" % i)))
 		
 	yield(owner, "ready")

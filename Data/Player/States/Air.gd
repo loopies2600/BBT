@@ -57,8 +57,14 @@ func physics_update(_delta):
 				
 	if owner.canInput:
 		if owner.iDir:
-			owner.dir = owner.iDir
-			owner.velocity.x = clamp(owner.velocity.x + owner.accel * owner.iDir, -owner.maxSpd, owner.maxSpd)
+			var valid := true
+			
+			if get_parent().previous_state == "slide":
+				valid = owner.dir != owner.iDir
+			
+			if valid:
+				owner.dir = owner.iDir
+				owner.velocity.x = clamp(owner.velocity.x + owner.accel * owner.iDir, -owner.maxSpd, owner.maxSpd)
 		else:
 			owner.velocity.x *= owner.airDamping
 			

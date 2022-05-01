@@ -4,8 +4,8 @@ signal transition_ended()
 
 const BRICK := preload("res://Data/UI/Transition/Brick.tscn")
 
-export (float) var delay := 0.025
-export (float) var endDelay := 0.5
+export (float) var delay := 0.01
+export (float) var endDelay := 0.2
 
 func _ready():
 	yield(_spawnBricks(), "completed")

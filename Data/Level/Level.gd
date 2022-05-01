@@ -4,10 +4,11 @@ signal block_toggled(rob)
 signal block_timer_started()
 signal block_timer_ended()
 signal state_reset()
-signal shadows_redrawn()
+signal redrawn()
 
 const TILESPR := preload("res://Data/Particles/GenericSprite.tscn")
 const INDESTRUCTIBLE := [23, 24, 61, 62, 63, 64, 77, 78, 79, 80]
+const NOSHADOW := [2, 3, 4, 43, 44, 45, 46, 47, 48, 54, 69, 70]
 const SAVE_PATH = "user://"
 
 export (Texture) var bgTex = load("res://Sprites/UI/Border0.png")
@@ -28,6 +29,8 @@ var _mapCopy := []
 
 var tokenAmount := 0
 var tokensCollected := 0
+
+onready var bitMap := ImageTexture.new()
 
 func _onBlockToggle(booly : bool):
 	if blockToggle == booly: return
@@ -130,8 +133,9 @@ func clearContents():
 			c.queue_free()
 		
 	for o in [self, $Foreground, $Background]:
-		for c in o.get_used_cells():
-			o.set_cellv(c, -1)
+		o.clear()
+		
+	redrawShadows()
 	
 func _ready():
 	$Foreground.set_as_toplevel(true)
@@ -144,7 +148,7 @@ func _ready():
 			pass
 		else:
 			c.add_to_group("Instances")
-			
+		
 	_flipOneWayCollisionShapes()
 	
 	yield(get_tree(), "idle_frame")
@@ -160,21 +164,42 @@ func _ready():
 	redrawShadows()
 	
 func redrawShadows():
+	_bitmapGen(get_used_rect(), get_used_cells())
 	update()
-	emit_signal("shadows_redrawn")
+	
+	emit_signal("redrawn")
 	
 func _draw():
 	for c in get_used_cells():
 		var id := get_cellv(c)
+		
+		if id in NOSHADOW: continue
+		
 		var scl := Vector2(-1 if is_cell_x_flipped(c.x, c.y) else 1, -1 if is_cell_y_flipped(c.x, c.y) else 1)
 		var pos : Vector2 = (c * 16) + Vector2(8, 8)
 		
 		pos += Vector2(16 if sign(scl.x) == -1 else 0, 16 if sign(scl.y) == -1 else 0)
 		
-		draw_set_transform(pos, 0.0, scl)
+		draw_set_transform(Vector2(), 0.0, scl)
 		
-		draw_texture_rect_region(tile_set.tile_get_texture(id), Rect2(Vector2(), Vector2(16, 16)), tile_set.tile_get_region(id), Color(0, 0, 0, 0.5))
+		draw_texture_rect_region(tile_set.tile_get_texture(id), Rect2(Vector2(pos), Vector2(16, 16)), tile_set.tile_get_region(id), Color(0, 0, 0, 0.5))
+	
+func _bitmapGen(rect := Rect2(), usedCells := PoolVector2Array()):
+	var img := Image.new()
+	
+	img.create(rect.size.x, rect.size.y, false, Image.FORMAT_RGB8)
+	
+	img.lock()
+	
+	for c in usedCells:
+		if get_cellv(c) in NOSHADOW: continue
 		
+		img.set_pixelv(c - rect.position, Color.white)
+		
+	img.unlock()
+	
+	bitMap.create_from_image(img)
+	
 func getTilesInRadius(pos := Vector2(), radius := 0, exclude := [-1, 61, 62, 63, 64]) -> PoolVector2Array:
 	var tiles : PoolVector2Array = []
 	

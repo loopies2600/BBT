@@ -45,12 +45,16 @@ func _plcTile():
 	
 	tilePlacingHistory.append(action)
 	
+	Main.level.redrawShadows()
+	
 func _delTile():
 	if tilePlacingHistory.empty(): return
 	
 	var action = _toyWithDict(tilePlacingHistory, false)
 	
 	tileRemovalHistory.append(action)
+	
+	Main.level.redrawShadows()
 	
 func _toyWithDict(arr : Array, placeTile := true):
 	var action = arr.pop_back()

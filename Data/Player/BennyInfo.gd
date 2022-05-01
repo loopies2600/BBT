@@ -33,8 +33,9 @@ func _draw():
 	if Main.editing: return
 	if !render: return
 	
-	draw_set_transform(owner.get_canvas_transform().origin, 0.0, owner.get_canvas_transform().get_scale())
-	draw_polyline(motionPoints, Color.red, 2)
+	if motionPoints.size() > 2:
+		draw_set_transform(owner.get_canvas_transform().origin, 0.0, owner.get_canvas_transform().get_scale())
+		draw_polyline(motionPoints, Color.red, 2)
 	
 	draw_set_transform(Vector2(), 0.0, Vector2.ONE)
 	draw_rect(Rect2(0, 0, 192, 106), Color(0, 0, 0, 0.5))

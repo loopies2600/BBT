@@ -1,15 +1,10 @@
 extends State
 
 func enter(msg := {}):
-	owner.canDash = false
 	owner.canWallJump = true
 	
-	if owner.is_on_floor():
-		owner.anim.play("Jump")
-	else:
-		owner.sounds[1].play()
-		
-		owner.anim.play("Dash")
+	owner.sounds[1].play()
+	owner.anim.play("Dash")
 	
 	owner._doDust = true
 	

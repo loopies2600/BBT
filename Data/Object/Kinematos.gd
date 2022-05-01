@@ -34,6 +34,7 @@ func resetState():
 	upDirection = Vector2.UP
 	global_position = spawnPos
 	doGravity = !Main.editing
+	_doDust = false
 	
 	velocity = Vector2.ZERO
 	visible = true
@@ -68,6 +69,8 @@ func _applyVelBoost():
 	
 	for s in get_slide_count():
 		var collision = get_slide_collision(s)
+		
+		if collision.normal != upDirection: continue
 		
 		if collision.collider.get("velBoost"):
 			velBoost = collision.collider.velBoost

@@ -1,4 +1,4 @@
-extends AnimatedSprite
+extends Sprite
 
 const ANIMSPEED := 0.4
 
@@ -18,4 +18,3 @@ func _process(delta):
 		queue_free()
 	
 	global_position = Math.quadBezier(startPos, midPos, endPos, _time)
-	

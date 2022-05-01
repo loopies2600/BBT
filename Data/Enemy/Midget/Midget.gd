@@ -43,9 +43,16 @@ func resetState():
 	seekTimer.start(seekDelay)
 	
 func _physics_process(_delta):
+	if is_on_floor():
+		velocity.x *= 0.4
+		
 	target = _findPlayer()
 	
 	if target: atVel = Vector2(tileSpeed, 0).rotated(((target.global_position + Vector2(0, 8)) - global_position).angle())
+	
+	if Main.editing:
+		velocity = Vector2()
+		return
 	
 func _seek():
 	anim.play("Hold")

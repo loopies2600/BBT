@@ -52,6 +52,8 @@ func _fuckingDestroyEverything():
 		Main.level.funnyTileAnim(Main.level, t)
 		Main.level.set_cellv(t, -1)
 		
+	Main.level.redrawShadows()
+	
 func exit():
 	owner.dustOffset = Vector2()
 	owner.camOffset = Vector2()
