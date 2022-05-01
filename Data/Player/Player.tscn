@@ -1522,7 +1522,7 @@ show_behind_parent = true
 script = ExtResource( 21 )
 
 [node name="BennyInfo" type="CanvasLayer" parent="."]
-layer = 128
+layer = 0
 
 [node name="BIRenderer" type="Node2D" parent="BennyInfo"]
 script = ExtResource( 16 )

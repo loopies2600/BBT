@@ -30,8 +30,13 @@ func _input(event):
 			render = !render
 	
 func _draw():
+	if Main.editing: return
 	if !render: return
 	
+	draw_set_transform(owner.get_canvas_transform().origin, 0.0, owner.get_canvas_transform().get_scale())
+	draw_polyline(motionPoints, Color.red, 2)
+	
+	draw_set_transform(Vector2(), 0.0, Vector2.ONE)
 	draw_rect(Rect2(0, 0, 192, 106), Color(0, 0, 0, 0.5))
 	
 	for i in range(ACTIONNAMES.size()):
@@ -46,7 +51,3 @@ func _draw():
 	draw_string(FONT, Vector2(4, 52), "INPUTS:")
 	draw_string(FONT, Vector2(4, 82), "CAN DASH:%s" % str(owner.canDash).to_upper())
 	draw_string(FONT, Vector2(4, 94), "CAN WALLJUMP:%s" % str(owner.canWallJump).to_upper())
-	
-	draw_set_transform(owner.get_canvas_transform().origin, 0.0, Vector2.ONE)
-	
-	draw_polyline(motionPoints, Color.red, 2)

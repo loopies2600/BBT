@@ -15,7 +15,7 @@ func _ready():
 	for i in ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor", "TimerToggleButton", "DoorButton", "Bridge"]:
 		Objects.append(load(DEFPATH % ("Object/%s" % i)))
 		
-	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro", "Midget"]:
+	for i in ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro", "Midget", "Sunny"]:
 		Entities.append(load(DEFPATH % ("Entity/%s" % i)))
 		
 	for i in ["LockCam"]:
