@@ -19,7 +19,7 @@ func _ready():
 func _physics_process(delta):
 	position = (Vector2(1, 0).rotated(angle).normalized() * distance) * orbitDimension
 	
-	var toCenter : Vector2 = (get_parent().global_position - global_position + Vector2(0, 8)).rotated(-get_parent().rotation)
+	var toCenter : Vector2 = (get_parent().global_position - global_position + Vector2(0, 8)).rotated(-get_parent().rotation) / get_parent().scale
 	
 	bolt.points[1] = toCenter
 	ray.cast_to = toCenter

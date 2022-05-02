@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Data/Tilesets/AreaZero.tres" type="TileSet" id=1]
 [ext_resource path="res://Data/Level/Level.gd" type="Script" id=2]
 [ext_resource path="res://Streams/Music/Level.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Data/Level/Music.gd" type="Script" id=4]
 [ext_resource path="res://Data/Backgrounds/ImageBG.tscn" type="PackedScene" id=5]
 
 [node name="LevelLayout" type="TileMap"]
@@ -34,8 +35,10 @@ collision_mask = 0
 format = 1
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 3 )
 bus = "Music"
+script = ExtResource( 4 )
 
 [node name="ImageBG" parent="." instance=ExtResource( 5 )]
 

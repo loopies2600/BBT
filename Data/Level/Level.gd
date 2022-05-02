@@ -13,7 +13,12 @@ const SAVE_PATH = "user://"
 
 export (Texture) var bgTex = load("res://Sprites/UI/Border0.png")
 export (float) var blockTimerTime = 5.0
+export (bool) var darkMode = false
+export (bool) var invertBitmap = false
+export (int) var audioID = 1121176
 
+onready var tmBg := $Background
+onready var tmFg := $Foreground
 onready var mus := $Music
 onready var bg := $ImageBG
 onready var blockTimer := $BlockTimer
@@ -23,7 +28,6 @@ var camBoundariesY := Vector2(0, 240)
 
 var blockToggle := false setget _onBlockToggle
 var timedBlockToggle := false setget _onTimedBlockToggle
-var darkMode := false
 
 var _mapCopy := []
 
@@ -132,14 +136,14 @@ func clearContents():
 		if c.is_in_group("Instances"):
 			c.queue_free()
 		
-	for o in [self, $Foreground, $Background]:
+	for o in [self, tmFg, tmBg]:
 		o.clear()
 		
 	redrawShadows()
 	
 func _ready():
-	$Foreground.set_as_toplevel(true)
-	$Background.set_as_toplevel(true)
+	tmFg.set_as_toplevel(true)
+	tmBg.set_as_toplevel(true)
 	
 	Main.level = self
 	
@@ -164,7 +168,7 @@ func _ready():
 	redrawShadows()
 	
 func redrawShadows():
-	_bitmapGen(get_used_rect(), get_used_cells())
+	_bitmapGen()
 	update()
 	
 	emit_signal("redrawn")
@@ -180,25 +184,33 @@ func _draw():
 		
 		pos += Vector2(16 if sign(scl.x) == -1 else 0, 16 if sign(scl.y) == -1 else 0)
 		
-		draw_set_transform(Vector2(), 0.0, scl)
+		draw_set_transform(pos, 0.0, scl)
 		
-		draw_texture_rect_region(tile_set.tile_get_texture(id), Rect2(Vector2(pos), Vector2(16, 16)), tile_set.tile_get_region(id), Color(0, 0, 0, 0.5))
+		draw_texture_rect_region(tile_set.tile_get_texture(id), Rect2(Vector2(), Vector2(16, 16)), tile_set.tile_get_region(id), Color(0, 0, 0, 0.5))
 	
-func _bitmapGen(rect := Rect2(), usedCells := PoolVector2Array()):
+func _bitmapGen():
+	if get_used_rect().size == Vector2.ZERO: return
+	
 	var img := Image.new()
 	
-	img.create(rect.size.x, rect.size.y, false, Image.FORMAT_RGB8)
+	img.create(get_used_rect().size.x, get_used_rect().size.y, false, Image.FORMAT_RGB8)
+	img.fill(Color.black if invertBitmap else Color.white)
 	
 	img.lock()
 	
-	for c in usedCells:
+	for c in tmBg.get_used_cells():
+		if tmBg.get_cellv(c) in NOSHADOW: continue
+		
+		img.set_pixelv(c - get_used_rect().position, Color(0.5, 0.5, 0.5, 1.0))
+		
+	for c in get_used_cells():
 		if get_cellv(c) in NOSHADOW: continue
 		
-		img.set_pixelv(c - rect.position, Color.white)
+		img.set_pixelv(c - get_used_rect().position, Color.white if invertBitmap else Color.black)
 		
 	img.unlock()
 	
-	bitMap.create_from_image(img)
+	bitMap.create_from_image(img, 2)
 	
 func getTilesInRadius(pos := Vector2(), radius := 0, exclude := [-1, 61, 62, 63, 64]) -> PoolVector2Array:
 	var tiles : PoolVector2Array = []
@@ -304,7 +316,7 @@ func refreshTimedBlock():
 	redrawShadows()
 	
 func _replaceID(from : int, to : int):
-	for l in [self, $Foreground, $Background]:
+	for l in [self, tmFg, tmBg]:
 		for t in l.get_used_cells():
 			if l.get_cellv(t) == from:
 				l.set_cellv(t, to)

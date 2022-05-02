@@ -24,5 +24,4 @@ region_enabled = true
 region_rect = Rect2( 56, 0, 24, 24 )
 
 [node name="GizmoRenderer" type="Node2D" parent="."]
-position = Vector2( 104, 52 )
 script = ExtResource( 3 )
