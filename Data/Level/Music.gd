@@ -13,7 +13,7 @@ func retrieveSong():
 	print("Downloading audio from: %s" % url)
 	
 	req.download_file = "user://lvlAudio.mp3"
-	req.request(url, [], false)
+	req.request(url, ["Access-Control-Allow-Origin: *"], false)
 	
 	get_tree().paused = true
 	
