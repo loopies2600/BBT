@@ -20,6 +20,7 @@ func enter(msg := {}):
 		var newHat = HARD_HAT.instance()
 		p.get_parent().add_child(newHat)
 		
+		newHat.texture = p.spr.texture
 		newHat.global_position = p.global_position
 		newHat.velocity = velocity * 1.25
 		newHat.upDirection = p.upDirection

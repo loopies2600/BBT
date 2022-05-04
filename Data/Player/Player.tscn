@@ -973,7 +973,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 0, 0, 32, 32 ) ]
+"values": [ Rect2( 16, 16, 64, 64 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:position")
@@ -1021,7 +1021,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -32 ) ]
+"values": [ Vector2( 0, -16 ) ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -1688,7 +1688,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=36]
-extents = Vector2( 7, 7 )
+extents = Vector2( 7.5, 12 )
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 8
@@ -1701,9 +1701,9 @@ weight = 1.0
 
 [node name="Sprite" type="Sprite" parent="Graphics"]
 texture = ExtResource( 5 )
-offset = Vector2( 0, -32 )
+offset = Vector2( 0, -16 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 32, 32 )
+region_rect = Rect2( 16, 16, 64, 64 )
 
 [node name="Shadow" type="Sprite" parent="Graphics/Sprite"]
 modulate = Color( 0, 0, 0, 0.5 )
@@ -1757,7 +1757,7 @@ anims/RESET = SubResource( 27 )
 anims/WallCol = SubResource( 29 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 9 )
+position = Vector2( 0, 4 )
 shape = SubResource( 36 )
 __meta__ = {
 "_editor_description_": ""

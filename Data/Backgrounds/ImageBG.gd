@@ -60,7 +60,7 @@ func _setTexture(path := ""):
 	
 	if error != OK: return
 	
-	img.compress(Image.COMPRESS_S3TC, Image.COMPRESS_SOURCE_GENERIC, 0.5)
+	img.compress(Image.COMPRESS_S3TC, Image.COMPRESS_SOURCE_GENERIC, 1.0)
 	
 	var tex = ImageTexture.new()
 	tex.create_from_image(img)

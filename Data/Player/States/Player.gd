@@ -17,6 +17,8 @@ export (float) var rocketAccel = 32.0
 
 export (float) var wallTime = 0.5
 
+export (Texture) var texture = preload("res://Sprites/Player/BB.png")
+
 onready var anim := $Graphics/Anim
 onready var ganim := $Graphics/GAnim
 onready var gfx := $Graphics
@@ -29,6 +31,7 @@ onready var bgTint := $BGTint
 onready var resetTimer := $Dead/ResetTimer
 onready var debugInfo := $BennyInfo/BIRenderer
 onready var states := [$Idle, $Crouch, $Move, $Air, $Dash, $Dead, $Slide, $Editor, $Win, $Rocket, $Walled, $Gaze]
+onready var spr := $Graphics/Sprite
 
 var state : State
 var prevState := ""
@@ -57,6 +60,8 @@ func resetState():
 		setState(7)
 	
 func _ready():
+	spr.texture = texture
+	
 	state = states[7]
 	state.enter()
 	
@@ -75,10 +80,13 @@ func _setTexture(path := ""):
 	
 	if error != OK: return
 	
+	img.compress(Image.COMPRESS_S3TC, Image.COMPRESS_SOURCE_GENERIC, 1.0)
+	
 	var tex = ImageTexture.new()
 	tex.create_from_image(img, 0)
 	
-	$Graphics/Sprite.texture = tex
+	texture = tex
+	spr.texture = tex
 	
 func letsStart():
 	# borrar trayectoria

@@ -192,6 +192,8 @@ func _bitmapGen():
 	
 	var img := Image.new()
 	
+# warning-ignore:narrowing_conversion
+# warning-ignore:narrowing_conversion
 	img.create(get_used_rect().size.x, get_used_rect().size.y, false, Image.FORMAT_RGB8)
 	img.fill(Color.black if invertBitmap else Color.white)
 	

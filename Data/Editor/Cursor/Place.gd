@@ -62,7 +62,7 @@ func mainClick(_event):
 			ttm.set_cellv(t, tgt.tileID, basePlaceOptions.flip_x, basePlaceOptions.flip_y, basePlaceOptions.transpose)
 			get_parent().emit_signal("tile_placed", cell)
 			
-			if ttm == Main.level:
+			if ttm in [Main.level, Main.level.tmBg]:
 				Main.level.redrawShadows()
 		else:
 			if ttm != Main.level: return
@@ -143,7 +143,7 @@ func subClick(event):
 			
 			get_parent().emit_signal("tile_removed", cell)
 			
-			if ttm == Main.level:
+			if ttm in [Main.level, Main.level.tmBg]:
 				Main.level.redrawShadows()
 		else:
 			if ttm != Main.level: return
