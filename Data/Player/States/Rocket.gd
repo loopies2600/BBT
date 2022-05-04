@@ -4,49 +4,50 @@ const EXPLOSION := preload("res://Data/Particles/Explosion/Explosion.tscn")
 
 var rcVel := Vector2()
 var rcRot := 0.0
-
-onready var spd : float = owner.velocity.x
+var spd := 0.0
 
 func enter(_msg := {}):
-	owner.anim.play("Rocket")
-	owner.velocity = Vector2.ZERO
-	owner.doGravity = false
+	spd = p.velocity.x
 	
-	owner._doDust = true
+	p.anim.play("Rocket")
+	p.velocity = Vector2.ZERO
+	p.doGravity = false
+	
+	p._doDust = true
 	rcRot = 0.0
 	
-	spd = owner.velocity.x
-	spd += owner.rocketSpeed
-	owner.dir = 1
+	spd = p.velocity.x
+	spd += p.rocketSpeed
+	p.dir = 1
 	
 func physics_update(delta):
-	spd += owner.rocketAccel * delta
+	spd += p.rocketAccel * delta
 	
 	var dir : int = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	
-	rcRot += (owner.rocketSteering * dir) * delta
+	rcRot += (p.rocketSteering * dir) * delta
 	
-	owner.rotation = lerp_angle(owner.rotation, rcRot, 12 * delta)
+	p.rotation = lerp_angle(p.rotation, rcRot, 12 * delta)
 	
-	owner.velocity = Vector2(spd, 0).rotated(owner.rotation)
-	owner.dustOffset = Vector2(-24, 12).rotated(owner.rotation)
+	p.velocity = Vector2(spd, 0).rotated(p.rotation)
+	p.dustOffset = Vector2(-24, 12).rotated(p.rotation)
 	
-	owner.camOffset = lerp(owner.camOffset, Vector2(112, 0).rotated(owner.rotation), 4 * delta)
+	p.camOffset = lerp(p.camOffset, Vector2(112, 0).rotated(p.rotation), 4 * delta)
 	
-	if owner.get_slide_count():
+	if p.get_slide_count():
 		_fuckingDestroyEverything()
 		
-		owner.rotation = 0.0
+		p.rotation = 0.0
 		
 		var explosion := EXPLOSION.instance()
-		explosion.global_position = owner.global_position
+		explosion.global_position = p.global_position
 		Main.level.add_child(explosion)
 		
-		owner.velocity = Vector2()
-		owner.kill()
+		p.velocity = Vector2()
+		p.kill()
 	
 func _fuckingDestroyEverything():
-	var tiles : Array = Main.level.getTilesInRadius((owner.global_position / 16).round(), 4, Main.level.INDESTRUCTIBLE)
+	var tiles : Array = Main.level.getTilesInRadius((p.global_position / 16).round(), 4, Main.level.INDESTRUCTIBLE)
 	
 	for t in tiles:
 		Main.level.funnyTileAnim(Main.level, t)
@@ -55,12 +56,12 @@ func _fuckingDestroyEverything():
 	Main.level.redrawShadows()
 	
 func exit():
-	owner.dustOffset = Vector2()
-	owner.camOffset = Vector2()
+	p.dustOffset = Vector2()
+	p.camOffset = Vector2()
 	
 	rcVel = Vector2()
 	spd = 0.0
 	
-	owner.doGravity = true
-	owner.rotation = 0.0
-	owner._doDust = false
+	p.doGravity = true
+	p.rotation = 0.0
+	p._doDust = false

@@ -6,35 +6,35 @@ func _ready():
 	var _unused = timer.connect("timeout", self, "_camTimerEnd")
 	
 func enter(_msg := {}):
-	owner.slideDownSlopes = true
-	owner._doDust = false
+	p.slideDownSlopes = true
+	p._doDust = false
 	
-	owner.anim.play("LookUp")
+	p.anim.play("LookUp")
 	
 	timer.start(0.8)
 	
 func _camTimerEnd():
-	owner.camOffset.y = 64 * owner.upDirection.y
+	p.camOffset.y = 64 * p.upDirection.y
 	
 func physics_update(_delta):
-	owner.velocity *= owner.damping
+	p.velocity *= p.damping
 	
-	if owner.canInput:
-		if owner.iDir && owner.iDir != owner.dir:
-			owner.dir = owner.iDir
-			owner.anim.stop()
-			owner.anim.play("LookUpTurn")
+	if p.canInput:
+		if p.iDir && p.iDir != p.dir:
+			p.dir = p.iDir
+			p.anim.stop()
+			p.anim.play("LookUpTurn")
 			
-		if !owner.is_on_floor():
-			emit_signal("finished", "air")
+		if !p.is_on_floor():
+			p.setState(3)
 			
-		if !owner.closeToCeiling():
+		if !p.closeToCeiling():
 			if Input.is_action_just_pressed("jump"):
-				emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
+				p.setState(3, {"jumpHeight" : p.jumpHeight})
 				
 			if !Input.is_action_pressed("look_up"):
-				emit_signal("finished", "idle")
+				p.setState(0)
 	
 func exit():
-	owner.camOffset.y = 0
+	p.camOffset.y = 0
 	timer.stop()

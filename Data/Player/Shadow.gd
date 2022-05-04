@@ -12,5 +12,6 @@ func _process(_delta):
 	rotation = get_parent().rotation
 	scale.x = get_parent().get_parent().scale.x
 	scale.y = owner.scale.y
+	offset = get_parent().offset
 	
 	global_position = get_parent().global_position + Vector2(8, 8)

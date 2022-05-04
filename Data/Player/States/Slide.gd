@@ -3,29 +3,29 @@ extends State
 var time := 0.0
 
 func enter(_msg := {}):
-	owner.velocity = Vector2.ZERO
+	p.velocity = Vector2.ZERO
 	
-	owner.anim.play("Slide")
-	owner.sounds[2].play()
+	p.anim.play("Slide")
+	p.sounds[2].play()
 	
-	Main.plop(owner.global_position + (Vector2(0, -8) * owner.upDirection), [-90 * owner.dir, -60 * owner.dir, -30 * owner.dir, -45 * owner.dir])
+	Main.plop(p.global_position + (Vector2(0, -8) * p.upDirection), [-90 * p.dir, -60 * p.dir, -30 * p.dir, -45 * p.dir])
 	
 func physics_update(delta):
-	var spdCalc : float = 1.0 - (time / owner.slideDuration)
+	var spdCalc : float = 1.0 - (time / p.slideDuration)
 	
-	owner.velocity.x = ((owner.slideStrength / owner.slideDuration) * owner.dir) * spdCalc
+	p.velocity.x = ((p.slideStrength / p.slideDuration) * p.dir) * spdCalc
 	
 	time += delta
 	
-	if time >= owner.slideDuration:
-		emit_signal("finished", "crouch")
+	if time >= p.slideDuration:
+		p.setState(1)
 		
-	if owner.is_on_wall():
-		emit_signal("finished", "idle")
+	if p.is_on_wall():
+		p.setState(0)
 		
-	if !owner.closeToCeiling():
+	if !p.closeToCeiling():
 			if Input.is_action_just_pressed("jump"):
-				emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
+				p.setState(3, {"jumpHeight" : p.jumpHeight})
 	
 func exit():
 	time = 0.0

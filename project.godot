@@ -32,12 +32,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://Data/Util/StateMachine/State.gd"
-}, {
-"base": "Node",
-"class": "StateMachine",
-"language": "GDScript",
-"path": "res://Data/Util/StateMachine/StateMachine.gd"
+"path": "res://Data/Player/States/State.gd"
 }, {
 "base": "Node",
 "class": "TexTool",
@@ -50,7 +45,6 @@ _global_script_class_icons={
 "Math": "",
 "Player": "",
 "State": "",
-"StateMachine": "",
 "TexTool": ""
 }
 

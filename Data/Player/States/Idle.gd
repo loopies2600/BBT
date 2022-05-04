@@ -1,31 +1,31 @@
 extends State
 
 func enter(_msg := {}):
-	owner.canDash = true
-	owner.canWallJump = true
+	p.canDash = true
+	p.canWallJump = true
 	
-	Main.cam.target = owner
+	Main.cam.target = p
 	
-	owner.slideDownSlopes = false
-	owner._doDust = false
+	p.slideDownSlopes = false
+	p._doDust = false
 	
-	owner.anim.play("Idle")
+	p.anim.play("Idle")
 	
 func physics_update(_delta):
-	owner.velocity *= owner.damping
+	p.velocity *= p.damping
 	
-	if owner.canInput:
-		if owner.iDir:
-			emit_signal("finished", "move")
+	if p.canInput:
+		if p.iDir:
+			p.setState(2)
 			
-		if !owner.is_on_floor():
-			emit_signal("finished", "air")
+		if !p.is_on_floor():
+			p.setState(3)
 			
 		if Input.is_action_just_pressed("jump"):
-			emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
+			p.setState(3, {"jumpHeight" : p.jumpHeight})
 			
 		if Input.is_action_just_pressed("look_up"):
-			emit_signal("finished", "look_up")
+			p.setState(11)
 			
 		if Input.is_action_pressed("look_down"):
-			emit_signal("finished", "crouch")
+			p.setState(1)

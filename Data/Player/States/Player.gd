@@ -21,14 +21,17 @@ onready var anim := $Graphics/Anim
 onready var ganim := $Graphics/GAnim
 onready var gfx := $Graphics
 onready var collisionBox := $CollisionBox
-onready var fsm := $StateMachine
 onready var light := $Light
 onready var ceilDetector := $Graphics/CeilDetector
-onready var sounds := [$Jump, $Dash, $Slide]
+onready var sounds := [$JumpSnd, $DashSnd, $SlideSnd]
 onready var wallDetector := $Graphics/WallDetector
 onready var bgTint := $BGTint
-onready var resetTimer := $StateMachine/Dead/ResetTimer
+onready var resetTimer := $Dead/ResetTimer
 onready var debugInfo := $BennyInfo/BIRenderer
+onready var states := [$Idle, $Crouch, $Move, $Air, $Dash, $Dead, $Slide, $Editor, $Win, $Rocket, $Walled, $Gaze]
+
+var state : State
+var prevState := ""
 
 var god := false
 
@@ -38,15 +41,44 @@ var canInput := true
 var canDash := true
 var canWallJump := true
 
+func setState(id, msg := {}):
+	state.exit()
+	prevState = state.name
+	
+	state = states[id]
+	
+	state.enter(msg)
+	
 func resetState():
 	.resetState()
 	letsStart()
 	
 	if Main.editing:
-		fsm._change_state("editor")
+		setState(7)
 	
 func _ready():
-	letsStart()
+	state = states[7]
+	state.enter()
+	
+	var _unused = get_tree().connect("files_dropped", self, "_fileDrop")
+	
+func _fileDrop(files, _screen):
+	var valid : bool= files[0].ends_with("png") || files[0].ends_with("jpg")
+	
+	if !valid: return
+	
+	_setTexture(files[0])
+	
+func _setTexture(path := ""):
+	var img = Image.new()
+	var error = img.load(path)
+	
+	if error != OK: return
+	
+	var tex = ImageTexture.new()
+	tex.create_from_image(img, 0)
+	
+	$Graphics/Sprite.texture = tex
 	
 func letsStart():
 	# borrar trayectoria
@@ -58,18 +90,11 @@ func letsStart():
 	# reiniciamos estado la de colisión
 	collisionBox.set_deferred("disabled", false)
 	
-	# las nubecitas se ven raras, procuro desactivarlas
-	_doDust = false
+	# por favor!
 	canInput = true
 	
-	# no podemos dejar que se le aplique ninguna fuerza
-	velocity = Vector2.ZERO
-	
-	# por ahora desactivemos la gravedad y los controles
-	upDirection = Vector2.UP
-	
 	# estado: idle
-	fsm._change_state("idle")
+	setState(0)
 	
 func closeToCeiling() -> bool:
 	var cJumpableTiles : PoolIntArray = [5, 11, 58, 71]
@@ -113,7 +138,15 @@ func closeToWall() -> bool:
 		
 	return close
 	
-func _physics_process(_delta):
+func _process(delta):
+	state.update(delta)
+	
+func _input(event):
+	state.handle_input(event)
+	
+func _physics_process(delta):
+	state.physics_update(delta)
+	
 	iDir = Tools.getInputDirection(self)
 	
 	Main.entityLookTowards = global_position
@@ -132,4 +165,4 @@ func kill(msg := {}):
 	if Main.editing: return
 	if god: return
 	
-	fsm._change_state("dead", msg)
+	setState(5, msg)

@@ -14,31 +14,31 @@ func enter(_msg := {}):
 	yield(get_tree().create_timer(crouchDuration), "timeout")
 	phase += 1
 	
-	owner.recalcJumpValues(96)
+	p.recalcJumpValues(96)
 	
 func physics_update(_delta):
 	match phase:
 		0:
-			owner.anim.play("Walk")
-			owner.velocity.x = clamp(owner.velocity.x + owner.accel * owner.dir, -owner.maxSpd / 4, owner.maxSpd / 4) / owner.weight
+			p.anim.play("Walk")
+			p.velocity.x = clamp(p.velocity.x + p.accel * p.dir, -p.maxSpd / 4, p.maxSpd / 4) / p.weight
 		1:
-			owner.anim.play("Crouch")
-			owner.velocity *= 0.95
+			p.anim.play("Crouch")
+			p.velocity *= 0.95
 		2:
-			owner.ganim.play("Jump")
-			owner.anim.play("HappyDash")
-			owner.velocity += Vector2(owner.jumpVel, 0).rotated(owner.upDirection.angle()).rotated(owner.gfx.rotation)
+			p.ganim.play("Jump")
+			p.anim.play("HappyDash")
+			p.velocity += Vector2(p.jumpVel, 0).rotated(p.upDirection.angle()).rotated(p.gfx.rotation)
 			phase += 1
 		3:
-			owner.velocity.x = clamp(owner.velocity.x + owner.accel * -owner.dir, -owner.maxSpd / 2, owner.maxSpd / 2) / owner.weight
+			p.velocity.x = clamp(p.velocity.x + p.accel * -p.dir, -p.maxSpd / 2, p.maxSpd / 2) / p.weight
 			
-			if owner.is_on_floor():
+			if p.is_on_floor():
 				phase += 1
 		4:
-			owner.bgTint.targetCol = Color(0.0, 0.0, 0.0, 0.5)
-			owner.ganim.play("FromJump")
+			p.bgTint.targetCol = Color(0.0, 0.0, 0.0, 0.5)
+			p.ganim.play("FromJump")
 			phase += 1
 		5:
-			owner.anim.play("Dance")
-			owner.velocity *= owner.damping
+			p.anim.play("Dance")
+			p.velocity *= p.damping
 			

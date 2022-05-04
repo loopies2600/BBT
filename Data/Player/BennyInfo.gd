@@ -46,7 +46,7 @@ func _draw():
 		draw_texture_rect_region(INPUTTEX, Rect2(4 + (2 * i) + (16 * i), 64, 16, 16), Rect2(16 * i, 16 * int(on), 16, 16))
 	
 	draw_string(FONT, Vector2(4, 4), "BENNY INFO", Color.pink)
-	draw_string(FONT, Vector2(4, 16), "STATE:%s" % owner.fsm.current_state.name.to_upper())
+	draw_string(FONT, Vector2(4, 16), "STATE:%s" % owner.state.name.to_upper())
 	draw_string(FONT, Vector2(4, 28), "POS: %s / %s" % [int(owner.global_position.x), int(owner.global_position.y)])
 	draw_string(FONT, Vector2(4, 40), "SPD: %s / %s" % [int(owner.velocity.x), int(owner.velocity.y)])
 	draw_string(FONT, Vector2(4, 52), "INPUTS:")

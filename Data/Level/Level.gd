@@ -15,7 +15,6 @@ export (Texture) var bgTex = load("res://Sprites/UI/Border0.png")
 export (float) var blockTimerTime = 5.0
 export (bool) var darkMode = false
 export (bool) var invertBitmap = false
-export (int) var audioID = 1121176
 
 onready var tmBg := $Background
 onready var tmFg := $Foreground

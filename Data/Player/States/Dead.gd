@@ -8,9 +8,9 @@ func _ready():
 	var _unused = timer.connect("timeout", self, "_resetTimerEnd")
 	
 func enter(msg := {}):
-	Main.ot.dmr.marks.append(owner.global_position)
+	Main.ot.dmr.marks.append(p.global_position)
 	
-	var velocity := Vector2(owner.velocity.x, owner.jumpHeight * owner.upDirection.y * 6)
+	var velocity := Vector2(p.velocity.x, p.jumpHeight * p.upDirection.y * 6)
 	
 	if msg.has("velocity"):
 		velocity = msg.velocity
@@ -18,21 +18,21 @@ func enter(msg := {}):
 	# spawnea el casco y aplica velocidad
 	if !msg.has("noAnim"):
 		var newHat = HARD_HAT.instance()
-		owner.get_parent().add_child(newHat)
+		p.get_parent().add_child(newHat)
 		
-		newHat.global_position = owner.global_position
+		newHat.global_position = p.global_position
 		newHat.velocity = velocity * 1.25
-		newHat.upDirection = owner.upDirection
+		newHat.upDirection = p.upDirection
 	else:
 		velocity = Vector2.ZERO
 		
 	# señal muerte y animar
-	owner.emit_signal("died")
-	owner.anim.play("Death")
-	owner._doDust = true
+	p.emit_signal("died")
+	p.anim.play("Death")
+	p._doDust = true
 	
 	# desactivar colisiones y sacudir camara
-	Main.plop(owner.global_position)
+	Main.plop(p.global_position)
 	
 	var shakePower := Vector2(3, 3)
 	
@@ -42,15 +42,15 @@ func enter(msg := {}):
 	Main.cam.shake(shakePower.x, shakePower.y)
 	Main.cam.target = null
 	
-	owner.collisionBox.set_deferred("disabled", true)
-	owner.canInput = false
+	p.collisionBox.set_deferred("disabled", true)
+	p.canInput = false
 	
 	# mover
-	owner.velocity = velocity
+	p.velocity = velocity
 	
 	# esperar y reiniciar
-	timer.start(owner.resetDelay)
+	timer.start(p.resetDelay)
 	
 func _resetTimerEnd():
 	Main.currentScene.restart()
-	owner.letsStart()
+	p.letsStart()

@@ -1,12 +1,12 @@
 extends State
 
 func enter(msg := {}):
-	owner.canWallJump = true
+	p.canWallJump = true
 	
-	owner.sounds[1].play()
-	owner.anim.play("Dash")
+	p.sounds[1].play()
+	p.anim.play("Dash")
 	
-	owner._doDust = true
+	p._doDust = true
 	
 	var left := int(Input.is_action_pressed("left"))
 	var right := int(Input.is_action_pressed("right"))
@@ -15,12 +15,12 @@ func enter(msg := {}):
 	
 	var angle := Vector2(right - left, down - up).angle()
 	
-	if angle == 0.0: angle = 0.0 if owner.dir == 1 else PI
+	if angle == 0.0: angle = 0.0 if p.dir == 1 else PI
 	
 	if !msg.has("noBoost"):
-		owner.velocity = Vector2((owner.maxSpd * 2) / owner.weight, 0).rotated(angle)
+		p.velocity = Vector2((p.maxSpd * 2) / p.weight, 0).rotated(angle)
 	
 func physics_update(_delta):
-	if owner.get_slide_count():
-		owner.velocity.x = 0
-		emit_signal("finished", "air")
+	if p.get_slide_count():
+		p.velocity.x = 0
+		p.setState(3)

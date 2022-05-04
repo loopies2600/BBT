@@ -5,32 +5,32 @@ func enter(_msg := {}):
 	
 	randomize()
 	
-	owner.collisionBox.set_deferred("disabled", true)
+	p.collisionBox.set_deferred("disabled", true)
 	
 	Main.cam.target = null
 	
-	owner.velocity = Vector2.ZERO
-	owner.doGravity = false
-	owner.global_position = owner.spawnPos
+	p.velocity = Vector2.ZERO
+	p.doGravity = false
+	p.global_position = p.spawnPos
 	
 	# random dance
 	var danceChance := 10
 	
 	if randi() % danceChance == 0:
-		owner.anim.play("Dance")
+		p.anim.play("Dance")
 	else:
-		owner.anim.play("Wait")
+		p.anim.play("Wait")
 	
 func physics_update(_delta):
-	owner.velocity *= owner.damping
+	p.velocity *= p.damping
 	
-	owner.dir = 1
+	p.dir = 1
 	
 	if !Main.editing:
-		emit_signal("finished", "idle")
+		p.setState(0)
 	
 func exit():
-	owner.collisionBox.set_deferred("disabled", false)
+	p.collisionBox.set_deferred("disabled", false)
 	
-	owner.doGravity = true
-	owner.spawnPos = owner.global_position
+	p.doGravity = true
+	p.spawnPos = p.global_position

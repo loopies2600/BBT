@@ -46,6 +46,8 @@ func _resizeRect():
 	$ParallaxLayer.motion_mirroring = rect.rect_size
 	
 func _fileDrop(files, _screen):
+	if Main.level.get_node("Player"): return
+	
 	var valid : bool= files[0].ends_with("png") || files[0].ends_with("jpg")
 	
 	if !valid: return

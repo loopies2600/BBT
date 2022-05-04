@@ -1,8 +1,7 @@
 extends Node
 class_name State
 
-#warning-ignore:unused_signal
-signal finished(next_state_name, msg)
+onready var p := get_parent()
 
 func enter(_msg := {} ) -> void:
 	return

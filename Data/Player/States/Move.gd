@@ -1,28 +1,28 @@
 extends State
 
 func enter(_msg := {}):
-	if owner.iDir && owner.iDir != owner.dir:
-		owner.dir = owner.iDir
-		owner.anim.play("Turn")
-		yield(owner.anim, "animation_finished")
-		owner.anim.play("Walk")
+	if p.iDir && p.iDir != p.dir:
+		p.dir = p.iDir
+		p.anim.play("Turn")
+		yield(p.anim, "animation_finished")
+		p.anim.play("Walk")
 		
-	owner.anim.play("Walk")
+	p.anim.play("Walk")
 	
 func physics_update(_delta):
-	owner.velocity.x = clamp(owner.velocity.x + owner.accel * owner.iDir, -owner.maxSpd, owner.maxSpd) / owner.weight
+	p.velocity.x = clamp(p.velocity.x + p.accel * p.iDir, -p.maxSpd, p.maxSpd) / p.weight
 	
-	if owner.canInput:
-		if !owner.iDir:
-			emit_signal("finished", "idle")
+	if p.canInput:
+		if !p.iDir:
+			p.setState(0)
 		else:
-			owner.dir = owner.iDir
+			p.dir = p.iDir
 			
-		if !owner.is_on_floor():
-			emit_signal("finished", "air")
+		if !p.is_on_floor():
+			p.setState(3)
 		
 		if Input.is_action_just_pressed("jump"):
-			emit_signal("finished", "air", {"jumpHeight" : owner.jumpHeight})
+			p.setState(3, {"jumpHeight" : p.jumpHeight})
 			
 		if Input.is_action_just_pressed("look_down"):
-			emit_signal("finished", "crouch")
+			p.setState(1)
