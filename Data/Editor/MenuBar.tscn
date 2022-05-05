@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
 [ext_resource path="res://Data/Editor/MenuBar/Menu/File.gd" type="Script" id=3]
-[ext_resource path="res://Data/Editor/MenuBar/Menu/Level.gd" type="Script" id=4]
+[ext_resource path="res://Data/Editor/MenuBar/Menu/Edit.gd" type="Script" id=4]
 [ext_resource path="res://Data/Editor/MenuBar/Menu/Help.gd" type="Script" id=5]
+[ext_resource path="res://Data/Editor/MenuBar/Menu/Level.gd" type="Script" id=6]
 [ext_resource path="res://Data/Editor/MenuBar/Menu/MenuButton.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -49,15 +50,23 @@ script = ExtResource( 3 )
 
 [node name="Level" parent="Buttons" instance=ExtResource( 10 )]
 margin_left = 36.0
-margin_right = 68.0
+margin_right = 74.0
+focus_mode = 2
+text = "Level"
+flat = false
+script = ExtResource( 6 )
+
+[node name="Edit" parent="Buttons" instance=ExtResource( 10 )]
+margin_left = 78.0
+margin_right = 110.0
 focus_mode = 2
 text = "Edit"
 flat = false
 script = ExtResource( 4 )
 
 [node name="Help" parent="Buttons" instance=ExtResource( 10 )]
-margin_left = 72.0
-margin_right = 104.0
+margin_left = 114.0
+margin_right = 146.0
 focus_mode = 2
 text = "Help"
 flat = false

@@ -114,7 +114,7 @@ margin_bottom = -8.0
 script = ExtResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Controls"]
-margin_right = 536.0
+margin_right = 972.0
 margin_bottom = 12.0
 script = ExtResource( 4 )
 
@@ -127,7 +127,7 @@ script = ExtResource( 4 )
 [node name="Position" type="PanelContainer" parent="Panel/Controls"]
 show_behind_parent = true
 margin_top = 16.0
-margin_right = 536.0
+margin_right = 972.0
 margin_bottom = 60.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
@@ -135,7 +135,7 @@ script = ExtResource( 4 )
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Position"]
 margin_left = 8.0
 margin_top = 4.0
-margin_right = 528.0
+margin_right = 964.0
 margin_bottom = 40.0
 script = ExtResource( 4 )
 __meta__ = {
@@ -143,12 +143,12 @@ __meta__ = {
 }
 
 [node name="HboxContainer2" type="HBoxContainer" parent="Panel/Controls/Position/VBoxContainer"]
-margin_right = 520.0
+margin_right = 956.0
 script = ExtResource( 4 )
 
 [node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Position/VBoxContainer"]
 margin_top = 4.0
-margin_right = 520.0
+margin_right = 956.0
 margin_bottom = 36.0
 script = ExtResource( 4 )
 
@@ -191,7 +191,7 @@ script = ExtResource( 4 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/Controls"]
 margin_top = 64.0
-margin_right = 536.0
+margin_right = 972.0
 margin_bottom = 76.0
 script = ExtResource( 4 )
 
@@ -204,7 +204,7 @@ script = ExtResource( 4 )
 [node name="Flip" type="PanelContainer" parent="Panel/Controls"]
 show_behind_parent = true
 margin_top = 80.0
-margin_right = 536.0
+margin_right = 972.0
 margin_bottom = 144.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
@@ -212,7 +212,7 @@ script = ExtResource( 4 )
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Controls/Flip"]
 margin_left = 8.0
 margin_top = 4.0
-margin_right = 528.0
+margin_right = 964.0
 margin_bottom = 60.0
 script = ExtResource( 4 )
 __meta__ = {
@@ -220,7 +220,7 @@ __meta__ = {
 }
 
 [node name="HboxContainer" type="HBoxContainer" parent="Panel/Controls/Flip/VBoxContainer"]
-margin_right = 520.0
+margin_right = 956.0
 margin_bottom = 26.0
 script = ExtResource( 4 )
 
@@ -245,7 +245,7 @@ __meta__ = {
 
 [node name="Transpose" type="CheckBox" parent="Panel/Controls/Flip/VBoxContainer"]
 margin_top = 30.0
-margin_right = 520.0
+margin_right = 956.0
 margin_bottom = 56.0
 text = "T"
 script = ExtResource( 4 )

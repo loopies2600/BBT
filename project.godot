@@ -70,11 +70,11 @@ settings/fps/force_fps=60
 
 [display]
 
-window/size/width=416
+window/size/width=426
 window/size/height=240
 window/size/always_on_top=true
-window/size/test_width=832
-window/size/test_height=480
+window/size/test_width=1280
+window/size/test_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

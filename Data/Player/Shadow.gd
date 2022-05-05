@@ -5,6 +5,8 @@ func _init():
 	set_as_toplevel(true)
 	
 func _process(_delta):
+	visible = Main.level.shadows
+	
 	region_enabled = get_parent().region_enabled
 	region_rect = get_parent().region_rect
 	texture = get_parent().texture

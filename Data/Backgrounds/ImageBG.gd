@@ -29,7 +29,7 @@ func _ready():
 	
 func _process(_delta):
 	if mode == Modes.STRETCH:
-		rect.rect_size = Vector2(416, 240) / Main.level.get_canvas_transform().get_scale()
+		rect.rect_size = Vector2(426, 240) / Main.level.get_canvas_transform().get_scale()
 	else:
 		if Main.editing:
 			scroll_offset = get_parent().get_canvas_transform().origin

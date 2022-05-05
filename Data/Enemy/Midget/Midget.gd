@@ -38,6 +38,10 @@ func resetState():
 	seekTimer.stop()
 	tossTimer.stop()
 	
+	if curAT:
+		curAT.queue_free()
+		curAT = null
+	
 	if Main.editing: return
 	
 	seekTimer.start(seekDelay)
@@ -77,7 +81,9 @@ func _seek():
 			tgtTile = tiles[rand_range(0, tiles.size() - 1)]
 			
 		_spawnAngryTile(tgtTile)
+		
 		Main.level.set_cellv(tgtTile, -1)
+		Main.level.redrawShadows()
 		
 		if target:
 			tossTimer.start(tossDelay)

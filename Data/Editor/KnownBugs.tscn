@@ -30,7 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -112.0
 margin_top = -24.0
-margin_right = 112.0
+margin_right = 122.0
 margin_bottom = 24.0
 color = Color( 0.0627451, 0.0156863, 0, 0.501961 )
 script = ExtResource( 4 )
@@ -53,42 +53,7 @@ margin_right = 184.0
 margin_bottom = 184.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_constants/line_separation = 4
-text = "--- ORBITING PLATFORMS ---
-
-*Cambiar su angulo hace que el bloque principal cambie de posicion y deje de estar en el centro
-
---- SPIKES/BLOB ---
-
-*Las espinas tienen una hitbox bastante grande
-
-*Siendo que la hitbox esta en la punta de la espina, puedes simplemente caminar a traves de ella si la acomodas bien
-
-*No hay razón en hacer tan alto el salto de una blob siendo que el rango donde te detecta no cambia
-
---- EARTHWORM ---
-
-*Que se esconda un bloque abajo de donde lo colocaste funciona bien, pero la animacion al saltar es muy brusca, siendo que en 1 frame ya esta una casilla arriba de
-
---- EDITOR ---
-
-*El vidrio negro esta muy lejos de las demas variantes
-
-*Las rampas estan muy lejos de las demas variantes
-
-*A las tiles \"Zero\" les haria falta una tile de esquina (entre medio de una arriba y otra a su costado)
-
-*Objetos que esten en la capa principal pueden eliminarse desde las otras capas
-( NO ES BUG )
-
-*Hacer click a lo que sea en config mode abre el menu, este tiene las cajas donde pones propiedades encima de la barra de herramientas
-( NO ES BUG )
-
-*Hay 2 tiles con el nombre \"Zero Border Side\"
-
-*Las tiles \"Zero Border Bottom\" y una de las \"Zero Border Side\" solo tienen colision en bordes especificos y no como bloque completo
-
-*Cualquier texto escrito en minusculas no va a verse en el editor
-( NO ES BUG )"
+text = "--- Updated bug list pending !!! :I ---"
 script = ExtResource( 4 )
 
 [node name="Exit" type="TextureButton" parent="."]

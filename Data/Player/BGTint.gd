@@ -12,4 +12,4 @@ func _process(delta):
 func _draw():
 	var ctrans := get_global_transform_with_canvas()
 	
-	draw_rect(Rect2(-ctrans.origin / ctrans.get_scale(), Vector2(416, 240) / ctrans.get_scale()), col, true)
+	draw_rect(Rect2(-ctrans.origin / ctrans.get_scale(), Vector2(426, 240) / ctrans.get_scale()), col, true)

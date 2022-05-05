@@ -7,8 +7,9 @@ onready var sndBt := $SndButton
 func _ready():
 	var _unused = playBt.connect("pressed", self, "_playPress")
 	
-	Main.cam.global_position = Vector2(208, 120)
-
+	Main.cam.current = false
+	Main.cam.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
+	
 func _playPress():
 	playBt.disabled = true
 	

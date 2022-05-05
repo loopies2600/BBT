@@ -23,6 +23,8 @@ func _process(_delta):
 	update()
 	
 func _draw():
+	if !Main.level.shadows: return
+	
 	draw_texture(spr.texture, Vector2(8, 8), Color(0, 0, 0, 0.5))
 	
 func _bodyEnter(body):

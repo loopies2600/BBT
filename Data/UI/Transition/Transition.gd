@@ -42,6 +42,6 @@ func _sendBricksOffscreen():
 	children.shuffle()
 	
 	for c in children:
-		c.floorY = 416
+		c.floorY = 426
 		
 		yield(get_tree().create_timer(delay), "timeout")

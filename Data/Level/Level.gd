@@ -15,6 +15,7 @@ export (Texture) var bgTex = load("res://Sprites/UI/Border0.png")
 export (float) var blockTimerTime = 5.0
 export (bool) var darkMode = false
 export (bool) var invertBitmap = false
+export (bool) var shadows = true
 
 onready var tmBg := $Background
 onready var tmFg := $Foreground
@@ -173,13 +174,15 @@ func redrawShadows():
 	emit_signal("redrawn")
 	
 func _draw():
+	if !shadows: return
+	
 	for c in get_used_cells():
 		var id := get_cellv(c)
 		
 		if id in NOSHADOW: continue
 		
 		var scl := Vector2(-1 if is_cell_x_flipped(c.x, c.y) else 1, -1 if is_cell_y_flipped(c.x, c.y) else 1)
-		var pos : Vector2 = (c * 16) + Vector2(8, 8)
+		var pos : Vector2 = (c * cell_size) + Vector2(8, 8)
 		
 		pos += Vector2(16 if sign(scl.x) == -1 else 0, 16 if sign(scl.y) == -1 else 0)
 		

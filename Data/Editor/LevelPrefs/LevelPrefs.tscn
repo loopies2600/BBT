@@ -1,0 +1,161 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=1]
+[ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Sprites/Font/Main.tres" type="BitmapFont" id=3]
+[ext_resource path="res://Data/Editor/LevelPrefs/LevelPrefs.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+content_margin_left = 0.0
+content_margin_right = 4.0
+content_margin_top = 0.0
+content_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="LevelPrefs" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.752941, 0.670588, 0.576471, 1 )
+script = ExtResource( 1 )
+
+[node name="TabContainer" type="TabContainer" parent="ColorRect"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 416.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 224, 184 )
+tab_align = 2
+script = ExtResource( 1 )
+
+[node name="General" type="Tabs" parent="ColorRect/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 20.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 1 )
+
+[node name="SC" type="ScrollContainer" parent="ColorRect/TabContainer/General"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 214.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 210, 156 )
+script = ExtResource( 1 )
+
+[node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC"]
+margin_right = 150.0
+margin_bottom = 146.0
+script = ExtResource( 1 )
+
+[node name="CSLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_right = 150.0
+margin_bottom = 8.0
+rect_pivot_offset = Vector2( -88, -8 )
+custom_styles/normal = SubResource( 3 )
+text = "Cell size"
+
+[node name="CS" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_top = 12.0
+margin_right = 150.0
+margin_bottom = 44.0
+
+[node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/CS"]
+margin_right = 32.0
+margin_bottom = 32.0
+script = ExtResource( 1 )
+
+[node name="X" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/CS/Vbc"]
+margin_right = 32.0
+margin_bottom = 12.0
+text = "X"
+script = ExtResource( 1 )
+
+[node name="CSX" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/CS/Vbc"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+text = "0"
+script = ExtResource( 1 )
+
+[node name="Vbc2" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/CS"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 32.0
+script = ExtResource( 1 )
+
+[node name="Y" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/CS/Vbc2"]
+margin_right = 32.0
+margin_bottom = 12.0
+text = "Y"
+script = ExtResource( 1 )
+
+[node name="CSY" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/CS/Vbc2"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+text = "0"
+script = ExtResource( 1 )
+
+[node name="VLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_top = 48.0
+margin_right = 150.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -88, -8 )
+custom_styles/normal = SubResource( 3 )
+text = "Visuals"
+
+[node name="DM" type="CheckButton" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_top = 60.0
+margin_right = 150.0
+margin_bottom = 86.0
+text = "Dark mode"
+script = ExtResource( 1 )
+
+[node name="BMPC" type="CheckButton" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_top = 90.0
+margin_right = 150.0
+margin_bottom = 116.0
+text = "Invert bitmap colors"
+script = ExtResource( 1 )
+
+[node name="DS" type="CheckButton" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_top = 120.0
+margin_right = 150.0
+margin_bottom = 146.0
+text = "Drop shadows"
+script = ExtResource( 1 )
+
+[node name="Accept" type="Button" parent="."]
+margin_left = 280.0
+margin_top = 220.0
+margin_right = 344.0
+margin_bottom = 236.0
+text = "Accept"
+script = ExtResource( 1 )
+
+[node name="Cancel" type="Button" parent="."]
+margin_left = 352.0
+margin_top = 220.0
+margin_right = 416.0
+margin_bottom = 236.0
+text = "Cancel"
+script = ExtResource( 1 )
+
+[node name="LPLab" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 195.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "LEVEL PREFERENCES"

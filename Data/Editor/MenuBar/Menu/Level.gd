@@ -1,41 +1,29 @@
 extends "res://Data/Editor/MenuBar/Menu/MenuButton.gd"
 
+const PREFS := preload("res://Data/Editor/LevelPrefs/LevelPrefs.tscn")
+
+var prefsW
+
 func _ready():
-	popup.add_item("Undo    CTRL + Z")
-	popup.add_item("Redo    CTRL + R")
-	popup.add_item("Clear Level")
-	popup.add_check_item("Dark Mode")
-	popup.add_check_item("Tile Background")
-	
-	_lvlChange()
-	
-func _lvlChange():
-	popup.set_item_checked(3, Main.level.darkMode)
-	popup.set_item_checked(4, true if Main.level.bg.mode == 0 else false)
-	
-func _process(_delta):
-	popup.set_item_disabled(0, editor.cursor.tilePlacingHistory.empty())
-	popup.set_item_disabled(1, editor.cursor.tileRemovalHistory.empty())
+	popup.add_item("Preferences")
+	popup.add_item("Clear Contents")
 	
 func _popupButtonPress(id := 0):
 	._popupButtonPress(id)
 	
 	match id:
 		0:
-			editor.cursor._delTile()
+			_openPrefsWindow()
 		1:
-			editor.cursor._plcTile()
-		2:
 			Main.level.clearContents()
-		3:
-			var booly := !popup.is_item_checked(1)
-			
-			popup.set_item_checked(1, booly)
-			Main.level.darkMode = booly
-			Main.olr.visible = booly
-		4:
-			var booly := !popup.is_item_checked(4)
-			
-			popup.set_item_checked(4, booly)
-			
-			Main.level.bg.mode = 0 if booly else 1
+	
+func _openPrefsWindow():
+	if prefsW: return
+	
+	prefsW = PREFS.instance()
+	prefsW.connect("tree_exited", self, "_onPrefsWindowClose")
+	
+	editor.guiLayer.add_child(prefsW)
+	
+func _onPrefsWindowClose():
+	prefsW = null

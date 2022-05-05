@@ -7,6 +7,7 @@
 [ext_resource path="res://Data/Object/TimerMonitor/TimerMonitor.tscn" type="PackedScene" id=5]
 
 [node name="Title" type="Node2D"]
+position = Vector2( -213, -120 )
 script = ExtResource( 2 )
 
 [node name="BennettBG" parent="." instance=ExtResource( 1 )]

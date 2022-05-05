@@ -1,4 +1,5 @@
 extends Node2D
 
-func _process(_delta):
-	global_position = -get_canvas_transform().origin
+func _ready():
+	Main.cam.current = false
+	Main.cam.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT

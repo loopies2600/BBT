@@ -39,6 +39,7 @@ func _ready():
 "
 
 [node name="NewgroundsChecker" type="Node2D"]
+position = Vector2( -213, -120 )
 script = ExtResource( 3 )
 
 [node name="NewgroundsCheck" type="Sprite" parent="."]
