@@ -5,7 +5,7 @@ const ITEM := preload("res://Data/Editor/EditorItem.tscn")
 const DEFPATH := "res://Data/Editor/Definitions/%s.tres"
 
 const OLIST := ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor", "TimerToggleButton", "DoorButton", "Bridge"]
-const ELIST := ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro", "Midget", "Sunny"]
+const ELIST := ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro", "Midget", "Sunny", "Dooracio"]
 const MLIST := ["LockCam", "LevelBitmap"]
 const PLIST := ["Rocket"]
 
