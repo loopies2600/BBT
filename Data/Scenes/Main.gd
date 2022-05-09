@@ -39,22 +39,31 @@ func setNewLevel():
 	if newLvl:
 		reload(newLvl)
 		emit_signal("level_changed")
+	
+		var dir := Directory.new()
+		dir.remove("user://rawscn.tscn")
 		
 func saveLevel():
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 	
 	if OS.get_name() == "HTML5":
-		level.saveLvl("user:/", "temp.tscn")
+		# pack it up baby
+		var scn := PackedScene.new()
+	
+		var err = scn.pack(Main.level)
+	
+		if err == OK:
+			err = ResourceSaver.save("user://rawscn.tscn", scn)
 		
 		var temp := File.new()
 # warning-ignore:return_value_discarded
-		temp.open("user://temp.tscn", File.READ)
-		var buffer = PoolByteArray(temp.get_buffer(temp.get_len()))
-		
+		temp.open("user://rawscn.tscn", File.READ)
+		var buffer := PoolByteArray(temp.get_buffer(temp.get_len()))
+		buffer = buffer.compress(File.COMPRESSION_GZIP)
 		temp.close()
 		
-		WebFiles.save_file("level.tscn", buffer, "text/plain")
+		WebFiles.save_file("level.bbt", buffer, "text/plain")
 		
 		emit_signal("level_saved")
 		return

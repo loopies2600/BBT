@@ -63,14 +63,30 @@ func loadLvl():
 		
 		queue_free()
 	
-func saveLvl(path := SAVE_PATH, fileName := "level.tscn"):
+func saveLvl(path := SAVE_PATH, fileName := "level"):
 	var scn := PackedScene.new()
 	
 	var err = scn.pack(self)
 	
 	if err == OK:
-		err = ResourceSaver.save(path + "/" + fileName, scn)
-		
+		err = ResourceSaver.save("user://rawscn.tscn", scn)
+	
+	var rawScn := File.new()
+	rawScn.open("user://rawscn.tscn", File.READ)
+	
+	var buf := rawScn.get_buffer(rawScn.get_len())
+	buf = buf.compress(File.COMPRESSION_GZIP)
+	
+	rawScn.close()
+	
+	var dir := Directory.new()
+	dir.remove("user://rawscn.tscn")
+	
+	var cmpLvl = File.new()
+	cmpLvl.open(path + "/" + fileName + ".bbt", File.WRITE)
+	cmpLvl.store_buffer(buf)
+	cmpLvl.close()
+	
 func resetObjectState():
 	emit_signal("state_reset")
 	Main.ot.reset()

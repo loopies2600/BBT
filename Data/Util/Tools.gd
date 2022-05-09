@@ -3,7 +3,7 @@ extends Node
 const PS_FILE := [
 	"Add-Type -AssemblyName System.Windows.Forms",
 	"$FileBrowser = New-Object System.Windows.Forms.OpenFileDialog",
-	"$FileBrowser.filter = \"Level data | *.tscn\"",
+	"$FileBrowser.filter = \"Level data | *.bbt\"",
 	"[void]$FileBrowser.ShowDialog()",
 	"$FileBrowser.FileName"]
 
@@ -103,19 +103,21 @@ func runPS(script := []) -> Array:
 	return out
 	
 func _onWebFileOpen(_file, content):
+	content = content.decompress_dynamic(-1, File.COMPRESSION_GZIP)
+	
 	var temp := File.new()
 # warning-ignore:return_value_discarded
-	temp.open("user://temp.tscn", File.WRITE)
+	temp.open("user://rawscn.tscn", File.WRITE)
 	temp.store_buffer(content)
 	
 	temp.close()
 	
-	Main.reload(ResourceLoader.load("user://temp.tscn"))
+	Main.reload(ResourceLoader.load("user://rawscn.tscn"))
 	
 func openFilePicker():
 	match OS.get_name():
 		"HTML5":
-			WebFiles.open_file(".tscn")
+			WebFiles.open_file(".bbt")
 		"X11":
 			var out := []
 			var _unused = OS.execute("/usr/bin/zenity", ["--file-selection", "--file-filter=Level data (*.tscn) | *tscn", "--title=Load Level"], true, out)
@@ -124,7 +126,7 @@ func openFilePicker():
 				var path : String = out[0]
 				path.erase(out[0].length() - 1, 1)
 				
-				return ResourceLoader.load(path)
+				return _decompressAndLoad(path)
 				
 		"Windows":
 			var out := runPS(PS_FILE)
@@ -133,7 +135,22 @@ func openFilePicker():
 				var path = out[0]
 				path.erase(out[0].length() - 1, 2)
 				
-				return ResourceLoader.load(path)
+				return _decompressAndLoad(path)
+	
+func _decompressAndLoad(path := ""):
+	var cmpLvl := File.new()
+	cmpLvl.open(path, File.READ)
+	
+	var buf = cmpLvl.get_buffer(cmpLvl.get_len())
+	cmpLvl.close()
+	buf = buf.decompress_dynamic(-1, File.COMPRESSION_GZIP)
+	
+	var tscn := File.new()
+	tscn.open("user://rawscn.tscn", File.WRITE)
+	tscn.store_buffer(buf)
+	tscn.close()
+	
+	return ResourceLoader.load("user://rawscn.tscn")
 	
 func openFolderPicker():
 	match OS.get_name():
