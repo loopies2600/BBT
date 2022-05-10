@@ -33,7 +33,7 @@ func _applyBoost(target):
 		
 		var velocity = Vector2(distance, 0).rotated(TAU - PI / 2 + _editorRotate.rotation)
 		
-		target.fsm._change_state("air", {"ignoreAnim" : true})
+		target.setState(3, {"ignoreAnim" : true})
 		
 		target.anim.play("Dash")
 		target.canDash = false

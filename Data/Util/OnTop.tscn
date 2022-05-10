@@ -39,5 +39,5 @@ centered = false
 [node name="DeathMarkerRenderer" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="TokenIcons" type="Node2D" parent="."]
+[node name="LevelInfo" type="Node2D" parent="."]
 script = ExtResource( 5 )

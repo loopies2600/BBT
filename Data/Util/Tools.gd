@@ -171,3 +171,15 @@ func openFolderPicker():
 				path.erase(out[0].length() - 1, 2)
 				
 				return path
+	
+func formatTime(time := 0, digitFormat := "%02d"):
+	var minutes := digitFormat % [time / 60000]
+	var seconds := digitFormat % [(time / 1000) % 60]
+	
+	var split := str(time).length() / 2
+	var miliseconds := str(time).right(split)
+	
+	miliseconds.erase(2, 1)
+	var formatted := minutes + '"' + seconds + "´" + miliseconds
+	
+	return formatted

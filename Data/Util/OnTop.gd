@@ -7,11 +7,21 @@ onready var ti := $TokenIcons
 
 var _blockTimer = null
 
+onready var _sTime := OS.get_ticks_msec()
+var lvlTime := 0
+
 func reset(_mode := 0):
+	_sTime = OS.get_ticks_msec()
+	
 	if !_blockTimer: return
 	
 	_blockTimer.queue_free()
 	_blockTimer = null
+	
+func _process(delta):
+	if Main.editing: return
+	
+	lvlTime = OS.get_ticks_msec() - _sTime
 	
 func _spawnBlockTimer():
 	if _blockTimer: return

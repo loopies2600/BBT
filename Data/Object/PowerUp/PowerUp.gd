@@ -18,13 +18,16 @@ func _playerEnter(body):
 	var pwrName := "Rocket" if pwr == PowerUps.ROCKET else ""
 	
 	if body is Player:
-		if body.fsm.current_state.name == pwrName:
+		if body.state.name == pwrName:
 			Main.plop(body.global_position)
 			
-			body.fsm._change_state("air")
+			body.setState(3)
 			anim.play("Idle")
 			return
 		
 		anim.play("Open")
 		Main.plop(body.global_position)
-		body.fsm._change_state(pwrName.to_lower())
+		
+		var pwrState := 9
+		
+		body.setState(pwrState)
