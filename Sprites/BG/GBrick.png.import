@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/EarthWorm.png-689099a5ea66f54a6dbbd2f534ec6c72.s3tc.stex"
-path.etc="res://.import/EarthWorm.png-689099a5ea66f54a6dbbd2f534ec6c72.etc.stex"
+path.s3tc="res://.import/GBrick.png-d12359f81d478cfb06755370dbf04339.s3tc.stex"
+path.etc="res://.import/GBrick.png-d12359f81d478cfb06755370dbf04339.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Sprites/Enemy/EarthWorm.png"
-dest_files=[ "res://.import/EarthWorm.png-689099a5ea66f54a6dbbd2f534ec6c72.s3tc.stex", "res://.import/EarthWorm.png-689099a5ea66f54a6dbbd2f534ec6c72.etc.stex" ]
+source_file="res://Sprites/BG/GBrick.png"
+dest_files=[ "res://.import/GBrick.png-d12359f81d478cfb06755370dbf04339.s3tc.stex", "res://.import/GBrick.png-d12359f81d478cfb06755370dbf04339.etc.stex" ]
 
 [params]
 

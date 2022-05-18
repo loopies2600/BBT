@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/FactoryLoop.ogg-b3f16441d2ccb5c7c84f34d4ebd18b20.oggstr"
+
+[deps]
+
+source_file="res://Streams/Music/FactoryLoop.ogg"
+dest_files=[ "res://.import/FactoryLoop.ogg-b3f16441d2ccb5c7c84f34d4ebd18b20.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
