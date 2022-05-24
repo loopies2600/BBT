@@ -42,11 +42,18 @@ func setNewLevel():
 		emit_signal("level_changed")
 	
 		var dir := Directory.new()
-		dir.remove("user://rawscn.tscn")
+		var _unused = dir.remove("user://rawscn.tscn")
 		
 func saveLevel():
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
+	
+	var lName : String = level.lName.replace(" ", "")
+	var lAuthor : String = level.lAuthor.replace(" " , "")
+	
+	var fileName : String = lAuthor + "-" + lName + ".bbt"
+	
+	print(fileName)
 	
 	if OS.get_name() == "HTML5":
 		# pack it up baby
@@ -64,7 +71,7 @@ func saveLevel():
 		buffer = buffer.compress(File.COMPRESSION_GZIP)
 		temp.close()
 		
-		WebFiles.save_file("level.bbt", buffer, "text/plain")
+		WebFiles.save_file(fileName, buffer, "text/plain")
 		
 		emit_signal("level_saved")
 		return
@@ -72,7 +79,7 @@ func saveLevel():
 	var path : String = Tools.openFolderPicker()
 	
 	if path:
-		level.saveLvl(path)
+		level.saveLvl(path, fileName)
 		emit_signal("level_saved")
 		
 func reload(newLvl : PackedScene):

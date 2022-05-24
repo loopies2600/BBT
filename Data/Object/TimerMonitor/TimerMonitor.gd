@@ -27,9 +27,6 @@ func _process(delta):
 # warning-ignore:narrowing_conversion
 		self.timeLeft = round(Main.level.blockTimer.time_left)
 	
-	if Input.is_action_just_pressed("jump"):
-		_reset()
-	
 	global_position.y = startY + (sin(_time) * 8)
 	_time += delta
 	

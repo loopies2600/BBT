@@ -139,14 +139,14 @@ func openFilePicker():
 	
 func _decompressAndLoad(path := ""):
 	var cmpLvl := File.new()
-	cmpLvl.open(path, File.READ)
+	var _err = cmpLvl.open(path, File.READ)
 	
 	var buf = cmpLvl.get_buffer(cmpLvl.get_len())
 	cmpLvl.close()
 	buf = buf.decompress_dynamic(-1, File.COMPRESSION_GZIP)
 	
 	var tscn := File.new()
-	tscn.open("user://rawscn.tscn", File.WRITE)
+	var _scn = tscn.open("user://rawscn.tscn", File.WRITE)
 	tscn.store_buffer(buf)
 	tscn.close()
 	
@@ -173,9 +173,12 @@ func openFolderPicker():
 				return path
 	
 func formatTime(time := 0, digitFormat := "%02d"):
+# warning-ignore:integer_division
 	var minutes := digitFormat % [time / 60000]
+# warning-ignore:integer_division
 	var seconds := digitFormat % [(time / 1000) % 60]
 	
+# warning-ignore:integer_division
 	var split := str(time).length() / 2
 	var miliseconds := str(time).right(split)
 	

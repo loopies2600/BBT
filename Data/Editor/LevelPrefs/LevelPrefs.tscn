@@ -34,7 +34,50 @@ rect_min_size = Vector2( 224, 184 )
 tab_align = 2
 script = ExtResource( 1 )
 
+[node name="Visuals" type="Tabs" parent="ColorRect/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 20.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 1 )
+
+[node name="SC" type="ScrollContainer" parent="ColorRect/TabContainer/Visuals"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 396.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 210, 156 )
+script = ExtResource( 1 )
+
+[node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/Visuals/SC"]
+margin_right = 150.0
+margin_bottom = 86.0
+script = ExtResource( 1 )
+
+[node name="DM" type="CheckButton" parent="ColorRect/TabContainer/Visuals/SC/Vbc"]
+margin_right = 150.0
+margin_bottom = 26.0
+text = "Dark mode"
+script = ExtResource( 1 )
+
+[node name="BMPC" type="CheckButton" parent="ColorRect/TabContainer/Visuals/SC/Vbc"]
+margin_top = 30.0
+margin_right = 150.0
+margin_bottom = 56.0
+text = "Invert bitmap colors"
+script = ExtResource( 1 )
+
+[node name="DS" type="CheckButton" parent="ColorRect/TabContainer/Visuals/SC/Vbc"]
+margin_top = 60.0
+margin_right = 150.0
+margin_bottom = 86.0
+text = "Drop shadows"
+script = ExtResource( 1 )
+
 [node name="General" type="Tabs" parent="ColorRect/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -46,27 +89,97 @@ script = ExtResource( 1 )
 [node name="SC" type="ScrollContainer" parent="ColorRect/TabContainer/General"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 214.0
-margin_bottom = 160.0
+margin_right = 396.0
+margin_bottom = 180.0
 rect_min_size = Vector2( 210, 156 )
 script = ExtResource( 1 )
 
 [node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC"]
-margin_right = 150.0
-margin_bottom = 146.0
+margin_right = 388.0
+margin_bottom = 176.0
 script = ExtResource( 1 )
 
-[node name="CSLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc"]
-margin_right = 150.0
+[node name="GLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_right = 388.0
 margin_bottom = 8.0
 rect_pivot_offset = Vector2( -88, -8 )
 custom_styles/normal = SubResource( 3 )
+text = "Level info"
+script = ExtResource( 1 )
+
+[node name="CS2" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_top = 12.0
+margin_right = 388.0
+margin_bottom = 44.0
+script = ExtResource( 1 )
+
+[node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/CS2"]
+margin_right = 192.0
+margin_bottom = 32.0
+script = ExtResource( 1 )
+
+[node name="NmLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc"]
+margin_right = 192.0
+margin_bottom = 12.0
+text = "Name"
+script = ExtResource( 1 )
+
+[node name="LvNm" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc"]
+margin_top = 16.0
+margin_right = 192.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 192, 16 )
+placeholder_text = "Level name"
+script = ExtResource( 1 )
+
+[node name="Vbc2" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/CS2"]
+margin_left = 196.0
+margin_right = 388.0
+margin_bottom = 32.0
+script = ExtResource( 1 )
+
+[node name="AtLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc2"]
+margin_right = 192.0
+margin_bottom = 12.0
+text = "Author"
+script = ExtResource( 1 )
+
+[node name="LvA" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc2"]
+margin_top = 16.0
+margin_right = 192.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 192, 16 )
+placeholder_text = "Author name"
+script = ExtResource( 1 )
+
+[node name="DsLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_top = 48.0
+margin_right = 388.0
+margin_bottom = 60.0
+text = "Description"
+script = ExtResource( 1 )
+
+[node name="LvDs" type="TextEdit" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_top = 64.0
+margin_right = 388.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 256, 64 )
+script = ExtResource( 1 )
+
+[node name="CSLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc"]
+margin_top = 132.0
+margin_right = 388.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( -88, -8 )
+custom_styles/normal = SubResource( 3 )
 text = "Cell size"
+script = ExtResource( 1 )
 
 [node name="CS" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc"]
-margin_top = 12.0
-margin_right = 150.0
-margin_bottom = 44.0
+margin_top = 144.0
+margin_right = 388.0
+margin_bottom = 176.0
+script = ExtResource( 1 )
 
 [node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/CS"]
 margin_right = 32.0
@@ -103,35 +216,6 @@ margin_top = 16.0
 margin_right = 32.0
 margin_bottom = 32.0
 text = "0"
-script = ExtResource( 1 )
-
-[node name="VLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc"]
-margin_top = 48.0
-margin_right = 150.0
-margin_bottom = 56.0
-rect_pivot_offset = Vector2( -88, -8 )
-custom_styles/normal = SubResource( 3 )
-text = "Visuals"
-
-[node name="DM" type="CheckButton" parent="ColorRect/TabContainer/General/SC/Vbc"]
-margin_top = 60.0
-margin_right = 150.0
-margin_bottom = 86.0
-text = "Dark mode"
-script = ExtResource( 1 )
-
-[node name="BMPC" type="CheckButton" parent="ColorRect/TabContainer/General/SC/Vbc"]
-margin_top = 90.0
-margin_right = 150.0
-margin_bottom = 116.0
-text = "Invert bitmap colors"
-script = ExtResource( 1 )
-
-[node name="DS" type="CheckButton" parent="ColorRect/TabContainer/General/SC/Vbc"]
-margin_top = 120.0
-margin_right = 150.0
-margin_bottom = 146.0
-text = "Drop shadows"
 script = ExtResource( 1 )
 
 [node name="Accept" type="Button" parent="."]

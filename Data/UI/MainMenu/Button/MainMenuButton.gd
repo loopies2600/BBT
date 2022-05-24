@@ -43,6 +43,7 @@ func _ready():
 func _process(delta):
 	sprite.texture = vp.get_texture()
 	
+# warning-ignore:narrowing_conversion
 	z_index = max(0, global_position.y)
 	
 	global_position = center + (Vector2(1, 0).rotated(angle).normalized() * distance) * orbitDimension

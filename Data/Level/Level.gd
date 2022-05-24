@@ -17,6 +17,10 @@ export (bool) var darkMode = false
 export (bool) var invertBitmap = false
 export (bool) var shadows = true
 
+export (String) var lName = "Level"
+export (String) var lDesc = "Description"
+export (String) var lAuthor = "Author"
+
 onready var tmBg := $Background
 onready var tmFg := $Foreground
 onready var mus := $Music
@@ -63,7 +67,7 @@ func loadLvl():
 		
 		queue_free()
 	
-func saveLvl(path := SAVE_PATH, fileName := "level"):
+func saveLvl(path := SAVE_PATH, fileName := "level.bbt"):
 	var scn := PackedScene.new()
 	
 	var err = scn.pack(self)
@@ -72,7 +76,7 @@ func saveLvl(path := SAVE_PATH, fileName := "level"):
 		err = ResourceSaver.save("user://rawscn.tscn", scn)
 	
 	var rawScn := File.new()
-	rawScn.open("user://rawscn.tscn", File.READ)
+	var _scn = rawScn.open("user://rawscn.tscn", File.READ)
 	
 	var buf := rawScn.get_buffer(rawScn.get_len())
 	buf = buf.compress(File.COMPRESSION_GZIP)
@@ -80,17 +84,20 @@ func saveLvl(path := SAVE_PATH, fileName := "level"):
 	rawScn.close()
 	
 	var dir := Directory.new()
-	dir.remove("user://rawscn.tscn")
+	var _err = dir.remove("user://rawscn.tscn")
 	
 	var cmpLvl = File.new()
-	cmpLvl.open(path + "/" + fileName + ".bbt", File.WRITE)
+	cmpLvl.open(path + "/" + fileName, File.WRITE)
 	cmpLvl.store_buffer(buf)
 	cmpLvl.close()
 	
 func resetObjectState():
 	emit_signal("state_reset")
-	Main.ot.reset()
+	
+	Main.ot.deleteTimer()
 	Main.cam.lock = false
+	Main.ot.li.render = !Main.editing
+	
 	_resetTokens()
 	
 	blockToggle = false
@@ -232,7 +239,7 @@ func _bitmapGen():
 	
 	bitMap.create_from_image(img, 2)
 	
-func getTilesInRadius(pos := Vector2(), radius := 0, exclude := [-1, 61, 62, 63, 64]) -> PoolVector2Array:
+func getTilesInRadius(pos := Vector2(), radius := 0, exclude := [-1, 61, 62, 63, 64, 77, 78, 79, 80]) -> PoolVector2Array:
 	var tiles : PoolVector2Array = []
 	
 	for y in range(-radius, radius):

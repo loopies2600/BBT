@@ -3,4 +3,5 @@
 [ext_resource path="res://DooracioManager.gd" type="Script" id=1]
 
 [node name="DooracioManager" type="Node2D"]
+z_index = 64
 script = ExtResource( 1 )

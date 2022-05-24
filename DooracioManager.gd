@@ -8,6 +8,8 @@ export (Vector2) var subPos
 var baseDoor
 var subDoor
 
+var destroyedChildren := false
+
 func _ready():
 	baseDoor = DOORACIO.instance()
 	
@@ -26,8 +28,32 @@ func _ready():
 	baseDoor.tgtDoor = subDoor
 	subDoor.tgtDoor = baseDoor
 	
+	baseDoor.connect("tree_exiting", self, "_endIt", [subDoor])
+	subDoor.connect("tree_exiting", self, "_endIt", [baseDoor])
+	
+	global_position = Vector2.ZERO
+	
+func resetState():
+	baseDoor.resetState()
+	subDoor.resetState()
+	
+func _endIt(alsoDestroy):
+	if destroyedChildren: return
+	
+	alsoDestroy.queue_free()
+	
+	queue_free()
+	destroyedChildren = true
+	
 func _process(_delta):
+	update()
+	
 	if !Main.editing: return
 	
 	basePos = baseDoor.global_position
 	subPos = subDoor.global_position
+	
+func _draw():
+	if !Main.editing: return
+	
+	draw_line(basePos, subPos, Color.darkorange, 4)

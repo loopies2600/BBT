@@ -35,8 +35,6 @@ func _draw():
 		draw_string(FONT, Vector2(-32, -96), "PAIR #%s" % pair)
 	
 func _bennettMoved():
-	anim.play("Idle")
-	
 	if !bb: return
 	
 	bb.global_position = tgtDoor.global_position
@@ -60,6 +58,5 @@ func _input(event):
 		bb.z_index = 0
 		bb.canInput = false
 		
-		for d in get_tree().get_nodes_in_group("FunkyDoor"):
-			d.anim.play("Close")
-		
+		anim.play("Close")
+		tgtDoor.anim.play("Close")

@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Data/Backgrounds/Config.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/UI/Hourglass.png" type="Texture" id=2]
-[ext_resource path="res://LD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sprites/Font/Big.tres" type="BitmapFont" id=5]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CanvasLayer
@@ -32,11 +30,3 @@ script = SubResource( 1 )
 [node name="Hourglass" type="Sprite" parent="."]
 position = Vector2( 209, 120 )
 texture = ExtResource( 2 )
-
-[node name="LD" parent="." instance=ExtResource( 3 )]
-margin_left = -184.0
-margin_top = 56.0
-margin_right = 190.0
-margin_bottom = 123.0
-custom_fonts/font = ExtResource( 5 )
-script = null

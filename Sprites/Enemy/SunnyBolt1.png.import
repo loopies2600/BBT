@@ -2,28 +2,26 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/SunnyBolt1.png-1182ae2a1c6686f0f69a52d46ac32993.s3tc.stex"
-path.etc="res://.import/SunnyBolt1.png-1182ae2a1c6686f0f69a52d46ac32993.etc.stex"
+path="res://.import/SunnyBolt1.png-1182ae2a1c6686f0f69a52d46ac32993.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Sprites/Enemy/SunnyBolt1.png"
-dest_files=[ "res://.import/SunnyBolt1.png-1182ae2a1c6686f0f69a52d46ac32993.s3tc.stex", "res://.import/SunnyBolt1.png-1182ae2a1c6686f0f69a52d46ac32993.etc.stex" ]
+dest_files=[ "res://.import/SunnyBolt1.png-1182ae2a1c6686f0f69a52d46ac32993.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
+flags/filter=false
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

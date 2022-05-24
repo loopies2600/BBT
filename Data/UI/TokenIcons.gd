@@ -8,13 +8,16 @@ const FULL := preload("res://Sprites/UI/SmallToken.tres")
 export (int) var separation = 10
 
 var startPos := Vector2(412, 4)
+var render := false
 
 func _process(_delta):
 	update()
 	
 func _draw():
-	if Main.currentScene.name != "LevelEditor": return
+	if !is_instance_valid(Main.currentScene): return
 	if !is_instance_valid(Main.level): return
+	
+	if !render: return
 	
 	for i in range(Main.level.tokenAmount):
 		draw_texture(EMPTY, startPos - Vector2(separation * i, 0))
