@@ -180,12 +180,6 @@ func _ready():
 	
 	yield(get_tree(), "idle_frame")
 	
-	## DEBUG : print every tile + ID
-	print("--- TILE LIST ---")
-	for tile in tile_set.get_tiles_ids():
-		print("Tile %s = %s" % [tile, tile_set.tile_get_name(tile)])
-	print("")
-	
 	var _unused = blockTimer.connect("timeout", self, "_blockTimerEnd")
 	
 	redrawShadows()

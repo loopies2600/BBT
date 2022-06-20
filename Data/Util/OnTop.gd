@@ -5,6 +5,8 @@ const LEVELCARD := preload("res://Data/UI/LevelCard.tscn")
 
 onready var dmr := $DeathMarkerRenderer
 onready var li := $LevelInfo
+onready var lvp := $LightVP
+onready var light := $Light
 
 var _blockTimer = null
 var _card = null
@@ -33,8 +35,10 @@ func reset(mode := 0):
 	else:
 		_card.queue_free()
 		_card = null
-		
+	
 func _process(_delta):
+	light.texture = lvp.get_texture()
+	
 	if Main.editing: return
 	
 	lvlTime = OS.get_ticks_msec() - _sTime

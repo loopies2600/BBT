@@ -17,7 +17,6 @@ func _ready():
 	visible = cursor.mode == 0
 	
 	var _unused = cursor.connect("mode_changed", self, "_onModeChange")
-	_unused = Main.connect("game_mode_changed", self, "_onGMChange")
 	
 	_unused = bs.connect("text_entered", self, "_bsChange")
 	_unused = ff.connect("toggled", self, "_ffPress")
@@ -36,6 +35,3 @@ func _onModeChange(idx : int):
 	ff.visible = idx == 0
 	
 	rect_size = Vector2(88, 128) if idx == 0 else Vector2(72, 72)
-	
-func _onGMChange(idx : int):
-	visible = idx == 1

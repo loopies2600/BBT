@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Data/Shader/Light.gdshader" type="Shader" id=1]
 [ext_resource path="res://Data/Util/LightRenderer.gd" type="Script" id=2]
@@ -8,10 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 1 )
-shader_param/disabled_color = Color( 1, 1, 1, 1 )
-
-[sub_resource type="ViewportTexture" id=1]
-viewport_path = NodePath("LightVP")
+shader_param/exclude_color = Color( 0, 0, 0, 1 )
 
 [node name="OnTop" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -33,7 +30,6 @@ script = ExtResource( 2 )
 
 [node name="Light" type="Sprite" parent="."]
 material = SubResource( 3 )
-texture = SubResource( 1 )
 centered = false
 
 [node name="DeathMarkerRenderer" type="Node2D" parent="."]

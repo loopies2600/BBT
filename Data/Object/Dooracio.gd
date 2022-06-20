@@ -2,6 +2,7 @@ extends Area2D
 
 const FONT := preload("res://Sprites/Font/Main.tres")
 
+# warning-ignore:unused_signal
 signal move_bennett
 
 export (String) var _subName
@@ -18,6 +19,7 @@ func resetState():
 	
 func _ready():
 	update()
+# warning-ignore:integer_division
 	pair = get_tree().get_nodes_in_group("FunkyDoor").size() / 2
 	
 	add_to_group("FunkyDoor")

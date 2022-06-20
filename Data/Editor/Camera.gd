@@ -10,11 +10,14 @@ var panning := false
 var target : Node2D
 var intensity := Vector2()
 var lock := false
+var baseZoom := Vector2.ONE
 
-func _process(_delta):
+func _process(delta):
 	if lock: return
 	
 	if get_parent().editing:
+		zoom = lerp(zoom, baseZoom, 8 * delta)
+		
 		if canPlace:
 			var shiftPan := Input.is_action_pressed("mouse_main") && Input.is_action_pressed("special")
 			
@@ -23,7 +26,7 @@ func _process(_delta):
 		offset = Vector2.ZERO
 		intensity = Vector2.ZERO
 	else:
-		zoom = Vector2.ONE
+		zoom = lerp(zoom, Vector2.ONE, 8 * delta)
 	
 		if target:
 			var camOffset = Vector2()
@@ -48,7 +51,7 @@ func _input(event):
 	
 	if panning:
 		if event is InputEventMouseMotion:
-			global_position -= event.relative * zoom
+			global_position -= event.relative * baseZoom
 		
 	if get_parent().editing:
 		if canPlace:
@@ -58,5 +61,5 @@ func _input(event):
 					var down = int(event.button_index == BUTTON_WHEEL_DOWN)
 					var dir = down - up
 					
-					zoom.x = clamp(zoom.x + (zoomSpeed * dir), minZoom, maxZoom)
-					zoom.y = clamp(zoom.y + (zoomSpeed * dir), minZoom, maxZoom)
+					baseZoom.x = clamp(baseZoom.x + (zoomSpeed * dir), minZoom, maxZoom)
+					baseZoom.y = clamp(baseZoom.y + (zoomSpeed * dir), minZoom, maxZoom)
