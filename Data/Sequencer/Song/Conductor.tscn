@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Streams/Sounds/Sequencer/Doggy.wav" type="AudioStream" id=1]
+[ext_resource path="res://Data/Sequencer/Song/Conductor.gd" type="Script" id=2]
+[ext_resource path="res://Data/Sequencer/Song/Channel.gd" type="Script" id=3]
+
+[node name="Conductor" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Ch0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Seq Ch0"
+script = ExtResource( 3 )
+
+[node name="Ch1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Seq Ch1"
+script = ExtResource( 3 )
+
+[node name="Ch2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Seq Ch2"
+script = ExtResource( 3 )
+
+[node name="Ch3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Seq Ch3"
+script = ExtResource( 3 )
+
+[node name="Ch4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Seq Ch4"
+script = ExtResource( 3 )
+
+[node name="Ch5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Seq Ch5"
+script = ExtResource( 3 )
+
+[node name="Ch6" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Seq Ch6"
+script = ExtResource( 3 )
+
+[node name="Ch7" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Seq Ch7"
+script = ExtResource( 3 )

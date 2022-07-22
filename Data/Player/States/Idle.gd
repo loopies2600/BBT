@@ -2,7 +2,6 @@ extends State
 
 func enter(_msg := {}):
 	p.canDash = true
-	p.canWallJump = true
 	
 	Main.cam.target = p
 	
@@ -25,7 +24,7 @@ func physics_update(_delta):
 			p.setState(3, {"jumpHeight" : p.jumpHeight})
 			
 		if Input.is_action_just_pressed("look_up"):
-			p.setState(11)
+			p.setState(10)
 			
 		if Input.is_action_pressed("look_down"):
 			p.setState(1)

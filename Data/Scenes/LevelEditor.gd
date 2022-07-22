@@ -14,6 +14,7 @@ var bgTex : Texture
 func _ready():
 	OS.set_window_title("Bennett Boy's Workshop")
 	
+	Main.ot.setTouchControls(true)
 	Main.editing = true
 	Main.cam.current = true
 	Main.cam.anchor_mode = Camera2D.ANCHOR_MODE_DRAG_CENTER

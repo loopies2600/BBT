@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Data/Player/States/Editor.gd" type="Script" id=1]
 [ext_resource path="res://Data/Player/States/Player.gd" type="Script" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Data/Player/States/Move.gd" type="Script" id=6]
 [ext_resource path="res://Data/Player/States/Air.gd" type="Script" id=7]
 [ext_resource path="res://Data/Player/States/Dash.gd" type="Script" id=8]
-[ext_resource path="res://Data/Player/States/Walled.gd" type="Script" id=9]
 [ext_resource path="res://Data/Player/States/Crouch.gd" type="Script" id=10]
 [ext_resource path="res://Data/Player/States/Dead.gd" type="Script" id=11]
 [ext_resource path="res://Streams/Sounds/Jump.wav" type="AudioStream" id=12]
@@ -1799,9 +1798,6 @@ script = ExtResource( 20 )
 
 [node name="Rocket" type="Node" parent="."]
 script = ExtResource( 22 )
-
-[node name="Walled" type="Node" parent="."]
-script = ExtResource( 9 )
 
 [node name="Gaze" type="Node" parent="."]
 script = ExtResource( 17 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/TouchControlsBitmap.png-fa11cdef8dbabbb7f83b397a5f7e4427.res"
+
+[deps]
+
+source_file="res://Sprites/UI/TouchControlsBitmap.png"
+dest_files=[ "res://.import/TouchControlsBitmap.png-fa11cdef8dbabbb7f83b397a5f7e4427.res" ]
+
+[params]
+
+create_from=1
+threshold=0.5

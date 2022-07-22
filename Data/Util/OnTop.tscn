@@ -1,10 +1,24 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Data/Shader/Light.gdshader" type="Shader" id=1]
 [ext_resource path="res://Data/Util/LightRenderer.gd" type="Script" id=2]
 [ext_resource path="res://Data/Util/OnTop.gd" type="Script" id=3]
 [ext_resource path="res://Data/Util/DeathMarkerRenderer.gd" type="Script" id=4]
 [ext_resource path="res://Data/UI/TokenIcons.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/UI/TouchControls/Right.png" type="Texture" id=6]
+[ext_resource path="res://Data/Util/TouchControls.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/UI/TouchControls/Center.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/UI/TouchControls/PLeft.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/UI/TouchControls/Left.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/UI/TouchControls/PRight.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/UI/TouchControls/Down.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/UI/TouchControls/PUp.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/UI/TouchControls/PDown.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/UI/TouchControls/Up.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/UI/TouchControls/PB.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/UI/TouchControls/PA.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/UI/TouchControls/A.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/UI/TouchControls/B.png" type="Texture" id=19]
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 1 )
@@ -12,6 +26,58 @@ shader_param/exclude_color = Color( 0, 0, 0, 1 )
 
 [node name="OnTop" type="CanvasLayer"]
 script = ExtResource( 3 )
+
+[node name="OverEverything" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="TouchControls" type="Sprite" parent="OverEverything"]
+modulate = Color( 1, 1, 1, 0.501961 )
+position = Vector2( 48, 144 )
+texture = ExtResource( 8 )
+centered = false
+script = ExtResource( 7 )
+
+[node name="Left" type="TouchScreenButton" parent="OverEverything/TouchControls"]
+position = Vector2( -34, -2 )
+normal = ExtResource( 10 )
+pressed = ExtResource( 9 )
+passby_press = true
+action = "left"
+
+[node name="Right" type="TouchScreenButton" parent="OverEverything/TouchControls"]
+position = Vector2( 32, -2 )
+normal = ExtResource( 6 )
+pressed = ExtResource( 11 )
+passby_press = true
+action = "right"
+
+[node name="Up" type="TouchScreenButton" parent="OverEverything/TouchControls"]
+position = Vector2( -2, -34 )
+normal = ExtResource( 15 )
+pressed = ExtResource( 13 )
+passby_press = true
+action = "look_up"
+
+[node name="Down" type="TouchScreenButton" parent="OverEverything/TouchControls"]
+position = Vector2( -2, 32 )
+normal = ExtResource( 12 )
+pressed = ExtResource( 14 )
+passby_press = true
+action = "look_down"
+
+[node name="A" type="TouchScreenButton" parent="OverEverything/TouchControls"]
+position = Vector2( 200, -8 )
+normal = ExtResource( 18 )
+pressed = ExtResource( 17 )
+passby_press = true
+action = "jump"
+
+[node name="B" type="TouchScreenButton" parent="OverEverything/TouchControls"]
+position = Vector2( 280, -8 )
+normal = ExtResource( 19 )
+pressed = ExtResource( 16 )
+passby_press = true
+action = "attack"
 
 [node name="LightVP" type="Viewport" parent="."]
 size = Vector2( 426, 240 )

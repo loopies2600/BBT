@@ -50,9 +50,7 @@ func physics_update(_delta):
 				match p.prevState:
 					"Slide":
 						anim = "Dash"
-					"Walled":
-						anim = "WallJump"
-			
+						
 				p.anim.play(anim)
 				
 	if p.canInput:
@@ -75,9 +73,6 @@ func physics_update(_delta):
 		if p.god:
 			if Input.is_action_pressed("jump"):
 				p.velocity.y = p.jumpHeight * p.upDirection.y
-		
-		if p.closeToWall() && Input.is_action_just_pressed("jump") && p.canWallJump:
-			p.setState(10)
 		
 		if jumping && !cancelled:
 			if Input.is_action_just_released("jump"):

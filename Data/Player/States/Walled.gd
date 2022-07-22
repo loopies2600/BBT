@@ -23,7 +23,6 @@ func physics_update(delta):
 		
 		p.dir = -p.dir
 		p.velocity.x = (p.maxSpd * 2) * p.dir
-		p.canWallJump = false
-	
+		
 func exit():
 	p.doGravity = true

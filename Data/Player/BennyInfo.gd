@@ -16,6 +16,9 @@ func _ready():
 func _process(_delta):
 	update()
 	
+	if Input.is_action_just_pressed("attack") && owner.state.name.to_upper() == "IDLE":
+		render = !render
+	
 func _mpUpd():
 	var pos : Vector2 = owner.global_position
 	
@@ -23,11 +26,6 @@ func _mpUpd():
 	
 	yield(get_tree().create_timer(0.05), "timeout")
 	_mpUpd()
-	
-func _input(event):
-	if event is InputEventKey && !event.is_echo() && event.is_pressed():
-		if event.scancode == KEY_B:
-			render = !render
 	
 func _draw():
 	if Main.editing: return
@@ -51,4 +49,3 @@ func _draw():
 	draw_string(FONT, Vector2(4, 40), "SPD: %s / %s" % [int(owner.velocity.x), int(owner.velocity.y)])
 	draw_string(FONT, Vector2(4, 52), "INPUTS:")
 	draw_string(FONT, Vector2(4, 82), "CAN DASH:%s" % str(owner.canDash).to_upper())
-	draw_string(FONT, Vector2(4, 94), "CAN WALLJUMP:%s" % str(owner.canWallJump).to_upper())

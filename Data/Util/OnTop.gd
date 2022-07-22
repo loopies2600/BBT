@@ -7,6 +7,7 @@ onready var dmr := $DeathMarkerRenderer
 onready var li := $LevelInfo
 onready var lvp := $LightVP
 onready var light := $Light
+onready var touchCtl := $OverEverything/TouchControls
 
 var _blockTimer = null
 var _card = null
@@ -14,6 +15,9 @@ var _card = null
 onready var _sTime := OS.get_ticks_msec()
 var lvlTime := 0
 
+func setTouchControls(booly := true):
+	touchCtl.visible = booly
+	
 func deleteTimer():
 	if _blockTimer:
 		_blockTimer.queue_free()

@@ -30,7 +30,7 @@ onready var wallDetector := $Graphics/WallDetector
 onready var bgTint := $BGTint
 onready var resetTimer := $Dead/ResetTimer
 onready var debugInfo := $BennyInfo/BIRenderer
-onready var states := [$Idle, $Crouch, $Move, $Air, $Dash, $Dead, $Slide, $Editor, $Win, $Rocket, $Walled, $Gaze]
+onready var states := [$Idle, $Crouch, $Move, $Air, $Dash, $Dead, $Slide, $Editor, $Win, $Rocket, $Gaze]
 onready var spr := $Graphics/Sprite
 
 var state : State
@@ -42,7 +42,6 @@ var iDir := 0
 var grounded := false
 var canInput := true
 var canDash := true
-var canWallJump := true
 
 func setState(id, msg := {}):
 	state.exit()
