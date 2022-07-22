@@ -16,6 +16,17 @@ func _process(delta):
 	if lock: return
 	
 	if get_parent().editing:
+		# KEYBOARD CONTROLS
+		var transDir := Vector2(int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")), int(Input.is_action_pressed("look_down")) - int(Input.is_action_pressed("look_up")))
+		
+		if transDir:
+			global_position += transDir.normalized() * 8
+		
+		var scaleDir := int(Input.is_action_pressed("jump")) - int(Input.is_action_pressed("attack"))
+		
+		baseZoom.x = clamp(baseZoom.x + (zoomSpeed / 2 * scaleDir), minZoom, maxZoom)
+		baseZoom.y = clamp(baseZoom.y + (zoomSpeed / 2 * scaleDir), minZoom, maxZoom)
+	
 		zoom = lerp(zoom, baseZoom, 8 * delta)
 		
 		if canPlace:
@@ -42,18 +53,6 @@ func _process(delta):
 			offset = Vector2(rand_range(-intensity.x, intensity.x), rand_range(-intensity.y, intensity.y))
 		else:
 			offset = Vector2()
-	
-	# KEYBOARD CONTROLS
-	var transDir := Vector2(int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")), int(Input.is_action_pressed("look_down")) - int(Input.is_action_pressed("look_up")))
-	
-	if transDir:
-		global_position += transDir.normalized() * 8
-	
-	var scaleDir := int(Input.is_action_pressed("jump")) - int(Input.is_action_pressed("attack"))
-	
-	baseZoom.x = clamp(baseZoom.x + (zoomSpeed / 2 * scaleDir), minZoom, maxZoom)
-	baseZoom.y = clamp(baseZoom.y + (zoomSpeed / 2 * scaleDir), minZoom, maxZoom)
-	
 	
 func shake(xOff := 0, yOff := 0):
 	intensity = Vector2(xOff, yOff)

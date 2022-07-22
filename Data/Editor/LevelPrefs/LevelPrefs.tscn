@@ -166,52 +166,118 @@ margin_bottom = 128.0
 rect_min_size = Vector2( 256, 64 )
 script = ExtResource( 1 )
 
-[node name="CSLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc"]
+[node name="Hbc" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc"]
 margin_top = 132.0
 margin_right = 388.0
-margin_bottom = 140.0
+margin_bottom = 176.0
+script = ExtResource( 1 )
+
+[node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc"]
+margin_right = 68.0
+margin_bottom = 44.0
+script = ExtResource( 1 )
+
+[node name="CSLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc"]
+margin_right = 68.0
+margin_bottom = 8.0
 rect_pivot_offset = Vector2( -88, -8 )
 custom_styles/normal = SubResource( 3 )
 text = "Cell size"
 script = ExtResource( 1 )
 
-[node name="CS" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc"]
-margin_top = 144.0
-margin_right = 388.0
-margin_bottom = 176.0
+[node name="CS" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc"]
+margin_top = 12.0
+margin_right = 68.0
+margin_bottom = 44.0
 script = ExtResource( 1 )
 
-[node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/CS"]
+[node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc/CS"]
 margin_right = 32.0
 margin_bottom = 32.0
 script = ExtResource( 1 )
 
-[node name="X" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/CS/Vbc"]
+[node name="X" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc/CS/Vbc"]
 margin_right = 32.0
 margin_bottom = 12.0
 text = "X"
 script = ExtResource( 1 )
 
-[node name="CSX" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/CS/Vbc"]
+[node name="CSX" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc/CS/Vbc"]
 margin_top = 16.0
 margin_right = 32.0
 margin_bottom = 32.0
 text = "0"
 script = ExtResource( 1 )
 
-[node name="Vbc2" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/CS"]
+[node name="Vbc2" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc/CS"]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 32.0
 script = ExtResource( 1 )
 
-[node name="Y" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/CS/Vbc2"]
+[node name="Y" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc/CS/Vbc2"]
 margin_right = 32.0
 margin_bottom = 12.0
 text = "Y"
 script = ExtResource( 1 )
 
-[node name="CSY" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/CS/Vbc2"]
+[node name="CSY" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc/CS/Vbc2"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+text = "0"
+script = ExtResource( 1 )
+
+[node name="Vbc2" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc"]
+margin_left = 72.0
+margin_right = 140.0
+margin_bottom = 44.0
+
+[node name="BSLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2"]
+margin_right = 68.0
+margin_bottom = 8.0
+rect_pivot_offset = Vector2( -88, -8 )
+custom_styles/normal = SubResource( 3 )
+text = "Boundaries"
+script = ExtResource( 1 )
+
+[node name="BS" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2"]
+margin_top = 12.0
+margin_right = 68.0
+margin_bottom = 44.0
+script = ExtResource( 1 )
+
+[node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2/BS"]
+margin_right = 32.0
+margin_bottom = 32.0
+script = ExtResource( 1 )
+
+[node name="X" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2/BS/Vbc"]
+margin_right = 32.0
+margin_bottom = 12.0
+text = "X"
+script = ExtResource( 1 )
+
+[node name="BSX" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2/BS/Vbc"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+text = "0"
+script = ExtResource( 1 )
+
+[node name="Vbc2" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2/BS"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 32.0
+script = ExtResource( 1 )
+
+[node name="Y" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2/BS/Vbc2"]
+margin_right = 32.0
+margin_bottom = 12.0
+text = "Y"
+script = ExtResource( 1 )
+
+[node name="BSY" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2/BS/Vbc2"]
 margin_top = 16.0
 margin_right = 32.0
 margin_bottom = 32.0

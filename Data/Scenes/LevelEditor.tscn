@@ -30,6 +30,9 @@ script = ExtResource( 4 )
 layer = 16
 script = ExtResource( 7 )
 
+[node name="MenuBar" parent="GUILayer" instance=ExtResource( 6 )]
+margin_bottom = -224.0
+
 [node name="Sidebar" parent="GUILayer" instance=ExtResource( 3 )]
 margin_left = 400.0
 margin_top = 16.0
@@ -39,9 +42,6 @@ margin_bottom = -48.0
 anchor_bottom = 0.0
 margin_top = 188.0
 margin_bottom = 240.0
-
-[node name="MenuBar" parent="GUILayer" instance=ExtResource( 6 )]
-margin_bottom = -224.0
 
 [node name="Descriptor" parent="GUILayer" instance=ExtResource( 8 )]
 

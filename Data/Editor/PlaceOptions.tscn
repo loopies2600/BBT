@@ -65,14 +65,14 @@ script = ExtResource( 6 )
 [node name="CenterContainer" type="CenterContainer" parent="PC"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 87.0
+margin_right = 97.0
 margin_bottom = 127.0
 script = ExtResource( 6 )
 
 [node name="Vbc" type="VBoxContainer" parent="PC/CenterContainer"]
-margin_left = 4.0
+margin_left = 9.0
 margin_top = 5.0
-margin_right = 81.0
+margin_right = 86.0
 margin_bottom = 120.0
 
 [node name="Hbc" type="HBoxContainer" parent="PC/CenterContainer/Vbc"]

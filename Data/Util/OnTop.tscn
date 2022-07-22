@@ -35,6 +35,7 @@ modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 48, 144 )
 texture = ExtResource( 8 )
 centered = false
+offset = Vector2( -30, -30 )
 script = ExtResource( 7 )
 
 [node name="Left" type="TouchScreenButton" parent="OverEverything/TouchControls"]

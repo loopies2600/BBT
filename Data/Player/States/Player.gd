@@ -165,11 +165,15 @@ func _physics_process(delta):
 	if is_on_ceiling():
 		ganim.play("WallCol")
 	
+	if global_position.x > Main.level.boundaries.x || global_position.x < 0.0 || global_position.y > Main.level.boundaries.y || global_position.y < 0.0:
+		kill()
+	
 func _dustTrigger():
 	pass
 	
 func kill(msg := {}):
 	if Main.editing: return
 	if god: return
+	if state.name == "Dead": return
 	
 	setState(5, msg)

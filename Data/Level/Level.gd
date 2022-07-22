@@ -6,6 +6,7 @@ signal block_timer_ended()
 signal state_reset()
 signal redrawn()
 
+const BORNERD := preload("res://Sprites/Enemy/Bornerd.png")
 const TILESPR := preload("res://Data/Particles/GenericSprite.tscn")
 const INDESTRUCTIBLE := [23, 24, 61, 62, 63, 64, 77, 78, 79, 80]
 const NOSHADOW := [2, 3, 4, 43, 44, 45, 46, 47, 48, 54, 69, 70]
@@ -16,6 +17,7 @@ export (float) var blockTimerTime = 5.0
 export (bool) var darkMode = false
 export (bool) var invertBitmap = false
 export (bool) var shadows = true
+export (Vector2) var boundaries = Vector2(426, 240)
 
 export (String) var lName = "Level"
 export (String) var lDesc = "Description"
@@ -26,9 +28,7 @@ onready var tmFg := $Foreground
 onready var mus := $Music
 onready var bg := $ImageBG
 onready var blockTimer := $BlockTimer
-
-var camBoundariesX := Vector2(0, 320)
-var camBoundariesY := Vector2(0, 240)
+onready var boundary := $BoundaryRenderer
 
 var blockToggle := false setget _onBlockToggle
 var timedBlockToggle := false setget _onTimedBlockToggle
@@ -191,6 +191,28 @@ func redrawShadows():
 	emit_signal("redrawn")
 	
 func _draw():
+	var nerdCnt := Vector2(ceil(boundaries.x / 16), ceil(boundaries.y / 16)) 
+	
+	for i in range(nerdCnt.x + 1):
+		draw_set_transform(Vector2(8, 8), 0, Vector2(1, -1))
+		draw_texture(BORNERD, Vector2(-16 + (16 * i), 0), Color(0, 0, 0, 0.5))
+		
+	for i in range(nerdCnt.y + 2):
+		draw_set_transform(Vector2(-8, 8), PI / 2, Vector2(-1, 1))
+		draw_texture(BORNERD, Vector2(-16 + (16 * i), boundaries.x), Color(0, 0, 0, 0.5))
+		
+	for i in range(nerdCnt.x + 1):
+		draw_set_transform(Vector2(), 0, Vector2(1, 1))
+		draw_texture(BORNERD, Vector2(-16 + (16 * i), boundaries.y))
+		draw_set_transform(Vector2(), 0, Vector2(1, -1))
+		draw_texture(BORNERD, Vector2(-16 + (16 * i), 0))
+	
+	for i in range(nerdCnt.y + 2):
+		draw_set_transform(Vector2(), PI / 2, Vector2(1, 1))
+		draw_texture(BORNERD, Vector2(-16 + (16 * i), 0))
+		draw_set_transform(Vector2(), PI / 2, Vector2(-1, 1))
+		draw_texture(BORNERD, Vector2(-16 + (16 * i), boundaries.x))
+	
 	if !shadows: return
 	
 	for c in get_used_cells():

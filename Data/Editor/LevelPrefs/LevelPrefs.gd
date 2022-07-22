@@ -2,14 +2,16 @@ extends "res://Data/Editor/AntiCursor.gd"
 
 onready var accBt := $Accept
 onready var cancelBt := $Cancel
-onready var csX := $ColorRect/TabContainer/General/SC/Vbc/CS/Vbc/CSX
-onready var csY := $ColorRect/TabContainer/General/SC/Vbc/CS/Vbc2/CSY
+onready var csX := $ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc/CS/Vbc/CSX
+onready var csY := $ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc/CS/Vbc2/CSY
 onready var dm := $ColorRect/TabContainer/Visuals/SC/Vbc/DM
 onready var bmpC := $ColorRect/TabContainer/Visuals/SC/Vbc/BMPC
 onready var ds := $ColorRect/TabContainer/Visuals/SC/Vbc/DS
 onready var lvlN := $ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc/LvNm
 onready var lvlD := $ColorRect/TabContainer/General/SC/Vbc/LvDs
 onready var lvlA := $ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc2/LvA
+onready var bsX := $ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2/BS/Vbc/BSX
+onready var bsY := $ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2/BS/Vbc2/BSY
 
 func _ready():
 	$ColorRect/TabContainer.current_tab = 1
@@ -19,6 +21,8 @@ func _ready():
 	
 	csX.text = str(Main.level.cell_size.x)
 	csY.text = str(Main.level.cell_size.y)
+	bsX.text = str(Main.level.boundaries.x)
+	bsY.text = str(Main.level.boundaries.y)
 	
 	dm.pressed = Main.level.darkMode
 	bmpC.pressed = Main.level.invertBitmap
@@ -34,6 +38,7 @@ func _saveAndExit():
 	for map in [Main.level, Main.level.tmBg, Main.level.tmFg]:
 		map.cell_size = newCellSize
 	
+	Main.level.boundaries = Vector2(int(bsX.text), int(bsY.text))
 	Main.level.darkMode = dm.pressed
 	Main.olr.visible = dm.pressed
 	
