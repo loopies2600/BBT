@@ -6,7 +6,7 @@ const DEFPATH := "res://Data/Editor/Definitions/%s.tres"
 
 const OLIST := ["Spike", "SpikyBall", "Gravitator", "ConveyorBelt", "BoosterHand", "Text", "Light", "OrbitingPlatforms", "Token", "ToggleButton", "PointingArrow", "PureColor", "TimerToggleButton", "DoorButton", "Bridge"]
 const ELIST := ["Player", "Earthworm", "Fernandez", "HermitBlob", "Tezoo", "Planisandro", "Midget", "Sunny", "Dooracio"]
-const MLIST := ["LockCam", "LevelBitmap"]
+const MLIST := ["LockCam", "LevelBitmap", "Picture"]
 const PLIST := ["Rocket"]
 
 var Entities := []

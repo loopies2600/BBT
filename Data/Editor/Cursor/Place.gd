@@ -69,9 +69,14 @@ func mainClick(_event):
 			
 			var pos : Vector2 = t
 					
-			var occupied = Main.getNodeOnThisPos(pos) != null
-			if occupied: return
-					
+			var occupied = Main.getNodeOnThisPos(pos)
+			
+			if occupied:
+				if occupied.has_method("clickEvent"):
+					occupied.clickEvent()
+				
+				return
+				
 			placeSnd.play()
 				
 			var instance = tgt.itemScene.instance()
