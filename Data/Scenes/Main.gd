@@ -100,7 +100,7 @@ func reload(newLvl : PackedScene):
 func _ready():
 	var _unused = connect("game_mode_changed", ot, "reset")
 	
-	_levelInit(level)
+	add_child(level)
 	
 	changeScene(AUD)
 	

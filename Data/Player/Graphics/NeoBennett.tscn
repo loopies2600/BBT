@@ -393,14 +393,14 @@ region_rect = Rect2( 23, 48, 19, 18 )
 
 [node name="LLeg" type="Sprite" parent="."]
 position = Vector2( -7, 10 )
-rotation = 0.785397
+rotation = 0.785396
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 80, 36, 16, 12 )
 
 [node name="RLeg" type="Sprite" parent="."]
 position = Vector2( 9, 11 )
-rotation = -0.785397
+rotation = -0.785396
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 53, 16, 11 )

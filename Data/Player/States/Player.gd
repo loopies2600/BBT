@@ -93,6 +93,7 @@ func letsStart():
 	
 	# arreglar un bugcito!
 	resetTimer.stop()
+	global_position = spawnPos
 	
 	# reiniciamos estado la de colisión
 	collisionBox.set_deferred("disabled", false)

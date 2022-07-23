@@ -120,7 +120,7 @@ func openFilePicker():
 			WebFiles.open_file(".bbt")
 		"X11":
 			var out := []
-			var _unused = OS.execute("/usr/bin/zenity", ["--file-selection", "--file-filter=Level data (*.tscn) | *tscn", "--title=Load Level"], true, out)
+			var _unused = OS.execute("/usr/bin/zenity", ["--file-selection", "--file-filter=Level data (*.bbt) | *bbt", "--title=Load Level"], true, out)
 			
 			if out[0]:
 				var path : String = out[0]

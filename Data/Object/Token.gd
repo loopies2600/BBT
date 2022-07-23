@@ -38,7 +38,7 @@ func _spawnAnim():
 	var newAnim = TOKANIM.instance()
 	
 	newAnim.startPos = get_global_transform_with_canvas().origin
-	newAnim.endPos = Main.ot.ti.startPos - Vector2(Main.ot.ti.separation * Main.level.tokensCollected, 0)
+	newAnim.endPos = Main.ot.li.startPos - Vector2(Main.ot.li.separation * Main.level.tokensCollected, 0)
 	
 	Main.ot.add_child(newAnim)
 	Main.shine(global_position + Vector2(8, 8), Color.lightskyblue, 8, 196)

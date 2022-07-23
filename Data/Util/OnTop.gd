@@ -16,6 +16,10 @@ onready var _sTime := OS.get_ticks_msec()
 var lvlTime := 0
 
 func setTouchControls(booly := true):
+	if !OS.has_touchscreen_ui_hint():
+		touchCtl.visible = false
+		return
+	
 	touchCtl.visible = booly
 	
 func deleteTimer():

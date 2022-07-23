@@ -28,7 +28,6 @@ onready var tmFg := $Foreground
 onready var mus := $Music
 onready var bg := $ImageBG
 onready var blockTimer := $BlockTimer
-onready var boundary := $BoundaryRenderer
 
 var blockToggle := false setget _onBlockToggle
 var timedBlockToggle := false setget _onTimedBlockToggle

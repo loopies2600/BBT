@@ -19,6 +19,9 @@ func _ready():
 	Main.cam.current = true
 	Main.cam.anchor_mode = Camera2D.ANCHOR_MODE_DRAG_CENTER
 	
+	yield(get_tree(), "idle_frame")
+	Main.cam.global_position = Vector2(213, 120)
+	
 func _process(_delta):
 	if Main.editing:
 		Main.entityLookTowards = cursor.get_global_mouse_position()
