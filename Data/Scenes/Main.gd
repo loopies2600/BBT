@@ -11,7 +11,6 @@ const EDITOR := preload("res://Data/Scenes/LevelEditor.tscn")
 const NGIOSTATUS := preload("res://Data/Scenes/NewgroundsChecker.tscn")
 const NG := preload("res://Data/Util/Newgrounds.tscn")
 const MAINMENU := preload("res://Data/Scenes/MainMenu.tscn")
-const AUD := preload("res://Data/Scenes/AudioTest.tscn")
 
 const DUST := preload("res://Data/Particles/FastDust.tscn")
 const STAR := preload("res://Data/Particles/Star.tres")
@@ -102,7 +101,7 @@ func _ready():
 	
 	add_child(level)
 	
-	changeScene(AUD)
+	changeScene(TITLE)
 	
 func _levelInit(lev):
 	add_child(lev)
