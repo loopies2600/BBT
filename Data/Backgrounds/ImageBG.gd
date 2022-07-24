@@ -63,7 +63,7 @@ func _setTexture(path := ""):
 	img.compress(Image.COMPRESS_S3TC, Image.COMPRESS_SOURCE_GENERIC, 1.0)
 	
 	var tex = ImageTexture.new()
-	tex.create_from_image(img)
+	tex.create_from_image(img, 2)
 	
 	rect.texture = tex
 	get_parent().bgTex = tex

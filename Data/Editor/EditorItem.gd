@@ -45,15 +45,16 @@ func _tileTexGen():
 	
 func _itemClick(event):
 	if event is InputEvent:
-		if event.is_action_pressed("mouse_main"):
-			get_tree().get_nodes_in_group("Editor")[0].desc.msg(itemName)
-	
-			var containers = get_parent().get_parent().get_parent().get_parent().get_parent().containers
-			
-			for c in containers:
-				for i in c.get_children():
-					i.selected = false
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT && event.is_pressed():
+				get_tree().get_nodes_in_group("Editor")[0].desc.msg(itemName)
+		
+				var containers = get_parent().get_parent().get_parent().get_parent().get_parent().containers
 				
-			self.selected = true
-			
-			cursor.target = self
+				for c in containers:
+					for i in c.get_children():
+						i.selected = false
+					
+				self.selected = true
+				
+				cursor.target = self

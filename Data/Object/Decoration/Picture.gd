@@ -33,7 +33,7 @@ func _onWebFileOpen(_file, content):
 	img.compress(Image.COMPRESS_S3TC, Image.COMPRESS_SOURCE_GENERIC, 1.0)
 	
 	var tex = ImageTexture.new()
-	tex.create_from_image(img)
+	tex.create_from_image(img, 2)
 	
 	texture = tex
 	
@@ -46,6 +46,6 @@ func _setTex(path):
 	img.compress(Image.COMPRESS_S3TC, Image.COMPRESS_SOURCE_GENERIC, 1.0)
 	
 	var tex = ImageTexture.new()
-	tex.create_from_image(img)
+	tex.create_from_image(img, 2)
 	
 	texture = tex

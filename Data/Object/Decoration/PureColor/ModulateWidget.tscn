@@ -1,0 +1,146 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Data/UI/EditorTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Data/Editor/AntiCursor.gd" type="Script" id=2]
+[ext_resource path="res://Data/Object/Decoration/PureColor/ModulateWidget.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/Editor/PanelArrow.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Deploy"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[node name="ModulateWidget" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 128.0
+margin_bottom = 88.0
+script = ExtResource( 2 )
+
+[node name="Vbc" type="VBoxContainer" parent="Panel"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 118.0
+margin_bottom = 76.0
+script = ExtResource( 2 )
+
+[node name="Hbc" type="HBoxContainer" parent="Panel/Vbc"]
+margin_right = 110.0
+margin_bottom = 32.0
+script = ExtResource( 2 )
+
+[node name="RChannel" type="VBoxContainer" parent="Panel/Vbc/Hbc"]
+margin_right = 32.0
+margin_bottom = 32.0
+script = ExtResource( 2 )
+
+[node name="RLab" type="Label" parent="Panel/Vbc/Hbc/RChannel"]
+margin_right = 32.0
+margin_bottom = 12.0
+text = "Red"
+script = ExtResource( 2 )
+
+[node name="R" type="LineEdit" parent="Panel/Vbc/Hbc/RChannel"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+text = "0"
+script = ExtResource( 2 )
+
+[node name="GChannel" type="VBoxContainer" parent="Panel/Vbc/Hbc"]
+margin_left = 36.0
+margin_right = 74.0
+margin_bottom = 32.0
+script = ExtResource( 2 )
+
+[node name="GLab" type="Label" parent="Panel/Vbc/Hbc/GChannel"]
+margin_right = 38.0
+margin_bottom = 12.0
+text = "Green"
+script = ExtResource( 2 )
+
+[node name="G" type="LineEdit" parent="Panel/Vbc/Hbc/GChannel"]
+margin_top = 16.0
+margin_right = 38.0
+margin_bottom = 32.0
+text = "0"
+script = ExtResource( 2 )
+
+[node name="BChannel" type="VBoxContainer" parent="Panel/Vbc/Hbc"]
+margin_left = 78.0
+margin_right = 110.0
+margin_bottom = 32.0
+script = ExtResource( 2 )
+
+[node name="BLab" type="Label" parent="Panel/Vbc/Hbc/BChannel"]
+margin_right = 32.0
+margin_bottom = 12.0
+text = "Blue"
+script = ExtResource( 2 )
+
+[node name="B" type="LineEdit" parent="Panel/Vbc/Hbc/BChannel"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+text = "0"
+script = ExtResource( 2 )
+
+[node name="HexColor" type="VBoxContainer" parent="Panel/Vbc"]
+margin_top = 36.0
+margin_right = 110.0
+margin_bottom = 68.0
+script = ExtResource( 2 )
+
+[node name="HexLab" type="Label" parent="Panel/Vbc/HexColor"]
+margin_right = 110.0
+margin_bottom = 12.0
+text = "Hex"
+script = ExtResource( 2 )
+
+[node name="Hex" type="LineEdit" parent="Panel/Vbc/HexColor"]
+margin_top = 16.0
+margin_right = 110.0
+margin_bottom = 32.0
+text = "0"
+script = ExtResource( 2 )
+
+[node name="Sprite" type="TextureRect" parent="Panel"]
+margin_left = -15.0
+margin_right = 1.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+autoplay = "Deploy"
+anims/Deploy = SubResource( 1 )
+anims/RESET = SubResource( 2 )

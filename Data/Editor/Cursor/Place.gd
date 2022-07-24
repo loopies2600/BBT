@@ -159,7 +159,7 @@ func subClick(event):
 				removeSnd.play()
 				
 				Main.plop(Vector2(8, 8) + t * ttm.cell_size)
-					
+				
 				n.queue_free()
 				get_parent().emit_signal("object_removed", cell)
 	
