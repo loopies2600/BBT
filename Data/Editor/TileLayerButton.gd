@@ -20,16 +20,17 @@ func _ready():
 	
 func _itemClick(event):
 	if event is InputEvent:
-		if event.is_action_pressed("mouse_main"):
-			enable()
-			
-			match name:
-				"Foreground":
-					cursor.targetTilemap = Main.level.get_node("Foreground")
-				"LevelLayout":
-					cursor.targetTilemap = Main.level
-				"Background":
-					cursor.targetTilemap = Main.level.get_node("Background")
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT && event.is_pressed():
+				enable()
+				
+				match name:
+					"Foreground":
+						cursor.targetTilemap = Main.level.get_node("Foreground")
+					"LevelLayout":
+						cursor.targetTilemap = Main.level
+					"Background":
+						cursor.targetTilemap = Main.level.get_node("Background")
 
 func enable():
 	for i in btOwner.buttons:

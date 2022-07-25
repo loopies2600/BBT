@@ -64,5 +64,5 @@ margin_top = 230.0
 margin_right = 120.0
 margin_bottom = 240.0
 custom_fonts/font = ExtResource( 3 )
-text = "BUILD 7-24-1 !! PLATFORM: "
+text = "BUILD "
 align = 1

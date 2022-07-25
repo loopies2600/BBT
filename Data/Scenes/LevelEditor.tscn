@@ -46,10 +46,10 @@ margin_bottom = 240.0
 [node name="Descriptor" parent="GUILayer" instance=ExtResource( 8 )]
 
 [node name="PlaceOptions" parent="GUILayer" instance=ExtResource( 10 )]
-margin_left = 304.0
+margin_left = 247.0
 margin_top = 24.0
-margin_right = -33.0
-margin_bottom = -88.0
+margin_right = -35.0
+margin_bottom = -96.0
 
 [node name="ExitPlaytestButton" type="TextureButton" parent="GUILayer"]
 margin_left = 8.0

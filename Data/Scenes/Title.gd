@@ -13,7 +13,7 @@ onready var buildnum := $VersionNumber
 var tgCol := Color(0.25, 0.25, 0.25, 1.0)
 
 func _ready():
-	buildnum.text += OS.get_name().to_upper()
+	buildnum.text = "BUILD %s !! %s" % [ProjectSettings.get_setting("global/build_name"), OS.get_name().to_upper()]
 	
 	var _unused = playBt.connect("pressed", self, "_playPress")
 	
