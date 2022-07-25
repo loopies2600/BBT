@@ -38,3 +38,5 @@ jobs:
           relative_export_path: ./build/ # optional, default is 
           # If "true" Godot will export in debug mode.
           export_debug: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
