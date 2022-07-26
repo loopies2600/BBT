@@ -7,6 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
+    tags:
+      - "v*"
   pull_request:
     branches: [ "main" ]
 
@@ -22,26 +24,32 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      # Godot export by firebelley
-      - name: Godot export
+      - name: checkout
+        uses: actions/checkout@v3.0.2
+        # Ensure that you get the entire project history
+        with:
+          fetch-depth: 0
+
+      # Automatically stores the tag name for later use
+      - name: get tag from version
+        id: tag_version
+        run: |
+         echo ::set-output name=TAG_VERSION::${GITHUB_REF#refs/tags/v}
+
+      - name: export game
+        id: export
+        # Use latest version (see releases for all versions)
         uses: firebelley/godot-export@v4.1.0
         with:
-          # The download url of the Linux Headless Godot executable.
-          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_linux_headless.64.zip
-          # The url of the export templates corresponding to the Godot executable version.
-          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_export_templates.tpz
-          # The path relative to the root of the git repository that contains the "project.godot" file.
+          # Defining all the required inputs
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/3.4.4-stable/Godot_v3.4.4-stable_linux_headless.64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/3.4.4-stable/Godot_v3.4.4-stable_export_templates.tpz
           relative_project_path: ./
-          # If provided, exports will be moved to this directory relative to the root of the Git repository. This setting is overridden by "use_preset_export_path".
-          relative_export_path: ./build/ # optional, default is 
-          # If "true" Godot will export in debug mode.
-          export_debug: true
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        
-      - name: Create release
+          archive_output: true
+
+        # This release action has worked well for me. However, you can most likely use any release action of your choosing.
+        # https://github.com/softprops/action-gh-release
+      - name: create release
         uses: softprops/action-gh-release@v0.1.14
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
