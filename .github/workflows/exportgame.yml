@@ -25,7 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       # Godot export by firebelley
-      - name: Godot Export
+      - name: Godot export
         uses: firebelley/godot-export@v4.1.0
         with:
           # The download url of the Linux Headless Godot executable.
@@ -38,7 +38,13 @@ jobs:
           relative_export_path: ./build/ # optional, default is 
           # If "true" Godot will export in debug mode.
           export_debug: true
-          # SOY RETRASADO
-          create_release: true
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        
+      - name: Create release
+        uses: softprops/action-gh-release@v0.1.14
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generate_release_notes: true
+          tag_name: ${{ steps.tag_version.outputs.TAG_VERSION }}
+          files: ${{ steps.export.outputs.archive_directory }}/*
