@@ -28,7 +28,7 @@ func _getCellsInRadius(cell := Vector2(), radius := brushSize) -> Array:
 	for y in range(-radius, radius):
 		for x in range(-radius, radius):
 			if (x * x) + (y * y) < (radius * radius):
-				cells.append(cell + Vector2(x, y))
+				cells.append((cell + Vector2(x, y)) * Main.cellSize)
 		
 	return cells
 	
@@ -45,7 +45,7 @@ func mainClick(_event):
 	
 	var availableTiles := _getCellsInRadius(cell)
 	
-	if floodFill: availableTiles = Main.level.floodFill(cell, 32, ttm, [-1, ttm.get_cellv(cell)])
+	if floodFill: availableTiles = Main.level.floodFill(cell * Main.cellSize, 2048, ttm, [-1, ttm.get_cellv(cell)])
 	
 	action = _actionGen(availableTiles, ttm, [tgt.tileID])
 	
@@ -56,7 +56,7 @@ func mainClick(_event):
 	
 	for t in availableTiles:
 		if tile:
-			if ttm.get_cellv(t) == -1 || ttm.get_cellv(cell) != tgt.tileID:
+			if ttm.get_cellv(t) == -1 || ttm.get_cellv(cell * Main.cellSize) != tgt.tileID:
 				placeSnd.play()
 			
 			ttm.set_cellv(t, tgt.tileID, basePlaceOptions.flip_x, basePlaceOptions.flip_y, basePlaceOptions.transpose)
@@ -67,8 +67,8 @@ func mainClick(_event):
 		else:
 			if ttm != Main.level: return
 			
-			var pos : Vector2 = t
-					
+			var pos : Vector2 = t.floor()
+			
 			var occupied = Main.getNodeOnThisPos(pos)
 			
 			if occupied:
@@ -84,12 +84,12 @@ func mainClick(_event):
 			if _singleInstanceCheck(instance):
 				var inst = lvl.get_node(instance.name)
 				
-				inst.global_position = (pos * lvl.cell_size).round()
+				inst.global_position = pos.floor()
 				
 				if inst.get("spawnPos"):
 					inst.spawnPos = inst.global_position
 			else:
-				instance.global_position = (pos * lvl.cell_size).round()
+				instance.global_position = pos.floor()
 				instance.add_to_group("Instances")
 				
 				for p in tgt.customParams:
@@ -125,23 +125,22 @@ func subClick(event):
 		
 	var cell : Vector2 = get_parent().cellPos
 	var ttm : TileMap = get_parent().targetTilemap
-	var tile := ttm.get_cellv(cell) != -1
 	
 	var availableTiles := _getCellsInRadius(cell)
 	
-	if floodFill: availableTiles = Main.level.floodFill(cell, 32, ttm, [-1, ttm.get_cellv(cell)])
+	if floodFill: availableTiles = Main.level.floodFill(cell * Main.cellSize, 2048, ttm, [-1, ttm.get_cellv(cell * Main.cellSize)])
 	
 	action = _actionGen(availableTiles, ttm)
 	if !action.empty(): get_parent().tileRemovalHistory.append(action)
 	
 	for t in availableTiles:
-		tile = ttm.get_cellv(t) != -1
+		var tile = ttm.get_cellv(t) != -1
 		
 		if tile:
 			removeSnd.play()
 			
 			if brushSize < 5 && ttm.get_cellv(t) != -1:
-				Main.plop(Vector2(8, 8) + t * ttm.cell_size)
+				Main.plop(Vector2(8, 8) + t)
 				
 			Main.level.funnyTileAnim(ttm, t, Vector2(256 * sin(mot.x), rand_range(-256, -512)))
 			ttm.set_cellv(t, -1)
@@ -153,12 +152,12 @@ func subClick(event):
 		else:
 			if ttm != Main.level: return
 			
-			var n = Main.getNodeOnThisPos(t)
+			var n = Main.getNodeOnThisPos(t.floor())
 			
 			if n:
 				removeSnd.play()
 				
-				Main.plop(Vector2(8, 8) + t * ttm.cell_size)
+				Main.plop(Vector2(8, 8) + t)
 				
 				n.queue_free()
 				get_parent().emit_signal("object_removed", cell)

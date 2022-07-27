@@ -19,8 +19,8 @@ func _ready():
 	var _unused = cancelBt.connect("pressed", self, "exit")
 	_unused = accBt.connect("pressed", self, "_saveAndExit")
 	
-	csX.text = str(Main.level.cell_size.x)
-	csY.text = str(Main.level.cell_size.y)
+	csX.text = str(Main.cellSize.x)
+	csY.text = str(Main.cellSize.y)
 	bsX.text = str(Main.level.boundaries.x)
 	bsY.text = str(Main.level.boundaries.y)
 	
@@ -36,7 +36,7 @@ func _saveAndExit():
 	var newCellSize : Vector2 = Vector2(float(csX.text), float(csY.text))
 	
 	for map in [Main.level, Main.level.tmBg, Main.level.tmFg]:
-		map.cell_size = newCellSize
+		Main.cellSize = newCellSize
 	
 	Main.level.boundaries = Vector2(int(bsX.text), int(bsY.text))
 	Main.level.darkMode = dm.pressed

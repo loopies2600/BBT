@@ -33,6 +33,9 @@ func _ready():
 	
 	var _unused = jumpTimer.connect("timeout", self, "_onDelayTimeout")
 	
+	start.set_as_toplevel(true)
+	start.global_position = global_position
+	
 	resetState()
 	
 func _onDelayTimeout():

@@ -1,0 +1,47 @@
+,en,es
+RW0,I wonder if anyone reads these things…,Me pregunto si alguien leerá estas cosas…
+RW1,I should get paid for this,Necesito plata
+RW2,Godot is cool :),Godot es piola :)
+RW3,Sugar free (i think),Sin azúcares (creo)
+RW4,Video game lamps use real electricity,Las lámparas en los videojuegos usan electricidad real
+RW5,Now using Newgrounds API,Ahora usando la API de Newgrounds
+BUILD_ID,BUILD %s FOR %s,COMPILACION %s PARA %s
+STARTUP_TILELIST,--- TILE LIST ---,--- LISTA DE TILES ---
+TITLE_EDITORBT,Run editor,Abrir editor
+TITLE_MUSICBT,Music,Música
+TITLE_SOUNDBT,Sound,Sonido
+E_MB_FILE,File,Archivo
+E_MB_LEVEL,Level,Nivel
+E_MB_EDIT,Edit,Editar
+E_MB_HELP,Help,Ayuda
+E_PP_BS,Brush\nsize,Pincel
+E_PP_FF,Fill,Llenar
+E_PP_LAYER,Layer,Capa
+E_PP_FLP,Flip,Girar
+E_PP_TRANSPOSE,Transpose,Transponer
+E_SIDEBAR_PLACE,Place,Colocar
+E_SIDEBAR_MOVE,Move,Mover
+E_SIDEBAR_CONFIG,Config,Configurar
+E_FILE_OPEN,Open,Abrir
+E_FILE_SAVE,Save,Guardar
+E_FILE_EXIT,Exit,Salir
+E_LEVEL_PREFS,Preferences,Preferencias
+E_LEVEL_WIPE,Clear contents,Vaciar contenidos
+E_EDIT_UNDO,Undo,Deshacer
+E_EDIT_REDO,Redo,Rehacer
+E_EDIT_TILEBG,Tile background,Mosaico
+E_HELP_BUGS,Known bugs,Bugs conocidos
+E_LP_TITLE,LEVEL PREFERENCES,PREFERENCIAS DEL NIVEL
+E_LP_GFX_DM,Dark mode,Modo oscuro
+E_LP_GFX_IBMP,Invert bitmap colors,Invertir colores del mapa de bits
+E_LP_GFX_SHADOW,Drop shadows,Sombras
+E_LP_GEN_INFO,Level info,Información del nivel
+E_LP_GEN_LNAME,Name,Nombre
+E_LP_GEN_LOWNER,Author,Autor
+E_LP_GEN_LDESC,Description,Descripción
+E_LP_GEN_NAMETT,Level name,Nombre del nivel
+E_LP_GEN_OWNTT,Author name,Nombre del autor
+E_LP_GEN_GSIZE,Grid size,Tamaño de cuadrícula
+E_LP_GEN_LIMITS,Boundaries,Límites
+GENERIC_YES,Accept,Aceptar
+GENERIC_NO,Cancel,Cancelar

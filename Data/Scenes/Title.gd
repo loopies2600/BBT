@@ -1,6 +1,6 @@
 extends Node2D
 
-const RANDWELCOME := ["I wonder if anyone reads these things...", "I should get paid for this", "Godot is cool :)", "Sugar free (i think)", "Video game lamps use real electricity", "Now using Newgrounds API", "I should get paid for this"]
+var RANDWELCOME := [tr("RW0"), tr("RW1"), tr("RW2"), tr("RW3"), tr("RW4"), tr("RW5")]
 
 onready var label := $TextDisplay
 onready var playBt := $PlayButton
@@ -13,7 +13,7 @@ onready var buildnum := $VersionNumber
 var tgCol := Color(0.25, 0.25, 0.25, 1.0)
 
 func _ready():
-	buildnum.text = "BUILD %s !! %s" % [ProjectSettings.get_setting("global/build_name"), OS.get_name().to_upper()]
+	buildnum.text = tr("BUILD_ID") % [ProjectSettings.get_setting("global/build_name"), OS.get_name().to_upper()]
 	
 	var _unused = playBt.connect("pressed", self, "_playPress")
 	
@@ -39,7 +39,7 @@ func _ready():
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	
-	label.text += "\n\n--- TILE LIST ---\n"
+	label.text += "\n\n%s\n" % tr("STARTUP_TILELIST")
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	

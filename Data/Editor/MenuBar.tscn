@@ -46,30 +46,31 @@ __meta__ = {
 }
 
 [node name="File" parent="Buttons" instance=ExtResource( 10 )]
-text = "File"
+margin_right = 62.0
+text = "E_MB_FILE"
 flat = false
 script = ExtResource( 3 )
 
 [node name="Level" parent="Buttons" instance=ExtResource( 10 )]
-margin_left = 36.0
-margin_right = 74.0
+margin_left = 66.0
+margin_right = 134.0
 focus_mode = 2
-text = "Level"
+text = "E_MB_LEVEL"
 flat = false
 script = ExtResource( 6 )
 
 [node name="Edit" parent="Buttons" instance=ExtResource( 10 )]
-margin_left = 78.0
-margin_right = 110.0
+margin_left = 138.0
+margin_right = 200.0
 focus_mode = 2
-text = "Edit"
+text = "E_MB_EDIT"
 flat = false
 script = ExtResource( 4 )
 
 [node name="Help" parent="Buttons" instance=ExtResource( 10 )]
-margin_left = 114.0
-margin_right = 146.0
+margin_left = 204.0
+margin_right = 266.0
 focus_mode = 2
-text = "Help"
+text = "E_MB_HELP"
 flat = false
 script = ExtResource( 5 )

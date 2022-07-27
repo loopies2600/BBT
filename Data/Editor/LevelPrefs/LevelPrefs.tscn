@@ -52,28 +52,28 @@ rect_min_size = Vector2( 210, 156 )
 script = ExtResource( 1 )
 
 [node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/Visuals/SC"]
-margin_right = 150.0
+margin_right = 120.0
 margin_bottom = 86.0
 script = ExtResource( 1 )
 
 [node name="DM" type="CheckButton" parent="ColorRect/TabContainer/Visuals/SC/Vbc"]
-margin_right = 150.0
+margin_right = 120.0
 margin_bottom = 26.0
-text = "Dark mode"
+text = "E_LP_GFX_DM"
 script = ExtResource( 1 )
 
 [node name="BMPC" type="CheckButton" parent="ColorRect/TabContainer/Visuals/SC/Vbc"]
 margin_top = 30.0
-margin_right = 150.0
+margin_right = 120.0
 margin_bottom = 56.0
-text = "Invert bitmap colors"
+text = "E_LP_GFX_IBMP"
 script = ExtResource( 1 )
 
 [node name="DS" type="CheckButton" parent="ColorRect/TabContainer/Visuals/SC/Vbc"]
 margin_top = 60.0
-margin_right = 150.0
+margin_right = 120.0
 margin_bottom = 86.0
-text = "Drop shadows"
+text = "E_LP_GFX_SHADOW"
 script = ExtResource( 1 )
 
 [node name="General" type="Tabs" parent="ColorRect/TabContainer"]
@@ -104,7 +104,7 @@ margin_right = 388.0
 margin_bottom = 8.0
 rect_pivot_offset = Vector2( -88, -8 )
 custom_styles/normal = SubResource( 3 )
-text = "Level info"
+text = "E_LP_GEN_INFO"
 script = ExtResource( 1 )
 
 [node name="CS2" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc"]
@@ -121,7 +121,7 @@ script = ExtResource( 1 )
 [node name="NmLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc"]
 margin_right = 192.0
 margin_bottom = 12.0
-text = "Name"
+text = "E_LP_GEN_LNAME"
 script = ExtResource( 1 )
 
 [node name="LvNm" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc"]
@@ -129,7 +129,7 @@ margin_top = 16.0
 margin_right = 192.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 192, 16 )
-placeholder_text = "Level name"
+placeholder_text = "E_LP_GEN_NAMETT"
 script = ExtResource( 1 )
 
 [node name="Vbc2" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/CS2"]
@@ -141,7 +141,7 @@ script = ExtResource( 1 )
 [node name="AtLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc2"]
 margin_right = 192.0
 margin_bottom = 12.0
-text = "Author"
+text = "E_LP_GEN_LOWNER"
 script = ExtResource( 1 )
 
 [node name="LvA" type="LineEdit" parent="ColorRect/TabContainer/General/SC/Vbc/CS2/Vbc2"]
@@ -149,14 +149,14 @@ margin_top = 16.0
 margin_right = 192.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 192, 16 )
-placeholder_text = "Author name"
+placeholder_text = "E_LP_GEN_OWNTT"
 script = ExtResource( 1 )
 
 [node name="DsLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc"]
 margin_top = 48.0
 margin_right = 388.0
 margin_bottom = 60.0
-text = "Description"
+text = "E_LP_GEN_LDESC"
 script = ExtResource( 1 )
 
 [node name="LvDs" type="TextEdit" parent="ColorRect/TabContainer/General/SC/Vbc"]
@@ -173,21 +173,21 @@ margin_bottom = 176.0
 script = ExtResource( 1 )
 
 [node name="Vbc" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc"]
-margin_right = 68.0
+margin_right = 88.0
 margin_bottom = 44.0
 script = ExtResource( 1 )
 
 [node name="CSLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc"]
-margin_right = 68.0
+margin_right = 88.0
 margin_bottom = 8.0
 rect_pivot_offset = Vector2( -88, -8 )
 custom_styles/normal = SubResource( 3 )
-text = "Cell size"
+text = "E_LP_GEN_GSIZE"
 script = ExtResource( 1 )
 
 [node name="CS" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc"]
 margin_top = 12.0
-margin_right = 68.0
+margin_right = 88.0
 margin_bottom = 44.0
 script = ExtResource( 1 )
 
@@ -229,21 +229,21 @@ text = "0"
 script = ExtResource( 1 )
 
 [node name="Vbc2" type="VBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc"]
-margin_left = 72.0
-margin_right = 140.0
+margin_left = 92.0
+margin_right = 186.0
 margin_bottom = 44.0
 
 [node name="BSLab" type="Label" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2"]
-margin_right = 68.0
+margin_right = 94.0
 margin_bottom = 8.0
 rect_pivot_offset = Vector2( -88, -8 )
 custom_styles/normal = SubResource( 3 )
-text = "Boundaries"
+text = "E_LP_GEN_LIMITS"
 script = ExtResource( 1 )
 
 [node name="BS" type="HBoxContainer" parent="ColorRect/TabContainer/General/SC/Vbc/Hbc/Vbc2"]
 margin_top = 12.0
-margin_right = 68.0
+margin_right = 94.0
 margin_bottom = 44.0
 script = ExtResource( 1 )
 
@@ -289,7 +289,7 @@ margin_left = 280.0
 margin_top = 220.0
 margin_right = 344.0
 margin_bottom = 236.0
-text = "Accept"
+text = "GENERIC_YES"
 script = ExtResource( 1 )
 
 [node name="Cancel" type="Button" parent="."]
@@ -297,7 +297,7 @@ margin_left = 352.0
 margin_top = 220.0
 margin_right = 416.0
 margin_bottom = 236.0
-text = "Cancel"
+text = "GENERIC_NO"
 script = ExtResource( 1 )
 
 [node name="LPLab" type="Label" parent="."]
@@ -308,4 +308,4 @@ margin_bottom = 20.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 3 )
 custom_styles/normal = SubResource( 4 )
-text = "LEVEL PREFERENCES"
+text = "E_LP_TITLE"

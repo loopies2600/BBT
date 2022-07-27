@@ -20,7 +20,7 @@ margin_top = 120.0
 margin_right = 249.0
 margin_bottom = 148.0
 theme = ExtResource( 4 )
-text = "Run editor"
+text = "TITLE_EDITORBT"
 
 [node name="MusButton" type="CheckButton" parent="."]
 visible = false
@@ -30,7 +30,7 @@ margin_right = 249.0
 margin_bottom = 178.0
 theme = ExtResource( 4 )
 pressed = true
-text = "Music"
+text = "TITLE_MUSICBT"
 
 [node name="SndButton" type="CheckButton" parent="."]
 visible = false
@@ -40,7 +40,7 @@ margin_right = 249.0
 margin_bottom = 210.0
 theme = ExtResource( 4 )
 pressed = true
-text = "Sound"
+text = "TITLE_SOUNDBT"
 
 [node name="Title" type="Sprite" parent="."]
 visible = false
@@ -64,5 +64,5 @@ margin_top = 230.0
 margin_right = 120.0
 margin_bottom = 240.0
 custom_fonts/font = ExtResource( 3 )
-text = "BUILD "
+text = "BUILD_ID"
 align = 1

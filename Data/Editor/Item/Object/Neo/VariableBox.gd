@@ -30,11 +30,11 @@ func _ready():
 		add_to_group("LabelRefresh")
 	
 	if tgVar == "modulate":
-		value.text = target.modulate.to_html(false)
+		value.text = target.modulate.to_html(true)
 		
 func refresh():
 	if tgVar == "modulate":
-		value.text = target.modulate.to_html(false)
+		value.text = target.modulate.to_html(true)
 	else:
 		value.text = str(target.get_indexed(tgVar))
 		

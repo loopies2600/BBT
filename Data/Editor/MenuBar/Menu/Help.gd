@@ -5,7 +5,7 @@ const BUGS := preload("res://Data/Editor/KnownBugs.tscn")
 var bugsW
 
 func _ready():
-	popup.add_item("Known Bugs")
+	popup.add_item(tr("E_HELP_BUGS"))
 	
 func _popupButtonPress(id := 0):
 	._popupButtonPress(id)

@@ -12,7 +12,7 @@ var velBoost := Vector2()
 func _ready():
 	sprite.region_rect.position.y = 16 * (0 if sign(speedBoost) == 1 else 1)
 	
-	Main.level.set_cellv(Main.level.world_to_map(global_position), -1)
+	Main.level.set_cellv(global_position.floor(), -1)
 	
 func resetState():
 	sprite.region_rect.position.x = 0

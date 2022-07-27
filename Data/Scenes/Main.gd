@@ -26,6 +26,7 @@ onready var ot := $OnTop
 
 var currentScene
 
+var cellSize := Vector2(16, 16)
 var attempt := 1
 
 var entityLookTowards := Vector2()
@@ -159,7 +160,7 @@ func getNodeOnThisPos(pos := Vector2()) -> Node2D:
 	var node
 	
 	for c in get_tree().get_nodes_in_group("Instances"):
-		if (c.global_position / level.cell_size / level.scale).round() == pos:
+		if (c.global_position).floor() == pos:
 			node = c
 	
 	return node

@@ -269,7 +269,7 @@ func getTilesInRadius(pos := Vector2(), radius := 0, exclude := [-1, 61, 62, 63,
 				
 	return tiles
 	
-func floodFill(pos := Vector2(), maxDistance := 32, targetTilemap : TileMap = self, include := [-1, 0]):
+func floodFill(pos := Vector2(), maxDistance := 1024, targetTilemap : TileMap = self, include := [-1, 0]):
 	var dirs := [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 	
 	var possibleCells := []
@@ -282,7 +282,7 @@ func floodFill(pos := Vector2(), maxDistance := 32, targetTilemap : TileMap = se
 		if curTile in possibleCells:
 			continue
 			
-		var difference : Vector2 = (curTile - pos).abs()
+		var difference : Vector2 = ((curTile - pos) * Main.cellSize).abs()
 		var distance := int(difference.x + difference.y)
 		
 		if distance > maxDistance:
@@ -291,7 +291,7 @@ func floodFill(pos := Vector2(), maxDistance := 32, targetTilemap : TileMap = se
 		possibleCells.append(curTile)
 		
 		for dir in dirs:
-			var coords : Vector2 = curTile + dir
+			var coords : Vector2 = curTile + (dir * Main.cellSize)
 			
 			if targetTilemap.get_cellv(coords) in include:
 				pass

@@ -11,14 +11,14 @@ func mainClick(_event):
 	
 	var cell : Vector2 = get_parent().cellPos
 	var ttm : TileMap = get_parent().targetTilemap
-	var tile := ttm.get_cellv(cell) != -1
+	var tile := ttm.get_cellv(cell * Main.cellSize) != -1
 	
 	if tile:
 		_spawnConfigurator(TILE_CONFIG, {"targetMap" : ttm, "targetTile": cell})
 	else:
 		if ttm != Main.level: return
 		
-		var n = Main.getNodeOnThisPos(get_parent().cellPos)
+		var n = Main.getNodeOnThisPos(get_parent().cellPos * Main.cellSize)
 		
 		if !n: return
 		

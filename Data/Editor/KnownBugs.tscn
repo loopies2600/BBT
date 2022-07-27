@@ -43,7 +43,7 @@ margin_bottom = 20.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 2 )
 custom_styles/normal = SubResource( 1 )
-text = "KNOWN BUGS"
+text = "E_HELP_BUGS"
 script = ExtResource( 4 )
 
 [node name="Label" type="RichTextLabel" parent="."]

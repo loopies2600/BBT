@@ -80,7 +80,7 @@ window/stretch/aspect="keep"
 
 [global]
 
-build_name="24-7-2"
+build_name="27-7-1"
 
 [importer_defaults]
 
@@ -205,6 +205,10 @@ redo={
 2d_physics/layer_4="Holdable"
 2d_physics/layer_5="Enemy"
 2d_physics/layer_6="Obstacle"
+
+[locale]
+
+translations=PoolStringArray( "res://Data/Locale.en.translation", "res://Data/Locale.es.translation" )
 
 [network]
 

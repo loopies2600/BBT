@@ -115,7 +115,7 @@ func closeToCeiling() -> bool:
 		close = true
 		
 		if col is TileMap:
-			var tile : int = col.get_cellv(col.world_to_map(global_position) + Vector2(0, -1))
+			var tile : int = col.get_cellv(global_position.floor() + (Vector2(0, -1) * Main.cellSize.x))
 			
 			if tile in cJumpableTiles:
 				close = false
@@ -137,7 +137,7 @@ func closeToWall() -> bool:
 		if col is TileMap:
 			dashableTiles.append(9 if dir == 1 else 10)
 			
-			var tile : int = col.get_cellv(col.world_to_map(global_position) + Vector2(1 * dir, 0))
+			var tile : int = col.get_cellv(global_position.floor() + (Vector2(1 * dir, 0) * Main.cellSize.x))
 			
 			if tile in dashableTiles:
 				close = false

@@ -5,8 +5,8 @@ const PREFS := preload("res://Data/Editor/LevelPrefs/LevelPrefs.tscn")
 var prefsW
 
 func _ready():
-	popup.add_item("Preferences")
-	popup.add_item("Clear Contents")
+	popup.add_item(tr("E_LEVEL_PREFS"))
+	popup.add_item(tr("E_LEVEL_WIPE"))
 	
 func _popupButtonPress(id := 0):
 	._popupButtonPress(id)

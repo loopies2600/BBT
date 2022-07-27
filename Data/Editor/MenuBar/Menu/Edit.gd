@@ -2,9 +2,9 @@ extends "res://Data/Editor/MenuBar/Menu/MenuButton.gd"
 
 func _ready():
 	
-	popup.add_item("Undo    CTRL + Z")
-	popup.add_item("Redo    CTRL + R")
-	popup.add_check_item("Tile Background")
+	popup.add_item("%s    CTRL + Z" % tr("E_EDIT_UNDO"))
+	popup.add_item("%s    CTRL + R" % tr("E_EDIT_REDO"))
+	popup.add_check_item(tr("E_EDIT_TILEBG"))
 	
 	_lvlChange()
 	

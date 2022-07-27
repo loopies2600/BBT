@@ -90,7 +90,7 @@ func _process(_delta):
 	
 	visible = Main.editing
 	
-	var result : Vector2 = (_frickinPositionFormula() / level.cell_size).round() * level.cell_size
+	var result : Vector2 = (_frickinPositionFormula() / Main.cellSize).round() * Main.cellSize
 	
 	if !Main.editing:
 		texture = null
@@ -98,7 +98,7 @@ func _process(_delta):
 	
 	if canPlace:
 		global_position = result
-		cellPos = ((global_position / level.cell_size).round() / level.scale).round()
+		cellPos = ((global_position / Main.cellSize).round() / level.scale).round()
 	
 	modes[mode].update()
 	update()
@@ -122,13 +122,13 @@ func _draw():
 					
 					draw_set_transform(pos, 0.0, Vector2(-1 if fx else 1, -1 if fy else 1))
 					
-				draw_texture(texture, Vector2(targetTilemap.cell_size.x * x, targetTilemap.cell_size.x * y), mod)
+				draw_texture(texture, Vector2(Main.cellSize.x * x, Main.cellSize.y * y), mod)
 
 func _frickinPositionFormula() -> Vector2:
 	var mousePos := get_global_mouse_position()
 	var cursorOffset := Vector2(8, 8)
 	
-	var result : Vector2 = (((mousePos - cursorOffset) / level.cell_size).round() / level.scale).round() * level.cell_size
+	var result : Vector2 = (((mousePos - cursorOffset) / Main.cellSize).round() / level.scale).round() * Main.cellSize
 	
 	return result
 	

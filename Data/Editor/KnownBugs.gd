@@ -13,6 +13,8 @@ func _mouseOut():
 	editor.cursor.canPlace = true
 	
 func _ready():
+	$Title.text = tr("E_HELP_BUGS").to_upper()
+	
 	var _unused = connect("mouse_entered", self, "_mouseIn")
 	_unused = connect("mouse_exited", self, "_mouseOut")
 	

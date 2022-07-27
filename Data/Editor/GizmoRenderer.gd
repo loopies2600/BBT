@@ -12,7 +12,7 @@ func _draw():
 	
 	var size : Vector2 = get_viewport_rect().size * get_parent().cam.zoom
 	var pos : Vector2 = get_parent().cam.global_position
-	var separation : Vector2 = lvl.cell_size * lvl.scale
+	var separation : Vector2 = Main.cellSize * lvl.scale
 	var limit : Vector2 = Vector2(320, 240) * lvl.scale
 	
 	if get_parent().showGrid:
@@ -32,9 +32,9 @@ func _draw():
 			draw_string(FONT, Vector2(pos.x + size.x - (600 * get_parent().cam.zoom.x), i * separation.y), str(i), Color.darkgray)
 		
 	if get_parent().cursor.configurator:
-		draw_rect(Rect2(get_parent().cursor.configurator.targetTile * lvl.cell_size * lvl.scale, lvl.cell_size * lvl.scale), Color.tomato, false, 2)
+		draw_rect(Rect2(get_parent().cursor.configurator.targetTile * Main.cellSize * lvl.scale, Main.cellSize * lvl.scale), Color.tomato, false, 2)
 		
 	var hold = get_parent().cursor.modes[1].holding
 	
 	if is_instance_valid(hold) && get_parent().cursor.mode == 1:
-		draw_rect(Rect2(hold.global_position, lvl.cell_size * lvl.scale), Color.tomato, false, 2)
+		draw_rect(Rect2(hold.global_position, Main.cellSize * lvl.scale), Color.tomato, false, 2)

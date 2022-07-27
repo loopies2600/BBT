@@ -65,7 +65,7 @@ func _seek():
 	
 	var tiles : PoolVector2Array = Main.level.getTilesInRadius(((global_position + Vector2(8, 8)) / 16).round(), tileSearchRadius)
 	
-	var myGround := Main.level.world_to_map(global_position) + Vector2(0, 1)
+	var myGround := global_position + (Vector2(0, 1) * Main.cellSize.x)
 	var clearThose : PoolIntArray = []
 	
 	for t in range(0, tiles.size()):
