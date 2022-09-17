@@ -5,7 +5,7 @@ const TAB := preload("res://Data/Editor/Item/Object/Neo/Tab.tscn")
 const SWITCH := preload("res://Data/Editor/Item/Object/Neo/Switch.tscn")
 
 onready var cont := $Panel/Container
-onready var targetTile := (target.global_position / Main.cellSize).floor()
+onready var targetTile : Vector2 = (target.global_position / Main.cellSize).floor()
 
 var target : Node2D
 var tabs := []

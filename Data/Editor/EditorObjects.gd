@@ -14,9 +14,17 @@ var Objects := []
 var Markers := []
 var PowerUps := []
 
+onready var container := $TabContainer
 onready var tilesTab := $TabContainer/Tiles/ScrollContainer/VBoxContainer/HBoxContainer
 
 func _ready():
+	container.set_tab_title(0, tr("E_LIST_TILES"))
+	container.set_tab_title(1, tr("E_LIST_CUSTOMT"))
+	container.set_tab_title(2, tr("E_LIST_OBJECTS"))
+	container.set_tab_title(3, tr("E_LIST_ENTITIES"))
+	container.set_tab_title(4, tr("E_LIST_MARKERS"))
+	container.set_tab_title(5, tr("E_LIST_PWUPS"))
+	
 	for i in OLIST:
 		Objects.append(load(DEFPATH % ("Object/%s" % i)))
 		

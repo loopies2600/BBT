@@ -8,8 +8,8 @@ signal redrawn()
 
 const BORNERD := preload("res://Sprites/Enemy/Bornerd.png")
 const TILESPR := preload("res://Data/Particles/GenericSprite.tscn")
-const INDESTRUCTIBLE := [23, 24, 61, 62, 63, 64, 77, 78, 79, 80]
-const NOSHADOW := [2, 3, 4, 43, 44, 45, 46, 47, 48, 54, 69, 70]
+const INDESTRUCTIBLE := [23, 24, 61, 62, 63, 64, 77, 78, 79, 80, 87]
+const NOSHADOW := [2, 3, 4, 43, 44, 45, 46, 47, 48, 54, 69, 70, 87]
 const SAVE_PATH = "user://"
 
 export (Texture) var bgTex = load("res://Sprites/UI/Border0.png")
@@ -107,6 +107,9 @@ func resetObjectState():
 	refreshToggleBlock()
 	refreshTimedBlock()
 	redrawShadows()
+	
+	var pos := Vector2(32, 176) if Main.editing else Vector2(4096, 4096) 
+	tile_set.tile_set_region(87, Rect2(pos, Vector2(16, 16)))
 	
 func _onObjectPlace(_pos):
 	_resetTokens()

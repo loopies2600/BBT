@@ -45,3 +45,9 @@ E_LP_GEN_GSIZE,Grid size,Tamaño de cuadrícula
 E_LP_GEN_LIMITS,Boundaries,Límites
 GENERIC_YES,Accept,Aceptar
 GENERIC_NO,Cancel,Cancelar
+E_LIST_TILES,Tiles,Tiles
+E_LIST_CUSTOMT,Custom,Personalizadas
+E_LIST_OBJECTS,Objects,Objetos
+E_LIST_ENTITIES,Entities,Entidades
+E_LIST_MARKERS,Markers,Marcadores
+E_LIST_PWUPS,PowerUps,Poderes
